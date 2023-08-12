@@ -7,6 +7,8 @@
   color: rgba(255, 255, 255, 0.87);
   background-color: #fd79a8;
 
+  overflow: hidden;
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
