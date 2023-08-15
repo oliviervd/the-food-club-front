@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  background: #fd79a8;
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -5,10 +11,9 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #fd79a8;
+  background: #fd79a8;
 
-  overflow: hidden;
-
+  margin:0;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -25,7 +30,9 @@ a {
   font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
+  place-items: center;
 }
+
 a:hover {
   color: #535bf2;
 }
@@ -34,34 +41,80 @@ body {
   margin: 0;
   display: flex;
   place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
 }
 
 h1 {
+  text-align: center;
   font-size: 3.2em;
   line-height: 1.1;
+  padding-top: 0.5em;
 }
 
-h1.title {
+.FC{
   font-family: "FIGHT";
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+h1.title {
+  color: #eee3e2;
+  padding-top: 50vh;
+
+}
+
+p{
+  text-align: center;
+}
+
+.container {
+  height: 100%;
+  width: 100vw;
+}
+
+.BG_pink{
+  background-color: #fd79a8;
+}
+
+.sticky-nav{
+  position: fixed;
+  bottom: 2rem;
+  right: 1rem;
+}
+
+.sticky-nav__item {
+  position: relative;
+  margin-top: .75rem;
+}
+
+.sticky-nav__button {
+  background: #fd79a8;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: 0.2em solid #eee3e2;
+  /*box-shadow: .2em .2em 0px #000000; */
+  border-radius: 42.5%;
+  padding: 0.75em;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: transform 100ms,box-shadow 100ms
 }
-button:hover {
-  border-color: #646cff;
+.sticky-nav__button:hover{
+  box-shadow: 0 0 #000;
+  transform: translate(0.2em, 0.2em);
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+
+.list-box{
+  padding: 0.75rem
+}
+
+.list-box__element{
+  margin: 0.75rem;
+  height: 20vh;
+  border: 0.2em solid #eee3e2;
+}
+
+.list-box__header{
+  position: relative;
+  top: 3rem;
+  font-size: 2.5rem;
 }
