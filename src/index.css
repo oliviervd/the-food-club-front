@@ -1,7 +1,8 @@
+
 * {
   margin: 0;
   padding: 0;
-  background: #fd79a8;
+  background: var(--main-color);
 }
 
 :root {
@@ -10,8 +11,10 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background: #fd79a8;
+  --main-color: #f1f1f1;
+  --accent-color: rgba(253, 121, 168, 5%);
+  --FG-pink: rgba(253, 121, 168, 95%);
+  --main-text-color: black;
 
   margin:0;
   font-synthesis: none;
@@ -24,17 +27,6 @@
 @font-face {
   font-family: FIGHT;
   src: local("FIGHT"), url(assets/FIGHTT__.ttf);
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-  place-items: center;
-}
-
-a:hover {
-  color: #535bf2;
 }
 
 body {
@@ -55,12 +47,12 @@ h1 {
 }
 
 h1.title {
-  color: #eee3e2;
-  padding-top: 50vh;
-
+  color: var(--FG-pink);
+  padding-top: 47vh;
 }
 
 p{
+  color: var(--main-text-color);
   text-align: center;
 }
 
@@ -69,52 +61,53 @@ p{
   width: 100vw;
 }
 
-.BG_pink{
-  background-color: #fd79a8;
-}
-
 .sticky-nav{
   position: fixed;
+  background: transparent;
   bottom: 2rem;
   right: 1rem;
 }
 
 .sticky-nav__item {
+  background: transparent;
   position: relative;
   margin-top: .75rem;
 }
 
 .sticky-nav__button {
-  background: #fd79a8;
+  background: white;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 2rem;
   height: 2rem;
-  border: 0.2em solid #eee3e2;
+  border: 0.2em solid var(--FG-pink);
   /*box-shadow: .2em .2em 0px #000000; */
   border-radius: 42.5%;
   padding: 0.75em;
   cursor: pointer;
-  transition: transform 100ms,box-shadow 100ms
+  transition: transform 100ms,box-shadow 100ms;
+  z-index: 10000;
 }
+
 .sticky-nav__button:hover{
   box-shadow: 0 0 #000;
   transform: translate(0.2em, 0.2em);
 }
 
 .list-box{
-  padding: 0.75rem
+  padding: 0.75rem;
 }
 
 .list-box__element{
   margin: 0.75rem;
   height: 20vh;
-  border: 0.2em solid #eee3e2;
+  border: 0.2em solid var(--FG-pink);
+  background: var(--accent-color);
+
 }
 
 .list-box__header{
-  position: relative;
-  top: 3rem;
   font-size: 2.5rem;
+  background: transparent;
 }
