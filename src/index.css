@@ -13,6 +13,7 @@
   color-scheme: light dark;
   --main-color: #f1f1f1;
   --accent-color: rgba(253, 121, 168, 5%);
+  --accent-color__menu: rgba(253, 121, 168, 70%);
   --FG-pink: rgba(253, 121, 168, 95%);
   --main-text-color: black;
 
@@ -40,6 +41,7 @@ h1 {
   font-size: 3.2em;
   line-height: 1.1;
   padding-top: 0.5em;
+  background: transparent;
 }
 
 .FC{
@@ -66,12 +68,16 @@ p{
   background: transparent;
   bottom: 2rem;
   right: 1rem;
+  z-index: 10000;
+
 }
 
 .sticky-nav__item {
   background: transparent;
   position: relative;
   margin-top: .75rem;
+  z-index: 10000;
+
 }
 
 .sticky-nav__button {
@@ -95,6 +101,15 @@ p{
   transform: translate(0.2em, 0.2em);
 }
 
+.sticky-nav__menu{
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  top:0;
+  background: var(--accent-color__menu);
+  z-index: 100;
+}
+
 .list-box{
   padding: 0.75rem;
 }
@@ -104,7 +119,6 @@ p{
   height: 20vh;
   border: 0.2em solid var(--FG-pink);
   background: var(--accent-color);
-
 }
 
 .list-box__header{
