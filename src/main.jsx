@@ -6,9 +6,8 @@ import Home from "./pages/Home.jsx";
 import Map from "./elements/map.jsx";
 import TopList from "./pages/TopList.jsx";
 
-
+import 'leaflet/dist/leaflet.css';
 import './style/index.css'
-import './style/leaflet.css'
 
 export default function App() {
     return (
