@@ -5,14 +5,14 @@
 }
 
 :root {
-  font-family: Junicode-Bold;
+  font-family: OstrichSans-Heavy;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
   --main-color: #f1f1f1;
   --accent-color: rgba(253, 121, 168, 5%);
-  --accent-color__menu: rgba(253, 121, 168, 70%);
+  --accent-color__menu: black;
   --FG-pink: rgba(253, 121, 168, 95%);
   --main-text-color: black;
 
@@ -34,6 +34,11 @@
   src: local("Junicode-Bold"), url(../assets/Junicode-Bold.ttf);
 }
 
+@font-face {
+  font-family: OstrichSans-Heavy;
+  src: local("OstrichSans-Heavy"), url(../assets/OstrichSans-Heavy.otf);
+}
+
 body {
   margin: 0;
   display: flex;
@@ -49,12 +54,13 @@ h1 {
 }
 
 .FC{
-  font-family: "FIGHT";
+  font-family: "OstrichSans-Heavy";
 }
 
 h1.title {
-  color: var(--FG-pink);
-  padding-top: 47vh;
+  font-size: 7em;
+  color: var(--accent-color__menu);
+  line-height: 0.2em;
 }
 
 p{
@@ -97,7 +103,7 @@ p{
   justify-content: center;
   width: 2rem;
   height: 2rem;
-  border: 0.2em solid var(--FG-pink);
+  border: 0.2em solid var(--accent-color__menu);
   /*box-shadow: .2em .2em 0px #000000; */
   border-radius: 42.5%;
   padding: 0.75em;
@@ -131,7 +137,7 @@ p{
 .list-box__element{
   margin: 0.75rem;
   height: 20vh;
-  border: 0.2em solid var(--FG-pink);
+  border: 0.2em solid var(--accent-color__menu);
   background: var(--accent-color);
 }
 
