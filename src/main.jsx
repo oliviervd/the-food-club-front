@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home.jsx";
-import Map from "./elements/map.jsx";
+import Places from "./pages/Places.jsx";
 import TopList from "./pages/TopList.jsx";
 
 import 'leaflet/dist/leaflet.css';
@@ -15,7 +15,7 @@ export default function App() {
             <Routes>
                 <Route path="/"  element={<Home />}/>
                 <Route path="/list" element={<TopList/>}/>
-                <Route path="/map" element={<Map/>}/>
+                <Route path="/map" element={<Places/>}/>
             </Routes>
         </BrowserRouter>
     );
