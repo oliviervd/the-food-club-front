@@ -139,3 +139,18 @@ p{
   font-size: 2.5rem;
   background: transparent;
 }
+
+.places__overlay{
+  background: white;
+  position: absolute;
+  top: 0;
+  left: 0%;
+  right: 0;
+  z-index: 100000000;
+}
+
+.places__overlay-title{
+  text-align: right;
+  color:  black;
+  margin-right: 10px;
+}

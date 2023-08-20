@@ -12,4 +12,4 @@ const Places = () => {
     )
 }
 
-export default
+export default Places
