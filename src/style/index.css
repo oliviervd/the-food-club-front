@@ -182,13 +182,13 @@ p{
 .header--container{
   display: grid;
   grid-auto-columns: 50vw 50vw;
-  height: 15vh;
+  height: 10vh;
   margin-top: 15px;
 }
 
 .header--logo{
   position: absolute;
-  height: 15vh;
+  height: 13vh;
   left: -5px;
 }
 
@@ -221,7 +221,7 @@ p{
 }
 
 .categories--title_font{
-  background: rgba(253, 121, 168, 40%);
+  background: rgba(253, 121, 168, 30%);
   margin-top: 15px;
 }
 
