@@ -6,9 +6,13 @@ import {fetchAPI} from "../utils/utils.jsx";
 
 const Categories = () => {
 
-    const _categories = fetchAPI('categories');
-    const _cats = _categories["docs"]
-    console.log(_categories["docs"])
+    let _categories;
+    let _cats = [];
+
+    try {
+        _categories = fetchAPI('categories');
+        _cats = _categories["docs"];
+    } catch (e) {console.log(e)}
 
     return(
         <div className={"container"}>
