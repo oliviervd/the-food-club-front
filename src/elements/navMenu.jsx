@@ -4,7 +4,7 @@ import {useNavigate} from "react-router-dom";
 
 const NavMenu = () => {
 
-    const navigate = useNavigate()
+    const nav = useNavigate()
     function navigateTo(destination) {
         navigate("")
     }
@@ -14,7 +14,7 @@ const NavMenu = () => {
             <div className={"sticky-nav__menu"}>
                 <div style={{background: "transparent", marginTop: "35vh"}}>
                     <h1 className={"sticky-nav__menu-item"} onClick={()=>{}}>MAP</h1>
-                    <h1 className={"sticky-nav__menu-item"} onClick={()=>navigateTo("")}>TOP LIST</h1>
+                    <h1 className={"sticky-nav__menu-item"} onClick={()=> nav("")}>TOP LIST</h1>
                     <h1 className={"sticky-nav__menu-item"} onClick={()=>{}}>ABOUT</h1>
                 </div>
             </div>

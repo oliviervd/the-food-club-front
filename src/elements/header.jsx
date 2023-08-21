@@ -1,9 +1,10 @@
 import React from "react";
+import Logo from "./logo.jsx";
 
 const Header = (props) => {
     return(
-        <div>
-            <h1>{props.pageTitle}</h1>
+        <div className={"header--container"}>
+            <Logo></Logo>
         </div>
     )
 }
