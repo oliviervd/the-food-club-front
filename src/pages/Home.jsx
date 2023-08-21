@@ -1,18 +1,15 @@
 import React from "react"
+import {useNavigate} from "react-router-dom";
+import _im from "/src/elements/Untitled_Artwork.png"
+
 
 const Home = () => {
+
+    const nav = useNavigate()
+
     return(
-        <div className={"container"} style={{background: "white", height: "70vh", paddingTop: "30vh", overflow:"hidden"}}>
-            <h1 className={"title FC"}>
-                 The
-            </h1><h1 className={"title FC"}>
-                 FOOD
-            </h1><h1 className={"title FC"}>
-                 Club
-            </h1>
-            <p style={{fontStyle:"title", position: "absolute", top:"55vh", fontSize: "2em", textAlign:"center", width:"100vw"}}>
-                enter
-            </p>
+        <div className={"container home"}>
+            <img className={"home--logo"} src={_im}/>
         </div>
     )
 }

@@ -11,10 +11,14 @@
 
   color-scheme: light dark;
   --main-color: #f1f1f1;
+  --light-pink: #F6DDE5;
+  --deep-pink:  #EDB5C9;
+  --main-text-color: #262626;
+
   --accent-color: rgba(253, 121, 168, 5%);
   --accent-color__menu: black;
   --FG-pink: rgba(253, 121, 168, 95%);
-  --main-text-color: black;
+
 
   margin:0;
   font-synthesis: none;
@@ -22,6 +26,13 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  background: var(--light-pink)
+}
+
+@font-face {
+  font-family: Trim-BoldItalic;
+  src: local("Trim-BoldItalic"), url(../assets/Trim-BoldItalic.otf)
 }
 
 @font-face {
@@ -74,9 +85,9 @@ p{
 }
 
 .container {
-  height: 100%;
+  height: 100vh;
   width: 100vw;
-  background: var(--main-color);
+  background: var(--light-pink);
 }
 
 .sticky-nav{
@@ -160,3 +171,29 @@ p{
   color:  black;
   margin-right: 10px;
 }
+
+.header--container{
+  display: grid;
+  grid-auto-columns: 50vw 50vw;
+  height: 12vh;
+}
+
+.header--logo{
+  position: absolute;
+  height: 17vh;
+  left: -5px;
+}
+
+.home--logo {
+  position: absolute;
+  margin-top: 30vh;
+  left: -20px;
+  height: 35vh;
+}
+
+.home{
+  overflow: hidden;
+  width: 100vw;
+}
+
+/* LOGO */
