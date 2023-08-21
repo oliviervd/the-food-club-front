@@ -193,7 +193,9 @@ p{
 }
 
 .home--logo {
-  width: 100vw;
+  margin-left: 8vw;
+  width: 80vw;
+  z-index: 10000;
 }
 
 .home{
@@ -204,6 +206,7 @@ p{
 .vertical-center {
   margin: 0;
   position: absolute;
+  z-index: 100000;
   top: 50%;
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
@@ -214,6 +217,7 @@ p{
   background: transparent;
   position: absolute;
   z-index: 10000;
+
 }
 
 .categories--title_font{
