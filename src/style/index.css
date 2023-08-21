@@ -175,7 +175,7 @@ p{
 .header--container{
   display: grid;
   grid-auto-columns: 50vw 50vw;
-  height: 12vh;
+  height: 15vh;
 }
 
 .header--logo{
@@ -202,3 +202,9 @@ p{
 }
 
 /* LOGO */
+
+.UI-GRID{
+  width: 100vw;
+  position: absolute;
+  opacity: 0.5;
+}
