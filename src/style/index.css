@@ -181,15 +181,22 @@ p{
 
 .header--container{
   display: grid;
-  grid-auto-columns: 50vw 50vw;
+  grid-auto-colums: 50vw 50vw;
   height: 10vh;
   margin-top: 15px;
 }
 
 .header--logo{
-  position: absolute;
+  position: relative;
   height: 15vh;
   left: 5px;
+}
+
+.header--slug{
+  position: absolute;
+  right: 0;
+  margin-right: 5vw;
+  top: 12.5vh;
 }
 
 .home--logo {
@@ -230,4 +237,12 @@ p{
   width: 100vw;
   opacity: 0.5;
   z-index: 10;
+}
+
+.H-LINE{
+  height: 2px;
+  border-top: #262626 2px solid;
+  margin-top: 10px;
+  margin-left:10px;
+  margin-right:10px;
 }

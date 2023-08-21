@@ -18,6 +18,7 @@ const Categories = () => {
         <div className={"container"}>
             <Header slug={"Eat like locals"} title={"Food Club"}></Header>
             <br/>
+
             <img className={"UI-GRID"} src={GridUI}/>
             <div className={"categories--container"}>
                 {_cats.map(cat=>{
