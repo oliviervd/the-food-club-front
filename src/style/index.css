@@ -185,15 +185,20 @@ p{
 }
 
 .home--logo {
-  position: absolute;
-  margin-top: 30vh;
-  left: -20px;
-  height: 35vh;
+  width: 100vw;
 }
 
 .home{
   overflow: hidden;
   width: 100vw;
+}
+
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
 /* LOGO */

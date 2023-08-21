@@ -9,7 +9,9 @@ const Home = () => {
 
     return(
         <div className={"container home"}>
-            <img className={"home--logo"} src={_im}/>
+            <div className={"vertical-center"}>
+                <img className={"home--logo"} src={_im}/>
+            </div>
         </div>
     )
 }
