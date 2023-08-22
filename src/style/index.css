@@ -96,7 +96,7 @@ p{
   width: 100vw;
   background: var(--light-pink);
   overflow-y: hidden;
-
+  overflow-x: hidden;
 }
 
 .sticky-nav{
