@@ -1,13 +1,17 @@
 import React from "react";
 import navbar from "../elements/navbar.jsx";
 import Header from "../elements/header.jsx";
-import GridUI from "../elements/Grid.png"
+import GridUI from "../elements/images/Grid.png"
 import {fetchAPI} from "../utils/utils.jsx";
+import {useNavigate} from "react-router-dom";
+
 
 const Categories = () => {
 
     let _categories;
     let _cats = [];
+
+    const nav = useNavigate()
 
     try {
         _categories = fetchAPI('categories');
@@ -24,7 +28,9 @@ const Categories = () => {
                 {_cats.map(cat=>{
                     return(
                         <div>
-                            <h2 className={"categories--title_font"}>{cat["categoryTitle"].toUpperCase()}</h2>
+                            <h2 className={"categories--title_font"} onClick={()=>nav(`/toplist/${cat["categoryTitle"]}`)}>
+                                {cat["categoryTitle"].toUpperCase()}
+                            </h2>
                             <p>{cat["categorySubTitle"]}</p>
                         </div>
                     )

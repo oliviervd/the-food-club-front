@@ -31,6 +31,7 @@ export default function App() {
                     <Route path="/"  element={<Home />}/>
                     <Route path="/categories" element={<Categories/>}/>
                     <Route path="/map" element={<Places/>}/>
+                    <Route path="/toplist/:id" element={<TopList/>}/>
                 </Routes>
                 <ReactQueryDevtools/>
             </QueryClientProvider>

@@ -1,7 +1,7 @@
 import React from "react"
 import {useNavigate} from "react-router-dom";
-import _im from "/src/elements/Untitled_Artwork.png"
-import GridUI from "../elements/Grid.png"
+import _im from "/src/elements/images/Untitled_Artwork.png"
+import GridUI from "../elements/images/Grid.png"
 
 
 const Home = () => {
