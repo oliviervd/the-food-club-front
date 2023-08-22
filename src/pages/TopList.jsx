@@ -41,7 +41,7 @@ const TopList = () => {
             <div className={"categories--container"}>
                 <div>
                     <h2 className={"toplist--title_font"}>
-                        CHOLESTEROL-LOL
+                        {id.id.toUpperCase()}
                     </h2>
                     <p></p>
                 </div>
