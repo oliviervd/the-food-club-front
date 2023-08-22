@@ -2,7 +2,6 @@
 * {
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
 }
 
 :root {
@@ -96,6 +95,8 @@ p{
   height: 100vh;
   width: 100vw;
   background: var(--light-pink);
+  overflow-y: hidden;
+
 }
 
 .sticky-nav{
