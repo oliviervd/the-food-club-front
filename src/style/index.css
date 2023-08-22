@@ -179,6 +179,26 @@ p{
   margin-top: 15px;
 }
 
+.toplist--title_font{
+  margin-top: 15px;
+}
+
+.toplist--image_container{
+  height: 90vw;
+  width: 90vw;
+  background: var(--deep-pink);
+}
+
+.toplist--image{
+  border: rgba(253, 121, 168, 70%) 2px solid;
+  z-index: 1000000;
+  height: 90vw;
+  width: 90vw;
+  left: 2vw;
+  top: 2vw;
+  position: relative;
+}
+
 .UI-GRID{
   position: absolute;
   width: 100vw;
