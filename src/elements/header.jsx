@@ -3,6 +3,7 @@ import Logo from "./logo.jsx";
 import NavBar from "./navbar.jsx";
 
 const Header = (props) => {
+
     return(
         <div className={"header--container"}>
             <Logo></Logo>
