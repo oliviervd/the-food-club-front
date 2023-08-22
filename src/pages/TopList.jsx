@@ -4,7 +4,7 @@ import NavBar from "../elements/navbar.jsx"
 import NavMenu from "../elements/navMenu.jsx";
 import {useNavigate, useParams} from "react-router-dom";
 import {fetchAPI} from "../utils/utils.jsx";
-import GridUI from "../elements/images/Grid.png";
+import GridUI from "../elements/images/Grid_Dense.png";
 
 const TopList = () => {
 
