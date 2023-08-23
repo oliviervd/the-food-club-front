@@ -61,6 +61,12 @@ html, body{
   src: local("Trim Web Regular"), url("../assets/Trim Web Regular.ttf");
 }
 
+
+@font-face {
+  font-family: BergenText-Regular;
+  src: local("BergenText-Regular"), url("../assets/BergenText-Regular.otf");
+}
+
 /* TYPOGRAPHY */
 
 h1 {
@@ -169,14 +175,27 @@ p{
   font-size: 2em;
 }
 
+.toplist--venue_title{
+  position: relative;
+  text-align: center;
+  top: 40%;
+  color: var(--light-pink);
+  text-decoration: underline;
+  font-family: "BergenText-Regular";
+}
+
+
 .toplist--title_font{
   margin-top: 1em;
+  font-size: 2em;
 }
 
 .toplist--image_container{
+  position: relative;
   height: 90vw;
   width: 90vw;
   background: var(--deep-pink);
+  left: -2vw;
 }
 
 .toplist--image{
