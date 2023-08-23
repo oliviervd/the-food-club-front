@@ -1,3 +1,12 @@
+/* basic setup */
+
+html, body{
+  max-width:100%;
+  overflow-x: hidden;
+  margin: 0;
+  display: flex;
+  place-items: center;
+}
 
 * {
   margin: 0;
@@ -30,6 +39,8 @@
   background: var(--light-pink)
 }
 
+/* fonts */
+
 @font-face {
   font-family: Trim-BoldItalic;
   src: local("Trim-BoldItalic"), url(../assets/Trim-BoldItalic.otf)
@@ -50,11 +61,7 @@
   src: local("Trim Web Regular"), url("../assets/Trim Web Regular.ttf");
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-}
+/* TYPOGRAPHY */
 
 h1 {
   text-align: center;
@@ -62,17 +69,15 @@ h1 {
   line-height: 1.1;
   padding-top: 0.5em;
   background: transparent;
+
+  .title{
+    font-size: 7em;
+    color: var(--accent-color__menu);
+    line-height: 0.2em;
+  }
+
 }
 
-.FC{
-  font-family: "OstrichSans-Heavy";
-}
-
-h1.title {
-  font-size: 7em;
-  color: var(--accent-color__menu);
-  line-height: 0.2em;
-}
 
 h2{
   font-family: Trim-ExtraBold;
@@ -86,45 +91,6 @@ p{
   text-align: left;
 }
 
-.leaflet-container{
-  width: 100%;
-  height: 100vh;
-}
-
-.container {
-  height: 100vh;
-  width: 100vw;
-  background: var(--light-pink);
-  overflow-y: hidden;
-  overflow-x: hidden;
-}
-
-.sticky-nav{
-  position: absolute;
-  background: transparent;
-  top: 1rem;
-  right: 2rem;
-  z-index: 10000;
-}
-
-.sticky-nav__hamburger{
-  width: 20vw;
-}
-
-.places__overlay{
-  background: white;
-  position: absolute;
-  top: 0;
-  left: 0%;
-  right: 0;
-  z-index: 100000000;
-}
-
-.places__overlay-title{
-  text-align: right;
-  color:  black;
-  margin-right: 10px;
-}
 
 .header--container{
   display: grid;
@@ -146,6 +112,38 @@ p{
   top: 12.5vh;
 }
 
+/* UI ELEMENTS */
+
+/* MAP */
+
+.leaflet-container{
+  width: 100%;
+  height: 100vh;
+}
+
+.container {
+  height: 100vh;
+  width: 100vw;
+  background: var(--light-pink);
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+/* NAVIGATION */
+
+.sticky-nav{
+  position: absolute;
+  background: transparent;
+  top: 1rem;
+  right: 2rem;
+  z-index: 10000;
+}
+
+.sticky-nav__hamburger{
+  width: 20vw;
+}
+
+
 .home--logo {
   margin-left: 8vw;
   width: 80vw;
@@ -155,15 +153,6 @@ p{
 .home{
   overflow: hidden;
   width: 100vw;
-}
-
-.vertical-center {
-  margin: 0;
-  position: absolute;
-  z-index: 100000;
-  top: 50%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
 }
 
 .categories--container{
@@ -177,10 +166,11 @@ p{
 .categories--title_font{
   background: rgba(253, 121, 168, 30%);
   margin-top: 15px;
+  font-size: 2em;
 }
 
 .toplist--title_font{
-  margin-top: 15px;
+  margin-top: 1em;
 }
 
 .toplist--image_container{
@@ -206,10 +196,13 @@ p{
   z-index: 10;
 }
 
-.H-LINE{
-  height: 2px;
-  border-top: #262626 2px solid;
-  margin-top: 10px;
-  margin-left:10px;
-  margin-right:10px;
+/* UTILS */
+
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  z-index: 100000;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
