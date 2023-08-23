@@ -1,6 +1,8 @@
 import {Icon} from "leaflet/dist/leaflet-src.esm.js";
 import {Marker, Popup, TileLayer, MapContainer} from "react-leaflet";
 import React from "react";
+import _im from "./images/Mapicon.png"
+
 
 const map = () => {
 
@@ -14,8 +16,8 @@ const map = () => {
     ]
 
     const CustomIcon = new Icon({
-        iconUrl: "https://img.icons8.com/?size=512&id=67384&format=png",
-        iconSize: [38, 38] // size
+        iconUrl: _im,
+        iconSize: [28, 38] // size
     })
 
     return(
