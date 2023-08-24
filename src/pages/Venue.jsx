@@ -51,9 +51,11 @@ const Venue = () => {
                         </div>
                     </div>
 
-                    <div className={"venue--container_content-slug"}>
-                        <p>{_venue["reviews"]["reviewEN"][0]["children"][0]["text"]}</p>
-                    </div>
+                    {_venue["reviews"]["reviewEN"][0]["children"][0]["text"] &&
+                        <div className={"venue--container_content-slug"}>
+                            <p>{_venue["reviews"]["reviewEN"][0]["children"][0]["text"]}</p>
+                        </div>
+                    }
 
                     <div className={"venue--container_content"}>
 
