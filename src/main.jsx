@@ -8,6 +8,8 @@ import Home from "./pages/Home.jsx";
 import Places from "./pages/Places.jsx";
 import TopList from "./pages/TopList.jsx";
 import Categories from "./pages/Categories.jsx";
+import Venue from "./pages/Venue.jsx";
+
 
 
 import 'leaflet/dist/leaflet.css';
@@ -32,6 +34,7 @@ export default function App() {
                     <Route path="/categories" element={<Categories/>}/>
                     <Route path="/map" element={<Places/>}/>
                     <Route path="/toplist/:id" element={<TopList/>}/>
+                    <Route path="/venue/:id" element={<Venue/>}/>
                 </Routes>
                 <ReactQueryDevtools/>
             </QueryClientProvider>

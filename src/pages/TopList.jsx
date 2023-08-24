@@ -74,13 +74,11 @@ const TopList = () => {
                                 <div>
                                     <div>
                                         <div className={"toplist--image"}>
-                                            <img className={"toplist--image_img"} src={_im}/>
-                                            <h2 className={"toplist--venue_title"}>{venue.venueName}</h2>
+                                            <img onClick={()=>nav(`/venue/${venue.venueName}`)} className={"toplist--image_img"} src={_im}/>
+                                            <h2 onClick={()=>nav(`/venue/${venue.venueName}`)} className={"toplist--venue_title"}>{venue.venueName}</h2>
                                         </div>
                                     </div>
                                 </div>
-
-
                             </div>
                             <br/>
                         </div>
