@@ -125,6 +125,11 @@ p{
 .leaflet-container{
   width: 100%;
   height: 100vh;
+  z-index: 1000;
+}
+
+.map--ui{
+  opacity: 0.85;
 }
 
 .container {
@@ -176,12 +181,16 @@ p{
 }
 
 .toplist--venue_title{
-  position: relative;
   text-align: center;
-  top: 40%;
   color: var(--light-pink);
   text-decoration: underline;
   font-family: "BergenText-Regular";
+  position: absolute;
+  z-index: 10000000;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(253, 121, 168, 70%);
 }
 
 
@@ -200,11 +209,19 @@ p{
 
 .toplist--image{
   border: rgba(253, 121, 168, 70%) 2px solid;
-  z-index: 1000000;
+  z-index: 100;
   height: 90vw;
   width: 90vw;
   left: 2vw;
   top: 2vw;
+  position: relative;
+}
+
+.toplist--image_img {
+  margin: auto;
+  height: 90vw;
+  width: 90vw;
+  z-index: 100;
   position: relative;
 }
 

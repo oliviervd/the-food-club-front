@@ -61,13 +61,26 @@ const TopList = () => {
                 </div>
 
                 {_listFiltered.map(venue=>{
-                    //console.log(venue)
+                    let _im
+                    if(venue.media) {
+                        _im = venue.media.url
+                    } else {
+                        _im = ""
+                    }
+                    console.log(_im)
                     return(
                         <div>
                             <div className={"toplist--image_container"}>
-                                <div className={"toplist--image"}>
-                                    <h2 className={"toplist--venue_title"}>{venue.venueName}</h2>
+                                <div>
+                                    <div>
+                                        <div className={"toplist--image"}>
+                                            <img className={"toplist--image_img"} src={_im}/>
+                                            <h2 className={"toplist--venue_title"}>{venue.venueName}</h2>
+                                        </div>
+                                    </div>
                                 </div>
+
+
                             </div>
                             <br/>
                         </div>

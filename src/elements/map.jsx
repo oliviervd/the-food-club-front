@@ -2,6 +2,7 @@ import {Icon} from "leaflet/dist/leaflet-src.esm.js";
 import {Marker, Popup, TileLayer, MapContainer} from "react-leaflet";
 import React from "react";
 import _im from "./images/Mapicon.png"
+import GridUI from "./images/Grid_Dense.png";
 
 
 const map = () => {
@@ -22,7 +23,8 @@ const map = () => {
 
     return(
         <div className={"container"}>
-            <MapContainer center={[51.0544, 3.7256]} zoom={14}>
+            <img className={"UI-GRID"} src={GridUI}/>
+            <MapContainer className={"map--ui"} center={[51.0544, 3.7256]} zoom={14}>
                 <TileLayer
                     attribution='Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'
                     //url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
