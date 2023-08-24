@@ -214,15 +214,16 @@ p{
   width: 90vw;
   left: 2vw;
   top: 2vw;
+  justify-content:center;
+  align-items:center;
   position: relative;
+  overflow: hidden;
 }
 
 .toplist--image_img {
-  margin: auto;
-  height: 90vw;
-  width: 90vw;
-  z-index: 100;
-  position: relative;
+  object-fit: cover;
+  width: 100%;
+  min-height: 100%;
 }
 
 .UI-GRID{
