@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import navbar from "../elements/navbar.jsx";
 import Header from "../elements/header.jsx";
 import GridUI from "../elements/images/Grid_Dense.png"
@@ -7,6 +7,12 @@ import {useNavigate} from "react-router-dom";
 
 
 const Categories = () => {
+
+    // onLoad scroll to top.
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
 
     let _categories;
     let _cats = [];

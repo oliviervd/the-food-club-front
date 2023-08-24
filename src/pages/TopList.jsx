@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Header from "../elements/header.jsx";
 import NavBar from "../elements/navbar.jsx"
 import NavMenu from "../elements/navMenu.jsx";
@@ -8,6 +8,12 @@ import GridUI from "../elements/images/Grid_Dense.png"; // drawn grid in backgro
 import {fetchAPI} from "../utils/utils.jsx";
 
 const TopList = () => {
+
+    // onLoad scroll to top.
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
 
     const [openNavMenu, setOpenNavMenu] = useState(false);
 
