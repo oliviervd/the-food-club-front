@@ -231,6 +231,7 @@ p{
 }
 
 .venue--container_content-address{
+  z-index: 100000000;
   margin-left: 2em;
   font-family: BergenText-Bold;
   font-size: 0.9em;
