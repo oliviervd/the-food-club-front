@@ -173,9 +173,25 @@ p{
   position: absolute;
 }
 
-.venue--title{
+.venue--header_title{
   margin-top: 15px;
   font-size: 2em;
+}
+
+.venue--header_subtitle{
+  top: -20px;
+  position: relative;
+  font-family: BergenText-Regular;
+  font-size: 1.2em;
+  color: var(--main-text-color);
+}
+
+.venue--header_category{
+
+}
+
+.venue--header_cuisine{
+
 }
 
 .venue--container_content{

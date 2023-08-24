@@ -3,11 +3,24 @@ import {useParams} from "react-router-dom";
 import Header from "../elements/header.jsx";
 import NavBar from "../elements/navbar.jsx";
 import GridUI from "../elements/images/Grid_Dense.png";
+import {fetchAPI} from "../utils/utils.jsx";
 
 const Venue = () => {
 
     // fetch content based on id
     let id = useParams(); // use id to set content
+    let _venue
+
+    try{
+        let _venueList = fetchAPI('venue')
+        for (let i = 0; i < _venueList["docs"].length; i ++) {
+            //console.log(_venueList["docs"][i])
+            if (_venueList["docs"][i]["venueName"] === id.id) {
+                _venue = _venueList["docs"][i]
+                console.log(_venue)
+            }
+        }
+    } catch (e) {}
 
     // onLoad scroll to top.
     useEffect(() => {
@@ -21,22 +34,30 @@ const Venue = () => {
             <br/>
             <img className={"UI-GRID"} src={GridUI}/>
 
-            <div className={"venue--container"}>
-                <h2 className={"venue--title"}>
-                    {id.id.toUpperCase()}
-                </h2>
-                <br/>
 
-                <div className={"venue--container_content"}>
-                    <img/>
-                    <div className={"venue--lightbox"}>
-
+            {_venue &&
+                <div className={"venue--container"}>
+                    <div>
+                        <h2 className={"venue--header_title"}>
+                            {id.id.toUpperCase()}
+                        </h2>
+                        <div className={"venue--header_subtitle"}>
+                            <h3 className={"venue--header_category"}>{_venue["cuisineUsed"][0]["name"]} // {_venue["category"]["categoryTitle"]} </h3>
+                            <h3 className={"venue--header_cuisine"}> </h3>
+                        </div>
                     </div>
+
+                    <br/>
+
+                    <div className={"venue--container_content"}>
+                        <img/>
+                        <div className={"venue--lightbox"}>
+
+                        </div>
+                    </div>
+
                 </div>
-
-            </div>
-
-
+            }
         </div>
     )
 }
