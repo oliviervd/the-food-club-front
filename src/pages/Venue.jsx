@@ -51,9 +51,12 @@ const Venue = () => {
                         </div>
                     </div>
 
-                    <br/>
+                    <div className={"venue--container_content-slug"}>
+                        <p>{_venue["reviews"]["reviewEN"][0]["children"][0]["text"]}</p>
+                    </div>
 
                     <div className={"venue--container_content"}>
+
                         {_venue["media"]&&
                             <div className={"venue--container_content-media"}>
                                 <img className={"venue--container_content-media-image"} src={_venue["media"]["url"]}/>

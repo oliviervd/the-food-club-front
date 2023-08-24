@@ -198,6 +198,12 @@ p{
 
 }
 
+.venue--container_content-slug{
+  position: relative;
+  top: -10px;
+  font-weight: bolder;
+}
+
 .venue--container_content-media{
   position: absolute;
   height: 70vw;
