@@ -10,6 +10,7 @@ const Venue = () => {
     // fetch content based on id
     let id = useParams(); // use id to set content
     let _venue
+    let _im
 
     try{
         let _venueList = fetchAPI('venue')
@@ -21,6 +22,9 @@ const Venue = () => {
             }
         }
     } catch (e) {}
+
+
+
 
     // onLoad scroll to top.
     useEffect(() => {
@@ -50,9 +54,12 @@ const Venue = () => {
                     <br/>
 
                     <div className={"venue--container_content"}>
-                        <img/>
+                        {_venue["media"]&&
+                            <div className={"venue--container_content-media"}>
+                                <img className={"venue--container_content-media-image"} src={_venue["media"]["url"]}/>
+                            </div>
+                        }
                         <div className={"venue--lightbox"}>
-
                         </div>
                     </div>
 
