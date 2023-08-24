@@ -61,10 +61,14 @@ html, body{
   src: local("Trim Web Regular"), url("../assets/Trim Web Regular.ttf");
 }
 
-
 @font-face {
   font-family: BergenText-Regular;
   src: local("BergenText-Regular"), url("../assets/BergenText-Regular.otf");
+}
+
+@font-face {
+  font-family: BergenText-Bold;
+  src: local("BergenText-Bold"), url("../assets/BergenText-Bold.otf");
 }
 
 /* TYPOGRAPHY */
@@ -142,12 +146,34 @@ p{
 
 /* NAVIGATION */
 
-.sticky-nav{
+.sticky-nav__menu{
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  z-index: 10000000000000000;
+  background: rgba(253, 121, 168, 90%);
+}
+
+.sticky-nav__menu-item{
+  color: var(--accent-color__menu);
+  font-family: Trim-ExtraBold;
+}
+
+.sticky-nav-header{
   position: absolute;
   background: transparent;
   top: 1rem;
   right: 2rem;
   z-index: 10000;
+}
+
+
+.sticky-nav-float{
+  position: absolute;
+  background: transparent;
+  bottom: 1rem;
+  right: 2rem;
+  z-index: 1000000;
 }
 
 .sticky-nav__hamburger{
@@ -204,8 +230,14 @@ p{
   font-weight: bolder;
 }
 
+.venue--container_content-address{
+  margin-left: 2em;
+  font-family: BergenText-Bold;
+  font-size: 0.9em;
+}
+
 .venue--container_content-media{
-  position: absolute;
+  position: relative;
   height: 70vw;
   width: 70vw;
   z-index: 100000;

@@ -1,14 +1,17 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import Header from "../elements/header.jsx";
 import NavBar from "../elements/navbar.jsx";
 import GridUI from "../elements/images/Grid_Dense.png";
 import {fetchAPI} from "../utils/utils.jsx";
+import NavMenu from "../elements/navMenu.jsx";
 
 const Venue = () => {
 
     // fetch content based on id
     let id = useParams(); // use id to set content
+
+    // initiate cache
     let _venue
     let _im
 
@@ -23,9 +26,6 @@ const Venue = () => {
         }
     } catch (e) {}
 
-
-
-
     // onLoad scroll to top.
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -35,6 +35,7 @@ const Venue = () => {
         <div className={"container BG_pink"}>
             <Header slug={"Eat like locals"} title={"Food Club"}></Header>
             <NavBar/>
+
             <br/>
             <img className={"UI-GRID"} src={GridUI}/>
 
@@ -64,6 +65,10 @@ const Venue = () => {
                                 <img className={"venue--container_content-media-image"} src={_venue["media"]["url"]}/>
                             </div>
                         }
+
+                        <br/>
+                        <p className={"venue--container_content-address"}>Open from Tuesday to Sunday</p>
+                        <p className={"venue--container_content-address"}>{_venue["address"]["street"]} {_venue["address"]["houseNumber"]}, {_venue["address"]["postalCode"]} {_venue["address"]["city"]}</p>
                         <div className={"venue--lightbox"}>
                         </div>
                     </div>
