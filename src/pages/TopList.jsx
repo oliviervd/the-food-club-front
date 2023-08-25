@@ -41,9 +41,12 @@ const TopList = () => {
         _list = fetchAPI('venue')
         // filter based on category
         for (let i=0; i<_list["docs"].length; i++) {
-            if (_list["docs"][i]["category"]["categoryTitle"] == id.id) {
-                // if same category push venue to new list.
-                _listFiltered.push(_list["docs"][i])
+            for(let x = 0; x <_list["docs"][i]["category"].length; x++){
+                console.log(_list["docs"][i]["category"])
+                if (_list["docs"][i]["category"][x]["categoryTitle"] === id.id) {
+                    // if same category push venue to new list.
+                    _listFiltered.push(_list["docs"][i])
+                }
             }
         }
         //console.log(_listFiltered)

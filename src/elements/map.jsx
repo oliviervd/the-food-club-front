@@ -32,7 +32,7 @@ const map = () => {
     try{
         let _venueList = fetchAPI('venue')
         _venues = _venueList["docs"]
-        console.log(_venueList["docs"])
+        //console.log(_venueList["docs"])
     } catch(e) {console.log(e)}
 
 
