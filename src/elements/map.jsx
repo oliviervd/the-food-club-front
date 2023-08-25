@@ -51,7 +51,7 @@ const map = () => {
                     url="https://api.mapbox.com/styles/v1/oliviervd-tfc/clllwhqvq009s01pea2rw8mpt/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoib2xpdmllcnZkLXRmYyIsImEiOiJjbGxqZWFjd3MweTBzM2psaWFiemlnZnZnIn0.fMu0iJpz82mNYQ5Rrrwi-w"
                 />
 
-                <MarkerClusterGroup chunkedLoading maxClusterRadius="50" >
+                <MarkerClusterGroup chunkedLoading maxClusterRadius="30" >
                     {_venues &&
                         <div>
                             {_venues.map(venue => (
