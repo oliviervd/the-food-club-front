@@ -321,7 +321,6 @@ p{
 .UI-GRID{
   position: absolute;
   width: 100vw;
-  height: fit-content;
   opacity: 0.3;
   z-index: 10;
 }
