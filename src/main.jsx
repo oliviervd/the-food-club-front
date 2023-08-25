@@ -36,7 +36,6 @@ export default function App() {
                     <Route path="/toplist/:id" element={<TopList/>}/>
                     <Route path="/venue/:id" element={<Venue/>}/>
                 </Routes>
-                <ReactQueryDevtools/>
             </QueryClientProvider>
         </BrowserRouter>
     );
