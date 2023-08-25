@@ -52,7 +52,6 @@ const TopList = () => {
     return(
         <div className={"container BG_pink"}>
             <Header pageTitle={""}/>
-            <NavBar openMenu={setOpenNavMenu} isOpenMenu={openNavMenu}/>
             <br/>
 
             <img className={"UI-GRID"} src={GridUI}/>
