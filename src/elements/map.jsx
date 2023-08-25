@@ -22,7 +22,7 @@ const map = () => {
     }
 
     function isObject(input){
-        if(typeof input === "object") {
+        if (typeof input === "object" && input.length !== 1) {
             return true
         } else { return false }
     }
@@ -32,7 +32,7 @@ const map = () => {
     try{
         let _venueList = fetchAPI('venue')
         _venues = _venueList["docs"]
-        //console.log(_venueList["docs"])
+        console.log(_venueList["docs"])
     } catch(e) {console.log(e)}
 
 
