@@ -27,7 +27,7 @@ const map = () => {
     })
 
     return(
-        <div className={"container"}>
+        <div className={"container"} style={{overflow:"hidden"}}>
             <img className={"UI-GRID"} src={GridUI} style={{height:"100vh", objectFit:"cover"}}/>
             <MapContainer className={"map--ui"} center={[51.0544, 3.7256]} zoom={14}>
                 <TileLayer
