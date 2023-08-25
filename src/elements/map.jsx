@@ -18,6 +18,12 @@ const map = () => {
         setVenue(venue)
     }
 
+    function isObject(input){
+        if(typeof input === "object") {
+            return true
+        } else { return false }
+    }
+
     // fetch data
     let _venues;
     try{
@@ -71,7 +77,16 @@ const map = () => {
                                 <h2 className={"map--ui_pop-up-container__title"}>{venue.venueName}</h2>
                                 <div className={"autogrid-pills"}>
                                     <h3 className={"map--ui_pop-up-container__pill"}>{venue["cuisineUsed"][0]["name"]}</h3>
-                                    <h3 className={"map--ui_pop-up-container__pill"}>{venue["type"]}</h3>
+                                    {/* check if multiple types to define UI */}
+                                    {!isObject(venue["type"]) &&
+                                        <p className={"map--ui_pop-up-container__pill"}>{venue["type"]}</p>
+                                    }
+                                    {isObject(venue["type"]) &&
+                                        <div className={"pillbox--container"}>
+                                            <p className={"map--ui_pop-up-container__pill"}>{venue["type"][0]}</p>
+                                            <p className={"map--ui_pop-up-container__pill"}>{venue["type"][1]}</p>
+                                        </div>
+                                    }
                                 </div>
                             </div>
                         </div>

@@ -28,7 +28,7 @@ const Venue = () => {
     } catch (e) {}
 
     // function to check type
-    function isArray(input){
+    function isObject(input){
         if(typeof input === "object") {
             return true
         } else { return false }
@@ -68,10 +68,10 @@ const Venue = () => {
 
                     <div>
                         {/* check if multiple types to define UI */}
-                        {!isArray(_venue["type"]) &&
+                        {!isObject(_venue["type"]) &&
                             <p className={"pillbox"}>{_venue["type"]}</p>
                         }
-                        {isArray(_venue["type"]) &&
+                        {isObject(_venue["type"]) &&
                             <div className={"pillbox--container"}>
                                 <p className={"pillbox"}>{_venue["type"][0]}</p>
                                 <p className={"pillbox"}>{_venue["type"][1]}</p>

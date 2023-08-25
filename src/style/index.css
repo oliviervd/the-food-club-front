@@ -136,6 +136,13 @@ p{
   opacity: 0.85;
 }
 
+.map--ui_logo{
+  position: absolute;
+  height: 15vh;
+  left: 5px;
+  z-index: 1000000000000;
+}
+
 .map--ui_pop-up-container{
   height: 20vh;
   background: var(--light-pink);
