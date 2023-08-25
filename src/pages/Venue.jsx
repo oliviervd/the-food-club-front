@@ -29,7 +29,7 @@ const Venue = () => {
 
     // function to check type
     function isObject(input){
-        if(typeof input === "object") {
+        if(typeof input === "object" && input[1]) {
             return true
         } else { return false }
     }

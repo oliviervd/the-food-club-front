@@ -30,9 +30,8 @@ export default function App() {
         <BrowserRouter>
             <QueryClientProvider client={queryClient}>
                 <Routes>
-                    <Route path="/"  element={<Home />}/>
+                    <Route path="/"  element={<Places />}/>
                     <Route path="/categories" element={<Categories/>}/>
-                    <Route path="/map" element={<Places/>}/>
                     <Route path="/toplist/:id" element={<TopList/>}/>
                     <Route path="/venue/:id" element={<Venue/>}/>
                 </Routes>
