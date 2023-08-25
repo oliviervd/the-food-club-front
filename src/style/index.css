@@ -111,13 +111,12 @@ p{
 
 .header--container_buttons{
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 0.5fr 1fr 1fr 0.5fr;
 }
 
 .header--button_container{
   position: relative;
   top: 0.5em;
-  right: 0.5em;
   background: var(--deep-pink);
   border-radius: 30px;
   margin: 5px;
