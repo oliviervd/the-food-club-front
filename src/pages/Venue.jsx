@@ -1,10 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import Header from "../elements/header.jsx";
-import NavBar from "../elements/navbar.jsx";
 import GridUI from "../elements/images/Grid_Dense.png";
 import {fetchAPI} from "../utils/utils.jsx";
-import NavMenu from "../elements/navMenu.jsx";
 
 const Venue = () => {
 
@@ -42,7 +40,6 @@ const Venue = () => {
     return(
         <div className={"container BG_pink"}>
             <Header slug={"Eat like locals"} title={"Food Club"}></Header>
-            <NavBar/>
 
             <br/>
             <img className={"UI-GRID"} src={GridUI}/>

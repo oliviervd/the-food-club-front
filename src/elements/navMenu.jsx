@@ -1,5 +1,4 @@
 import React from "react";
-import NavBar from "./navbar.jsx";
 import {useNavigate} from "react-router-dom";
 import _hamburger from "./images/Hamburger.png";
 

@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import Header from "../elements/header.jsx";
 import NavBar from "../elements/navbar.jsx"
-import NavMenu from "../elements/navMenu.jsx";
 import {useNavigate, useParams} from "react-router-dom";
 import GridUI from "../elements/images/Grid_Dense.png"; // drawn grid in background
 

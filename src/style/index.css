@@ -319,8 +319,9 @@ p{
 }
 .venue--container_content-media-image{
   object-fit: cover;
-  width: 100%;
-  min-height: 100%;
+  width: 70vw;
+  height: 70vw;
+  object-fit: cover;
 }
 
 .venue--lightbox{

@@ -1,6 +1,5 @@
 import React from "react";
 import Logo from "./logo.jsx";
-import NavBar from "./navbar.jsx";
 
 const Header = (props) => {
 
@@ -8,7 +7,6 @@ const Header = (props) => {
         <div className={"header--container"}>
             <Logo></Logo>
             <p className={"header--slug"}>{props.slug}</p>
-            <NavBar/>
         </div>
     )
 }

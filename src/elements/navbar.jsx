@@ -21,9 +21,7 @@ const NavBar = (props) => {
             <div className={"sticky-nav-header"}>
                 <img className={"sticky-nav__hamburger"} src={_hamburger}/>
             </div>
-            {openMenu &&
-                <NavMenu/>
-            }
+
         </div>
 
     )
