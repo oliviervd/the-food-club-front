@@ -136,6 +136,15 @@ p{
   opacity: 0.85;
 }
 
+.map--ui_pop-up-container{
+  height: 20vh;
+  background: white;
+  position: absolute;
+  bottom:0;
+  width: 100vw;
+  z-index: 1000000000000;
+}
+
 .container {
   height: 100vh;
   width: 100vw;
@@ -323,6 +332,15 @@ p{
   width: 100vw;
   opacity: 0.3;
   z-index: 10;
+}
+
+.UI-GRID__popup{
+  position: absolute;
+  width: 100vw;
+  height: 20vh;
+  object-fit: cover;
+  z-index: -10;
+  opacity: 0.2;
 }
 
 .pillbox--container{
