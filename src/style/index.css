@@ -249,7 +249,7 @@ p{
 }
 
 .venue--lightbox{
-  top: 200px;
+  top: 50%;
   background: rgba(253, 121, 168, 30%);
   height: 100vh;
   width: 100vw;
@@ -323,6 +323,19 @@ p{
   width: 100vw;
   opacity: 0.3;
   z-index: 10;
+}
+
+.pillbox--container{
+  display: flex;
+  gap: 2%;
+}
+
+.pillbox{
+  background: rgba(253, 121, 168, 70%);
+  border-radius: 30px;
+  width: fit-content;
+  padding: 0px 5px;
+  margin-bottom: 10px;
 }
 
 /* UTILS */

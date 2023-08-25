@@ -22,9 +22,17 @@ const Venue = () => {
             if (_venueList["docs"][i]["venueName"] === id.id) {
                 _venue = _venueList["docs"][i]
                 console.log(_venue)
+                console.log(typeof _venue["type"])
             }
         }
     } catch (e) {}
+
+    // function to check type
+    function isArray(input){
+        if(typeof input === "object") {
+            return true
+        } else { return false }
+    }
 
     // onLoad scroll to top.
     useEffect(() => {
@@ -52,11 +60,25 @@ const Venue = () => {
                         </div>
                     </div>
 
-                    {_venue["reviews"]["reviewEN"][0]["children"][0]["text"] &&
+                    {_venue["slugs"]["slugEN"][0]["children"][0]["text"] &&
                         <div className={"venue--container_content-slug"}>
-                            <p>{_venue["reviews"]["reviewEN"][0]["children"][0]["text"]}</p>
+                            <p>{_venue["slugs"]["slugEN"][0]["children"][0]["text"]}</p>
                         </div>
                     }
+
+                    <div>
+                        {/* check if multiple types to define UI */}
+                        {!isArray(_venue["type"]) &&
+                            <p className={"pillbox"}>{_venue["type"]}</p>
+                        }
+                        {isArray(_venue["type"]) &&
+                            <div className={"pillbox--container"}>
+                                <p className={"pillbox"}>{_venue["type"][0]}</p>
+                                <p className={"pillbox"}>{_venue["type"][1]}</p>
+                            </div>
+                        }
+
+                    </div>
 
                     <div className={"venue--container_content"}>
 
