@@ -1,5 +1,7 @@
 import {Icon} from "leaflet/dist/leaflet-src.esm.js";
 import {Marker, Popup, TileLayer, MapContainer} from "react-leaflet";
+import MarkerClusterGroup from "react-leaflet-cluster";
+
 import React, {useState} from "react";
 import _im from "./images/Mapicon.png"
 import GridUI from "./images/Grid_Dense.png";
@@ -40,21 +42,24 @@ const map = () => {
                     url="https://api.mapbox.com/styles/v1/oliviervd-tfc/clllwhqvq009s01pea2rw8mpt/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoib2xpdmllcnZkLXRmYyIsImEiOiJjbGxqZWFjd3MweTBzM2psaWFiemlnZnZnIn0.fMu0iJpz82mNYQ5Rrrwi-w"
                 />
 
-                {_venues &&
-                    <div>
-                        {_venues.map(venue => (
-                            <Marker
-                                position={[venue.address.longitude, venue.address.latitude]} icon={CustomIcon}
-                                eventHandlers={{click:(e)=>{
-                                    generateInfoPane(venue)
-                                    },
-                                }}
-                            >
-                            </Marker>
-                        ))}
-                    </div>
+                <MarkerClusterGroup chunkedLoading maxClusterRadius="50" >
+                    {_venues &&
+                        <div>
+                            {_venues.map(venue => (
+                                <Marker
+                                    position={[venue.address.longitude, venue.address.latitude]} icon={CustomIcon}
+                                    eventHandlers={{click:(e)=>{
+                                            generateInfoPane(venue)
+                                        },
+                                    }}
+                                >
+                                </Marker>
+                            ))}
+                        </div>
 
-                }
+                    }
+                </MarkerClusterGroup>
+
 
             </MapContainer>
             {openInfoPane &&

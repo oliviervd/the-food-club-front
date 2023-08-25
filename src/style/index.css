@@ -182,6 +182,14 @@ p{
   color: var(--main-text-color);
 }
 
+.marker-cluster-small{
+  background-color: var(--light-pink);
+}
+
+.marker-cluster-small>div{
+  background: var(--deep-pink)
+}
+
 .autogrid-pills{
   display: flex;
   gap: 3px;
