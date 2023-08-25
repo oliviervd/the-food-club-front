@@ -7,7 +7,6 @@ const Places = () => {
     return(
         <div>
             <Map/>
-            <Navbar/>
         </div>
     )
 }
