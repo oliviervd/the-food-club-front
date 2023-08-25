@@ -12,7 +12,8 @@ const Header = (props) => {
         <div className={"header--container"}>
             <Logo></Logo>
             <div>
-                <div style={{display: "flex", gap: "3px"}}>
+                <div className={"header--container_buttons"}>
+                    <div></div>
                     <div className={"header--button_container"}>
                         <img onClick={()=>nav("/")} className={"header--button"} src={_map}></img>
                     </div>

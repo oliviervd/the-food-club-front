@@ -109,6 +109,19 @@ p{
   margin-top: 15px;
 }
 
+.header--container_buttons{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.header--button_container{
+  position: relative;
+  top: 0.5em;
+  background: var(--deep-pink);
+  border-radius: 30px;
+  margin: 5px;
+}
+
 .header--button{
   position: relative;
   height: 2em;
@@ -119,13 +132,7 @@ p{
   padding-right: 1em;
 }
 
-.header--button_container{
-  position: relative;
-  left: 2em;
-  top: 0.6em;
-  background: var(--deep-pink);
-  border-radius: 30px;
-}
+
 
 .header--logo{
   position: relative;
@@ -134,10 +141,10 @@ p{
 }
 
 .header--slug{
-  position: absolute;
-  right: 0;
-  margin-right: 5vw;
-  top: 12.5vh;
+  position: relative;
+  text-align: left;
+  top: 10%;
+  left: 30%;
 }
 
 /* UI ELEMENTS */
