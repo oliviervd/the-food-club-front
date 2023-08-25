@@ -104,9 +104,22 @@ p{
 
 .header--container{
   display: grid;
-  grid-auto-colums: 50vw 50vw;
+  grid-template-columns: 50vw 50vw;
   height: 10vh;
   margin-top: 15px;
+}
+
+.header--button_map{
+  position: relative;
+  font-size: 1.5em;
+  font-family: BergenText-Bold;
+  text-align: center;
+  background-color: var(--deep-pink);
+  width:fit-content;
+  left: 40%;
+  border-radius: 30px;
+  padding: 5px 10px;
+  top: 0.6em;
 }
 
 .header--logo{
