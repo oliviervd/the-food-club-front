@@ -62,12 +62,14 @@ const map = () => {
                     <img className={"UI-GRID__popup"}  src={GridUI}></img>
                         <div className={"map--ui_pop-up-container--grid"}>
                             <img className={"map--ui_pop-up-container__img"} src={venue.media.url}/>
-                            <h2 className={"map--ui_pop-up-container__title"}>{venue.venueName}</h2>
+                            <div>
+                                <h2 className={"map--ui_pop-up-container__title"}>{venue.venueName}</h2>
+                                <div className={"autogrid-pills"}>
+                                    <h3 className={"map--ui_pop-up-container__pill"}>{venue["cuisineUsed"][0]["name"]}</h3>
+                                    <h3 className={"map--ui_pop-up-container__pill"}>{venue["type"]}</h3>
+                                </div>
+                            </div>
                         </div>
-
-
-
-
                 </div>
             }
         </div>

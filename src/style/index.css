@@ -164,10 +164,27 @@ p{
 }
 
 .map--ui_pop-up-container__title{
-  position: relative;
   top: 2vh;
+  position: relative;
   font-family: BergenText-Bold;
   font-size: 20px;
+}
+
+.map--ui_pop-up-container__pill{
+  top: 2vh;
+  background: var(--deep-pink);
+  border-radius: 30px;
+  padding: 0px 5px;
+  width: fit-content;
+  position: relative;
+  font-family: BergenText-Regular;
+  font-size: 14px;
+  color: var(--main-text-color);
+}
+
+.autogrid-pills{
+  display: flex;
+  gap: 3px;
 }
 
 .UI-GRID__popup{
