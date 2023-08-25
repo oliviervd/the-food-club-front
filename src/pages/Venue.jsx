@@ -90,7 +90,7 @@ const Venue = () => {
 
                         <br/>
 
-                        {_venue["reviews"]["reviewEN"][0]["children"][0]["text"].length !== 0 &&
+                        {_venue["reviews"]["reviewEN"] &&
                             <div>
                                 {_venue["reviews"]["reviewEN"].map(review => (
                                     <p className={"venue--container_content-review"}>{review["children"][0]["text"]}</p>
