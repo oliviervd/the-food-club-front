@@ -179,6 +179,38 @@ p{
   margin: 2vw;
 }
 
+.UI-GRID__popup{
+  position: absolute;
+  width: 100vw;
+  height: 20vh;
+  object-fit: cover;
+  z-index: -10;
+  opacity: 0.2;
+}
+
+@media screen and (min-width: 1024px) {
+  .map--ui_pop-up-container{
+    height: 95vh;
+    left: 70vw;
+    background: var(--light-pink);
+    border-radius: 20px;
+    position: absolute;
+    bottom:0;
+    width: 27vw;
+    z-index: 1000000000000;
+    margin: 2vw;
+  }
+
+  .UI-GRID__popup{
+    position: absolute;
+    width: 27vw;
+    height: 95vh;
+    object-fit: cover;
+    z-index: -10;
+    opacity: 0.2;
+  }
+}
+
 .map--ui_pop-up-container--grid{
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -227,14 +259,6 @@ p{
   gap: 3px;
 }
 
-.UI-GRID__popup{
-  position: absolute;
-  width: 100vw;
-  height: 20vh;
-  object-fit: cover;
-  z-index: -10;
-  opacity: 0.2;
-}
 
 .container {
   height: 100vh;
@@ -334,6 +358,11 @@ p{
   margin-left: 2em;
   font-family: BergenText-Bold;
   font-size: 0.9em;
+}
+
+.venue--container_content-review{
+  margin-left: 2em;
+  padding-bottom: 1em;
 }
 
 .venue--container_content-media{

@@ -12,6 +12,7 @@ const Venue = () => {
     // initiate cache
     let _venue
     let _im
+    let _review
 
     try{
         let _venueList = fetchAPI('venue')
@@ -24,6 +25,8 @@ const Venue = () => {
             }
         }
     } catch (e) {}
+
+
 
     // function to check type
     function isObject(input){
@@ -86,6 +89,17 @@ const Venue = () => {
                         }
 
                         <br/>
+
+                        {_venue["reviews"]["reviewEN"][0]["children"][0]["text"].length !== 0 &&
+                            <div>
+                                {_venue["reviews"]["reviewEN"].map(review => (
+                                    <p className={"venue--container_content-review"}>{review["children"][0]["text"]}</p>
+                                    )
+
+                                    )}
+                            </div>
+                        }
+
                         <p className={"venue--container_content-address"}>Open from Tuesday to Sunday</p>
                         <p className={"venue--container_content-address"}>{_venue["address"]["street"]} {_venue["address"]["houseNumber"]}, {_venue["address"]["postalCode"]} {_venue["address"]["city"]}</p>
                         <div className={"venue--lightbox"}>
