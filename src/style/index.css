@@ -109,17 +109,22 @@ p{
   margin-top: 15px;
 }
 
-.header--button_map{
+.header--button{
   position: relative;
-  font-size: 1.5em;
-  font-family: BergenText-Bold;
-  text-align: center;
-  background-color: var(--deep-pink);
-  width:fit-content;
-  left: 40%;
-  border-radius: 30px;
-  padding: 5px 10px;
+  height: 2em;
+  width: 2em;
+  padding-top: 1em;
+  padding-bottom: 0.5em;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.header--button_container{
+  position: relative;
+  left: 2em;
   top: 0.6em;
+  background: var(--deep-pink);
+  border-radius: 30px;
 }
 
 .header--logo{
