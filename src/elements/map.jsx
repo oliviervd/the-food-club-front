@@ -6,12 +6,15 @@ import React, {useState} from "react";
 import _im from "./images/Mapicon.png"
 import GridUI from "./images/Grid_Dense.png";
 import {fetchAPI} from "../utils/utils.jsx";
+import {useNavigate} from "react-router-dom";
 
 
 const map = () => {
 
     const [openInfoPane, setOpenInfoPane] = useState(false)
     const [venue, setVenue] = useState("")
+
+    const nav = useNavigate();
 
     function generateInfoPane(venue) {
         setOpenInfoPane(true)
@@ -72,7 +75,7 @@ const map = () => {
                 <div className={"map--ui_pop-up-container"}>
                     <img className={"UI-GRID__popup"}  src={GridUI}></img>
                         <div className={"map--ui_pop-up-container--grid"}>
-                            <img className={"map--ui_pop-up-container__img"} src={venue.media.url}/>
+                            <img onClick={()=>nav(`/venue/${venue.venueName}`)} className={"map--ui_pop-up-container__img"} src={venue.media.url}/>
                             <div>
                                 <h2 className={"map--ui_pop-up-container__title"}>{venue.venueName}</h2>
                                 <div className={"autogrid-pills"}>
