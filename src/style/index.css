@@ -414,9 +414,8 @@ p{
   padding-bottom: 2vh;
   left: 1em;
   width: 100vw;
-  height: 100%;
+  height: 70%;
   z-index: -10;
-
 }
 
 .categories--container{
