@@ -321,6 +321,7 @@ p{
   background: transparent;
   z-index: 100000;
   position: absolute;
+  overflow: hidden
 }
 
 .venue--container_content{
