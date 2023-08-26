@@ -12,3 +12,5 @@ export function fetchAPI(endpoint) {
     return data
 }
 
+
+

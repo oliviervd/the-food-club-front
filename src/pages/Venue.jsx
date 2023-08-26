@@ -80,6 +80,8 @@ const Venue = () => {
 
                     </div>
 
+
+
                     <div className={"venue--container_content"}>
 
                         {_venue["media"]&&
@@ -88,7 +90,16 @@ const Venue = () => {
                             </div>
                         }
 
+                       {/* <div>
+                            <div className={"venue--container_content-links"} onClick={() => window.open(_venue["website"], '_blank')}>website</div>
+                            <div className={"venue--container_content-links"} >phone</div>
+                        </div>
+                        */}
+
                         <br/>
+
+                        <div className={"venue--container_content"}>
+                            <div className={"venue--lightbox"}></div>
 
                         {_venue["reviews"]["reviewEN"] &&
                             <div>
@@ -100,10 +111,16 @@ const Venue = () => {
                             </div>
                         }
 
-                        <p className={"venue--container_content-address"}>Open from Tuesday to Sunday</p>
+                        <p className={"venue--container_content-address"}>
+                            <div className={"venue--container_content-openDays"}> open on:
+                                {_venue["openOn"].map(day=>(
+                                <p className={"venue--container_content-openDays-day"}>{day.toUpperCase()}</p>
+                            ))}
+                            </div>
+                        </p>
                         <p className={"venue--container_content-address"}>{_venue["address"]["street"]} {_venue["address"]["houseNumber"]}, {_venue["address"]["postalCode"]} {_venue["address"]["city"]}</p>
-                        <div className={"venue--lightbox"}>
-                        </div>
+                    </div>
+
                     </div>
 
                 </div>

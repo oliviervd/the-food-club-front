@@ -2,9 +2,9 @@
 
 html, body{
   max-width:100%;
-  overflow-x: hidden;
+  overflow: auto;
   margin: 0;
-  display: flex;
+  display: block;
   place-items: center;
 }
 
@@ -323,6 +323,13 @@ p{
   position: absolute;
 }
 
+.venue--container_content{
+  position: relative;
+  padding-top: 30vh;
+  top: -30vh;
+  padding-bottom: 2vh;
+}
+
 .venue--header_title{
   margin-top: 15px;
   font-size: 2em;
@@ -336,16 +343,18 @@ p{
   color: var(--main-text-color);
 }
 
-.venue--header_category{
-
-}
-
-.venue--header_cuisine{
-
-}
-
-.venue--container_content{
-
+.venue--container_content-links{
+  position: relative;
+  background: white;
+  width: fit-content;
+  color: var(--main-text-color);
+  font-family: Trim-Bold;
+  border-radius: 50px;
+  font-size: 1.2em;
+  padding: 0px 5px;
+  top: -20vh;
+  left: 60vw;
+  z-index: 100000;
 }
 
 .venue--container_content-slug{
@@ -358,6 +367,15 @@ p{
   margin-left: 2em;
   font-family: BergenText-Bold;
   font-size: 0.9em;
+}
+
+.venue--container_content-openDays{
+  display: flex;
+}
+
+.venue--container_content-openDays-day{
+  margin-left: 4px;
+  font-family: Trim-Bold;
 }
 
 .venue--container_content-review{
@@ -379,13 +397,24 @@ p{
 }
 
 .venue--lightbox{
-  top: 50%;
+  /*top: 50%;
   background: rgba(253, 121, 168, 30%);
   min-height: 40vh;
   width: 100vw;
   position: absolute;
   left: 3.33em;
   z-index: -10;
+
+   */
+  position: absolute;
+  background: rgba(253, 121, 168, 30%);
+  padding-top: 30vh;
+  top: 0vh;
+  padding-bottom: 2vh;
+  left: 1em;
+  width: 100vw;
+  height: 100%;
+
 }
 
 .categories--container{
