@@ -44,7 +44,7 @@ const map = () => {
     return(
         <div className={"container"} style={{overflow:"hidden"}}>
             <img className={"UI-GRID"} src={GridUI} style={{height:"100vh", objectFit:"cover"}}/>
-            <MapContainer className={"map--ui"} center={[51.0544, 3.7256]} zoom={13} zoomControl={false}>
+            <MapContainer className={"map--ui"} center={[51.0544, 3.7256]} zoom={13.5} zoomControl={false}>
                 <TileLayer
                     //attribution='Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'
                     //url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
