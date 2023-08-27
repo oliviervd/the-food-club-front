@@ -21,7 +21,7 @@ const Header = (props) => {
                         <img onClick={()=>nav("/categories")} className={"header--button"} src={_list}></img>
                     </div>
                 </div>
-                <p className={"header--slug"}>{props.slug}</p>
+                {/*<p className={"header--slug"}>{props.slug}</p>*/}
             </div>
         </div>
     )

@@ -96,6 +96,21 @@ const Venue = () => {
                         }
                     </div>
 
+                    {/* PILLBOX (type) */}
+                    <div>
+                        {/* check if multiple types to define UI */}
+                        {!isObject(_venue["type"]) &&
+                            <p className={"pillbox"}>{_venue["type"]}</p>
+                        }
+                        {isObject(_venue["type"]) &&
+                            <div className={"pillbox--container"}>
+                                <p className={"pillbox"}>{_venue["type"][0]}</p>
+                                <p className={"pillbox"}>{_venue["type"][1]}</p>
+                            </div>
+                        }
+
+                    </div>
+
 
                     {/* LIGHTBOX CONTENT FROM HERE */}
                     <div>
@@ -111,21 +126,6 @@ const Venue = () => {
                                     )}
                                 </div>
                             }
-                        </div>
-
-                        {/* PILLBOX (type) */}
-                        <div>
-                            {/* check if multiple types to define UI */}
-                            {!isObject(_venue["type"]) &&
-                                <p className={"pillbox"}>{_venue["type"]}</p>
-                            }
-                            {isObject(_venue["type"]) &&
-                                <div className={"pillbox--container"}>
-                                    <p className={"pillbox"}>{_venue["type"][0]}</p>
-                                    <p className={"pillbox"}>{_venue["type"][1]}</p>
-                                </div>
-                            }
-
                         </div>
 
 
