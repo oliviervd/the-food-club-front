@@ -85,12 +85,14 @@ const Venue = () => {
 
                     {/* MEDIA */}
                     <div>
+
                         {_venue["media"]&&
                             <div className={"venue--container_content-media"}>
                                 <img className={"venue--container_content-media-image"} src={_venue["media"]["url"]}/>
                             </div>
                         }
                     </div>
+
 
                     {/* LIGHTBOX CONTENT FROM HERE */}
                     <div>
@@ -101,17 +103,26 @@ const Venue = () => {
                                     {_venue["reviews"]["reviewEN"].map(review => (
                                             <p className={"venue--container_content-review"}>{review["children"][0]["text"]}</p>
                                         )
+     
 
                                     )}
                                 </div>
                             }
                         </div>
 
+
                         {/* ADDRESS + OPENINGSHOURS */}
                         <div>
-                            <p className={"venue--container_content-address"}>Open from Tuesday to Sunday</p>
-                            <p className={"venue--container_content-address"}>{_venue["address"]["street"]} {_venue["address"]["houseNumber"]}, {_venue["address"]["postalCode"]} {_venue["address"]["city"]}</p>
+                            <p className={"venue--container_content-address"}>
+                              <div className={"venue--container_content-openDays"}> open on:
+                                  {_venue["openOn"].map(day=>(
+                                  <p className={"venue--container_content-openDays-day"}>{day.toUpperCase()}</p>
+                              ))}
+                              </div>
+                            </p>
+                          <p className={"venue--container_content-address"}>{_venue["address"]["street"]} {_venue["address"]["houseNumber"]}, {_venue["address"]["postalCode"]} {_venue["address"]["city"]}</p>
                         </div>
+
                     </div>
 
                 </div>
