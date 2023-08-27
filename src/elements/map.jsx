@@ -74,6 +74,7 @@ const map = () => {
             {openInfoPane &&
                 <div className={"map--ui_pop-up-container"}>
                     <img className={"UI-GRID__popup"}  src={GridUI}></img>
+                    {/* MOBILE UI */}
                     <div className={"map--ui_pop-up-container--grid"}>
                         <img onClick={()=>nav(`/venue/${venue.venueName}`)} className={"map--ui_pop-up-container__img"} src={venue.media.url}/>
                         <div>
@@ -102,6 +103,10 @@ const map = () => {
                                 }
                             </div>
                         </div>
+                    </div>
+                    {/* WEB UI */}
+                    <div>
+
                     </div>
                 </div>
             }

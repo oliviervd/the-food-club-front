@@ -409,6 +409,7 @@ p{
   height: 75vw;
   position: absolute;
   left: -5%;
+  opacity: 0.5;
   top:-4%;
 }
 
