@@ -113,35 +113,38 @@ const Venue = () => {
 
 
                     {/* LIGHTBOX CONTENT FROM HERE */}
-                    <div>
+                    <div className={"lightBox"}>
                         {/* REVIEW */}
-                        <div>
-                            {_venue["reviews"]["reviewEN"] &&
-                                <div>
-                                    {_venue["reviews"]["reviewEN"].map(review => (
-                                            <p className={"venue--container_content-review"}>{review["children"][0]["text"]}</p>
-                                        )
-     
-
-                                    )}
-                                </div>
-                            }
-                        </div>
+                        <div className={"lightBox__correction"}>
+                            <div style={{paddingTop: "20px"}}>
+                                {_venue["reviews"]["reviewEN"] &&
+                                    <div>
+                                        {_venue["reviews"]["reviewEN"].map(review => (
+                                                <p className={"venue--container_content-review"}>{review["children"][0]["text"]}</p>
+                                            )
 
 
-                        {/* ADDRESS + OPENINGSHOURS */}
-                        <div>
-                            <p className={"venue--container_content-address"}>
-                                {_venue["openOn"]&&
-                                    <div className={"venue--container_content-openDays"}> open on:
-                                        {_venue["openOn"].map(day=>(
-                                            <p className={"venue--container_content-openDays-day"}>{day.toUpperCase()}</p>
-                                        ))}
+                                        )}
                                     </div>
                                 }
-                            </p>
-                          <p className={"venue--container_content-address"}>{_venue["address"]["street"]} {_venue["address"]["houseNumber"]}, {_venue["address"]["postalCode"]} {_venue["address"]["city"]}</p>
+                            </div>
+
+
+                            {/* ADDRESS + OPENINGSHOURS */}
+                            <div>
+                                <p className={"venue--container_content-address"}>
+                                    {_venue["openOn"]&&
+                                        <div className={"venue--container_content-openDays"}> open on:
+                                            {_venue["openOn"].map(day=>(
+                                                <p className={"venue--container_content-openDays-day"}>{day.toUpperCase()}</p>
+                                            ))}
+                                        </div>
+                                    }
+                                </p>
+                                <p className={"venue--container_content-address"}>{_venue["address"]["street"]} {_venue["address"]["houseNumber"]}, {_venue["address"]["postalCode"]} {_venue["address"]["city"]}</p>
+                            </div>
                         </div>
+
 
                     </div>
 

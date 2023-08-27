@@ -395,7 +395,7 @@ p{
   height: 70vw;
   width: 70vw;
   z-index: 100000;
-  padding-bottom: 3.33vh;
+  padding-bottom: 1.33vh;
 }
 .venue--container_content-media-image{
   object-fit: cover;
@@ -511,4 +511,18 @@ p{
   top: 50%;
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
+}
+
+.lightBox{
+  background: rgba(253, 121, 168, 20%);
+  margin-top: -70%;
+  padding-bottom: 10%;
+  width: 79vw;
+  margin-left: 10vw;
+  overflow: clip;
+}
+
+.lightBox__correction{
+  padding-top: 70%;
+  padding-right: 10vw;
 }
