@@ -41,31 +41,34 @@ const Venue = () => {
     }, [])
 
     return(
-        <div className={"container BG_pink"}>
+        <div className={"BG_pink main--container"}>
             <Header slug={"Eat like locals"} title={"Food Club"}></Header>
-
-            <br/>
-            <img className={"UI-GRID"} src={GridUI}/>
-
+            <div className={"main--content"}>
+                <img className={"UI-GRID"} src={GridUI}/>
+            </div>
 
             {_venue &&
                 <div className={"venue--container"}>
+                    {/* CONTENT HEADER (title and classification) */}
                     <div>
                         <h2 className={"venue--header_title"}>
                             {id.id.toUpperCase()}
                         </h2>
                         <div className={"venue--header_subtitle"}>
-                            <h3 className={"venue--header_category"}>{_venue["cuisineUsed"][0]["name"]} // {_venue["category"]["categoryTitle"]} </h3>
-                            <h3 className={"venue--header_cuisine"}> </h3>
+                            <h3>{_venue["cuisineUsed"][0]["name"]} // {_venue["category"][0]["categoryTitle"]} </h3>
                         </div>
                     </div>
 
-                    {_venue["slugs"]["slugEN"][0]["children"][0]["text"] &&
-                        <div className={"venue--container_content-slug"}>
-                            <p>{_venue["slugs"]["slugEN"][0]["children"][0]["text"]}</p>
-                        </div>
-                    }
+                    {/* CONTENT SLUG */}
+                    <div>
+                        {_venue["slugs"]["slugEN"][0]["children"][0]["text"] &&
+                            <div className={"venue--container_content-slug"}>
+                                <p >{_venue["slugs"]["slugEN"][0]["children"][0]["text"]}</p>
+                            </div>
+                        }
+                    </div>
 
+                    {/* PILLBOX (type) */}
                     <div>
                         {/* check if multiple types to define UI */}
                         {!isObject(_venue["type"]) &&
@@ -80,46 +83,45 @@ const Venue = () => {
 
                     </div>
 
-
-
-                    <div className={"venue--container_content"}>
+                    {/* MEDIA */}
+                    <div>
 
                         {_venue["media"]&&
                             <div className={"venue--container_content-media"}>
                                 <img className={"venue--container_content-media-image"} src={_venue["media"]["url"]}/>
                             </div>
                         }
+                    </div>
 
-                       {/* <div>
-                            <div className={"venue--container_content-links"} onClick={() => window.open(_venue["website"], '_blank')}>website</div>
-                            <div className={"venue--container_content-links"} >phone</div>
-                        </div>
-                        */}
 
-                        <br/>
-
-                        <div className={"venue--container_content"}>
-                            <div className={"venue--lightbox"}></div>
-
-                        {_venue["reviews"]["reviewEN"] &&
-                            <div>
-                                {_venue["reviews"]["reviewEN"].map(review => (
-                                    <p className={"venue--container_content-review"}>{review["children"][0]["text"]}</p>
-                                    )
+                    {/* LIGHTBOX CONTENT FROM HERE */}
+                    <div>
+                        {/* REVIEW */}
+                        <div>
+                            {_venue["reviews"]["reviewEN"] &&
+                                <div>
+                                    {_venue["reviews"]["reviewEN"].map(review => (
+                                            <p className={"venue--container_content-review"}>{review["children"][0]["text"]}</p>
+                                        )
+     
 
                                     )}
-                            </div>
-                        }
+                                </div>
+                            }
+                        </div>
 
-                        <p className={"venue--container_content-address"}>
-                            <div className={"venue--container_content-openDays"}> open on:
-                                {_venue["openOn"].map(day=>(
-                                <p className={"venue--container_content-openDays-day"}>{day.toUpperCase()}</p>
-                            ))}
-                            </div>
-                        </p>
-                        <p className={"venue--container_content-address"}>{_venue["address"]["street"]} {_venue["address"]["houseNumber"]}, {_venue["address"]["postalCode"]} {_venue["address"]["city"]}</p>
-                    </div>
+
+                        {/* ADDRESS + OPENINGSHOURS */}
+                        <div>
+                            <p className={"venue--container_content-address"}>
+                              <div className={"venue--container_content-openDays"}> open on:
+                                  {_venue["openOn"].map(day=>(
+                                  <p className={"venue--container_content-openDays-day"}>{day.toUpperCase()}</p>
+                              ))}
+                              </div>
+                            </p>
+                          <p className={"venue--container_content-address"}>{_venue["address"]["street"]} {_venue["address"]["houseNumber"]}, {_venue["address"]["postalCode"]} {_venue["address"]["city"]}</p>
+                        </div>
 
                     </div>
 
