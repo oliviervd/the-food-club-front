@@ -404,6 +404,14 @@ p{
   object-fit: cover;
 }
 
+.venue--container_content-media-frame{
+  width: 75vw;
+  height: 75vw;
+  position: absolute;
+  left: -5%;
+  top:-4%;
+}
+
 .venue--lightbox{
   background: rgba(253, 121, 168, 30%);;
   position: absolute;

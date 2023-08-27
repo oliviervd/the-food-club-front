@@ -4,6 +4,8 @@ import Header from "../elements/header.jsx";
 import GridUI from "../elements/images/Grid_Dense.png";
 import {fetchAPI} from "../utils/utils.jsx";
 
+import _frame from "../elements/images/frame.png";
+
 const Venue = () => {
 
     // fetch content based on id
@@ -91,6 +93,7 @@ const Venue = () => {
 
                         {_venue["media"]&&
                             <div className={"venue--container_content-media"}>
+                                <img className={"venue--container_content-media-frame"} src={_frame} />
                                 <img className={"venue--container_content-media-image"} src={_venue["media"]["url"]}/>
                             </div>
                         }
