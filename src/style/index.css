@@ -535,7 +535,7 @@ p{
   width: 100vw;
   opacity: 0.3;
   z-index: 10;
-  height: 80vh;
+  height: 100vh;
   overflow: clip;
 }
 
