@@ -4,7 +4,7 @@ import {useNavigate} from "react-router-dom";
 import _map from "./images/map.png"
 import _list from "./images/list.png"
 
-const Header = (props) => {
+const Header_A = (props) => {
 
     const nav = useNavigate()
 
@@ -21,10 +21,10 @@ const Header = (props) => {
                         <img onClick={()=>nav("/categories")} className={"header--button"} src={_list}></img>
                     </div>
                 </div>
-                {/*<p className={"header--slug"}>{props.slug}</p>*/}
+                <p className={"header--slug"}>{props.slug}</p>
             </div>
         </div>
     )
 }
 
-export default Header
+export default Header_A

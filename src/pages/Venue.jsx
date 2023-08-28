@@ -1,10 +1,13 @@
 import React, {useEffect, useState} from "react";
-import {useParams} from "react-router-dom";
-import Header from "../elements/header.jsx";
+import {useNavigate, useParams} from "react-router-dom";
+import Header from "../elements/header_A.jsx";
+import Header_B from "../elements/header_B.jsx";
 import GridUI from "../elements/images/Grid_Dense.png";
 import {fetchAPI} from "../utils/utils.jsx";
 
 import _frame from "../elements/images/frame.png";
+import _map from "../elements/images/map.png";
+import _list from "../elements/images/list.png";
 
 const Venue = () => {
 
@@ -15,6 +18,8 @@ const Venue = () => {
     let _venue
     let _im
     let _review
+
+    const nav = useNavigate()
 
     try{
         let _venueList = fetchAPI('venue')
@@ -44,7 +49,19 @@ const Venue = () => {
 
     return(
         <div className={"BG_pink main--container"}>
-            <Header slug={"Eat like locals"} title={"Food Club"}></Header>
+            {/*<Header slug={"Eat like locals"} title={"Food Club"}></Header>*/}
+            <Header_B/>
+
+            {/* BUTTONS NAV*/}
+            <div className={"headerB--button_main"}>
+                <div className={"headerB--button_container"}>
+                    <img onClick={()=>nav("/")} className={"headerB--button"} src={_map}></img>
+                </div>
+                <div className={"headerB--button_container"}>
+                    <img onClick={()=>nav("/categories")} className={"headerB--button"} src={_list}></img>
+                </div>
+            </div>
+
             <div className={"main--content"}>
                 <img className={"UI-GRID"} src={GridUI}/>
             </div>
