@@ -392,7 +392,6 @@ p{
   color: var(--main-text-color);
 }
 
-
 .venue--container_content-links{
   position: relative;
   background: white;
@@ -430,6 +429,15 @@ p{
 .venue--container_content-review{
   margin-left: 2em;
   padding-bottom: 1em;
+}
+
+.venue--container_content-tip_container{
+  background: rgba(253, 121, 168, 50%);
+  position: relative;
+  padding: 0px 20px;
+  margin-left: -2em;
+  overflow: auto;
+  z-index: 100000000000000;
 }
 
 .venue--container_content-media{
@@ -570,7 +578,6 @@ p{
   padding-bottom: 10%;
   width: 79vw;
   margin-left: 10vw;
-  overflow: clip;
 }
 
 .lightBox__correction{

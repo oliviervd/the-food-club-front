@@ -86,7 +86,7 @@ const Venue = () => {
                         {isObject(_venue["cuisineUsed"]) &&
                             <div className={"pillbox--container"}>
                                 {_venue["cuisineUsed"].map(cuisine => (
-                                    <p className={"pillbox background--white"}>{cuisine["name"]}</p>
+                                    <p className={"pillbox"}>{cuisine["name"]}</p>
                                 ))}
                             </div>
                         }
@@ -149,20 +149,30 @@ const Venue = () => {
                                 }
                             </div>
 
+                            {/* FOOD CLUB TIP */}
+                            {_venue["clubOrder"] &&
+                                <div className={"venue--container_content-tip_container"}>
+                                    <p>{_venue["clubOrder"][0]["children"][0]["text"]}</p>
+                                </div>
+                            }
+
 
                             {/* ADDRESS + OPENINGSHOURS */}
+                            {_venue["openOn"]&&
                             <div>
+                                <br/>
                                 <p className={"venue--container_content-address"}>
-                                    {_venue["openOn"]&&
+
                                         <div className={"venue--container_content-openDays"}> open on:
                                             {_venue["openOn"].map(day=>(
                                                 <p className={"venue--container_content-openDays-day"}>{day.toUpperCase()}</p>
                                             ))}
                                         </div>
-                                    }
+
                                 </p>
                                 <p className={"venue--container_content-address"}>{_venue["address"]["street"]} {_venue["address"]["houseNumber"]}, {_venue["address"]["postalCode"]} {_venue["address"]["city"]}</p>
                             </div>
+                            }
                         </div>
 
 
