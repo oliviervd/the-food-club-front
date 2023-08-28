@@ -70,6 +70,8 @@ const Venue = () => {
                 <div className={"venue--container"}>
                     {/* CONTENT HEADER (title and classification) */}
                     <div>
+                        <div className={"UI--BLACK_LINE"}></div>
+
                         <h2 className={"venue--header_title"}>
                             {id.id.toUpperCase()}
                         </h2>
@@ -81,7 +83,7 @@ const Venue = () => {
                     </div>
 
                     {/* PILLBOX CUISINE */}
-                    <div style={{marginTop: "-5px", marginBottom: "20px"}}>
+                    <div style={{marginTop: "-5px", marginBottom: "20px"}} >
                         {/* check if multiple types to define UI */}
                         {isObject(_venue["cuisineUsed"]) &&
                             <div className={"pillbox--container"}>
@@ -91,7 +93,7 @@ const Venue = () => {
                             </div>
                         }
                         {!isObject(_venue["cuisineUsed"]) &&
-                            <p className={"pillbox background--white"}>{_venue["cuisineUsed"][0]["name"]}</p>
+                            <p className={"pillbox"}>{_venue["cuisineUsed"][0]["name"]}</p>
 
                         }
                     </div>
@@ -170,6 +172,8 @@ const Venue = () => {
                                         </div>
 
                                 </p>
+
+
                                 <p className={"venue--container_content-address"}>{_venue["address"]["street"]} {_venue["address"]["houseNumber"]}, {_venue["address"]["postalCode"]} {_venue["address"]["city"]}</p>
                             </div>
                             }

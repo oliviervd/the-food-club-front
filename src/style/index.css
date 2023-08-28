@@ -584,3 +584,8 @@ p{
   padding-top: 70%;
   padding-right: 10vw;
 }
+
+.UI--BLACK_LINE{
+  border-bottom: var(--main-text-color) solid 3px;
+  height: 2px;
+}
