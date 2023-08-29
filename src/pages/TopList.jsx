@@ -39,6 +39,7 @@ const TopList = () => {
 
     try {
         _list = fetchAPI('venue')
+        console.log(_list)
         // filter based on category
         for (let i=0; i<_list["docs"].length; i++) {
             for(let x = 0; x <_list["docs"][i]["category"].length; x++){

@@ -33,10 +33,15 @@ const Categories = () => {
                 {_cats.map(cat=>{
                     return(
                         <div>
-                            <h2 className={"categories--title_font"} onClick={()=>nav(`/toplist/${cat["categoryTitle"]}`)}>
-                                {cat["categoryTitle"].toUpperCase()}
-                            </h2>
-                            <p>{cat["categorySubTitle"]}</p>
+                            {cat["categoryTitle"]!=="UNCATEGORISED" &&
+                                <div>
+                                    <h2 className={"categories--title_font"} onClick={()=>nav(`/toplist/${cat["categoryTitle"]}`)}>
+                                        {cat["categoryTitle"].toUpperCase()}
+                                    </h2>
+                                    <p>{cat["categorySubTitle"]}</p>
+                                </div>
+                            }
+
                         </div>
                     )
                 })}
