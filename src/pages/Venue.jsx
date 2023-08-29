@@ -70,8 +70,6 @@ const Venue = () => {
                 <div className={"venue--container"}>
                     {/* CONTENT HEADER (title and classification) */}
                     <div>
-                        <div className={"UI--BLACK_LINE"}></div>
-
                         <h2 className={"venue--header_title"}>
                             {id.id.toUpperCase()}
                         </h2>

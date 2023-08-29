@@ -464,9 +464,8 @@ p{
 }
 
 .venue--lightbox{
-  background: rgba(253, 121, 168, 30%);;
   position: absolute;
-  background: rgba(253, 121, 168, 30%);
+  background: linear-gradient(121deg, rgba(246,221,229,1) 0%, rgba(255,255,255,1) 30%, rgba(237,181,201,1) 100%);
   padding-top: 30vh;
   top: 0vh;
   padding-bottom: 2vh;
@@ -574,6 +573,8 @@ p{
 
 .lightBox{
   background: rgba(253, 121, 168, 20%);
+  /*background: linear-gradient(121deg, rgba(246,221,229,.4) 0%, rgba(255,255,2550,.6) 30%, rgba(237,181,201,.6) 100%);*/
+
   margin-top: -70%;
   padding-bottom: 10%;
   width: 79vw;
