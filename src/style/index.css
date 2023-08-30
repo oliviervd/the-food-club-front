@@ -198,6 +198,11 @@ p{
 
 /* UI ELEMENTS */
 
+.main--container{
+  width: 100vw;
+  overflow: clip;
+}
+
 /* MAP */
 
 .leaflet-container{

@@ -24,7 +24,7 @@ const Categories = () => {
     } catch (e) {console.log(e)}
 
     return(
-        <div className={"container"}>
+        <div className={"main--container"}>
             <Header slug={"Eat like locals"} title={"Food Club"}></Header>
             <br/>
 
