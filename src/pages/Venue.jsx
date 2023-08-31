@@ -48,7 +48,7 @@ const Venue = () => {
     }, [])
 
     return(
-        <div className={"BG_pink main--container"}>
+        <div className={"BG_pink main--container BG--gradient"}>
             {/*<Header slug={"Eat like locals"} title={"Food Club"}></Header>*/}
             <Header_B/>
 

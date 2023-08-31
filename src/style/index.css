@@ -203,6 +203,10 @@ p{
   overflow: clip;
 }
 
+.BG--gradient{
+  background: linear-gradient(0deg, rgba(237,181,201,1) 0%, rgba(255,255,255,1) 5%, rgba(246,221,229,1) 10%, rgba(255,255,255,1) 30%, rgba(255,255,255,1) 95%, rgba(237,181,201,1) 100%);
+}
+
 /* MAP */
 
 .leaflet-container{
