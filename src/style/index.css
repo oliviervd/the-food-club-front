@@ -20,8 +20,10 @@ html, body{
 
   color-scheme: light dark;
   --main-color: #f1f1f1;
-  --light-pink: #F6DDE5;
-  --deep-pink:  #EDB5C9;
+  /*--light-pink: #F6DDE5;
+  --deep-pink:  #EDB5C9;*/
+  --light-pink: white;
+  --deep-pink:  white;
   --main-text-color: #262626;
 
   --accent-color: rgba(253, 121, 168, 5%);
@@ -378,7 +380,8 @@ p{
   padding: 20px 20px 20px 40px;
   background: transparent;
   z-index: 100000;
-  position: relative;
+  position: absolute;
+  overflow: hidden
 }
 
 .venue--container_content{
