@@ -25,12 +25,11 @@ const Categories = () => {
 
     return(
         <div className={"main--container"}>
+
             <Header slug={"Eat like locals"} title={"Food Club"}></Header>
-            <br/>
-
-            <GridUI/>
-
             <div className={"categories--container"}>
+                <GridUI/>
+
                 {_cats.map(cat=>{
                     return(
                         <div>
