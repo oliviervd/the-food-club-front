@@ -378,12 +378,12 @@ p{
 }
 
 .venue--container{
-  padding: 3vw;
+  padding: 6vw;
   background: transparent;
   z-index: 100000;
   position: absolute;
   overflow: hidden;
-  max-width: 94vw;
+  width: 88vw;
 }
 
 .venue--container_content{
@@ -456,8 +456,8 @@ p{
 
 .venue--container_content-media{
   position: relative;
-  height: 70vw;
-  width: 70vw;
+  /* height: 70vw; */
+  /* width: 70vw; */
   z-index: 100000;
   padding-bottom: 1.33vh;
 }
