@@ -168,7 +168,7 @@ p{
 .header--button_container{
   position: relative;
   top: 0.5em;
-  background: var(--deep-pink);
+  background: rgba(253, 121, 168, 70%);
   border-radius: 30px;
   margin: 5px;
 }
