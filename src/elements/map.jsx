@@ -78,7 +78,7 @@ const map = () => {
             <div className={"map--ui_top-container"}>
                 <img onClick={()=>nav("/categories")} className={"map--ui_logo"} src={_logo}/>
                 <div className={"map--ui_filter-container"}>
-                    <p className={"map--ui_filter-label"}>filter</p>
+                    <p className={"map--ui_filter-label"}></p>
                 </div>
             </div>
 
