@@ -23,7 +23,7 @@ html, body{
   /*--light-pink: #F6DDE5;
   --deep-pink:  #EDB5C9;*/
   --light-pink: white;
-  --deep-pink:  white;
+  --deep-pink:  #EDB5C9;
   --main-text-color: #262626;
 
   --accent-color: rgba(253, 121, 168, 5%);
@@ -231,10 +231,11 @@ p{
 .map--ui_pop-up-container{
   height: 20vh;
   background: var(--light-pink);
+  border: var(--deep-pink) 1vw solid;
   border-radius: 20px;
   position: absolute;
   bottom:0;
-  width: 96vw;
+  width: 94vw;
   z-index: 1000000000000;
   margin: 2vw;
 }
@@ -377,11 +378,12 @@ p{
 }
 
 .venue--container{
-  padding: 20px 20px 20px 40px;
+  padding: 3vw;
   background: transparent;
   z-index: 100000;
   position: absolute;
-  overflow: hidden
+  overflow: hidden;
+  max-width: 94vw;
 }
 
 .venue--container_content{
