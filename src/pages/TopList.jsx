@@ -54,13 +54,13 @@ const TopList = () => {
     } catch (e) {}
 
     return(
-        <div className={"container BG_pink"}>
+        <div className={"container BG_pink"} style={{maxWidth:"100vw", overflow: "hidden"}}>
             <Header pageTitle={""}/>
             <br/>
 
-            <img className={"UI-GRID"} src={GridUI}/>
+            <img className={"UI-GRID"} src={GridUI} style={{maxWidth:"100vw", overflow: "hidden"}}/>
 
-            <div className={"categories--container"}>
+            <div className={"categories--container"} style={{maxWidth:"100vw", overflow: "hidden"}}>
                 <div>
                     <h2 className={"toplist--title_font"}>
                         {id.id.toUpperCase()}
