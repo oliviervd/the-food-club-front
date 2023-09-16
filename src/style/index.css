@@ -613,7 +613,7 @@ p{
 }
 
 .pillbox{
-  background: rgba(253, 121, 168, 70%);
+  background: rgba(253, 121, 168, 50%);
   border-radius: 30px;
   width: fit-content;
   padding: 0px 5px;
@@ -621,9 +621,15 @@ p{
 }
 
 .pillbox.pricing{
-  background: var(--light-pink);
+  background: rgba(253, 121, 168, 50%);
   min-width: 5vw;
   border: var(--deep-pink) 2px solid;
+  text-align: center;
+}
+
+.pillbox.veg{
+  background: rgba(253, 121, 168, 50%);
+  min-width: 5vw;
   text-align: center;
 }
 

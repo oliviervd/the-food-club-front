@@ -59,18 +59,16 @@ const Venue = () => {
                         <h2 className={"venue--header_title"}>
                             {id.id.toUpperCase()}
                         </h2>
-                        {/*
-                        <div className={"venue--header_subtitle"}>
-                            <h3> // {_venue["category"][0]["categoryTitle"]} </h3>
-                        </div>
-                        */}
                     </div>
 
-                    {/* PILLBOX CUISINE */}
+                    {/* PILLBOX CUISINE -- PRICING -- VEG */}
                     <div style={{marginTop: "-5px", marginBottom: "20px"}} >
                         {/* check if multiple types to define UI */}
                         {isObject(_venue["cuisineUsed"]) &&
                             <div className={"pillbox--container"}>
+                                {_venue["vegetarian"] &&
+                                    <p className={"pillbox pricing"}>🌱 true</p>
+                                }
                                 <p className={"pillbox pricing"}>{pricingLabel(_venue["pricing"])}</p>
                                 {_venue["cuisineUsed"].map(cuisine => (
                                     <p className={"pillbox"}>{cuisine["name"]}</p>
@@ -80,6 +78,9 @@ const Venue = () => {
                         {!isObject(_venue["cuisineUsed"]) &&
                             <div className={"pillbox--container"}>
                                 <p className={"pillbox pricing"}>{pricingLabel(_venue["pricing"])}</p>
+                                {_venue["vegetarian"] &&
+                                    <p className={"pillbox veg"} >🌱</p>
+                                }
                                 <p className={"pillbox"}>{_venue["cuisineUsed"][0]["name"]}</p>
                             </div>
                         }
