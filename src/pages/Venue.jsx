@@ -48,19 +48,9 @@ const Venue = () => {
     }, [])
 
     return(
-        <div className={"BG_pink main--container BG--gradient"} style={{maxWidth: "100vw"}}>
+        <div className={"BG_pink main--container"} style={{maxWidth: "100vw"}}>
             {/*<Header slug={"Eat like locals"} title={"Food Club"}></Header>*/}
-            <Header_B/>
-
-            {/* BUTTONS NAV*/}
-            <div className={"headerB--button_main"}>
-                <div className={"headerB--button_container"}>
-                    <img onClick={()=>nav("/")} className={"headerB--button"} src={_map}></img>
-                </div>
-                <div className={"headerB--button_container"}>
-                    <img onClick={()=>nav("/categories")} className={"headerB--button"} src={_list}></img>
-                </div>
-            </div>
+            <Header/>
 
             {/*GRID SVG*/}
             <GridUI/>
@@ -111,8 +101,21 @@ const Venue = () => {
                             <div className={"venue--container_content-media"}>
                                 {/*<img className={"venue--container_content-media-frame"} src={_frame} />*/}
                                 <img className={"venue--container_content-media-image"} src={_venue["media"]["url"]}/>
+
+                                {/* BUTTONS NAV*/}
+                                {/*<div className={"headerB--button_main"}>
+                                    <div className={"headerB--button_container"}>
+                                        <img onClick={()=>nav("/")} className={"headerB--button"} src={_map}></img>
+                                    </div>
+                                    <div className={"headerB--button_container"}>
+                                        <img onClick={()=>nav("/categories")} className={"headerB--button"} src={_list}></img>
+                                    </div>
+                                </div>*/}
+
                             </div>
                         }
+
+
                     </div>
 
                     {/* PILLBOX (type) */}
