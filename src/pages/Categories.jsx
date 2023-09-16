@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import Header from "../elements/header_A.jsx";
-import GridUI from "../elements/images/Grid_Dense.png"
+import GridUI from "../elements/gridUI.jsx";
 import {fetchAPI} from "../utils/utils.jsx";
 import {useNavigate} from "react-router-dom";
 
@@ -28,7 +28,8 @@ const Categories = () => {
             <Header slug={"Eat like locals"} title={"Food Club"}></Header>
             <br/>
 
-            <img className={"UI-GRID"} src={GridUI}/>
+            <GridUI/>
+
             <div className={"categories--container"}>
                 {_cats.map(cat=>{
                     return(

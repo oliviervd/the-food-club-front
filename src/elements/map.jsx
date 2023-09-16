@@ -4,7 +4,7 @@ import MarkerClusterGroup from "react-leaflet-cluster";
 
 import React, {useState} from "react";
 import _im from "./images/Mapicon.png"
-import GridUI from "./images/Grid_Dense.png";
+import GridUI from "./gridUI.jsx";
 import {fetchAPI} from "../utils/utils.jsx";
 import {useNavigate} from "react-router-dom";
 
@@ -73,7 +73,7 @@ const map = () => {
             </MapContainer>
             {openInfoPane &&
                 <div className={"map--ui_pop-up-container"}>
-                    <img className={"UI-GRID__popup"}  src={GridUI}></img>
+                    <GridUI/>
                     {/* MOBILE UI */}
                     <div className={"map--ui_pop-up-container--grid"}>
                         <img onClick={()=>nav(`/venue/${venue.venueName}`)} className={"map--ui_pop-up-container__img"} src={venue.media.url}/>

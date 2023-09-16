@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import Header from "../elements/header_A.jsx";
 import NavBar from "../elements/navbar.jsx"
 import {useNavigate, useParams} from "react-router-dom";
-import GridUI from "../elements/images/Grid_Dense.png"; // drawn grid in background
+import GridUI from "../elements/gridUI.jsx";
 
 import {fetchAPI} from "../utils/utils.jsx";
 
@@ -58,7 +58,7 @@ const TopList = () => {
             <Header pageTitle={""}/>
             <br/>
 
-            <img className={"UI-GRID"} src={GridUI} style={{maxWidth:"100vw", overflow: "hidden"}}/>
+            <GridUI/>
 
             <div className={"categories--container"} style={{maxWidth:"100vw", overflow: "hidden"}}>
                 <div>
