@@ -73,6 +73,11 @@ const map = () => {
 
 
             </MapContainer>
+
+            <div className={"map--ui_filter-container"}>
+                <p className={"map--ui_filter-label"}>filter</p>
+            </div>
+
             {openInfoPane &&
                 <div className={"map--ui_pop-up-container"}>
                     <GridUI/>
