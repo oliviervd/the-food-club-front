@@ -54,13 +54,9 @@ const TopList = () => {
     } catch (e) {}
 
     return(
-        <div className={"main--container"} style={{maxWidth:"98vw", overflow: "hidden"}}>
-            <br/>
-
+        <div className={"main--container"}>
             <Header></Header>
-
             <GridUI/>
-
             <div className={"categories--container"} style={{maxWidth:"100vw", overflow: "hidden"}}>
                 <div>
                     <h2 className={"toplist--title_font"}>

@@ -552,7 +552,7 @@ p{
 
 .toplist--venue_title{
   text-align: center;
-  color: var(--light-pink);
+  color: #F6DDE5;
   /*border-radius: 50px;*/
   padding: 5px 10px;
   text-decoration: underline;
@@ -567,7 +567,8 @@ p{
 
 
 .toplist--title_font{
-  margin-top: 1em;
+  margin-left: 1em;
+  margin-top: 0.5em;
   font-size: 2em;
 }
 
@@ -580,7 +581,7 @@ p{
 }
 
 .toplist--image{
-  border: rgba(253, 121, 168, 70%) 2px solid;
+  /*border: rgba(253, 121, 168, 70%) 2px solid;*/
   z-index: 100;
   height: 90vw;
   width: 90vw;
