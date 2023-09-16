@@ -67,13 +67,13 @@ const Venue = () => {
                             {/* check if multiple types to define UI */}
                             {isObject(_venue["cuisineUsed"]) &&
                                 <div className={"pillbox--container"}>
-                                    <p className={"pillbox pricing"}>{pricingLabel(_venue["pricing"])}</p>
                                     {_venue["vegetarian"] &&
                                         <p className={"pillbox pricing"}>🌱</p>
                                     }
                                     {_venue["vegan"] &&
                                         <p className={"pillbox pricing"}>🌾</p>
                                     }
+                                    <p className={"pillbox pricing"}>{pricingLabel(_venue["pricing"])}</p>
                                     {_venue["cuisineUsed"].map(cuisine => (
                                         <p className={"pillbox"}>{cuisine["name"]}</p>
                                     ))}
@@ -81,13 +81,13 @@ const Venue = () => {
                             }
                             {!isObject(_venue["cuisineUsed"]) &&
                                 <div className={"pillbox--container"}>
-                                    <p className={"pillbox pricing"}>{pricingLabel(_venue["pricing"])}</p>
                                     {_venue["vegetarian"] &&
                                         <p className={"pillbox veg"} >🌱</p>
                                     }
                                     {_venue["vegan"] &&
                                         <p className={"pillbox pricing"}>🌾</p>
                                     }
+                                    <p className={"pillbox pricing"}>{pricingLabel(_venue["pricing"])}</p>
                                     <p className={"pillbox"}>{_venue["cuisineUsed"][0]["name"]}</p>
                                 </div>
                             }
