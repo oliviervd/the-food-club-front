@@ -6,7 +6,6 @@ import _im from "../elements/images/Untitled_Artwork.png";
 const Places = () => {
     return(
         <div>
-            <img onClick={()=>nav("/categories")} className={"map--ui_logo"} src={_im}/>
             <Map/>
         </div>
     )
