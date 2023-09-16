@@ -157,7 +157,7 @@ p{
   padding-top: 15px;
   overflow: hidden;
   border-bottom: white 3px solid;
-  background: rgba(253, 121, 168, 20%);
+  /*background: rgba(253, 121, 168, 20%);*/
 }
 
 .header--container_buttons{
@@ -442,7 +442,8 @@ p{
 
 .venue--header_title{
   font-size: 3em;
-  line-height: 1.5em;
+  line-height: 1em;
+  padding-bottom: 0.5em;
 }
 
 .venue--header_subtitle{
