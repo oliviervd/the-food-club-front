@@ -72,7 +72,7 @@ const TopList = () => {
                 {_listFiltered.map(venue=>{
                     let _im
                     if(venue.media) {
-                        _im = venue.media.url
+                        _im = venue["media"]["sizes"]["tablet"]["url"]
                     } else {
                         _im = ""
                     }

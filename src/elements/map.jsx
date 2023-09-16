@@ -76,7 +76,7 @@ const map = () => {
                     <GridUI/>
                     {/* MOBILE UI */}
                     <div className={"map--ui_pop-up-container--grid"}>
-                        <img onClick={()=>nav(`/venue/${venue.venueName}`)} className={"map--ui_pop-up-container__img"} src={venue.media.url}/>
+                        <img onClick={()=>nav(`/venue/${venue.venueName}`)} className={"map--ui_pop-up-container__img"} src={venue["media"]["sizes"]["tablet"]["url"]}/>
                         <div>
                             <h2 className={"map--ui_pop-up-container__title"}>{venue.venueName}</h2>
                             <div className={"autogrid-pills"}>

@@ -100,7 +100,11 @@ const Venue = () => {
                         {_venue["media"]&&
                             <div className={"venue--container_content-media"}>
                                 {/*<img className={"venue--container_content-media-frame"} src={_frame} />*/}
-                                <img className={"venue--container_content-media-image"} src={_venue["media"]["url"]}/>
+
+                                {_venue["media"]["sizes"]["tablet"]["url"] &&
+                                    <img className={"venue--container_content-media-image"} src={_venue["media"]["sizes"]["tablet"]["url"]}/>
+                                }
+
 
                                 {/* BUTTONS NAV*/}
                                 {/*<div className={"headerB--button_main"}>
