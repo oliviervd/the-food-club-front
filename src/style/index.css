@@ -594,6 +594,7 @@ p{
   align-items:center;
   position: relative;
   overflow: hidden;
+  opacity: 0.85;
 }
 
 .toplist--image_img {
