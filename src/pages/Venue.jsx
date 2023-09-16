@@ -68,7 +68,7 @@ const Venue = () => {
                             {isObject(_venue["cuisineUsed"]) &&
                                 <div className={"pillbox--container"}>
                                     {_venue["vegetarian"] &&
-                                        <p className={"pillbox pricing"}>🌱 true</p>
+                                        <p className={"pillbox pricing"}>🌱</p>
                                     }
                                     <p className={"pillbox pricing"}>{pricingLabel(_venue["pricing"])}</p>
                                     {_venue["cuisineUsed"].map(cuisine => (
