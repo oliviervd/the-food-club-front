@@ -307,6 +307,23 @@ p{
   color: var(--main-text-color);
 }
 
+.map--ui_pop-up-container__pill-pricing{
+  background: white;
+  border-radius: 50px;
+  color: var(--main-text-color);
+  border: var(--deep-pink) 2px solid;
+  border-radius: 30px;
+  padding: 0px 5px;
+  width: fit-content;
+  position: relative;
+  top: 3vh;
+  min-width: 5vw;
+  font-family: BergenText-Regular;
+  font-size: 14px;
+
+  text-align: center;
+}
+
 .marker-cluster-small{
   background-color: var(--light-pink);
 }
@@ -572,6 +589,13 @@ p{
   width: fit-content;
   padding: 0px 5px;
   margin-bottom: 10px;
+}
+
+.pillbox.pricing{
+  background: var(--light-pink);
+  min-width: 5vw;
+  border: var(--deep-pink) 2px solid;
+  text-align: center;
 }
 
 /* UTILS */

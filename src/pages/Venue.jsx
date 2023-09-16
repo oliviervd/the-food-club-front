@@ -1,13 +1,10 @@
 import React, {useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import Header from "../elements/header_A.jsx";
-import Header_B from "../elements/header_B.jsx";
 import GridUI from "../elements/gridUI.jsx";
 import {fetchAPI} from "../utils/utils.jsx";
 
-import _frame from "../elements/images/frame.png";
-import _map from "../elements/images/map.png";
-import _list from "../elements/images/list.png";
+import {pricingLabel} from "../utils/utils.jsx";
 
 const Venue = () => {
 
@@ -74,16 +71,20 @@ const Venue = () => {
                         {/* check if multiple types to define UI */}
                         {isObject(_venue["cuisineUsed"]) &&
                             <div className={"pillbox--container"}>
+                                <p className={"pillbox pricing"}>{pricingLabel(_venue["pricing"])}</p>
                                 {_venue["cuisineUsed"].map(cuisine => (
                                     <p className={"pillbox"}>{cuisine["name"]}</p>
                                 ))}
                             </div>
                         }
                         {!isObject(_venue["cuisineUsed"]) &&
-                            <p className={"pillbox"}>{_venue["cuisineUsed"][0]["name"]}</p>
-
+                            <div className={"pillbox--container"}>
+                                <p className={"pillbox pricing"}>{pricingLabel(_venue["pricing"])}</p>
+                                <p className={"pillbox"}>{_venue["cuisineUsed"][0]["name"]}</p>
+                            </div>
                         }
                     </div>
+
 
                     {/* CONTENT SLUG */}
                     <div>

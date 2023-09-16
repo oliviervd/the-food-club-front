@@ -13,5 +13,14 @@ export function fetchAPI(endpoint) {
     return data
 }
 
-
-
+export function pricingLabel(input) {
+    // function that translates string from Payload into Euro Symbols.
+    switch (input) {
+        case "one":
+            console.log("€")
+            return "€"
+        case "two": return "€€"
+        case "three": return "€€€"
+        case "four": return "€€€€"
+    }
+}

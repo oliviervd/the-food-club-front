@@ -8,6 +8,8 @@ import GridUI from "./gridUI.jsx";
 import {fetchAPI} from "../utils/utils.jsx";
 import {useNavigate} from "react-router-dom";
 
+import {pricingLabel} from "../utils/utils.jsx";
+
 
 const map = () => {
 
@@ -101,6 +103,9 @@ const map = () => {
                                         <p className={"map--ui_pop-up-container__pill"}>{venue["type"][1]}</p>
                                     </div>
                                 }
+                            </div>
+                            <div className={"pillbox--container"}>
+                                <p className={"map--ui_pop-up-container__pill-pricing"}>{pricingLabel(venue["pricing"])}</p>
                             </div>
                         </div>
                     </div>
