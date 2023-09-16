@@ -223,9 +223,9 @@ p{
 
 .map--ui_logo{
   position: absolute;
-  height: 7vh;
+  height: 7.5vh;
   left: 2em;
-  top: 1.4em;
+  top: 1.5em;
   z-index: 1000000000000;
 }
 
