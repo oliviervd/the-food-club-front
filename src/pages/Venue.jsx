@@ -54,47 +54,53 @@ const Venue = () => {
 
             {_venue &&
                 <div className={"venue--container"}>
-                    {/* CONTENT HEADER (title and classification) */}
-                    <div className={"venue--container_header"}>
-                        <h2 className={"venue--header_title"}>
-                            {id.id.toUpperCase()}
-                        </h2>
+                    <div style={{paddingLeft: "2em"}}>
+                        {/* CONTENT HEADER (title and classification) */}
+                        <div className={"venue--container_header"}>
+                            <h2 className={"venue--header_title"}>
+                                {id.id.toUpperCase()}
+                            </h2>
+                        </div>
+
+                        {/* PILLBOX CUISINE -- PRICING -- VEG */}
+                        <div style={{marginTop: "-5px", marginBottom: "20px"}} >
+                            {/* check if multiple types to define UI */}
+                            {isObject(_venue["cuisineUsed"]) &&
+                                <div className={"pillbox--container"}>
+                                    {_venue["vegetarian"] &&
+                                        <p className={"pillbox pricing"}>🌱 true</p>
+                                    }
+                                    <p className={"pillbox pricing"}>{pricingLabel(_venue["pricing"])}</p>
+                                    {_venue["cuisineUsed"].map(cuisine => (
+                                        <p className={"pillbox"}>{cuisine["name"]}</p>
+                                    ))}
+                                </div>
+                            }
+                            {!isObject(_venue["cuisineUsed"]) &&
+                                <div className={"pillbox--container"}>
+                                    <p className={"pillbox pricing"}>{pricingLabel(_venue["pricing"])}</p>
+                                    {_venue["vegetarian"] &&
+                                        <p className={"pillbox veg"} >🌱</p>
+                                    }
+                                    <p className={"pillbox"}>{_venue["cuisineUsed"][0]["name"]}</p>
+                                </div>
+                            }
+                        </div>
+
+                        {/* CONTENT SLUG */}
+                        <div>
+                            {_venue["slugs"]["slugEN"][0]["children"][0]["text"] &&
+                                <div className={"venue--container_content-slug"}>
+                                    <p >{_venue["slugs"]["slugEN"][0]["children"][0]["text"]}</p>
+                                </div>
+                            }
+                        </div>
+
                     </div>
 
-                    {/* PILLBOX CUISINE -- PRICING -- VEG */}
-                    <div style={{marginTop: "-5px", marginBottom: "20px"}} >
-                        {/* check if multiple types to define UI */}
-                        {isObject(_venue["cuisineUsed"]) &&
-                            <div className={"pillbox--container"}>
-                                {_venue["vegetarian"] &&
-                                    <p className={"pillbox pricing"}>🌱 true</p>
-                                }
-                                <p className={"pillbox pricing"}>{pricingLabel(_venue["pricing"])}</p>
-                                {_venue["cuisineUsed"].map(cuisine => (
-                                    <p className={"pillbox"}>{cuisine["name"]}</p>
-                                ))}
-                            </div>
-                        }
-                        {!isObject(_venue["cuisineUsed"]) &&
-                            <div className={"pillbox--container"}>
-                                <p className={"pillbox pricing"}>{pricingLabel(_venue["pricing"])}</p>
-                                {_venue["vegetarian"] &&
-                                    <p className={"pillbox veg"} >🌱</p>
-                                }
-                                <p className={"pillbox"}>{_venue["cuisineUsed"][0]["name"]}</p>
-                            </div>
-                        }
-                    </div>
 
 
-                    {/* CONTENT SLUG */}
-                    <div>
-                        {_venue["slugs"]["slugEN"][0]["children"][0]["text"] &&
-                            <div className={"venue--container_content-slug"}>
-                                <p >{_venue["slugs"]["slugEN"][0]["children"][0]["text"]}</p>
-                            </div>
-                        }
-                    </div>
+
 
                     {/* MEDIA */}
                     <div>

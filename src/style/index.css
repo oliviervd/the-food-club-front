@@ -426,6 +426,7 @@ p{
 
 .venue--container{
   padding: 6vw;
+  padding-top: 0vw;
   background: transparent;
   z-index: 100000;
   position: absolute;
