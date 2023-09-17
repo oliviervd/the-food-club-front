@@ -1,6 +1,6 @@
 import React from "react";
 
-const GridUI = () => {
+const GridUI = (props) => {
     return(
         <div className={"main--content"}>
             <svg className={"UI-GRID"} width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
