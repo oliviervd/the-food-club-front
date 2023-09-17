@@ -80,6 +80,9 @@ const map = () => {
                 <div className={"map--ui_filter-container"}>
                     <p className={"map--ui_filter-label"}></p>
                 </div>
+                <div className={"map--ui_position-container"}>
+                    <p className={"map--ui_position-label"}></p>
+                </div>
             </div>
 
 
