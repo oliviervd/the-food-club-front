@@ -465,7 +465,7 @@ p{
   border-radius: 50px;
   font-size: 1.2em;
   z-index: 100000;
-  left: -3em;
+  left: -4em;
   padding-top: 4em;
 }
 
@@ -627,7 +627,7 @@ p{
 }
 
 .pillbox-phone{
-  font-family: BergenText-Bold;
+  font-family: Trim-ExtraBold;
   background: var(--main-text-color);
   border: var(--main-text-color) 2px solid;
   color: white;
@@ -640,7 +640,7 @@ p{
 }
 
 .pillbox-website{
-  font-family: BergenText-Bold;
+  font-family: Trim-ExtraBold;
   border: #EDB5C9 2px solid;
   background: #F6DDE5;
   color: var(--main-text-color);
@@ -653,8 +653,7 @@ p{
 }
 
 .pillbox--directions{
-  font-family: BergenText-Bold;
-
+  font-family: Trim-ExtraBold;
   background: var(--deep-pink);
   border: #F6DDE5 2px solid;
   color: #F6DDE5;
