@@ -5,6 +5,7 @@ import MarkerClusterGroup from "react-leaflet-cluster";
 import React, {useState} from "react";
 import _im from "./images/Mapicon.png"
 import _logo from "../elements/images/Untitled_Artwork.png";
+import _location from "../elements/images/my-location.png"
 import GridUI from "./gridUI.jsx";
 import {fetchAPI} from "../utils/utils.jsx";
 import {useNavigate} from "react-router-dom";
@@ -81,7 +82,7 @@ const map = () => {
                     <p className={"map--ui_filter-label"}></p>
                 </div>
                 <div className={"map--ui_position-container"}>
-                    <p className={"map--ui_position-label"}></p>
+                    <img className={"map--ui_position-icon"} src={_location}></img>
                 </div>
             </div>
 
@@ -92,7 +93,7 @@ const map = () => {
                     {/* MOBILE UI */}
                     <div className={"map--ui_pop-up-container--grid"}>
                         <img onClick={()=>nav(`/venue/${venue.venueName}`)} className={"map--ui_pop-up-container__img"} src={venue["media"]["sizes"]["tablet"]["url"]}/>
-                        <div>
+                        <div style={{paddingLeft: "2em", width: "10em"}}>
                             <h2 className={"map--ui_pop-up-container__title"}>{venue.venueName}</h2>
                             <div className={"autogrid-pills"}>
                                 {/* check if multiple types to define UI */}
