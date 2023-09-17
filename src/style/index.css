@@ -321,6 +321,19 @@ p{
   }
 }
 
+.map--ui_container-search{
+  position: absolute;
+  background-color: white;
+  opacity: 70%;
+  height: 80vh;
+  top: 10vh;
+  width: 90vw;
+  left: 5vw;
+  right: 5vw;
+  border-radius: 20px;
+  z-index: 999999999999999999;
+}
+
 .map--ui_pop-up-container--grid{
   display: grid;
   grid-template-columns: 1fr 1fr;

@@ -16,6 +16,7 @@ import {pricingLabel} from "../utils/utils.jsx";
 const map = () => {
 
     const [openInfoPane, setOpenInfoPane] = useState(false)
+    const [openFilter, setOpenFilter] = useState(false)
     const [venue, setVenue] = useState("")
 
     const nav = useNavigate();
@@ -81,10 +82,17 @@ const map = () => {
                 <div className={"map--ui_filter-container"}>
                     <p className={"map--ui_filter-label"}></p>
                 </div>
-                <div className={"map--ui_position-container"}>
+                <div className={"map--ui_position-container"} onClick={()=>setOpenFilter(!openFilter)}>
                     {/*<img className={"map--ui_position-icon"} src={_location}></img>*/}
                 </div>
             </div>
+
+            {openFilter&&
+                <div className={"map--ui_container-search"}>
+
+                </div>
+            }
+
 
 
             {openInfoPane &&
