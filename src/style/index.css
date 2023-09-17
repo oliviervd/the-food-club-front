@@ -466,7 +466,7 @@ p{
   font-size: 1.2em;
   z-index: 100000;
   left: -3em;
-  padding-top: 5em;
+  padding-top: 4em;
 }
 
 .venue--container_content-slug{
@@ -629,7 +629,7 @@ p{
 .pillbox-phone{
   font-family: BergenText-Bold;
   background: var(--main-text-color);
-  border: black 2px solid;
+  border: var(--main-text-color) 2px solid;
   color: white;
   border-radius: 30px;
   width: 6em;
