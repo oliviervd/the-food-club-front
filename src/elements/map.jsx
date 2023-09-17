@@ -98,24 +98,25 @@ const map = () => {
                                         {venue["cuisineUsed"].map(cuisine => (
                                             <h3 className={"map--ui_pop-up-container__pill"}>{cuisine["name"]}</h3>
                                         ))}
+                                        {/* check if multiple types to define UI */}
+                                        {!isObject(venue["type"]) &&
+                                            <div className={"autogrid-pills"}>
+                                                <p className={"map--ui_pop-up-container__pill"}>{venue["type"]}</p>
+                                                {/*<p className={"map--ui_pop-up-container__pill"}>{pricingLabel(venue["pricing"])}</p>*/}
+                                            </div>
+                                        }
+                                        {isObject(venue["type"]) &&
+                                            <div className={"autogrid-pills"}>
+                                                <p className={"map--ui_pop-up-container__pill"}>{venue["type"][0]}</p>
+                                                <p className={"map--ui_pop-up-container__pill"}>{venue["type"][1]}</p>
+                                                {/*<p className={"map--ui_pop-up-container__pill"}>{pricingLabel(venue["pricing"])}</p>*/}
+                                            </div>
+                                        }
                                     </div>
                                 }
                             </div>
                             <div className={"autogrid-pills"}>
 
-                                {/* check if multiple types to define UI */}
-                                {!isObject(venue["type"]) &&
-                                    <p className={"map--ui_pop-up-container__pill"}>{venue["type"]}</p>
-                                }
-                                {isObject(venue["type"]) &&
-                                    <div className={"pillbox--container"}>
-                                        <p className={"map--ui_pop-up-container__pill"}>{venue["type"][0]}</p>
-                                        <p className={"map--ui_pop-up-container__pill"}>{venue["type"][1]}</p>
-                                    </div>
-                                }
-                            </div>
-                            <div className={"pillbox--container"}>
-                                <p className={"map--ui_pop-up-container__pill-pricing"}>{pricingLabel(venue["pricing"])}</p>
                             </div>
                         </div>
                     </div>
