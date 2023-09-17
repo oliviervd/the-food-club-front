@@ -120,8 +120,12 @@ const Venue = () => {
                                 }
 
                                 <div className={"venue--container_content-links"}>
-                                    <p onClick={()=>window.open(_venue["website"])} className={"pillbox-website"}>website</p>
-                                    <p onClick={() =>window.open(_venue["reservations"])} className={"pillbox-phone"}>book a table</p>
+                                    {_venue["website"]&&
+                                        <p onClick={()=>window.open(_venue["website"])} className={"pillbox-website"}>website</p>
+                                    }
+                                    {_venue["reservations"] &&
+                                        <p onClick={() =>window.open(_venue["reservations"])} className={"pillbox-phone"}>book a table</p>
+                                    }
                                     {/*<p className={"pillbox--directions"}>phone</p>*/}
                                 </div>
 
