@@ -120,8 +120,8 @@ const Venue = () => {
                                 }
 
                                 <div className={"venue--container_content-links"}>
-                                    <p className={"pillbox-website"}>website</p>
-                                    <p className={"pillbox-phone"}>book a table</p>
+                                    <p onClick={()=>window.open(_venue["website"])} className={"pillbox-website"}>website</p>
+                                    <p onClick={() =>window.open(_venue["reservations"])} className={"pillbox-phone"}>book a table</p>
                                     {/*<p className={"pillbox--directions"}>phone</p>*/}
                                 </div>
 
