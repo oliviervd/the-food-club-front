@@ -123,12 +123,17 @@ const Venue = () => {
 
                                 <div className={"venue--container_content-links"}>
                                     {_venue["website"]&&
+                                        // open website in new window
                                         <p onClick={()=>window.open(_venue["website"])} className={"pillbox-website"}>website</p>
                                     }
                                     {_venue["reservations"] &&
+                                        // open new window to book a table (Resengo/..)
                                         <p onClick={() =>window.open(_venue["reservations"])} className={"pillbox-phone"}>book a table</p>
                                     }
-                                    {/*<p className={"pillbox--directions"}>phone</p>*/}
+                                    {_venue["phone"] &&
+                                        // call number when mobile
+                                        <p onClick={()=> window.open(`tel:${_venue["phone"]}`)} className={"pillbox--directions"}>phone</p>
+                                    }
                                 </div>
 
 
