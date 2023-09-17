@@ -87,11 +87,11 @@ const map = () => {
                 </div>
             </div>
 
-            {openFilter&&
-                <div className={"map--ui_container-search"}>
 
-                </div>
-            }
+            <div className={` ${openFilter ? "map--ui_container-search active" : "map--ui_container-search closed"}`}>
+
+            </div>
+
 
 
 

@@ -325,13 +325,25 @@ p{
   position: absolute;
   background-color: white;
   opacity: 70%;
-  height: 80vh;
   top: 10vh;
   width: 90vw;
   left: 5vw;
   right: 5vw;
   border-radius: 20px;
   z-index: 999999999999999999;
+}
+
+.closed{
+  height: 0vh;
+  transition-property: height;
+  transition-duration: 1s;
+}
+
+.active{
+  height: 80vh;
+  transition-property: height;
+  transition-duration: 1s;
+  border: rgba(253, 121, 168, 70%) 3px solid;
 }
 
 .map--ui_pop-up-container--grid{
