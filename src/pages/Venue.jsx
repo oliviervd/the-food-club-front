@@ -121,8 +121,8 @@ const Venue = () => {
 
                                 <div className={"venue--container_content-links"}>
                                     <p className={"pillbox-website"}>website</p>
-                                    <p className={"pillbox-phone"}>phone</p>
-                                    <p className={"pillbox--directions"}>directions</p>
+                                    <p className={"pillbox-phone"}>book a table</p>
+                                    {/*<p className={"pillbox--directions"}>phone</p>*/}
                                 </div>
 
 
