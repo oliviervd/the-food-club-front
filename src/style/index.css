@@ -346,6 +346,19 @@ p{
   border: rgba(253, 121, 168, 70%) 3px solid;
 }
 
+.map--ui_container-search_grid{
+  display: grid;
+  position: relative;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+}
+
+.map--ui_pop-up-container-section{
+  height: 20vh;
+  border-bottom: #F6DDE5 2px solid;
+  transition-property: border-bottom-width;
+  transition-duration: 2s;
+}
+
 .map--ui_pop-up-container--grid{
   display: grid;
   grid-template-columns: 1fr 1fr;

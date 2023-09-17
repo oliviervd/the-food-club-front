@@ -32,6 +32,12 @@ const map = () => {
         } else { return false }
     }
 
+    // open menu to filter selection
+    function openSearchIndex() {
+        setOpenFilter(!openFilter)
+        setOpenInfoPane(false)
+    }
+
     // fetch data
     let _venues;
     try{
@@ -82,14 +88,21 @@ const map = () => {
                 <div className={"map--ui_filter-container"}>
                     <p className={"map--ui_filter-label"}></p>
                 </div>
-                <div className={"map--ui_position-container"} onClick={()=>setOpenFilter(!openFilter)}>
+                <div className={"map--ui_position-container"} onClick={()=>openSearchIndex()}>
                     {/*<img className={"map--ui_position-icon"} src={_location}></img>*/}
                 </div>
             </div>
 
 
             <div className={` ${openFilter ? "map--ui_container-search active" : "map--ui_container-search closed"}`}>
-
+                {openFilter &&
+                    <div className={"map--ui_container-search_grid"}>
+                        <div className={"map--ui_pop-up-container-section"}></div>
+                        <div className={"map--ui_pop-up-container-section"}></div>
+                        <div className={"map--ui_pop-up-container-section"}></div>
+                        <div className={"map--ui_pop-up-container-section"}></div>
+                    </div>
+                }
             </div>
 
 
