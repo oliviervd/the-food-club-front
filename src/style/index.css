@@ -612,11 +612,13 @@ p{
   overflow: clip;
 }
 
-
 .pillbox--container{
   display: flex;
+  flex-wrap: wrap;
+  width: 80vw;
   gap: 2%;
 }
+
 
 .pillbox{
   background: rgba(253, 121, 168, 50%);
@@ -667,7 +669,7 @@ p{
 
 .pillbox.pricing{
   background: rgba(253, 121, 168, 50%);
-  min-width: 5vw;
+  width: fit-content;
   border: var(--deep-pink) 2px solid;
   text-align: center;
 }

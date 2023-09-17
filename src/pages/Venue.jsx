@@ -63,7 +63,7 @@ const Venue = () => {
                         </div>
 
                         {/* PILLBOX CUISINE -- PRICING -- VEG */}
-                        <div style={{marginTop: "-5px", marginBottom: "20px"}} >
+                        <div style={{marginTop: "-1.2em", marginBottom: "20px"}} >
                             {/* check if multiple types to define UI */}
                             {isObject(_venue["cuisineUsed"]) &&
                                 <div className={"pillbox--container"}>
