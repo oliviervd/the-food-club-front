@@ -63,8 +63,9 @@ const Venue = () => {
                         </div>
 
                         {/* PILLBOX CUISINE -- PRICING -- VEG */}
+                        {/*
                         <div style={{marginTop: "-1.2em", marginBottom: "20px"}} >
-                            {/* check if multiple types to define UI */}
+                             check if multiple types to define UI
                             {isObject(_venue["cuisineUsed"]) &&
                                 <div className={"pillbox--container"}>
                                     {_venue["vegetarian"] &&
@@ -92,6 +93,7 @@ const Venue = () => {
                                 </div>
                             }
                         </div>
+                        */}
 
                         {/* CONTENT SLUG */}
                         <div>
