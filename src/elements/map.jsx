@@ -82,7 +82,7 @@ const map = () => {
                     <p className={"map--ui_filter-label"}></p>
                 </div>
                 <div className={"map--ui_position-container"}>
-                    <img className={"map--ui_position-icon"} src={_location}></img>
+                    {/*<img className={"map--ui_position-icon"} src={_location}></img>*/}
                 </div>
             </div>
 
