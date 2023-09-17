@@ -458,16 +458,15 @@ p{
 
 .venue--container_content-links{
   position: relative;
-  background: white;
+  background: transparent;
   width: fit-content;
   color: var(--main-text-color);
   font-family: Trim-Bold;
   border-radius: 50px;
   font-size: 1.2em;
-  padding: 0px 5px;
-  top: -20vh;
-  left: 60vw;
   z-index: 100000;
+  left: -3em;
+  padding-top: 5em;
 }
 
 .venue--container_content-slug{
@@ -510,12 +509,13 @@ p{
   /* width: 70vw; */
   z-index: 100000;
   padding-bottom: 1.33vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 .venue--container_content-media-image{
   object-fit: cover;
   width: 70vw;
   height: 70vw;
-  object-fit: cover;
 }
 
 .venue--container_content-media-frame{
@@ -624,6 +624,46 @@ p{
   width: fit-content;
   padding: 0px 5px;
   margin-bottom: 10px;
+}
+
+.pillbox-phone{
+  font-family: BergenText-Bold;
+  background: var(--main-text-color);
+  border: black 2px solid;
+  color: white;
+  border-radius: 30px;
+  width: 6em;
+  padding: 0px 5px;
+  margin-bottom: 10px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.pillbox-website{
+  font-family: BergenText-Bold;
+  border: #EDB5C9 2px solid;
+  background: #F6DDE5;
+  color: var(--main-text-color);
+  border-radius: 30px;
+  width: 6em;
+  padding: 0px 5px;
+  margin-bottom: 10px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.pillbox--directions{
+  font-family: BergenText-Bold;
+
+  background: var(--deep-pink);
+  border: #F6DDE5 2px solid;
+  color: #F6DDE5;
+  border-radius: 30px;
+  width: 6em;
+  padding: 0px 5px;
+  margin-bottom: 10px;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .pillbox.pricing{

@@ -119,6 +119,12 @@ const Venue = () => {
                                     <img className={"venue--container_content-media-image"} src={_venue["media"]["sizes"]["tablet"]["url"]}/>
                                 }
 
+                                <div className={"venue--container_content-links"}>
+                                    <p className={"pillbox-website"}>website</p>
+                                    <p className={"pillbox-phone"}>phone</p>
+                                    <p className={"pillbox--directions"}>directions</p>
+                                </div>
+
 
                                 {/* BUTTONS NAV*/}
                                 {/*<div className={"headerB--button_main"}>
