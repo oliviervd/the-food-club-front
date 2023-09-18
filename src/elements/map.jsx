@@ -86,7 +86,7 @@ const map = () => {
             <div className={"map--ui_top-container"}>
                 <img onClick={()=>nav("/categories")} className={"map--ui_logo"} src={_logo}/>
                 <div className={"map--ui_filter-container"}>
-                    <p className={"map--ui_filter-label"}></p>
+                    <p className={"map--ui_filter-label"}> </p>
                 </div>
                 <div className={"map--ui_position-container"} onClick={()=>openSearchIndex()}>
                     {/*<img className={"map--ui_position-icon"} src={_location}></img>*/}
@@ -113,6 +113,7 @@ const map = () => {
                             <p className={"map--ui_pop-up-container-search_prompt"}>for:</p>
                             <div className={"map--ui_pop-up-container-search_pills"}>
                                 <p className={"map--ui_pop-up-container-search_pillbox"}>BREAKFAST</p>
+                                <p className={"map--ui_pop-up-container-search_pillbox"}>BRUNCH</p>
                                 <p className={"map--ui_pop-up-container-search_pillbox selected"}>LUNCH</p>
                                 <p className={"map--ui_pop-up-container-search_pillbox"}>DINNER</p>
                                 <p className={"map--ui_pop-up-container-search_pillbox"}>APERO</p>
@@ -128,6 +129,7 @@ const map = () => {
                                 <p className={"map--ui_pop-up-container-search_pillbox selected"}>Streetfood</p>
                                 <p className={"map--ui_pop-up-container-search_pillbox"}>Pizza</p>
                                 <p className={"map--ui_pop-up-container-search_pillbox selected"}>Dumplings</p>
+                                <p className={"map--ui_pop-up-container-search_pillbox selected"}>Ramen</p>
                             </div>
                         </div>
                         <div className={"map--ui_pop-up-container-section"}>
