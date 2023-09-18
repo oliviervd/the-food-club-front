@@ -97,11 +97,48 @@ const map = () => {
             <div className={` ${openFilter ? "map--ui_container-search active" : "map--ui_container-search closed"}`}>
                 {openFilter &&
                     <div className={"map--ui_container-search_grid"}>
-                        <div className={"map--ui_pop-up-container-section"}></div>
-                        <div className={"map--ui_pop-up-container-section"}></div>
-                        <div className={"map--ui_pop-up-container-section"}></div>
-                        <div className={"map--ui_pop-up-container-section"}></div>
+                        <div className={"map--ui_pop-up-container-section"}>
+                            <p className={"map--ui_pop-up-container-search_prompt"}>open on:</p>
+                            <div className={"map--ui_pop-up-container-search_pills"}>
+                                <p className={"map--ui_pop-up-container-search_pillbox"}>MON</p>
+                                <p className={"map--ui_pop-up-container-search_pillbox"}>TUE</p>
+                                <p className={"map--ui_pop-up-container-search_pillbox"}>WED</p>
+                                <p className={"map--ui_pop-up-container-search_pillbox selected"}>THU</p>
+                                <p className={"map--ui_pop-up-container-search_pillbox"}>FRI</p>
+                                <p className={"map--ui_pop-up-container-search_pillbox selected"}>SAT</p>
+                                <p className={"map--ui_pop-up-container-search_pillbox"}>SUN</p>
+                            </div>
+                        </div>
+                        <div className={"map--ui_pop-up-container-section"}>
+                            <p className={"map--ui_pop-up-container-search_prompt"}>for:</p>
+                            <div className={"map--ui_pop-up-container-search_pills"}>
+                                <p className={"map--ui_pop-up-container-search_pillbox"}>BREAKFAST</p>
+                                <p className={"map--ui_pop-up-container-search_pillbox selected"}>LUNCH</p>
+                                <p className={"map--ui_pop-up-container-search_pillbox"}>DINNER</p>
+                                <p className={"map--ui_pop-up-container-search_pillbox"}>APERO</p>
+                                <p className={"map--ui_pop-up-container-search_pillbox"}>DRINKS</p>
+                            </div>
+                        </div>
+                        <div className={"map--ui_pop-up-container-section"}>
+                            <p className={"map--ui_pop-up-container-search_prompt"}>craving for:</p>
+                            <div className={"map--ui_pop-up-container-search_pills"}>
+                                <p className={"map--ui_pop-up-container-search_pillbox"}>Italian</p>
+                                <p className={"map--ui_pop-up-container-search_pillbox"}>Belgian</p>
+                                <p className={"map--ui_pop-up-container-search_pillbox selected"}>Asian</p>
+                                <p className={"map--ui_pop-up-container-search_pillbox selected"}>Streetfood</p>
+                                <p className={"map--ui_pop-up-container-search_pillbox"}>Pizza</p>
+                                <p className={"map--ui_pop-up-container-search_pillbox selected"}>Dumplings</p>
+                            </div>
+                        </div>
+                        <div className={"map--ui_pop-up-container-section"}>
+                            <p className={"map--ui_pop-up-container-search_prompt"}>diet</p>
+                            <div className={"map--ui_pop-up-container-search_pills"}>
+                                <p className={"map--ui_pop-up-container-search_pillbox"}>vegetarian</p>
+                                <p className={"map--ui_pop-up-container-search_pillbox"}>vegan</p>
+                            </div>
+                        </div>
                     </div>
+
                 }
             </div>
 
