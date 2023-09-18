@@ -128,7 +128,7 @@ const map = () => {
                                 <p className={"map--ui_pop-up-container-search_pillbox selected"}>Asian</p>
                                 <p className={"map--ui_pop-up-container-search_pillbox "}>Lebanese</p>
                                 <p className={"map--ui_pop-up-container-search_pillbox "}>Japanese</p>
-                                <p className={"map--ui_pop-up-container-search_pillbox "}>Vietnames</p>
+                                <p className={"map--ui_pop-up-container-search_pillbox "}>Vietnamese</p>
                                 <p className={"map--ui_pop-up-container-search_pillbox selected"}>Streetfood</p>
                                 <p className={"map--ui_pop-up-container-search_pillbox"}>Pizza</p>
                                 <p className={"map--ui_pop-up-container-search_pillbox selected"}>Dumplings</p>
