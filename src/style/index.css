@@ -331,6 +331,8 @@ p{
   right: 25vw;
   border-radius: 20px;
   z-index: 99999999999999;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .map--ui_pop-up-container-search_prompt{
