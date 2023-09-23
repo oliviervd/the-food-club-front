@@ -34,19 +34,23 @@ const TopList = () => {
     //fetch id from URL param
     let id = useParams();
 
+    let _l
     let _list
     let _listFiltered = [] // create empty array for filtered venues
 
     try {
-        _list = fetchAPI('venue')
+        _l = fetchAPI('venue')
+        _list = _l['docs']
         console.log(_list)
+        //console.log(_list)
         // filter based on category
-        for (let i=0; i<_list["docs"].length; i++) {
-            for(let x = 0; x <_list["docs"][i]["category"].length; x++){
-                console.log(_list["docs"][i]["category"])
-                if (_list["docs"][i]["category"][x]["categoryTitle"] === id.id) {
+        for (let i=0; i<_list.length; i++) {
+            //console.log(_list[i])
+            for(let x = 0; x <_list[i]["category"].length; x++){
+                console.log(_list[i]["category"])
+                if (_list[i]["category"][x]["categoryTitle"] === id.id) {
                     // if same category push venue to new list.
-                    _listFiltered.push(_list["docs"][i])
+                    _listFiltered.push(_list[i])
                 }
             }
         }
@@ -67,12 +71,12 @@ const TopList = () => {
 
                 {_listFiltered.map(venue=>{
                     let _im
-                    if(venue.media) {
+                    if (venue.media) {
                         _im = venue["media"]["sizes"]["tablet"]["url"]
                     } else {
                         _im = ""
                     }
-                    console.log(_im)
+                    //console.log(_im)
                     return(
                         <div>
                             <div className={"toplist--image_container"}>
@@ -89,7 +93,6 @@ const TopList = () => {
                         </div>
                         )
                 })}
-
                 <br/>
             </div>
         </div>
