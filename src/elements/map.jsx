@@ -39,6 +39,8 @@ const map = () => {
     }
 
     // fetch data
+
+    // venues
     let _venues;
     try{
         let _venueList = fetchAPI('venue')
@@ -46,11 +48,37 @@ const map = () => {
         console.log(_venueList["docs"])
     } catch(e) {console.log(e)}
 
+    // categories todo:
+    let _categories;
+    let _cuisines = []
+    let _dishes = []
+
+    try {
+        let _categoryList = fetchAPI('cuisine');
+        _categories = _categoryList["docs"]
+        // iterate and push to right array
+        for (let i=0; i<_categories.length; i++) {
+            console.log(_categories[i])
+            if (_categories[i]["type"] === "cuisine") {
+                _cuisines.push(_categories[i])
+            }
+            else if (_categories[i]["type"] === "dish") {
+                _dishes.push(_categories[i])
+            }
+        }
+        console.log(_cuisines)
+    } catch(e) {console.log(e)}
 
     const CustomIcon = new Icon({
         iconUrl: _im,
         iconSize: [28, 38] // size
     })
+
+    // change style of pill on click
+    function changeState(pill) {
+
+    }
+
 
     return(
         <div className={"container"} style={{overflow:"hidden", maxWidth: "100vw"}}>
@@ -121,29 +149,32 @@ const map = () => {
                             </div>
                         </div>
                         <div className={"map--ui_pop-up-container-section"}>
-                            <p className={"map--ui_pop-up-container-search_prompt"}>craving for:</p>
-                            <div className={"map--ui_pop-up-container-search_pills"}>
-                                <p className={"map--ui_pop-up-container-search_pillbox"}>Italian</p>
-                                <p className={"map--ui_pop-up-container-search_pillbox"}>Belgian</p>
-                                <p className={"map--ui_pop-up-container-search_pillbox"}>Persian</p>
-                                <p className={"map--ui_pop-up-container-search_pillbox selected"}>Asian</p>
-                                <p className={"map--ui_pop-up-container-search_pillbox "}>Lebanese</p>
-                                <p className={"map--ui_pop-up-container-search_pillbox "}>Japanese</p>
-                                <p className={"map--ui_pop-up-container-search_pillbox "}>Vietnamese</p>
-                                <p className={"map--ui_pop-up-container-search_pillbox selected"}>Streetfood</p>
-                                <p className={"map--ui_pop-up-container-search_pillbox"}>Pizza</p>
-                                <p className={"map--ui_pop-up-container-search_pillbox selected"}>Dumplings</p>
-                                <p className={"map--ui_pop-up-container-search_pillbox selected"}>Ramen</p>
-                                <p className={"map--ui_pop-up-container-search_pillbox "}>Burgers</p>
-                            </div>
+                            <p className={"map--ui_pop-up-container-search_prompt"}>cravings:</p>
+                            {_cuisines &&
+                                <div className={"map--ui_pop-up-container-search_pills"}>
+                                    {_cuisines.map(cat=>(
+                                        <p className={"map--ui_pop-up-container-search_pillbox"}>{cat["name"]}</p>
+                                    ))}
+                                </div>
+                            }
                         </div>
                         <div className={"map--ui_pop-up-container-section"}>
+                            <p className={"map--ui_pop-up-container-search_prompt"}>dish:</p>
+                            {_dishes &&
+                                <div className={"map--ui_pop-up-container-search_pills"}>
+                                    {_dishes.map(cat=>(
+                                        <p className={"map--ui_pop-up-container-search_pillbox"}>{cat["name"]}</p>
+                                    ))}
+                                </div>
+                            }
+                        </div>
+                       {/* <div className={"map--ui_pop-up-container-section"}>
                             <p className={"map--ui_pop-up-container-search_prompt"}>diet</p>
                             <div className={"map--ui_pop-up-container-search_pills"}>
                                 <p className={"map--ui_pop-up-container-search_pillbox"}>vegetarian</p>
                                 <p className={"map--ui_pop-up-container-search_pillbox"}>vegan</p>
                             </div>
-                        </div>
+                        </div>*/}
                     </div>
 
                 }
