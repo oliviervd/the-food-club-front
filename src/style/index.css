@@ -197,6 +197,7 @@ p{
   text-align: left;
   top: 10%;
   left: 30%;
+  color: pink;
 }
 
 /* UI ELEMENTS */
@@ -805,3 +806,5 @@ p{
   border-bottom: var(--main-text-color) solid 3px;
   height: 2px;
 }
+
+
