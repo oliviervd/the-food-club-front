@@ -221,6 +221,16 @@ header nav {
 
 /* MAP */
 
+.sticky--button_map {
+  position: fixed;
+  top: 80vh;
+  left: 75vw;
+  height: 75px;
+  width: 75px;
+  background-color: var(--deep-pink);
+  border-radius: 50%;
+}
+
 .leaflet-container {
   width: 100%;
   height: 100vh;
@@ -280,9 +290,9 @@ header nav {
 .map--ui_container-search {
   position: absolute;
   background-color: white;
-  opacity: 80%;
-  top: 10vh;
-  max-width: 70vw;
+  opacity: 99%;
+  top: 33px;
+  max-width: 65vw;
   left: 5vw;
   right: 25vw;
   border-radius: 20px;
@@ -304,7 +314,7 @@ header nav {
 .map--ui_pop-up-container-search_pills {
   position: relative;
   font-family: Trim-ExtraBold;
-  width: 65vw;
+  max-width: 60vw;
   flex-wrap: wrap;
   display: flex;
   gap: 0.4em;

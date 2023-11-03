@@ -26,6 +26,7 @@ const Categories = () => {
     <div className={"main--container"}>
       <GridUI />
       <div className={"categories--container"}>
+        <a onClick={() => nav("/")} className="sticky--button_map"></a>
         {_cats.map((cat) => {
           return (
             <div>
