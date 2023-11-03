@@ -43,22 +43,24 @@ const Venue = () => {
 
   return (
     <div className={"BG_pink main--container"} style={{ maxWidth: "100vw" }}>
-      {/*<Header slug={"Eat like locals"} title={"Food Club"}></Header>*/}
-      <Header />
-
       {/*GRID SVG*/}
       <GridUI />
 
       {_venue && (
         <div className={"venue--container"}>
-          <div style={{ paddingLeft: "2em" }}>
-            {/* CONTENT HEADER (title and classification) */}
-            <div className={"venue--container_header"}>
-              <h2 className={"venue--header_title"}>{id.id.toUpperCase()}</h2>
-            </div>
+          {/* CONTENT HEADER (title and classification) */}
+          <div className={"venue--container_header"}>
+            <nav>
+              <a onClick={() => nav("/categories")} className="nav--back">
+                {" "}
+                &lt;{" "}
+              </a>
+            </nav>
+            <h2 className={"venue--header_title"}>{id.id.toUpperCase()}</h2>
+          </div>
 
-            {/* PILLBOX CUISINE -- PRICING -- VEG */}
-            {/*
+          {/* PILLBOX CUISINE -- PRICING -- VEG */}
+          {/*
                         <div style={{marginTop: "-1.2em", marginBottom: "20px"}} >
                              check if multiple types to define UI
                             {isObject(_venue["cuisineUsed"]) &&
@@ -90,14 +92,15 @@ const Venue = () => {
                         </div>
                         */}
 
-            {/* CONTENT SLUG */}
-            <div>
-              {_venue["slugs"]["slugEN"][0]["children"][0]["text"] && (
-                <div className={"venue--container_content-slug"}>
-                  <p>{_venue["slugs"]["slugEN"][0]["children"][0]["text"]}</p>
-                </div>
-              )}
-            </div>
+          {/* CONTENT SLUG */}
+          <div>
+            {_venue["slugs"]["slugEN"][0]["children"][0]["text"] && (
+              <div className={"venue--container_content-slug"}>
+                <blockquote>
+                  {_venue["slugs"]["slugEN"][0]["children"][0]["text"]}
+                </blockquote>
+              </div>
+            )}
           </div>
 
           {/* MEDIA */}

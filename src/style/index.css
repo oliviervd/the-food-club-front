@@ -107,6 +107,20 @@ p {
   text-align: left;
 }
 
+.nav--back {
+  font-family: "Trim-Bold";
+  font-size: 50px;
+  line-height: 0.9;
+  padding-right: 10px;
+  color: var(--deep-pink);
+}
+
+blockquote {
+  font-family: "Trim-Bold";
+  font-weight: 700;
+  color: var(--main-text-color);
+}
+
 /* HEADERS */
 
 header {
@@ -499,10 +513,18 @@ header nav {
   padding-bottom: 2vh;
 }
 
+.venue--container_header {
+  display: flex;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  justify-content: flex-start;
+  & nav {
+  }
+}
+
 .venue--header_title {
   font-size: 3em;
   line-height: 1em;
-  padding-bottom: 0.5em;
 }
 
 .venue--header_subtitle {
@@ -527,8 +549,8 @@ header nav {
 }
 
 .venue--container_content-slug {
-  position: relative;
-  top: -10px;
+  padding-left: 40px;
+  padding-bottom: 10px;
 }
 
 .venue--container_content-address {
@@ -554,7 +576,7 @@ header nav {
 .venue--container_content-tip_container {
   background: rgba(253, 121, 168, 50%);
   position: relative;
-  padding: 0px 20px;
+  padding: 10px 20px;
   margin-left: -2em;
   overflow: auto;
   z-index: 100000000000000;
