@@ -203,7 +203,7 @@ const Venue = () => {
                   <p className={"venue--container_content-address"}>
                     <div className={"venue--container_content-openDays"}>
                       {" "}
-                      open on:
+                      open:
                       {_venue["openOn"].map((day) => (
                         <p className={"venue--container_content-openDays-day"}>
                           {day.toUpperCase()}
