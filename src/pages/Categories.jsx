@@ -1,53 +1,54 @@
-import React, {useEffect} from "react";
-import Header from "../elements/header_A.jsx";
+import React, { useEffect } from "react";
+import Header from "../elements/header.jsx";
 import GridUI from "../elements/gridUI.jsx";
-import {fetchAPI} from "../utils/utils.jsx";
-import {useNavigate} from "react-router-dom";
-
+import { fetchAPI } from "../utils/utils.jsx";
+import { useNavigate } from "react-router-dom";
 
 const Categories = () => {
+  // onLoad scroll to top.
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
-    // onLoad scroll to top.
-    useEffect(() => {
-        window.scrollTo(0, 0)
-    }, [])
+  let _categories;
+  let _cats = [];
 
+  const nav = useNavigate();
 
-    let _categories;
-    let _cats = [];
+  try {
+    _categories = fetchAPI("categories");
+    _cats = _categories["docs"];
+  } catch (e) {
+    console.log(e);
+  }
 
-    const nav = useNavigate()
+  return (
+    <div className={"main--container"}>
+      <Header slug={"Eat like locals"} title={"Food Club"}></Header>
+      <div className={"categories--container"}>
+        <GridUI />
 
-    try {
-        _categories = fetchAPI('categories');
-        _cats = _categories["docs"];
-    } catch (e) {console.log(e)}
-
-    return(
-        <div className={"main--container"}>
-
-            <Header slug={"Eat like locals"} title={"Food Club"}></Header>
-            <div className={"categories--container"}>
-                <GridUI/>
-
-                {_cats.map(cat=>{
-                    return(
-                        <div>
-                            {cat["categoryTitle"]!=="UNCATEGORISED" &&
-                                <div>
-                                    <h2 className={"categories--title_font"} onClick={()=>nav(`/toplist/${cat["categoryTitle"]}`)}>
-                                        {cat["categoryTitle"].toUpperCase()}
-                                    </h2>
-                                    <p>{cat["categorySubTitle"]}</p>
-                                </div>
-                            }
-
-                        </div>
-                    )
-                })}
+        {_cats.map((cat) => {
+          return (
+            <div>
+              {cat["categoryTitle"] !== "UNCATEGORISED" && (
+                <div>
+                  <h2
+                    className={"categories--title_font"}
+                    onClick={() => nav(`/toplist/${cat["categoryTitle"]}`)}
+                  >
+                    {cat["categoryTitle"].toUpperCase()}
+                  </h2>
+                  <p>{cat["categorySubTitle"]}</p>
+                </div>
+              )}
             </div>
-        </div>
-    )
-}
+          );
+        })}
+      </div>
+    </div>
+  );
+};
 
-export default Categories
+export default Categories;
+
