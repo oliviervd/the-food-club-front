@@ -49,7 +49,7 @@ const Venue = () => {
       {_venue && (
         <div className={"venue--container"}>
           {/* CONTENT HEADER (title and classification) */}
-          <div className={"venue--container_header"}>
+          <div className={"content_header"}>
             <nav>
               <a onClick={() => nav("/categories")} className="nav--back">
                 {" "}

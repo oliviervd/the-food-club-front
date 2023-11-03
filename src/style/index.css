@@ -513,7 +513,7 @@ header nav {
   padding-bottom: 2vh;
 }
 
-.venue--container_header {
+.content_header {
   display: flex;
   padding-top: 20px;
   padding-bottom: 10px;
@@ -654,7 +654,6 @@ header nav {
 }
 
 .toplist--title_font {
-  margin-left: 1em;
   margin-top: 0.5em;
   font-size: 2em;
 }
@@ -679,6 +678,17 @@ header nav {
   position: relative;
   overflow: hidden;
   opacity: 0.85;
+}
+
+.toplist--counter:nth-child(odd) {
+  .toplist--image_container {
+    left: 0vw;
+    top: 2vw;
+  }
+  & .toplist--image {
+    top: -2vw;
+    left: -2vw;
+  }
 }
 
 .toplist--image_img {

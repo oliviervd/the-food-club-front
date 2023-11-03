@@ -56,15 +56,17 @@ const TopList = () => {
 
   return (
     <div className={"main--container"}>
-      <Header></Header>
       <GridUI />
       <div
         className={"categories--container"}
         style={{ maxWidth: "100vw", overflow: "hidden" }}
       >
-        <div>
-          <h2 className={"toplist--title_font"}>{id.id.toUpperCase()}</h2>
-          <br />
+        <div className={"content_header"}>
+          <a onClick={() => nav("/categories")} className="nav--back">
+            {" "}
+            &lt;{" "}
+          </a>
+          <h2 className={"venue--header_title"}>{id.id.toUpperCase()}</h2>
         </div>
 
         {_listFiltered.map((venue) => {
@@ -76,7 +78,7 @@ const TopList = () => {
           }
           //console.log(_im)
           return (
-            <div>
+            <div className={"toplist--counter"}>
               <div className={"toplist--image_container"}>
                 <div>
                   <div>
