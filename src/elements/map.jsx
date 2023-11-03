@@ -90,15 +90,10 @@ const map = () => {
             alt="food club logo"
           />
         </h1>
-        <div className={"map--ui_filter-container"}>
-          <p className={"map--ui_filter-label"}> </p>
-        </div>
         <div
-          className={"map--ui_position-container"}
           onClick={() => openSearchIndex()}
-        >
-          {/*<img className={"map--ui_position-icon"} src={_location}></img>*/}
-        </div>
+          className={"map--ui_filter-container"}
+        ></div>
       </header>
 
       {/*<img className={"UI-GRID"} src={GridUI} style={{height:"100vh", objectFit:"cover"}}/>*/}
