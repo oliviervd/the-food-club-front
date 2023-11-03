@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Header from "../elements/header.jsx";
-import NavBar from "../elements/navbar.jsx";
 import { useNavigate, useParams } from "react-router-dom";
 import GridUI from "../elements/gridUI.jsx";
 

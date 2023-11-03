@@ -13,8 +13,19 @@ const map = () => {
   const [openInfoPane, setOpenInfoPane] = useState(false);
   const [openFilter, setOpenFilter] = useState(false);
   const [venue, setVenue] = useState("");
+  const [activePills, setActivePills] = useState("");
 
   const nav = useNavigate();
+
+  function handlePillClick(id) {
+    setActivePills((prevActivePills) => {
+      if (prevActivePills.includes(id)) {
+        return prevActivePills.filter((pillId) => pillId !== id);
+      } else {
+        return [...prevActivePills, id];
+      }
+    });
+  }
 
   function generateInfoPane(venue) {
     setOpenInfoPane(true);
@@ -184,6 +195,7 @@ const map = () => {
                 </p>
               </div>
             </div>
+
             <div className={"map--ui_pop-up-container-section"}>
               <p className={"map--ui_pop-up-container-search_prompt"}>
                 cravings:
@@ -191,13 +203,22 @@ const map = () => {
               {_cuisines && (
                 <div className={"map--ui_pop-up-container-search_pills"}>
                   {_cuisines.map((cat) => (
-                    <p className={"map--ui_pop-up-container-search_pillbox"}>
+                    <p
+                      key={cat.id}
+                      className={
+                        activePills.includes(cat.id)
+                          ? "map--ui_pop-up-container-search_pillbox selected"
+                          : "map--ui_pop-up-container-search_pillbox"
+                      }
+                      onClick={() => handlePillClick(cat.id)}
+                    >
                       {cat["name"]}
                     </p>
                   ))}
                 </div>
               )}
             </div>
+
             <div className={"map--ui_pop-up-container-section"}>
               <p className={"map--ui_pop-up-container-search_prompt"}>dish:</p>
               {_dishes && (
