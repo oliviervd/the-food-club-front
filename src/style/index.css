@@ -785,15 +785,14 @@ header nav {
 .lightBox {
   background: rgba(253, 121, 168, 20%);
   /*background: linear-gradient(121deg, rgba(246,221,229,.4) 0%, rgba(255,255,2550,.6) 30%, rgba(237,181,201,.6) 100%);*/
-
-  margin-top: -70%;
+  margin-top: -75%;
   padding-bottom: 10%;
   width: 79vw;
   margin-left: 10vw;
 }
 
 .lightBox__correction {
-  padding-top: 70%;
+  padding-top: 60%;
   padding-right: 10vw;
 }
 
