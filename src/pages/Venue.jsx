@@ -198,8 +198,7 @@ const Venue = () => {
 
               {/* ADDRESS + OPENINGSHOURS */}
               {_venue["openOn"] && (
-                <div>
-                  <br />
+                <div style={{ paddingTop: "10px" }}>
                   <p className={"venue--container_content-address"}>
                     <div className={"venue--container_content-openDays"}>
                       {" "}
