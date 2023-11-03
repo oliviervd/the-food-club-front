@@ -11,17 +11,10 @@ const Header_A = (props) => {
   return (
     <header>
       <h1>
-        <img src={_logo} alt="food club logo" />
+        <img src="" />
       </h1>
 
-      <nav>
-        <div className="nav--button">
-          <img onClick={() => nav("/")} src={_map}></img>
-        </div>
-        <div className="nav--button">
-          <img onClick={() => nav("/categories")} src={_list}></img>
-        </div>
-      </nav>
+      <nav></nav>
     </header>
   );
 };

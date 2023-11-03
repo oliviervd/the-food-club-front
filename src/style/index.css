@@ -129,6 +129,7 @@ header {
   align-items: center;
   justify-content: space-between;
   z-index: 10000000000000000000;
+  background-color: rgba(253, 121, 168, 30%);
 }
 
 header h1 {
@@ -622,10 +623,18 @@ header nav {
 }
 
 .categories--title_font {
+  padding-top: 10px;
+  margin-top: 15px;
+  line-height: 1;
+}
+
+.highlight {
   background: rgba(253, 121, 168, 30%);
   margin-top: 15px;
+  padding-right: 10px;
   padding-left: 10px;
-  font-size: 2em;
+  margin-bottom: 0;
+  line-height: 1;
 }
 
 .toplist--venue_title {
