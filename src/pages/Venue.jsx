@@ -177,7 +177,7 @@ const Venue = () => {
           <div className={"lightBox"}>
             {/* REVIEW */}
             <div className={"lightBox__correction"}>
-              <div style={{ paddingTop: "4.7vh" }}>
+              <div style={{ paddingTop: "9vh" }}>
                 {_venue["reviews"]["reviewEN"] && (
                   <div>
                     {_venue["reviews"]["reviewEN"].map((review) => (
