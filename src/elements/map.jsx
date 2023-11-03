@@ -13,18 +13,59 @@ const map = () => {
   const [openInfoPane, setOpenInfoPane] = useState(false);
   const [openFilter, setOpenFilter] = useState(false);
   const [venue, setVenue] = useState("");
-  const [activePills, setActivePills] = useState("");
+  const [activePillsCuisine, setActivePillsCuisine] = useState("");
+  const [activePillsDay, setActivePillsDay] = useState([]);
+  const [activePillsDish, setActivePillsDish] = useState([]);
+  const [activePillsOcassion, setActivePillsOccasion] = useState([]);
 
   const nav = useNavigate();
 
-  function handlePillClick(id) {
-    setActivePills((prevActivePills) => {
-      if (prevActivePills.includes(id)) {
-        return prevActivePills.filter((pillId) => pillId !== id);
-      } else {
-        return [...prevActivePills, id];
-      }
-    });
+  function handlePillClick(id, _type) {
+    switch (_type) {
+      //if cuisine
+      case "cuisine":
+        setActivePillsCuisine((prevActivePillsCuisine) => {
+          if (prevActivePillsCuisine.includes(id)) {
+            return prevActivePillsCuisine.filter((pillId) => pillId !== id);
+          } else {
+            return [...prevActivePillsCuisine, id];
+          }
+        });
+        break;
+
+      // if day
+      case "day":
+        setActivePillsDay((prevActivePillsDay) => {
+          if (prevActivePillsDay.includes(id)) {
+            return prevActivePillsDay.filter((pillId) => pillId !== id);
+          } else {
+            return [...prevActivePillsDay, id];
+          }
+        });
+        break;
+
+      // if dish
+      case "dish":
+        setActivePillsDish((prevActivePillsDish) => {
+          if (prevActivePillsDish.includes(id)) {
+            return prevActivePillsDish.filter((pillId) => pillId !== id);
+          } else {
+            return [...prevActivePillsDish, id];
+          }
+        });
+        break;
+
+      // if occasion
+      case "occasion":
+        setActivePillsOccasion((prevActivePillsOccasion) => {
+          if (prevActivePillsOccasion.includes(id)) {
+            return prevActivePillsOccasion.filter((pillId) => pillId !== id);
+          } else {
+            return [...prevActivePillsOccasion, id];
+          }
+        });
+        break;
+    }
   }
 
   function generateInfoPane(venue) {
@@ -48,12 +89,14 @@ const map = () => {
 
   // fetch data
 
+  let OPEN = ["MO", "TUE", "WED", "THU", "FR", "SAT", "SU"];
+  let OCCASION = ["Breakfast", "Brunch", "Lunch", "Dinner", "Apero", "Drinks"];
+
   // venues
   let _venues;
   try {
     let _venueList = fetchAPI("venue");
     _venues = _venueList["docs"];
-    console.log(_venueList["docs"]);
   } catch (e) {
     console.log(e);
   }
@@ -68,14 +111,12 @@ const map = () => {
     _categories = _categoryList["docs"];
     // iterate and push to right array
     for (let i = 0; i < _categories.length; i++) {
-      console.log(_categories[i]);
       if (_categories[i]["type"] === "cuisine") {
         _cuisines.push(_categories[i]);
       } else if (_categories[i]["type"] === "dish") {
         _dishes.push(_categories[i]);
       }
     }
-    console.log(_cuisines);
   } catch (e) {
     console.log(e);
   }
@@ -152,47 +193,40 @@ const map = () => {
               <p className={"map--ui_pop-up-container-search_prompt"}>
                 open on:
               </p>
-              <div className={"map--ui_pop-up-container-search_pills"}>
-                <p className={"map--ui_pop-up-container-search_pillbox"}>MON</p>
-                <p className={"map--ui_pop-up-container-search_pillbox"}>TUE</p>
-                <p className={"map--ui_pop-up-container-search_pillbox"}>WED</p>
-                <p
-                  className={"map--ui_pop-up-container-search_pillbox selected"}
-                >
-                  THU
-                </p>
-                <p className={"map--ui_pop-up-container-search_pillbox"}>FRI</p>
-                <p
-                  className={"map--ui_pop-up-container-search_pillbox selected"}
-                >
-                  SAT
-                </p>
-                <p className={"map--ui_pop-up-container-search_pillbox"}>SUN</p>
-              </div>
+              {OPEN && (
+                <div className={"map--ui_pop-up-container-search_pills"}>
+                  {OPEN.map((day) => (
+                    <p
+                      key={day}
+                      className={
+                        activePillsDay.includes(day)
+                          ? "map--ui_pop-up-container-search_pillbox selected"
+                          : "map--ui_pop-up-container-search_pillbox"
+                      }
+                      onClick={() => handlePillClick(day, "day")}
+                    >
+                      {day}
+                    </p>
+                  ))}
+                </div>
+              )}
             </div>
             <div className={"map--ui_pop-up-container-section"}>
               <p className={"map--ui_pop-up-container-search_prompt"}>for:</p>
               <div className={"map--ui_pop-up-container-search_pills"}>
-                <p className={"map--ui_pop-up-container-search_pillbox"}>
-                  BREAKFAST
-                </p>
-                <p className={"map--ui_pop-up-container-search_pillbox"}>
-                  BRUNCH
-                </p>
-                <p
-                  className={"map--ui_pop-up-container-search_pillbox selected"}
-                >
-                  LUNCH
-                </p>
-                <p className={"map--ui_pop-up-container-search_pillbox"}>
-                  DINNER
-                </p>
-                <p className={"map--ui_pop-up-container-search_pillbox"}>
-                  APERO
-                </p>
-                <p className={"map--ui_pop-up-container-search_pillbox"}>
-                  DRINKS
-                </p>
+                {OCCASION.map((occ) => (
+                  <p
+                    key={occ}
+                    className={
+                      activePillsOcassion.includes(occ)
+                        ? "map--ui_pop-up-container-search_pillbox selected"
+                        : "map--ui_pop-up-container-search_pillbox"
+                    }
+                    onClick={() => handlePillClick(occ, "occasion")}
+                  >
+                    {occ}
+                  </p>
+                ))}
               </div>
             </div>
 
@@ -206,11 +240,11 @@ const map = () => {
                     <p
                       key={cat.id}
                       className={
-                        activePills.includes(cat.id)
+                        activePillsCuisine.includes(cat.id)
                           ? "map--ui_pop-up-container-search_pillbox selected"
                           : "map--ui_pop-up-container-search_pillbox"
                       }
-                      onClick={() => handlePillClick(cat.id)}
+                      onClick={() => handlePillClick(cat.id, "cuisine")}
                     >
                       {cat["name"]}
                     </p>
@@ -224,7 +258,15 @@ const map = () => {
               {_dishes && (
                 <div className={"map--ui_pop-up-container-search_pills"}>
                   {_dishes.map((cat) => (
-                    <p className={"map--ui_pop-up-container-search_pillbox"}>
+                    <p
+                      key={cat.id}
+                      className={
+                        activePillsDish.includes(cat.id)
+                          ? "map--ui_pop-up-container-search_pillbox selected"
+                          : "map--ui_pop-up-container-search_pillbox"
+                      }
+                      onClick={() => handlePillClick(cat.id, "dish")}
+                    >
                       {cat["name"]}
                     </p>
                   ))}
