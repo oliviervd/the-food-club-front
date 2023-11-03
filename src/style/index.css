@@ -677,7 +677,6 @@ header nav {
   align-items: center;
   position: relative;
   overflow: hidden;
-  opacity: 0.85;
 }
 
 .toplist--counter:nth-child(odd) {
