@@ -634,6 +634,7 @@ header nav {
 .categories--title_font {
   background: rgba(253, 121, 168, 30%);
   margin-top: 15px;
+  padding-left: 10px;
   font-size: 2em;
 }
 

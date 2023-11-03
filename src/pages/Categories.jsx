@@ -24,21 +24,21 @@ const Categories = () => {
 
   return (
     <div className={"main--container"}>
-      <Header slug={"Eat like locals"} title={"Food Club"}></Header>
+      <GridUI />
       <div className={"categories--container"}>
-        <GridUI />
-
         {_cats.map((cat) => {
           return (
             <div>
               {cat["categoryTitle"] !== "UNCATEGORISED" && (
                 <div>
-                  <h2
-                    className={"categories--title_font"}
-                    onClick={() => nav(`/toplist/${cat["categoryTitle"]}`)}
-                  >
-                    {cat["categoryTitle"].toUpperCase()}
-                  </h2>
+                  <a>
+                    <h2
+                      className={"categories--title_font"}
+                      onClick={() => nav(`/toplist/${cat["categoryTitle"]}`)}
+                    >
+                      {cat["categoryTitle"].toUpperCase()}
+                    </h2>
+                  </a>
                   <p>{cat["categorySubTitle"]}</p>
                 </div>
               )}
