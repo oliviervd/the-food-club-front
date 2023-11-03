@@ -328,14 +328,13 @@ header nav {
   padding-right: 0.4em;
   border: var(--deep-pink) 2px dotted;
   color: var(--deep-pink);
-  border-radius: 20px;i
+  border-radius: 20px;
 }
 
-.activePill{ 
+.activePill {
   border: var(--deep-pink) 2px solid;
 }
 
- 
 .selected {
   border: var(--FG-pink) 2px solid;
   color: var(--FG-pink);
