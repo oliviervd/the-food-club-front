@@ -4,6 +4,7 @@ import GridUI from "../elements/gridUI.jsx";
 import { fetchAPI } from "../utils/utils.jsx";
 import { useNavigate } from "react-router-dom";
 import Header from "../elements/header.jsx";
+import _mapIcon from "../elements/SVG/Map_icon.svg";
 
 const Categories = () => {
   // onLoad scroll to top.
@@ -43,7 +44,9 @@ const Categories = () => {
       <GridUI />
       <Header />
       <div className={"categories--container"}>
-        <a onClick={() => nav("/")} className="sticky--button_map"></a>
+        <a onClick={() => nav("/")} className="sticky--button_map">
+          <img src={_mapIcon} />
+        </a>
         {_cats.map((cat) => {
           return (
             <div>

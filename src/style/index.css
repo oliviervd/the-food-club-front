@@ -241,8 +241,7 @@ header nav {
   left: 75vw;
   height: 75px;
   width: 75px;
-  background-color: var(--deep-pink);
-  border-radius: 50%;
+  /*filter: drop-shadow(2px 2px 2px #d3cfcf);*/
 }
 
 .leaflet-container {
