@@ -163,6 +163,16 @@ header nav {
   }
 }
 
+.gent {
+  position: absolute;
+  top: 35px;
+  right: 40px;
+  z-index: 99999999999999999999999999;
+
+  & a img svg {
+  }
+}
+
 .nav--button {
   align-items: center;
   justify-content: center;
@@ -433,11 +443,16 @@ header nav {
 }
 
 .marker-cluster-small {
-  background-color: var(--light-pink);
+  background-color: var(--main-pink);
 }
 
 .marker-cluster-small > div {
-  background: var(--deep-pink);
+  background: white;
+  & span {
+    color: var(--main-text-color);
+    font-family: Onest-VariableFont;
+    font-weight: 700;
+  }
 }
 
 .autogrid-pills {

@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import _im from "../elements/SVG/Mapicon.png";
 import _logo from "../elements/SVG/Logo_blue.svg";
 import _location from "../elements/images/my-location.png";
+import Header from "./header";
 import { fetchAPI } from "../utils/utils.jsx";
 import { useNavigate } from "react-router-dom";
 
@@ -134,19 +135,7 @@ const map = () => {
       className={"container"}
       style={{ overflow: "hidden", maxWidth: "100vw" }}
     >
-      <header className={"map--ui_top-container"}>
-        <h1>
-          <img
-            onClick={() => nav("/categories")}
-            src={_logo}
-            alt="food club logo"
-          />
-        </h1>
-        <div
-          onClick={() => openSearchIndex()}
-          className={"map--ui_filter-container"}
-        ></div>
-      </header>
+      <Header />
 
       {/*<img className={"UI-GRID"} src={GridUI} style={{height:"100vh", objectFit:"cover"}}/>*/}
       <MapContainer
