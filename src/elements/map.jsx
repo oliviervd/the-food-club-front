@@ -3,8 +3,8 @@ import { Marker, TileLayer, MapContainer } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
 
 import React, { useState } from "react";
-//import _im from "./images/Mapicon.png";
-import _logo from "../elements/images/Untitled_Artwork.png";
+import _im from "../elements/SVG/Mapicon.png";
+import _logo from "../elements/SVG/Logo_blue.svg";
 import _location from "../elements/images/my-location.png";
 import { fetchAPI } from "../utils/utils.jsx";
 import { useNavigate } from "react-router-dom";
