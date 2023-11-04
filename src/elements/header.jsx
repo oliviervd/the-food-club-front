@@ -13,7 +13,11 @@ const Header_A = (props) => {
   return (
     <header>
       <h1>
-        <img src={_logo} alt="food club logo" />
+        <img
+          onClick={() => nav("/categories")}
+          src={_logo}
+          alt="food club logo"
+        />
       </h1>
 
       <nav>
