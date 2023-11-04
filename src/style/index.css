@@ -20,6 +20,7 @@ body {
   font-weight: 400;
 
   color-scheme: light dark;
+  --main-blue: #2a326d;
   --main-color: #f1f1f1;
   /*--light-pink: #F6DDE5;
   --deep-pink:  #EDB5C9;*/
@@ -163,11 +164,53 @@ header nav {
   }
 }
 
+.menu_container {
+  position: absolute;
+  background-color: var(--main-blue);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999999999999999999999;
+
+  & .closeIcon {
+    width: 50px;
+    align-items: right;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding-top: 50px;
+    padding-right: 50px;
+  }
+}
+
+.menu_container nav {
+  display: flex;
+  flex-flow: column;
+  text-align: center;
+  padding-top: 30vh;
+
+  & a,
+  p {
+    text-decoration: none;
+    font-family: Onest-VariableFont;
+    margin-bottom: 30px;
+    font-size: 70px;
+    font-weight: 900;
+    color: var(--main-pink);
+  }
+
+  .logo {
+    width: 150px;
+    padding-top: 75px;
+  }
+}
+
 .gent {
   position: absolute;
   top: 35px;
   right: 40px;
-  z-index: 99999999999999999999999999;
+  z-index: 9999999999999;
 
   & a img svg {
   }

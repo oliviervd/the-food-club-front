@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 82 32.12">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #221f20;
+        font-family: Onest-Black, Onest;
+        font-size: 16.85px;
+        font-variation-settings: 'wght' 900;
+        font-weight: 800;
+      }
+
+      .cls-2 {
+        fill: #f7ed53;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <path class="cls-2" d="m72.76,32.12H9.24c-5.1,0-9.24-5.25-9.24-11.74v-7C0,6.9,4.14,1.65,9.24,1.65l63.52-1.65c5.1,0,9.24,6.9,9.24,13.38v7c0,6.48-4.14,11.74-9.24,11.74Z"/>
+    <text class="cls-1" transform="translate(11.95 22.61)"><tspan x="0" y="0">GHENT</tspan></text>
+  </g>
+</svg>
