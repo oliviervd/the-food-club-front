@@ -1,25 +1,18 @@
-import React from "react"
-import {useNavigate} from "react-router-dom";
-import _im from "/src/elements/images/Untitled_Artwork.png"
-import GridUI from "../elements/images/Grid.png"
-
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import _im from "/src/elements/images/Untitled_Artwork.png";
 
 const Home = () => {
+  const nav = useNavigate();
 
-    const nav = useNavigate()
+  return (
+    <div className={"container home"} onClick={() => nav("/categories")}>
+      <div className={"vertical-center"}>
+        <img className={"home--logo"} src={_im} />
+      </div>
+      <div></div>
+    </div>
+  );
+};
 
-    return(
-        <div className={"container home"} onClick={()=>nav("/categories")}>
-            <img className={"UI-GRID"} src={GridUI}/>
-            <div className={"vertical-center"}>
-                <img className={"home--logo"} src={_im}/>
-            </div>
-            <div>
-            </div>
-        </div>
-    )
-}
-
-export default Home
-
-
+export default Home;

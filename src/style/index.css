@@ -26,7 +26,7 @@ body {
   --light-pink: white;
   --deep-pink: #edb5c9;
   --main-text-color: #262626;
-
+  --main-pink: #ffcae0;
   --accent-color: rgba(253, 121, 168, 5%);
   --accent-color__menu: black;
   --FG-pink: rgba(253, 121, 168, 95%);
@@ -79,11 +79,15 @@ body {
   src: local("BergenText-Bold"), url("../assets/BergenText-Bold.otf");
 }
 
+@font-face {
+  font-family: Onest-VariableFont;
+  src: local("Onest-VariableFont"), url("../assets/Onest-VariableFont_wght.ttf");
+}
+
 /* TYPOGRAPHY */
 
 h1 {
   text-align: center;
-  font-size: 3.2em;
   line-height: 1.1;
   padding-top: 0.5em;
   background: transparent;
@@ -96,15 +100,18 @@ h1 {
 }
 
 h2 {
-  font-family: Trim-ExtraBold;
+  font-family: Onest-VariableFont;
   color: var(--main-text-color);
   font-size: 2.5rem;
+  font-weight: 900;
+  text-transform: lowercase;
 }
 
 p {
-  font-family: "Trim Web Regular";
+  font-family: "Onest-VariableFont";
   color: var(--main-text-color);
   text-align: left;
+  line-height: 1.2;
 }
 
 .nav--back {
@@ -125,11 +132,11 @@ blockquote {
 
 header {
   display: flex;
-  height: 100px;
+  height: 80px;
   align-items: center;
   justify-content: space-between;
   z-index: 10000000000000000000;
-  background-color: rgba(253, 121, 168, 30%);
+  background-color: #ffcae0;
 }
 
 header h1 {
@@ -138,8 +145,7 @@ header h1 {
 
 header h1 img {
   /*logo*/
-  padding-left: 10px;
-  padding-top: 40px;
+  margin-top: 10px;
   height: 80px;
 }
 
@@ -148,6 +154,13 @@ header nav {
   align-items: center;
   justify-content: space-between;
   margin-top: auto;
+  line-height: 1;
+
+  & a img {
+    text-align: center;
+    margin: 30px;
+    height: 25px;
+  }
 }
 
 .nav--button {
@@ -614,12 +627,22 @@ header nav {
   z-index: -10;
 }
 
+.category--title {
+  & p {
+  }
+}
+
 .categories--container {
   padding: 20px;
   background: transparent;
   position: absolute;
   z-index: 10000;
   width: 90vw;
+
+  & p {
+    margin-top: 10px;
+    text-transform: lowercase;
+  }
 }
 
 .categories--title_font {
@@ -629,7 +652,8 @@ header nav {
 }
 
 .highlight {
-  background: rgba(253, 121, 168, 30%);
+  background: var(--main-pink);
+  border-radius: 10%;
   margin-top: 15px;
   padding-right: 10px;
   padding-left: 10px;
