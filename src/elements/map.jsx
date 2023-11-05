@@ -277,13 +277,18 @@ const map = () => {
       {openInfoPane && (
         <div className={"map--ui_pop-up-container"}>
           <div className="cross-ui">
-            <img onClick={() => setOpenInfoPane(false)} src={_cross} />
+            <img
+              onClick={() => setOpenInfoPane(false)}
+              alt="UI element used to close the element"
+              src={_cross}
+            />
           </div>
           <div className={"map--ui_pop-up-container--grid"}>
             <img
               onClick={() => nav(`/venue/${venue.venueName}`)}
               className={"map--ui_pop-up-container__img"}
               src={venue["media"]["sizes"]["tablet"]["url"]}
+              alt=""
             />
             <p>
               {venue["address"]["street"]} {venue["address"]["houseNumber"]}{" "}

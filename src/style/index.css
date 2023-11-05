@@ -819,7 +819,7 @@ header nav {
   width: 100vw;
   opacity: 0.3;
   z-index: -10000000;
-  height: 100vh;
+  height: 125vh;
   overflow: clip;
 }
 
