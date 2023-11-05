@@ -291,8 +291,13 @@ const map = () => {
               alt=""
             />
             <p>
-              {venue["address"]["street"]} {venue["address"]["houseNumber"]}{" "}
-              {venue["address"]["postalCode"]} {venue["address"]["city"]}{" "}
+              <p>
+                {venue["address"]["street"]} {venue["address"]["houseNumber"]}{" "}
+              </p>
+              <p>
+                {" "}
+                {venue["address"]["postalCode"]} {venue["address"]["city"]}{" "}
+              </p>
             </p>
           </div>
           {/* WEB UI */}

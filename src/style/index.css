@@ -336,11 +336,16 @@ header nav {
     font-family: Onest-VariableFont;
     width: 300px;
     font-weight: 500;
-    font-size: 30px;
+    font-size: 20px;
     padding-left: 3vh;
     padding-bottom: 30px;
     color: white;
     left: 0;
+
+    p {
+      padding-bottom: 0px;
+      padding-left: 0px;
+    }
   }
 
   .cross-ui {
