@@ -199,14 +199,24 @@ header nav {
   p {
     text-decoration: none;
     font-family: Onest-VariableFont;
-    margin-bottom: 30px;
-    font-size: 70px;
+    margin-bottom: 10px;
+    font-size: 50px;
     font-weight: 900;
-    color: var(--main-pink);
+    color: #f8d9de;
   }
+
+  .languageContainer {
+    padding-top: 30px;
+
+    p {
+      font-size: 30px;
+    }
+  }
+
   .logo {
-    width: 150px;
-    padding-top: 75px;
+    position: fixed;
+    width: 130px;
+    bottom: 80px;
   }
 }
 
