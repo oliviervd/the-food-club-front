@@ -166,15 +166,20 @@ header nav {
 
 .menu_container {
   position: fixed;
-  background-color: var(--main-blue);
   top: 0;
-  bottom: 0;
   left: 0;
-  right: 0;
-  z-index: 9999999999999999999999;
+  width: 100%;
+  height: 100%;
+
+  background-color: var(--main-blue);
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  z-index: 999;
 
   & .closeIcon {
-    width: 50px;
+    width: 30px;
     align-items: right;
     position: absolute;
     right: 0;
@@ -199,20 +204,42 @@ header nav {
     font-weight: 900;
     color: var(--main-pink);
   }
-
   .logo {
     width: 150px;
+    padding-top: 75px;
   }
+}
+
+.menu_container nav a:nth-child(even) {
+  background-image: url("../elements/SVG/Highlight_shape.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-left: 20px;
+  padding-right: 40px;
+  padding-bottom: 20px;
+  max-width: 400px;
+  & div {
+    z-index: 999;
+    font-size: 70px;
+    font-weight: 900;
+    color: var(--main-pink);
+  }
+}
+
+.menu_container
+  nav
+  a:nth-child(even)
+  .menu_container
+  nav
+  a:nth-child(even)::after {
+  content: "";
 }
 
 .gent {
   position: absolute;
   top: 35px;
   right: 40px;
-  z-index: 9999999999999;
-
-  & a img svg {
-  }
+  z-index: 99;
 }
 
 .nav--button {
@@ -691,8 +718,6 @@ header nav {
 .categories--container {
   padding: 20px;
   background: transparent;
-  position: absolute;
-  z-index: 10000;
   width: 90vw;
 
   & p {
@@ -725,7 +750,7 @@ header nav {
   text-decoration: underline;
   font-family: "BergenText-Regular";
   position: absolute;
-  z-index: 10000000;
+  z-index: 99;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
