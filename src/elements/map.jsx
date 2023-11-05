@@ -275,88 +275,12 @@ const map = () => {
 
       {openInfoPane && (
         <div className={"map--ui_pop-up-container"}>
-          {/*<GridUI/>*/}
-          <svg
-            className={"UI-GRID__popup"}
-            width="100%"
-            height="100%"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <defs>
-              <pattern
-                id="smallGrid"
-                width="8"
-                height="8"
-                patternUnits="userSpaceOnUse"
-              >
-                <path
-                  d="M 8 0 L 0 0 0 8"
-                  fill="none"
-                  stroke="pink"
-                  stroke-width="1.5"
-                />
-              </pattern>
-              <pattern
-                id="grid"
-                width="80"
-                height="80"
-                patternUnits="userSpaceOnUse"
-              >
-                <rect width="80" height="80" fill="url(#smallGrid)" />
-                <path
-                  d="M 80 0 L 0 0 0 80"
-                  fill="none"
-                  stroke="pink"
-                  stroke-width="1"
-                />
-              </pattern>
-            </defs>
-
-            <rect width="100%" height="100%" fill="url(#grid)" />
-          </svg>
-          {/* MOBILE UI */}
           <div className={"map--ui_pop-up-container--grid"}>
             <img
               onClick={() => nav(`/venue/${venue.venueName}`)}
               className={"map--ui_pop-up-container__img"}
               src={venue["media"]["sizes"]["tablet"]["url"]}
             />
-            <div style={{ paddingLeft: "2em", width: "10em" }}>
-              <h2 className={"map--ui_pop-up-container__title"}>
-                {venue.venueName}
-              </h2>
-              <div className={"autogrid-pills"}>
-                {/* check if multiple types to define UI */}
-                <div className={"pillbox--container"}>
-                  {venue["cuisineUsed"].map((cuisine) => (
-                    <h3 className={"map--ui_pop-up-container__pill"}>
-                      {cuisine["name"]}
-                    </h3>
-                  ))}
-                  {/* check if multiple types to define UI */}
-                  {!isObject(venue["type"]) && (
-                    <div className={"autogrid-pills"}>
-                      <p className={"map--ui_pop-up-container__pill"}>
-                        {venue["type"]}
-                      </p>
-                      {/*<p className={"map--ui_pop-up-container__pill"}>{pricingLabel(venue["pricing"])}</p>*/}
-                    </div>
-                  )}
-                  {isObject(venue["type"]) && (
-                    <div className={"autogrid-pills"}>
-                      <p className={"map--ui_pop-up-container__pill"}>
-                        {venue["type"][0]}
-                      </p>
-                      <p className={"map--ui_pop-up-container__pill"}>
-                        {venue["type"][1]}
-                      </p>
-                      {/*<p className={"map--ui_pop-up-container__pill"}>{pricingLabel(venue["pricing"])}</p>*/}
-                    </div>
-                  )}
-                </div>
-              </div>
-              <div className={"autogrid-pills"}></div>
-            </div>
           </div>
           {/* WEB UI */}
           <div></div>

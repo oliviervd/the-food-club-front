@@ -364,15 +364,25 @@ header nav {
 }
 
 .map--ui_pop-up-container {
-  height: 20vh;
-  background: var(--light-pink);
-  border: var(--deep-pink) 1vw solid;
-  border-radius: 20px;
-  position: absolute;
+  position: fixed;
+  left: 0;
   bottom: 0;
-  width: 94vw;
+  width: 60vw;
+  min-height: 200px;
+  background: var(--main-blue);
+  border-top-right-radius: 50% 50%;
+
   z-index: 98;
-  margin: 2vw;
+}
+
+.map--ui_pop-up-container__img {
+  position: relative;
+  top: -4vh;
+  left: 3vh;
+  height: 15vh;
+  width: 15vh;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
 .UI-GRID__popup {
@@ -468,16 +478,6 @@ header nav {
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 2px;
-}
-
-.map--ui_pop-up-container__img {
-  position: relative;
-  top: 2vh;
-  left: 2vh;
-  height: 15vh;
-  width: 15vh;
-  object-fit: cover;
-  border-radius: 10px;
 }
 
 .map--ui_pop-up-container__title {
