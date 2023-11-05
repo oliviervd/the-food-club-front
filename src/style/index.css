@@ -315,7 +315,7 @@ header nav {
   position: fixed;
   left: 0;
   bottom: 0;
-  min-width: 250px;
+  min-width: 200px;
 
   background: var(--main-blue);
   border-top-right-radius: 50% 50%;
@@ -325,9 +325,9 @@ header nav {
 
   & p {
     font-family: Onest-VariableFont;
-    width: 300px;
+    width: 200px;
     font-weight: 500;
-    font-size: 20px;
+    font-size: 16px;
     padding-left: 3vh;
     padding-bottom: 30px;
     color: white;
@@ -343,19 +343,19 @@ header nav {
 .cross-ui {
   background-color: #edb5c9;
   padding: 10px;
-  border-radius: 50%;
+  border-radius: 100%;
   position: fixed;
-  width: 41px;
-  left: 270px;
+  width: 30px;
+  left: 190px;
 }
 
 .map--ui_pop-up-container__img {
   position: relative;
-  top: -4vh;
+  top: -2vh;
   left: 3vh;
 
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   object-fit: cover;
   border-radius: 10px;
 }
