@@ -208,7 +208,7 @@ header nav {
   .languageContainer {
     padding-top: 30px;
 
-    p {
+    & p {
       font-size: 30px;
     }
   }
@@ -229,15 +229,6 @@ header nav {
   border-bottom: 0;
   padding: 10px 20px;
   color: var(--main-blue);
-}
-
-.menu_container
-  nav
-  a:nth-child(even)
-  .menu_container
-  nav
-  a:nth-child(even)::after {
-  content: "";
 }
 
 .gent {
@@ -332,7 +323,7 @@ header nav {
   flex-direction: column;
   z-index: 98;
 
-  p {
+  & p {
     font-family: Onest-VariableFont;
     width: 300px;
     font-weight: 500;
@@ -342,20 +333,20 @@ header nav {
     color: white;
     left: 0;
 
-    p {
+    & p {
       padding-bottom: 0px;
       padding-left: 0px;
     }
   }
+}
 
-  .cross-ui {
-    background-color: #edb5c9;
-    padding: 10px;
-    border-radius: 50%;
-    position: fixed;
-    width: 41px;
-    left: 270px;
-  }
+.cross-ui {
+  background-color: #edb5c9;
+  padding: 10px;
+  border-radius: 50%;
+  position: fixed;
+  width: 41px;
+  left: 270px;
 }
 
 .map--ui_pop-up-container__img {
