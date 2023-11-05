@@ -364,6 +364,7 @@ header nav {
 }
 
 .map--ui_pop-up-container {
+  /* UI element giving extra information the selected location when clicking an icon on the map */
   position: fixed;
   left: 0;
   bottom: 0;
@@ -391,7 +392,7 @@ header nav {
     padding: 10px;
     border-radius: 50%;
     position: fixed;
-    width: 40px;
+    width: 41px;
     left: 270px;
   }
 }
@@ -619,8 +620,6 @@ header nav {
   padding-top: 20px;
   padding-bottom: 10px;
   justify-content: flex-start;
-  & nav {
-  }
 }
 
 .venue--header_title {
@@ -722,11 +721,6 @@ header nav {
   width: 100vw;
   height: 70%;
   z-index: -10;
-}
-
-.category--title {
-  & p {
-  }
 }
 
 .categories--container {
