@@ -46,9 +46,7 @@ const Header_A = (props) => {
           />
           <nav>
             <a href="/">map</a>
-            <a href="/categories">
-              <div>top list </div>
-            </a>
+            <a href="/categories">top list</a>
             <a href="">about</a>
             <p> </p>
             <img className="logo" src={_logoWhite} />
