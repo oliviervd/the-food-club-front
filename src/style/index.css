@@ -367,20 +367,42 @@ header nav {
   position: fixed;
   left: 0;
   bottom: 0;
-  width: 60vw;
-  min-height: 200px;
+  min-width: 250px;
+
   background: var(--main-blue);
   border-top-right-radius: 50% 50%;
-
+  display: flex;
+  flex-direction: column;
   z-index: 98;
+
+  p {
+    font-family: Onest-VariableFont;
+    width: 300px;
+    font-weight: 500;
+    font-size: 30px;
+    padding-left: 3vh;
+    padding-bottom: 30px;
+    color: white;
+    left: 0;
+  }
+
+  .cross-ui {
+    background-color: #edb5c9;
+    padding: 10px;
+    border-radius: 50%;
+    position: fixed;
+    width: 40px;
+    left: 270px;
+  }
 }
 
 .map--ui_pop-up-container__img {
   position: relative;
   top: -4vh;
   left: 3vh;
-  height: 15vh;
-  width: 15vh;
+
+  width: 200px;
+  height: 200px;
   object-fit: cover;
   border-radius: 10px;
 }
@@ -472,19 +494,6 @@ header nav {
   height: fit-content;
   transition-property: border-bottom-width;
   transition-duration: 2s;
-}
-
-.map--ui_pop-up-container--grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 2px;
-}
-
-.map--ui_pop-up-container__title {
-  top: 2vh;
-  position: relative;
-  font-family: BergenText-Bold;
-  font-size: 20px;
 }
 
 .map--ui_pop-up-container__pill {

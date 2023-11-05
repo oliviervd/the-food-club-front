@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import _im from "../elements/SVG/Location_indicator_1.svg";
 import _logo from "../elements/SVG/Logo_blue.svg";
 import _location from "../elements/images/my-location.png";
+import _cross from "./SVG/Close_icon.svg";
 import Header from "./header";
 import { fetchAPI } from "../utils/utils.jsx";
 import { useNavigate } from "react-router-dom";
@@ -275,12 +276,19 @@ const map = () => {
 
       {openInfoPane && (
         <div className={"map--ui_pop-up-container"}>
+          <div className="cross-ui">
+            <img onClick={() => setOpenInfoPane(false)} src={_cross} />
+          </div>
           <div className={"map--ui_pop-up-container--grid"}>
             <img
               onClick={() => nav(`/venue/${venue.venueName}`)}
               className={"map--ui_pop-up-container__img"}
               src={venue["media"]["sizes"]["tablet"]["url"]}
             />
+            <p>
+              {venue["address"]["street"]} {venue["address"]["houseNumber"]}{" "}
+              {venue["address"]["postalCode"]} {venue["address"]["city"]}{" "}
+            </p>
           </div>
           {/* WEB UI */}
           <div></div>
