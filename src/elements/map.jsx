@@ -3,7 +3,7 @@ import { Marker, TileLayer, MapContainer } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
 
 import React, { useState } from "react";
-import _im from "../elements/SVG/Mapicon.png";
+import _im from "../elements/SVG/Location_indicator_1.svg";
 import _logo from "../elements/SVG/Logo_blue.svg";
 import _location from "../elements/images/my-location.png";
 import Header from "./header";
