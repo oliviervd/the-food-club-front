@@ -732,7 +732,7 @@ header nav {
 
 .categories--welcome_container {
   margin: none;
-  height: 65vh;
+  height: 60vh;
   width: 100vw;
   background: var(--main-blue);
 
@@ -744,14 +744,16 @@ header nav {
   }
 
   & h2 {
-    padding-top: 90px;
+    padding-top: 50px;
     line-height: 1;
     font-weight: 900;
-    font-size: 50px;
+    font-size: 3rem;
   }
 
   & p {
-    font-size: 27px;
+    font-size: 1.8rem;
+    max-width: 70vw;
+    padding-top: 10px;
   }
 
   & .button-mask {
@@ -761,6 +763,7 @@ header nav {
     mask-repeat: no-repeat;
     width: 200px;
     margin-left: 30px;
+    margin-bottom: 20px;
 
     & p {
       background-color: var(--main-pink);
@@ -771,6 +774,7 @@ header nav {
       color: var(--main-blue);
       position: relative;
       bottom: 15px;
+      padding-top: 30px;
     }
   }
 }
