@@ -613,7 +613,7 @@ header nav {
 .content_header {
   display: flex;
   padding-top: 20px;
-  padding-bottom: 10px;
+  padding-bottom: 30px;
   justify-content: flex-start;
 }
 
@@ -750,8 +750,9 @@ header nav {
   color: #f6dde5;
   /*border-radius: 50px;*/
   padding: 5px 10px;
-  text-decoration: underline;
-  font-family: "BergenText-Regular";
+  font-family: "Onest-VariableFont";
+  font-weight: 900;
+  color: var(--main-pink);
   position: absolute;
   z-index: 99;
   top: 50%;
@@ -766,11 +767,15 @@ header nav {
 }
 
 .toplist--image_container {
+  -webkit-mask-image: url("../elements/SVG/VenueMask1.svg");
+  mask-image: url("../elements/SVG/VenueMask1.svg");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
   position: relative;
-  height: 90vw;
-  width: 90vw;
+  height: 80vw;
+  width: 80vw;
   background: var(--deep-pink);
-  left: -2vw;
+  left: 5vw;
 }
 
 .toplist--image {
@@ -782,13 +787,16 @@ header nav {
   top: 2vw;
   justify-content: center;
   align-items: center;
-  position: relative;
   overflow: hidden;
 }
 
 .toplist--counter:nth-child(odd) {
   .toplist--image_container {
-    left: 0vw;
+    -webkit-mask-image: url("../elements/SVG/VenueMask2.svg");
+    mask-image: url("../elements/SVG/VenueMask2.svg");
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    left: 4vw;
     top: 2vw;
   }
   & .toplist--image {
