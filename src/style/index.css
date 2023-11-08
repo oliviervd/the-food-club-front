@@ -166,6 +166,7 @@ header nav {
 
 .menu_container {
   position: fixed;
+  overflow: hidden;
   top: 0;
   left: 0;
   width: 100%;
@@ -179,13 +180,13 @@ header nav {
   z-index: 999;
 
   & .closeIcon {
-    width: 30px;
+    width: 25px;
     align-items: right;
     position: absolute;
     right: 0;
     top: 0;
-    padding-top: 50px;
-    padding-right: 50px;
+    padding-top: 30px;
+    padding-right: 27px;
   }
 }
 
@@ -764,6 +765,13 @@ header nav {
 .toplist--title_font {
   margin-top: 0.5em;
   font-size: 2em;
+}
+
+.venue--image_container {
+  -webkit-mask-image: url("../elements/SVG/VenueMask1.svg");
+  mask-image: url("../elements/SVG/VenueMask1.svg");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
 }
 
 .toplist--image_container {

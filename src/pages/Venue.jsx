@@ -110,10 +110,12 @@ const Venue = () => {
                 {/*<img className={"venue--container_content-media-frame"} src={_frame} />*/}
 
                 {_venue["media"]["sizes"]["tablet"]["url"] && (
-                  <img
-                    className={"venue--container_content-media-image"}
-                    src={_venue["media"]["sizes"]["tablet"]["url"]}
-                  />
+                  <div className="venue--image_container">
+                    <img
+                      className={"venue--container_content-media-image"}
+                      src={_venue["media"]["sizes"]["tablet"]["url"]}
+                    />
+                  </div>
                 )}
 
                 <div className={"venue--container_content-links"}>
@@ -227,4 +229,3 @@ const Venue = () => {
   );
 };
 export default Venue;
-
