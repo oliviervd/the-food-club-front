@@ -779,6 +779,46 @@ header nav {
   }
 }
 
+.open-now_container {
+  height: 10vh;
+  width: 100vw;
+  background: var(--main-blue);
+  padding-bottom: 10px;
+  animation-delay: 5s;
+
+  & .button-mask {
+    background-image: url("../elements/SVG/Highlight_borderPink.svg");
+    background-repeat: no-repeat;
+    z-index: 999999;
+    background-position: left center;
+    background-size: "cover";
+    width: 180px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+
+    & p {
+      font-size: 1.6rem;
+      font-weight: 900;
+      text-align: left;
+      padding-bottom: 30px;
+      color: var(--main-pink);
+      position: relative;
+      bottom: 0px;
+      left: 7px;
+      padding-left: 10px;
+      padding-top: 30px;
+    }
+  }
+}
+
+.open-now_container.closed {
+  height: 0vh;
+
+  & .button-mask {
+    display: none;
+  }
+}
+
 .categories--welcome_container.closed {
   height: 0vh;
 

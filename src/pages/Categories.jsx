@@ -47,6 +47,16 @@ const Categories = () => {
 
       <div
         className={
+          showIntro ? "open-now_container closed" : "open-now_container"
+        }
+      >
+        <div className="button-mask">
+          <p>open today</p>
+        </div>
+      </div>
+
+      <div
+        className={
           showIntro
             ? "categories--welcome_container"
             : "categories--welcome_container closed"
