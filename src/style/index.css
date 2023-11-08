@@ -730,6 +730,51 @@ header nav {
   }
 }
 
+.categories--welcome_container {
+  margin: none;
+  height: 65vh;
+  width: 100vw;
+  background: var(--main-blue);
+
+  & h2,
+  p,
+  a {
+    padding: 30px;
+    color: white;
+  }
+
+  & h2 {
+    padding-top: 90px;
+    line-height: 1;
+    font-weight: 900;
+    font-size: 50px;
+  }
+  & p {
+    font-size: 27px;
+  }
+
+  & .button-mask {
+    -webkit-mask-image: url("../elements/SVG/Highlight_shape.svg");
+    mask-image: url("../elements/SVG/Highlight_shape.svg");
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    width: 200px;
+    margin-left: 30px;
+    position: relative;
+
+    & p {
+      background-color: var(--main-pink);
+      width: contain;
+      font-weight: 900;
+      text-align: center;
+      padding-bottom: 20px;
+      color: var(--main-blue);
+      position: relative;
+      bottom: 15px;
+    }
+  }
+}
+
 .categories--title_font {
   padding-top: 10px;
   margin-top: 15px;
