@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Highlighted from "../elements/highlight.jsx";
 import GridUI from "../elements/gridUI.jsx";
 import { fetchAPI } from "../utils/utils.jsx";
@@ -16,6 +16,7 @@ const Categories = () => {
   let _cats = [];
 
   const nav = useNavigate();
+  const [showIntro, setShowIntro] = useState(true);
 
   function colorWordInString(string, substring) {
     // based on a given substring, replace the style using a span.
@@ -43,13 +44,16 @@ const Categories = () => {
     <div className={"main--container"}>
       <GridUI />
       <Header />
-      <div className="categories--welcome_container">
-        <h2>Welcome to the foodclub</h2>
-        <p>a place where locals share their precious food discoveries.</p>
-        <div className="button-mask">
-          <p>let's go </p>
-        </div>{" "}
-      </div>
+
+      {showIntro && (
+        <div className="categories--welcome_container">
+          <h2>Welcome to the foodclub</h2>
+          <p>a place where locals share their precious food discoveries.</p>
+          <div onClick={() => setShowIntro(false)} className="button-mask">
+            <p>let's go </p>
+          </div>{" "}
+        </div>
+      )}
 
       <div className={"categories--container"}>
         <a onClick={() => nav("/")} className="sticky--button_map">
