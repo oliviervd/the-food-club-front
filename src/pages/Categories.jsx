@@ -45,15 +45,19 @@ const Categories = () => {
       <GridUI />
       <Header />
 
-      {showIntro && (
-        <div className="categories--welcome_container">
-          <h2>Welcome to the foodclub</h2>
-          <p>a place where locals share their precious food discoveries.</p>
-          <div onClick={() => setShowIntro(false)} className="button-mask">
-            <p>let's go </p>
-          </div>{" "}
-        </div>
-      )}
+      <div
+        className={
+          showIntro
+            ? "categories--welcome_container"
+            : "categories--welcome_container closed"
+        }
+      >
+        <h2>Welcome to the foodclub</h2>
+        <p>a place where locals share their precious food discoveries.</p>
+        <div onClick={() => setShowIntro(false)} className="button-mask">
+          <p>let's go </p>
+        </div>{" "}
+      </div>
 
       <div className={"categories--container"}>
         <a onClick={() => nav("/")} className="sticky--button_map">
