@@ -316,22 +316,6 @@ header nav {
   display: flex;
   flex-direction: column;
   z-index: 2;
-
-  & p {
-    font-family: Onest-VariableFont;
-    width: 200px;
-    font-weight: 500;
-    font-size: 16px;
-    padding-left: 3vh;
-    padding-bottom: 30px;
-    color: white;
-    left: 0;
-
-    & p {
-      padding-bottom: 0px;
-      padding-left: 0px;
-    }
-  }
 }
 
 .cross-ui {
