@@ -166,77 +166,55 @@ header nav {
 
 .menu_container {
   position: fixed;
-  overflow: hidden;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
 
-  background-color: var(--main-blue);
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
+  overflow: hidden;
+  z-index: 10;
+  background-color: pink;
+}
 
-  z-index: 999;
+.menu_container--close-icon {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+}
 
-  & .closeIcon {
-    width: 25px;
-    align-items: right;
-    position: absolute;
-    right: 0;
-    top: 0;
-    padding-top: 30px;
-    padding-right: 27px;
-  }
+.menu_container--close-icon img {
+  height: 30px;
 }
 
 .menu_container nav {
   display: flex;
-  flex-flow: column;
-  text-align: center;
-  padding-top: 30vh;
+  flex-direction: column;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  font-size: 50px;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
 
-  & a,
-  p {
-    text-decoration: none;
-    font-family: Onest-VariableFont;
-    margin-bottom: 10px;
-    font-size: 50px;
-    font-weight: 900;
-    color: #f8d9de;
-  }
-
-  .languageContainer {
-    padding-top: 30px;
-
-    & p {
-      font-size: 30px;
-    }
-  }
-
-  .logo {
-    position: fixed;
-    width: 130px;
-    bottom: 80px;
-  }
+.menu_container nav a {
+  text-decoration: none;
+  color: white;
+  font-family: Onest-VariableFont;
+  font-weight: 900;
 }
 
 .menu_container nav a:nth-child(even) {
-  background-color: var(--main-pink);
-  border-radius: 30% 20% 20% 20%;
-  border-top: 0;
-  border-left: 0;
-  border-right: 0;
-  border-bottom: 0;
-  padding: 10px 20px;
-  color: var(--main-blue);
 }
 
 .gent {
   position: absolute;
   top: 35px;
   right: 40px;
-  z-index: 99;
+  z-index: 2;
 }
 
 .nav--button {

@@ -38,20 +38,17 @@ const Header_A = (props) => {
 
       {openMenu && (
         <div class="menu_container">
-          <img
-            className="closeIcon"
-            src={_cross}
-            onClick={() => setOpenMenu(false)}
-            href=""
-          />
+          <a class="menu_container--close-icon">
+            <img
+              onClick={() => setOpenMenu(false)}
+              src={_cross}
+              alt="cross icon"
+            />
+          </a>
           <nav>
-            <a href="/">map</a>
-            <a href="/categories">top list</a>
+            <a href="">map</a>
+            <a href="">top list</a>
             <a href="">about</a>
-            <div className="languageContainer">
-              <p>NL</p>
-            </div>
-            <img className="logo" src={_logoWhite} />
           </nav>
         </div>
       )}
