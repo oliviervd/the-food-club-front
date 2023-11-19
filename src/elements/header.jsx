@@ -24,7 +24,7 @@ const Header_A = (props) => {
         />
       </h1>
 
-      <nav onClick={() => setOpenMenu(!openMenu)}>
+      <nav>
         <a>
           <img onClick={() => setOpenMenu(!openMenu)} src={_hamburger} />
         </a>
