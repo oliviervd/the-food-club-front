@@ -37,7 +37,11 @@ const Header_A = (props) => {
       </nav>
 
       {openMenu && (
-        <div class="menu_container">
+        <div
+          class={
+            openMenu ? "menu_container menu_container-open" : "menu_container"
+          }
+        >
           <a class="menu_container--close-icon">
             <img
               onClick={() => setOpenMenu(false)}
