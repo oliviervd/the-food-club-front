@@ -50,9 +50,9 @@ const Header_A = (props) => {
             />
           </a>
           <nav>
-            <a href="">map</a>
-            <a href="">top list</a>
-            <a href="">about</a>
+            <a onClick={() => nav("/map")}>map</a>
+            <a onClick={() => nav("/")}>top list</a>
+            <a onClick={() => nav("/about")}>about</a>
           </nav>
           <h1>
             <img src={_logoWhite} alt="food club logo" />
