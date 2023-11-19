@@ -9,6 +9,7 @@ import Places from "./pages/Places.jsx";
 import TopList from "./pages/TopList.jsx";
 import Categories from "./pages/Categories.jsx";
 import Venue from "./pages/Venue.jsx";
+import About from "./pages/About.jsx";
 
 import "leaflet/dist/leaflet.css";
 import "./style/index.css";
