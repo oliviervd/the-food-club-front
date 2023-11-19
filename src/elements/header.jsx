@@ -50,6 +50,9 @@ const Header_A = (props) => {
             <a href="">top list</a>
             <a href="">about</a>
           </nav>
+          <h1>
+            <img src={_logoWhite} alt="food club logo" />
+          </h1>
         </div>
       )}
     </header>

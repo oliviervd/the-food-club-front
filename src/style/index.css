@@ -173,7 +173,7 @@ header nav {
 
   overflow: hidden;
   z-index: 10;
-  background-color: pink;
+  background-color: var(--main-blue);
 }
 
 .menu_container--close-icon {
@@ -201,13 +201,21 @@ header nav {
 }
 
 .menu_container nav a {
+  margin-bottom: 20px;
   text-decoration: none;
-  color: white;
+  color: #f6dde5;
   font-family: Onest-VariableFont;
   font-weight: 900;
 }
 
 .menu_container nav a:nth-child(even) {
+}
+
+.menu_container h1 img {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .gent {
