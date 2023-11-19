@@ -4,6 +4,8 @@ import Header from "../elements/header.jsx";
 import GridUI from "../elements/gridUI.jsx";
 import { fetchAPI } from "../utils/utils.jsx";
 
+import _backIcon from "../elements/SVG/Back_icon.svg";
+
 const Venue = () => {
   // fetch content based on id
   let id = useParams(); // use id to set content
@@ -52,8 +54,7 @@ const Venue = () => {
           <div className={"content_header"}>
             <nav>
               <a onClick={() => nav("/categories")} className="nav--back">
-                {" "}
-                &lt;{" "}
+                <img src={_backIcon} alt="icon to navigate back" />
               </a>
             </nav>
             <h2 className={"venue--header_title"}>{id.id.toUpperCase()}</h2>

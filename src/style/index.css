@@ -22,8 +22,6 @@ body {
   color-scheme: light dark;
   --main-blue: #2a326d;
   --main-color: #f1f1f1;
-  /*--light-pink: #F6DDE5;
-  --deep-pink:  #EDB5C9;*/
   --light-pink: white;
   --deep-pink: #edb5c9;
   --main-text-color: #262626;
@@ -42,43 +40,7 @@ body {
   background: var(--light-pink);
 }
 
-/* backrground */
-
-.background--white {
-  color: white;
-}
-
 /* fonts */
-
-@font-face {
-  font-family: Trim-BoldItalic;
-  src: local("Trim-BoldItalic"), url(../assets/Trim-BoldItalic.otf);
-}
-
-@font-face {
-  font-family: Trim-Bold;
-  src: local("Trim-Bold"), url(../assets/Trim-Bold.otf);
-}
-
-@font-face {
-  font-family: Trim-ExtraBold;
-  src: local("Trim-ExtraBold"), url(../assets/Trim-ExtraBold.otf);
-}
-
-@font-face {
-  font-family: Trim Web Regular;
-  src: local("Trim Web Regular"), url("../assets/Trim Web Regular.ttf");
-}
-
-@font-face {
-  font-family: BergenText-Regular;
-  src: local("BergenText-Regular"), url("../assets/BergenText-Regular.otf");
-}
-
-@font-face {
-  font-family: BergenText-Bold;
-  src: local("BergenText-Bold"), url("../assets/BergenText-Bold.otf");
-}
 
 @font-face {
   font-family: Onest-VariableFont;
@@ -115,16 +77,8 @@ p {
   line-height: 1.2;
 }
 
-.nav--back {
-  font-family: "Trim-Bold";
-  font-size: 50px;
-  line-height: 0.9;
-  padding-right: 10px;
-  color: var(--deep-pink);
-}
-
 blockquote {
-  font-family: "Trim-Bold";
+  font-family: "Onest-VariableFont";
   font-weight: 700;
   color: var(--main-text-color);
 }
@@ -586,20 +540,26 @@ header nav {
 
 .content_header {
   display: flex;
+  flex-direction: row;
   padding-top: 20px;
-  padding-bottom: 30px;
   justify-content: flex-start;
+}
+
+.nav--back img {
+  height: 40px;
+  padding-top: 35%;
+  margin-right: 20px;
 }
 
 .venue--header_title {
   font-size: 3em;
-  line-height: 1em;
+  font-weight: 900;
 }
 
 .venue--header_subtitle {
   top: -20px;
   position: relative;
-  font-family: BergenText-Regular;
+  font-family: Onest-VariableFont;
   font-size: 1.2em;
   color: var(--main-text-color);
 }
@@ -618,8 +578,12 @@ header nav {
 }
 
 .venue--container_content-slug {
-  padding-left: 40px;
+  padding-left: 60px;
   padding-bottom: 10px;
+}
+
+.venue--container_content-slug blockquote {
+  font-size: 1.4em;
 }
 
 .venue--container_content-address {
@@ -917,9 +881,9 @@ header nav {
 }
 
 .pillbox-phone {
-  font-family: Trim-ExtraBold;
-  background: var(--main-text-color);
-  border: var(--main-text-color) 2px solid;
+  font-family: Onest-VariableFont;
+  background: var(--main-blue);
+  font-weight: 900;
   color: white;
   border-radius: 30px;
   width: 6em;
@@ -930,10 +894,10 @@ header nav {
 }
 
 .pillbox-website {
-  font-family: Trim-ExtraBold;
-  border: #edb5c9 2px solid;
+  font-family: Onest-VariableFont;
+  font-weight: 900;
   background: #f6dde5;
-  color: var(--main-text-color);
+  color: black;
   border-radius: 30px;
   width: 6em;
   padding: 0px 5px;
@@ -943,10 +907,10 @@ header nav {
 }
 
 .pillbox--directions {
-  font-family: Trim-ExtraBold;
+  font-family: Onest-VariableFont;
+  font-weight: 900;
   background: var(--deep-pink);
-  border: #f6dde5 2px solid;
-  color: #f6dde5;
+  color: white;
   border-radius: 30px;
   width: 6em;
   padding: 0px 5px;

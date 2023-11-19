@@ -13,6 +13,7 @@ const Header_A = (props) => {
   const nav = useNavigate();
 
   const [openMenu, setOpenMenu] = useState(false);
+  const selected = props.location;
 
   return (
     <header>
@@ -50,7 +51,9 @@ const Header_A = (props) => {
             />
           </a>
           <nav>
-            <a onClick={() => nav("/map")}>map</a>
+            <a className="button-mask" onClick={() => nav("/map")}>
+              map
+            </a>
             <a onClick={() => nav("/")}>top list</a>
             <a onClick={() => nav("/about")}>about</a>
           </nav>
