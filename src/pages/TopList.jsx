@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import GridUI from "../elements/gridUI.jsx";
 
 import { fetchAPI } from "../utils/utils.jsx";
+import _backIcon from "../elements/SVG/Back_icon.svg";
 
 const TopList = () => {
   // onLoad scroll to top.
@@ -59,10 +60,9 @@ const TopList = () => {
         className={"categories--container"}
         style={{ maxWidth: "100vw", overflow: "hidden" }}
       >
-        <div className={"content_header"}>
-          <a onClick={() => nav("/categories")} className="nav--back">
-            {" "}
-            &lt;{" "}
+        <div className={"content_header-toplist"}>
+          <a onClick={() => nav("/")} className="nav--back">
+            <img src={_backIcon} alt="icon to navigate back" />
           </a>
           <h2 className={"venue--header_title"}>{id.id.toUpperCase()}</h2>
         </div>

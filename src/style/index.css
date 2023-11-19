@@ -545,6 +545,14 @@ header nav {
   justify-content: flex-start;
 }
 
+.content_header-toplist {
+  display: flex;
+  flex-direction: row;
+  padding-top: 20px;
+  padding-bottom: 30px;
+  justify-content: flex-start;
+}
+
 .nav--back img {
   height: 40px;
   padding-top: 35%;
