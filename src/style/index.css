@@ -584,13 +584,14 @@ header nav {
 
 .venue--container_content-slug blockquote {
   font-size: 1.4em;
-  line-height: 1.6em;
+  line-height: 1.3em;
 }
 
 .venue--container_content-address {
   margin-left: 2em;
   font-family: Onest-VariableFont;
   font-size: 0.9em;
+  font-weight: 700;
 }
 
 .venue--container_content-openDays {
@@ -600,7 +601,7 @@ header nav {
 .venue--container_content-openDays-day {
   margin-left: 4px;
   font-family: Onest-VariableFont;
-  font-weight: 500;
+  font-weight: 700;
 }
 
 .venue--container_content-review {
@@ -612,15 +613,14 @@ header nav {
 .venue--container_content-tip_container {
   background-image: url("../elements/SVG/Highlight_borderPink.svg");
   background-repeat: no-repeat;
-  z-index: 999999;
   background-position: left center;
-  background-size: "cover";
+  background-size: contain no-repeat;
 
   position: relative;
   padding: 10px 20px;
-  margin-left: -2em;
+  margin-left: -3em;
+  height: 100px;
   overflow: auto;
-  z-index: 3;
   font-weight: 700;
 }
 
