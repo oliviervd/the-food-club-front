@@ -8,12 +8,19 @@ import { useNavigate } from "react-router-dom";
 import _map from "./images/map.png";
 import _list from "./images/list.png";
 import _cross from "./SVG/Close_icon.svg";
+import {useMediaQuery} from "react-responsive";
 
 const Header_A = (props) => {
   const nav = useNavigate();
 
   const [openMenu, setOpenMenu] = useState(false);
   const selected = props.location;
+
+    const isDesktopOrLaptop = useMediaQuery({
+        query: '(min-width: 601px)'
+    })
+
+    const isMobile = useMediaQuery({ query: '(max-width: 600px)' })
 
   return (
     <header>
@@ -25,15 +32,26 @@ const Header_A = (props) => {
         />
       </h1>
 
+
       <nav>
-        <a>
-          <img onClick={() => setOpenMenu(!openMenu)} src={_hamburger} />
-        </a>
+          {isMobile &&
+              <a>
+                  <img onClick={() => setOpenMenu(!openMenu)} src={_hamburger}/>
+              </a>
+          }
+          {isDesktopOrLaptop &&
+              <div className={"nav-desktop"}>
+                  <a>home</a>
+                  <a>subscribe</a>
+                  <a>about</a>
+                  <a>EN</a>
+              </div>
+          }
       </nav>
 
-      <nav className="gent">
-        <a>
-          <img src={_gent} />
+        <nav className="gent">
+            <a>
+                <img src={_gent} />
         </a>
       </nav>
 
