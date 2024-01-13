@@ -5,8 +5,6 @@ import _logoWhite from "./SVG/Logo_white.svg";
 import _hamburger from "./SVG/Hamburger_menu.svg";
 import _gent from "./SVG/City_ghent2.svg";
 import { useNavigate } from "react-router-dom";
-import _map from "./images/map.png";
-import _list from "./images/list.png";
 import _cross from "./SVG/Close_icon.svg";
 import {useMediaQuery} from "react-responsive";
 
