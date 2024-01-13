@@ -4,8 +4,6 @@ import MarkerClusterGroup from "react-leaflet-cluster";
 
 import React, { useState } from "react";
 import _im from "../elements/SVG/Location_indicator_1.svg";
-import _logo from "../elements/SVG/Logo_blue.svg";
-import _location from "../elements/images/my-location.png";
 import _cross from "./SVG/Close_icon.svg";
 import Header from "./header";
 import { fetchAPI } from "../utils/utils.jsx";
