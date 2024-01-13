@@ -1,5 +1,6 @@
 import * as React from "react";
 import _cross from "../elements/SVG/Close_icon.svg"
+import _pin from "../elements/SVG/Location_indicator_1.svg"
 import {useNavigate} from "react-router-dom";
 
 const MapInfoPane = (props) => {
@@ -28,12 +29,17 @@ const MapInfoPane = (props) => {
                         />
 
                     </div>
-                    <p className={"venue--container_content-address"} style={{maxWidth: "30vw", color: "white", transform: "translateY(-3vh)", fontWeight: 300}}>
-                        {venue["address"]["street"]}{" "}
-                        {venue["address"]["houseNumber"]},{" "}
-                        {venue["address"]["postalCode"]}{" "}
-                        {venue["address"]["city"]}
-                    </p>
+                    <div style={{position:"relative", display:"flex", flexFlow: "row", transform: "translateY(-3vh)"}}>
+                        <img style={{paddingLeft: "3vw",width:"5vw"}} src={_pin}/>
+                        <p className={"venue--container_content-address"}
+                           style={{maxWidth: "30vw", color: "white", fontWeight: 300, marginLeft:"1em"}}>
+                            {venue["address"]["street"]}{" "}
+                            {venue["address"]["houseNumber"]},{" "}
+                            {venue["address"]["postalCode"]}{" "}
+                            {venue["address"]["city"]}
+                        </p>
+                    </div>
+
                 </div>
 
                 <div className={"mapInfoPane--container_venue"}>
