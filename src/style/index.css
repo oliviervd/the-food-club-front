@@ -262,10 +262,10 @@ header nav {
   position: fixed;
   left: 0;
   bottom: 0;
-  width: 100%;
+  right: 0;
   height: 25%;
 
-  background: white;
+  background: #2a326d;
   border-top: var(--main-blue) 2px solid;
   display: flex;
   flex-direction: column;
