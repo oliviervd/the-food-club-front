@@ -706,7 +706,7 @@ header nav {
 .categories--container {
   padding: 20px;
   background: transparent;
-  width: 90vw;
+  /*width: 90vw;*/
 
   & p {
     margin-top: 10px;
