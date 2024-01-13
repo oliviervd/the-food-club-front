@@ -2,6 +2,8 @@ import * as React from "react";
 import {useMediaQuery} from "react-responsive";
 import Categories from "./Categories"
 import Desktop from "../UI/Desktop"
+import Mobile from "../UI/Mobile"
+import Header from "../elements/header"
 
 const Home = () => {
 
@@ -17,7 +19,7 @@ const Home = () => {
                 <Desktop></Desktop>
             }
             {isMobile &&
-                <Categories/>
+                <Categories></Categories>
             }
         </>
     )
