@@ -131,10 +131,9 @@ const map = () => {
 
   return (
     <div
-      className={"container"}
+      className={"map--ui_container"}
       style={{ overflow: "hidden", maxWidth: "100vw" }}
     >
-      <Header />
 
       {/*<img className={"UI-GRID"} src={GridUI} style={{height:"100vh", objectFit:"cover"}}/>*/}
       <MapContainer
