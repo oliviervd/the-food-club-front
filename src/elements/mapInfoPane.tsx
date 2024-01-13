@@ -16,15 +16,26 @@ const MapInfoPane = (props) => {
                 />
             </div>
             <div>
-                <div className={"toplist--image_container"} style={{transform:"translateY(-3vh)", width:"33vw", height :"20vh"}}>
-                    <img
-                        style={{height:"33%", width:"34vw"}}
-                        onClick={() => nav(`/venue/${venue.venueName}`)}
-                        className={"toplist--image_img"}
-                        src={venue["media"]["sizes"]["tablet"]["url"]}
-                        alt=""
-                    />
+                <div>
+                    <div className={"toplist--image_container"}
+                         style={{transform: "translateY(-3vh)", width: "33vw", height: "20vh"}}>
+                        <img
+                            style={{height: "33%", width: "34vw"}}
+                            onClick={() => nav(`/venue/${venue.venueName}`)}
+                            className={"toplist--image_img"}
+                            src={venue["media"]["sizes"]["tablet"]["url"]}
+                            alt=""
+                        />
+
+                    </div>
+                    <p className={"venue--container_content-address"} style={{maxWidth: "30vw", color: "white", transform: "translateY(-3vh)", fontWeight: 300}}>
+                        {venue["address"]["street"]}{" "}
+                        {venue["address"]["houseNumber"]},{" "}
+                        {venue["address"]["postalCode"]}{" "}
+                        {venue["address"]["city"]}
+                    </p>
                 </div>
+
                 <div className={"mapInfoPane--container_venue"}>
                     <h1>
                         {venue.venueName}
