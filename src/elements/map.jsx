@@ -4,9 +4,7 @@ import MarkerClusterGroup from "react-leaflet-cluster";
 
 import React, { useState } from "react";
 import _im from "../elements/SVG/Location_indicator_1.svg";
-import _logo from "../elements/SVG/Logo_blue.svg";
-import _location from "../elements/images/my-location.png";
-import _cross from "./SVG/Close_icon.svg";
+import MapInfoPane from "./mapInfoPane.tsx";
 import Header from "./header";
 import { fetchAPI } from "../utils/utils.jsx";
 import { useNavigate } from "react-router-dom";
@@ -263,46 +261,12 @@ const map = () => {
                 </div>
               )}
             </div>
-            {/* <div className={"map--ui_pop-up-container-section"}>
-                            <p className={"map--ui_pop-up-container-search_prompt"}>diet</p>
-                            <div className={"map--ui_pop-up-container-search_pills"}>
-                                <p className={"map--ui_pop-up-container-search_pillbox"}>vegetarian</p>
-                                <p className={"map--ui_pop-up-container-search_pillbox"}>vegan</p>
-                            </div>
-                        </div>*/}
           </div>
         )}
       </div>
 
       {openInfoPane && (
-        <div className={"map--ui_pop-up-container"}>
-          <div className="cross-ui">
-            <img
-              onClick={() => setOpenInfoPane(false)}
-              alt="UI element used to close the element"
-              src={_cross}
-            />
-          </div>
-          <div className={"map--ui_pop-up-container--grid"}>
-            <img
-              onClick={() => nav(`/venue/${venue.venueName}`)}
-              className={"map--ui_pop-up-container__img"}
-              src={venue["media"]["sizes"]["tablet"]["url"]}
-              alt=""
-            />
-            <p>
-              <p>
-                {venue["address"]["street"]} {venue["address"]["houseNumber"]}{" "}
-              </p>
-              <p>
-                {" "}
-                {venue["address"]["postalCode"]} {venue["address"]["city"]}{" "}
-              </p>
-            </p>
-          </div>
-          {/* WEB UI */}
-          <div></div>
-        </div>
+        <MapInfoPane venue={venue}/>
       )}
     </div>
   );
