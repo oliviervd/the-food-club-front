@@ -92,7 +92,7 @@ blockquote {
 
 header {
   display: flex;
-  height: 80px;
+  height: 7vh;
   align-items: center;
   justify-content: space-between;
   z-index: 10000000000000000000;
@@ -278,6 +278,14 @@ header nav {
 }
 
 /* MAP */
+
+.map--ui_container{
+  height: 93vh;
+  width: 100vw;
+  background: var(--light-pink);
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
 
 .map--ui_pop-up-container {
   /* UI element giving extra information the selected location when clicking an icon on the map */
