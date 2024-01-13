@@ -1,11 +1,12 @@
 import React from "react";
 
 import Map from "../elements/map.jsx";
-import _im from "../elements/images/Untitled_Artwork.png";
+import Header from "../elements/header.jsx";
 
 const Places = () => {
     return(
         <div>
+            <Header/>
             <Map/>
         </div>
     )
