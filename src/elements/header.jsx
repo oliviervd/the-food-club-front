@@ -41,10 +41,10 @@ const Header_A = (props) => {
           }
           {isDesktopOrLaptop &&
               <div className={"nav-desktop"}>
-                  <a>home</a>
+                  <a onClick={() => nav("/")}>home</a>
                   <a>subscribe</a>
-                  <a>about</a>
-                  <a>EN</a>
+                  <a onClick={() => nav("/about")}>about</a>
+                  <a style={{fontWeight: 300}}>en</a>
               </div>
           }
       </nav>

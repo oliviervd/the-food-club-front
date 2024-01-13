@@ -134,7 +134,10 @@ header nav {
   font-size: 2em;
   color: #2a326d;
   transform: translateY(50%);
+}
 
+.nav-desktop a:hover{
+  text-decoration: underline;
 }
 
 .menu_container {
