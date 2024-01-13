@@ -7,9 +7,11 @@ const CategoryList = (props) => {
     return (
 
         <div className={"categories--container"}>
-            <a onClick={() => nav("/")} className="sticky--button_map">
-                <img src={_mapIcon}/>
-            </a>
+            {props.mapButton &&
+                <a onClick={() => nav("/")} className="sticky--button_map">
+                    <img src={_mapIcon}/>
+                </a>
+            }
             {_cats.map((cat) => {
                 return (
                     <div>

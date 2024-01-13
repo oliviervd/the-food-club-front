@@ -51,7 +51,7 @@ const Categories = () => {
           <p>let's go </p>
         </div>{" "}
       </div>
-        <CategoryList categories={_cats}/>
+        <CategoryList categories={_cats} mapButton={true}/>
     </div>
   );
 };
