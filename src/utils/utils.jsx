@@ -24,3 +24,19 @@ export function pricingLabel(input) {
         case "four": return "€€€€"
     }
 }
+
+export function colorWordInString(string, substring) {
+    // based on a given substring, replace the style using a span.
+    const words = string.split("");
+    const styledWords = words.map((w) => {
+        //if the word matches
+        if (w === substring) {
+            return `<span className="highlight">${w}</span>`;
+        }
+        //else
+        return w;
+    });
+
+    const hightlightedTitle = styledWords.join("");
+    return hightlightedTitle;
+}
