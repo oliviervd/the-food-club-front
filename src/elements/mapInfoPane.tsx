@@ -15,19 +15,28 @@ const MapInfoPane = (props) => {
                     src={_cross}
                 />
             </div>
-            <div className={"map--ui_pop-up-container--grid"}>
-                <div className={"toplist--image_container"} style={{transform:"translateY(-3vh)"}}>
+            <div>
+                <div className={"toplist--image_container"} style={{transform:"translateY(-3vh)", width:"33vw"}}>
                     <img
-                        style={{height:"35%", width:"36vw"}}
+                        style={{height:"33%", width:"34vw"}}
                         onClick={() => nav(`/venue/${venue.venueName}`)}
                         className={"toplist--image_img"}
                         src={venue["media"]["sizes"]["tablet"]["url"]}
                         alt=""
                     />
                 </div>
-                <p>
+                <div className={"mapInfoPane--container_venue"}>
+                    <h1>
+                        {venue.venueName}
+                    </h1>
+                    <p>
+                        {venue["type"][0]}
+                    </p>
+                    <a>
+                        <h1>read more</h1>
+                    </a>
+                </div>
 
-                </p>
             </div>
             {/* WEB UI */}
             <div></div>

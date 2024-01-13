@@ -261,6 +261,13 @@ const map = () => {
                 </div>
               )}
             </div>
+            {/* <div className={"map--ui_pop-up-container-section"}>
+                            <p className={"map--ui_pop-up-container-search_prompt"}>diet</p>
+                            <div className={"map--ui_pop-up-container-search_pills"}>
+                                <p className={"map--ui_pop-up-container-search_pillbox"}>vegetarian</p>
+                                <p className={"map--ui_pop-up-container-search_pillbox"}>vegan</p>
+                            </div>
+                        </div>*/}
           </div>
         )}
       </div>

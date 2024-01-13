@@ -273,13 +273,11 @@ header nav {
 }
 
 .cross-ui {
-  display: none;
-  background-color: #edb5c9;
   padding: 10px;
-  border-radius: 100%;
   position: fixed;
   width: 30px;
-  left: 190px;
+  top:77%;
+  right: 3%;
 }
 
 .map--ui_pop-up-container__img {
@@ -383,6 +381,32 @@ header nav {
   color: var(--deep-pink);
   border-radius: 20px;
 }
+
+
+.toplist--image_container{
+  position: relative;
+}
+.mapInfoPane--container_venue{
+  position: absolute;
+  left: 50%;
+  right:0;
+  top:10%;
+}
+
+.mapInfoPane--container_venue h1 {
+  color: #edb5c9;
+  font-family: Onest-VariableFont;
+  text-align: left;
+  max-width: 30vw;
+  font-weight: 900;
+  line-height: 0.8;
+}
+.mapInfoPane--container_venue p {
+  padding-top: 20px;
+  text-align: left;
+  color: white;
+}
+
 
 .activePill {
   border: var(--deep-pink) 2px solid;
