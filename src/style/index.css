@@ -19,8 +19,6 @@ body {
   padding: 0;
 }
 
-
-
 :root {
   font-family: OstrichSans-Heavy;
   line-height: 1.5;
@@ -282,7 +280,7 @@ header nav {
   padding: 10px;
   position: fixed;
   width: 30px;
-  top:71%;
+  bottom:22vh;
   right: 3%;
   z-index: 10000000000;
 }
