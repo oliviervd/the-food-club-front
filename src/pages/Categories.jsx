@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import Highlighted from "../elements/highlight.jsx";
 import GridUI from "../elements/gridUI.jsx";
 import { fetchAPI } from "../utils/utils.jsx";
 import { useNavigate } from "react-router-dom";
 import Header from "../elements/header.jsx";
-import _mapIcon from "../elements/SVG/Map_icon.svg";
+import CategoryList from "../elements/categoryList.tsx";
 
 const Categories = () => {
   // onLoad scroll to top.
@@ -18,21 +17,6 @@ const Categories = () => {
   const nav = useNavigate();
   const [showIntro, setShowIntro] = useState(true);
 
-  function colorWordInString(string, substring) {
-    // based on a given substring, replace the style using a span.
-    const words = string.split("");
-    const styledWords = words.map((w) => {
-      //if the word matches
-      if (w === substring) {
-        return `<span className="highlight">${w}</span>`;
-      }
-      //else
-      return w;
-    });
-
-    const hightlightedTitle = styledWords.join("");
-    return hightlightedTitle;
-  }
   try {
     _categories = fetchAPI("categories");
     _cats = _categories["docs"];
@@ -43,8 +27,7 @@ const Categories = () => {
   return (
     <div className={"main--container"}>
       <GridUI />
-      <Header />
-
+        <Header></Header>
       <div
         className={
           showIntro ? "open-now_container closed" : "open-now_container"
@@ -66,6 +49,11 @@ const Categories = () => {
             <p>a place where locals share their precious food discoveries.</p>
             {/*<div onClick={() => setShowIntro(false)} className="button-mask">
           <p>let's go </p>
+
+        </div>{" "}
+      </div>
+        <CategoryList categories={_cats} mapButton={true}/>
+
         </div>{" "}*/}
             <div onClick={() => setShowIntro(false)} className={"button"}>
                 <p>take me</p>

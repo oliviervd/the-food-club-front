@@ -5,15 +5,21 @@ import _logoWhite from "./SVG/Logo_white.svg";
 import _hamburger from "./SVG/Hamburger_menu.svg";
 import _gent from "./SVG/City_ghent2.svg";
 import { useNavigate } from "react-router-dom";
-import _map from "./images/map.png";
-import _list from "./images/list.png";
 import _cross from "./SVG/Close_icon.svg";
+import {useMediaQuery} from "react-responsive";
 
 const Header_A = (props) => {
   const nav = useNavigate();
 
   const [openMenu, setOpenMenu] = useState(false);
   const selected = props.location;
+
+
+  const isDesktopOrLaptop = useMediaQuery({
+       query: '(min-width: 601px)'
+  })
+
+  const isMobile = useMediaQuery({ query: '(max-width: 600px)' })
 
   let header, gent = {}
   let style = {
@@ -38,6 +44,7 @@ const Header_A = (props) => {
         }
     }
 
+
   return (
     <header style={style}>
       <h1 style={header}>
@@ -47,6 +54,30 @@ const Header_A = (props) => {
           alt="food club logo"
         />
       </h1>
+
+
+
+      <nav>
+          {isMobile &&
+              <a>
+                  <img onClick={() => setOpenMenu(!openMenu)} src={_hamburger}/>
+              </a>
+          }
+          {isDesktopOrLaptop &&
+              <div className={"nav-desktop"}>
+                  <a onClick={() => nav("/")}>home</a>
+                  <a>subscribe</a>
+                  <a onClick={() => nav("/about")}>about</a>
+                  <a style={{fontWeight: 300}}>en</a>
+              </div>
+          }
+      </nav>
+
+        <nav className="gent">
+            <a>
+                <img src={_gent} />
+        </a>
+      </nav>
 
         {!props.map &&
             <nav>
@@ -61,6 +92,7 @@ const Header_A = (props) => {
                 <img src={_gent}/>
             </a>
         </nav>
+
 
         {openMenu && (
         <div

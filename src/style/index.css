@@ -82,6 +82,11 @@ p {
   line-height: 1.2;
 }
 
+a {
+  font-family: "Onest-VariableFont";
+  font-weight: 500;
+}
+
 blockquote {
   font-family: "Onest-VariableFont";
   font-weight: 700;
@@ -92,7 +97,7 @@ blockquote {
 
 header {
   display: flex;
-  height: 80px;
+  height: 7vh;
   align-items: center;
   justify-content: space-between;
   z-index: 10000000000000000000;
@@ -121,6 +126,23 @@ header nav {
     margin: 30px;
     height: 25px;
   }
+}
+
+.nav-desktop{
+  display: flex;
+  transform: translateY(-50%);
+}
+
+.nav-desktop a {
+  margin: 10px;
+  margin-right: 30px;
+  font-size: 2em;
+  color: #2a326d;
+  transform: translateY(50%);
+}
+
+.nav-desktop a:hover{
+  text-decoration: underline;
 }
 
 .menu_container {
@@ -260,6 +282,14 @@ header nav {
 }
 
 /* MAP */
+
+.map--ui_container{
+  height: 93vh;
+  width: 100vw;
+  background: var(--light-pink);
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
 
 .map--ui_pop-up-container {
   /* UI element giving extra information the selected location when clicking an icon on the map */
@@ -776,7 +806,7 @@ header nav {
 .categories--container {
   padding: 20px;
   background: transparent;
-  width: 90vw;
+  /*width: 90vw;*/
 
   & p {
     margin-top: 10px;

@@ -4,7 +4,9 @@ import MarkerClusterGroup from "react-leaflet-cluster";
 
 import React, { useState } from "react";
 import _im from "../elements/SVG/Location_indicator_1.svg";
+import _cross from "./SVG/Close_icon.svg";
 import MapInfoPane from "./mapInfoPane.tsx";
+
 import Header from "./header";
 import { fetchAPI } from "../utils/utils.jsx";
 import { useNavigate } from "react-router-dom";
@@ -131,10 +133,11 @@ const map = () => {
 
   return (
     <div
-      className={"container"}
+      className={"map--ui_container"}
       style={{ overflow: "hidden", maxWidth: "100vw" }}
     >
       <Header map={true} />
+
 
       {/*<img className={"UI-GRID"} src={GridUI} style={{height:"100vh", objectFit:"cover"}}/>*/}
       <MapContainer
