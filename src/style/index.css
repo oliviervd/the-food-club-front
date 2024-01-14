@@ -1174,12 +1174,11 @@ header nav {
 }
 
 .desktop-UI_nav {
+  position: absolute;
   display: flex;
-  top:0;
-  right: 0;
+  top:80px;
+  right: 80px;
   z-index: 10000000;
-
-  padding-right: 80px;
   gap: 20px;
 }
 

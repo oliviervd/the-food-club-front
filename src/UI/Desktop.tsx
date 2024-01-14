@@ -22,7 +22,7 @@ const Desktop = () => {
     return(
         <>
             <Map/>
-            <header style={{position:"absolute", backgroundColor: "transparent"}}>
+            <header style={{backgroundColor: "transparent"}}>
                 <nav className={"desktop-UI_nav"}>
                     <a>about</a>
                     <a>subscribe</a>
