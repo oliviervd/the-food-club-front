@@ -678,6 +678,7 @@ header nav {
   padding: 10px;
   background-color: white;
   border-radius: 25px;
+  margin-left: -20px;
 }
 
 .venue--container_content-tipbox p {
