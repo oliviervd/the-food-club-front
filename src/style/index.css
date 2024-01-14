@@ -1158,6 +1158,17 @@ header nav {
   height: 2px;
 }
 
+.desktop-UI_categories {
+  border-radius: 25px;
+  position: absolute;
+  left: 30px;
+  top: 15%;
+  z-index: 100;
+  background-color: white;
+  max-height: 80vh;
+  overflow-y: scroll;
+}
+
 @media (min-width: 900px) {
   .map--ui_pop-up-container {
     position: absolute;

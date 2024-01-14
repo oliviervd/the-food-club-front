@@ -20,10 +20,9 @@ const Desktop = () => {
     }
     return(
         <>
-            <Header></Header>
-            <div style={{display: "flex"}}>
+            <Map/>
+            <div className={"desktop-UI_categories"} >
                 <CategoryList categories={_cats}/>
-                <Map/>
             </div>
         </>
     )
