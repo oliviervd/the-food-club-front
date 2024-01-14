@@ -14,17 +14,10 @@ const Header_A = (props) => {
   const [openMenu, setOpenMenu] = useState(false);
   const selected = props.location;
 
-
-  const isDesktopOrLaptop = useMediaQuery({
-       query: '(min-width: 601px)'
-  })
-
-  const isMobile = useMediaQuery({ query: '(max-width: 600px)' })
-
-  let header, gent = {}
-  let style = {
-    display:"flex"
-  }
+    let header, gent = {}
+    let style = {
+        display:"flex"
+    }
 
     if (props.map) {
         // add styling for header used on the map page.
@@ -44,7 +37,6 @@ const Header_A = (props) => {
         }
     }
 
-
   return (
     <header style={style}>
       <h1 style={header}>
@@ -55,46 +47,21 @@ const Header_A = (props) => {
         />
       </h1>
 
-
-
-      <nav>
-          {isMobile &&
-              <a>
-                  <img onClick={() => setOpenMenu(!openMenu)} src={_hamburger}/>
-              </a>
-          }
-          {isDesktopOrLaptop &&
-              <div className={"nav-desktop"}>
-                  <a onClick={() => nav("/")}>home</a>
-                  <a>subscribe</a>
-                  <a onClick={() => nav("/about")}>about</a>
-                  <a style={{fontWeight: 300}}>en</a>
-              </div>
-          }
-      </nav>
-
-        <nav className="gent">
-            <a>
-                <img src={_gent} />
-        </a>
-      </nav>
-
         {!props.map &&
             <nav>
                 <a>
-                    <img onClick={() => setOpenMenu(!openMenu)} src={_hamburger}/>
+                    <img onClick={()=> setOpenMenu(!openMenu)} src={_hamburger}></img>
                 </a>
             </nav>
         }
 
         <nav className="gent" style={gent}>
             <a>
-                <img src={_gent}/>
+                <img src={_gent} />
             </a>
         </nav>
 
-
-        {openMenu && (
+      {openMenu && (
         <div
           class={
             openMenu ? "menu_container menu_container-open" : "menu_container"

@@ -284,7 +284,7 @@ header nav {
 /* MAP */
 
 .map--ui_container{
-  height: 93vh;
+  height: 100vh;
   width: 100vw;
   background: var(--light-pink);
   overflow-y: hidden;

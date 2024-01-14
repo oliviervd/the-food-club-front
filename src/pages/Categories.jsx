@@ -28,7 +28,7 @@ const Categories = () => {
   return (
     <div className={"main--container"}>
       <GridUI />
-        <Header></Header>
+        <Header/>
       <div
         className={
           showIntro ? "open-now_container closed" : "open-now_container"

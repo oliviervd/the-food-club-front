@@ -6,7 +6,6 @@ import Header from "../elements/header.jsx";
 const Places = () => {
     return(
         <div>
-            <Header/>
             <Map/>
         </div>
     )
