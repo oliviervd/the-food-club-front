@@ -25,6 +25,7 @@ const TopList = () => {
 
   if (!openNavMenu) {
     document.body.style.overflowX = "auto";
+    document.body.style.overflowY = "hidden";
   }
 
   //fetch id from URL param
