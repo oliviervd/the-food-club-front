@@ -593,6 +593,7 @@ header nav {
 .venue--header_title {
   font-size: 3em;
   font-weight: 900;
+  line-height: 1;
 }
 
 .venue--header_subtitle {
