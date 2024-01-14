@@ -5,6 +5,8 @@ import MarkerClusterGroup from "react-leaflet-cluster";
 import React, { useState } from "react";
 import _im from "../elements/SVG/Location_indicator_1.svg";
 import _cross from "./SVG/Close_icon.svg";
+import MapInfoPane from "./mapInfoPane.tsx";
+
 import Header from "./header";
 import { fetchAPI } from "../utils/utils.jsx";
 import { useNavigate } from "react-router-dom";
@@ -134,6 +136,8 @@ const map = () => {
       className={"map--ui_container"}
       style={{ overflow: "hidden", maxWidth: "100vw" }}
     >
+      <Header map={true} />
+
 
       {/*<img className={"UI-GRID"} src={GridUI} style={{height:"100vh", objectFit:"cover"}}/>*/}
       <MapContainer
@@ -270,36 +274,8 @@ const map = () => {
           </div>
         )}
       </div>
-
       {openInfoPane && (
-        <div className={"map--ui_pop-up-container"}>
-          <div className="cross-ui">
-            <img
-              onClick={() => setOpenInfoPane(false)}
-              alt="UI element used to close the element"
-              src={_cross}
-            />
-          </div>
-          <div className={"map--ui_pop-up-container--grid"}>
-            <img
-              onClick={() => nav(`/venue/${venue.venueName}`)}
-              className={"map--ui_pop-up-container__img"}
-              src={venue["media"]["sizes"]["tablet"]["url"]}
-              alt=""
-            />
-            <p>
-              <p>
-                {venue["address"]["street"]} {venue["address"]["houseNumber"]}{" "}
-              </p>
-              <p>
-                {" "}
-                {venue["address"]["postalCode"]} {venue["address"]["city"]}{" "}
-              </p>
-            </p>
-          </div>
-          {/* WEB UI */}
-          <div></div>
-        </div>
+        <MapInfoPane venue={venue} openInfoPane={openInfoPane} setOpenInfoPane={setOpenInfoPane}/>
       )}
     </div>
   );

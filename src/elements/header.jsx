@@ -14,21 +14,47 @@ const Header_A = (props) => {
   const [openMenu, setOpenMenu] = useState(false);
   const selected = props.location;
 
-    const isDesktopOrLaptop = useMediaQuery({
-        query: '(min-width: 601px)'
-    })
 
-    const isMobile = useMediaQuery({ query: '(max-width: 600px)' })
+  const isDesktopOrLaptop = useMediaQuery({
+       query: '(min-width: 601px)'
+  })
+
+  const isMobile = useMediaQuery({ query: '(max-width: 600px)' })
+
+  let header, gent = {}
+  let style = {
+    display:"flex"
+  }
+
+    if (props.map) {
+        // add styling for header used on the map page.
+        style = {
+            backgroundColor: "transparent",
+            position: "fixed"
+        }
+        header = {
+            position: "absolute",
+            top: "20px",
+            left: "20px"
+        }
+        gent={
+            position: "absolute",
+            top: "70px",
+            left: "70px"
+        }
+    }
+
 
   return (
-    <header>
-      <h1>
+    <header style={style}>
+      <h1 style={header}>
         <img
           onClick={() => nav("/categories")}
           src={_logo}
           alt="food club logo"
         />
       </h1>
+
 
 
       <nav>
@@ -53,7 +79,22 @@ const Header_A = (props) => {
         </a>
       </nav>
 
-      {openMenu && (
+        {!props.map &&
+            <nav>
+                <a>
+                    <img onClick={() => setOpenMenu(!openMenu)} src={_hamburger}/>
+                </a>
+            </nav>
+        }
+
+        <nav className="gent" style={gent}>
+            <a>
+                <img src={_gent}/>
+            </a>
+        </nav>
+
+
+        {openMenu && (
         <div
           class={
             openMenu ? "menu_container menu_container-open" : "menu_container"

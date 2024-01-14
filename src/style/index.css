@@ -2,11 +2,16 @@
 
 html,
 body {
-  max-width: 100%;
-  overflow: auto;
-  margin: 0;
-  display: block;
-  place-items: center;
+    display: block;
+    position: fixed;
+    width: 100vw;
+    max-height: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 * {
@@ -262,7 +267,6 @@ header nav {
 
 .main--container {
   width: 100vw;
-  overflow: clip;
 }
 
 .BG--gradient {
@@ -292,24 +296,78 @@ header nav {
   position: fixed;
   left: 0;
   bottom: 0;
-  width: 100%;
-  height: 25%;
+  right: 0;
+  height: 18%;
 
-  background: white;
-  border-top: var(--main-blue) 2px solid;
-  display: flex;
-  flex-direction: column;
+  background: #2a326d;
+
+  display: grid;
+  grid-template-columns: 50% 50%;
   z-index: 2;
 }
 
+.map--ui_pop-up-container-left {
+  display: grid;
+  grid-template-rows: 2fr 1fr;
+}
+
+.map--ui_pop-up-container-right {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+
+.map--ui_pop-up-container-right h1{
+  font-family: Onest-VariableFont;
+  text-align: left;
+  color: #edb5c9;
+  font-size: 7vw;
+  font-weight: 900;
+}
+
+.map--ui_pop-up-container-right p{
+  font-family: Onest-VariableFont;
+  text-align: left;
+  color: white;
+  font-size: 5vw;
+}
+
+.map--ui_pop-up-container-left .address{
+  display: flex;
+  gap: 10px;
+}
+
+.map--ui_pop-up-container-left .address p {
+  max-width: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 3.5vw;
+}
+
+
+.map--ui_pop-up--image_container{
+  position: absolute;
+  left: 15%;
+  top:-30%;
+  -webkit-mask-image: url("../elements/SVG/VenueMask2.svg");
+  mask-image: url("../elements/SVG/VenueMask2.svg");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  height: 130%;
+  width: 130%;
+}
+
+.map--ui_pop-up--image_container img {
+  height: 33%;
+  width:33vw;
+}
+
 .cross-ui {
-  display: none;
-  background-color: #edb5c9;
-  padding: 10px;
-  border-radius: 100%;
-  position: fixed;
+  position: absolute;
+  align-items: end;
   width: 30px;
-  left: 190px;
+  z-index: 10000000000;
+  top: 16px;
+  right: 16px;
 }
 
 .map--ui_pop-up-container__img {
@@ -320,7 +378,7 @@ header nav {
 
 .sticky--button_map {
   position: fixed;
-  top: 80vh;
+  top: 65vh;
   left: 75vw;
   height: 75px;
   width: 75px;
@@ -413,6 +471,34 @@ header nav {
   color: var(--deep-pink);
   border-radius: 20px;
 }
+
+
+.toplist--image_container{
+  position: relative;
+}
+.mapInfoPane--container_venue{
+  position: absolute;
+  left: 50%;
+  right:0;
+  top:5%;
+}
+
+.mapInfoPane--container_venue h1 {
+  color: #edb5c9;
+  font-family: Onest-VariableFont;
+  text-align: left;
+  max-width: 30vw;
+  font-weight: 900;
+  font-size: 6vw;
+  line-height: 0.8;
+  padding-top: 0px;
+}
+.mapInfoPane--container_venue p {
+  padding-top: 10px;
+  text-align: left;
+  color: white;
+}
+
 
 .activePill {
   border: var(--deep-pink) 2px solid;
@@ -590,8 +676,10 @@ header nav {
 }
 
 .venue--header_title {
+  padding-top: 1vh;
   font-size: 3em;
   font-weight: 900;
+  line-height: 1;
 }
 
 .venue--header_subtitle {
@@ -613,6 +701,19 @@ header nav {
   z-index: 100000;
   left: -4em;
   padding-top: 4em;
+}
+
+.venue--container_content-tipbox{
+  border: none;
+  padding: 10px;
+  background-color: #ffea00;
+  border-radius: 25px;
+  margin-left: -20px;
+}
+
+.venue--container_content-tipbox p {
+  font-family: Onest-VariableFont;
+  font-weight: 500;
 }
 
 .venue--container_content-slug {
@@ -651,13 +752,12 @@ header nav {
 .venue--container_content-tip_container {
   background-image: url("../elements/SVG/Highlight_borderPink.svg");
   background-repeat: no-repeat;
-  background-position: left center;
-  background-size: contain no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
 
   position: relative;
-  padding: 10px 20px;
+  padding: 20px 20px;
   margin-left: -3em;
-  height: 100px;
   overflow: auto;
   font-weight: 700;
 }
@@ -718,7 +818,10 @@ header nav {
   margin: none;
   height: 60vh;
   width: 100vw;
-  background: var(--main-blue);
+  background-image: url("../elements/images/PHOTO-2023-11-03-17-09-48.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
   & h2,
   p,
@@ -732,12 +835,13 @@ header nav {
     line-height: 1;
     font-weight: 900;
     font-size: 3rem;
+    text-align: center;
   }
 
   & p {
     font-size: 1.8rem;
-    max-width: 70vw;
     padding-top: 10px;
+    text-align: center;
   }
 
   & .button-mask {
@@ -746,7 +850,7 @@ header nav {
     -webkit-mask-repeat: no-repeat;
     mask-repeat: no-repeat;
     width: 200px;
-    margin-left: 30px;
+    text-align: center;
     margin-bottom: 20px;
 
     & p {
@@ -760,6 +864,45 @@ header nav {
       bottom: 15px;
       padding-top: 30px;
     }
+  }
+}
+
+.categories--welcome_container .button {
+  width: 50%;
+  display: flex;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+}
+
+.categories--welcome_container .button p {
+  color: #221f20;
+  background-color: #ffea00;
+  align-items: center;
+  border-radius: 20px;
+  height: 20px;
+  font-weight: 700;
+}
+
+.button-mask_transparant {
+  -webkit-mask-image: url("../elements/SVG/Highlight_shape.svg");
+  mask-image: url("../elements/SVG/Highlight_shape.svg");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  width: 30vw;
+  margin-left: 30px;
+  margin-bottom: 20px;
+
+  & p {
+    background-color: #edb5c9;
+    width: contain;
+    font-weight: 900;
+    text-align: center;
+    padding-bottom: 30px;
+    color: var(--main-text-color);
+    position: relative;
+    bottom: 15px;
+    padding-top: 30px;
   }
 }
 
@@ -796,7 +939,7 @@ header nav {
 }
 
 .open-now_container.closed {
-  height: 0vh;
+  display:none;
 
   & .button-mask {
     display: none;
@@ -806,7 +949,7 @@ header nav {
 .categories--welcome_container.closed {
   height: 0vh;
 
-  & .button-mask {
+  & .button-mask, .button {
     display: none;
   }
 }
@@ -920,11 +1063,13 @@ header nav {
 }
 
 .pillbox {
-  background: rgba(253, 121, 168, 50%);
+  background: #2a326d;
   border-radius: 30px;
   width: fit-content;
   padding: 0px 5px;
   margin-bottom: 10px;
+  color:white;
+  z-index: 100;
 }
 
 .pillbox-phone {
@@ -940,10 +1085,14 @@ header nav {
   text-transform: uppercase;
 }
 
+.pillbox p {
+  color:white;
+}
+
 .pillbox-website {
   font-family: Onest-VariableFont;
   font-weight: 900;
-  background: #f6dde5;
+  background: #ffea00;
   color: black;
   border-radius: 30px;
   width: 6em;
@@ -957,7 +1106,7 @@ header nav {
   font-family: Onest-VariableFont;
   font-weight: 900;
   background: var(--deep-pink);
-  color: white;
+  color: black;
   border-radius: 30px;
   width: 6em;
   padding: 0px 5px;
@@ -1041,5 +1190,12 @@ header nav {
   }
 
   header h1 {
+  }
+}
+
+
+@media (max-width: 600px) {
+  body, .map--ui_pop-up-container {
+    padding-bottom: 5vh; /* or margin-bottom: 150px; Adjust as needed */
   }
 }

@@ -24,7 +24,8 @@ const TopList = () => {
   }
 
   if (!openNavMenu) {
-    document.body.style.overflow = "unset";
+    document.body.style.overflowX = "hidden";
+    document.body.style.overflowY = "scroll";
   }
 
   //fetch id from URL param
