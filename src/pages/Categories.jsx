@@ -70,7 +70,7 @@ const Categories = () => {
       </div>
 
       <div className={"categories--container"}>
-        <a onClick={() => nav("/")} className="sticky--button_map">
+        <a onClick={() => nav("/map")} className="sticky--button_map">
           <img src={_mapIcon} />
         </a>
         {_cats.map((cat) => {
