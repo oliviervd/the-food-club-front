@@ -271,9 +271,8 @@ const map = () => {
           </div>
         )}
       </div>
-
       {openInfoPane && (
-        <MapInfoPane venue={venue}/>
+        <MapInfoPane venue={venue} openInfoPane={openInfoPane} setOpenInfoPane={setOpenInfoPane}/>
       )}
     </div>
   );

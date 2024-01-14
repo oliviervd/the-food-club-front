@@ -6,14 +6,20 @@ import {useNavigate} from "react-router-dom";
 const MapInfoPane = (props) => {
     const nav = useNavigate();
     const venue = props.venue
+    console.log(venue)
+
+    const closePane = () => {
+        props.setOpenInfoPane(false);
+    }
 
     return (
         <div className={"map--ui_pop-up-container"}>
             <div className="cross-ui">
                 <img
-                    //onClick={() => setOpenInfoPane(false)}
+                    onClick={()=>closePane()}
                     alt="UI element used to close the element"
                     src={_cross}
+                    style={{pointerEvents: 'auto', zIndex:"10000"}}
                 />
             </div>
             <div>
@@ -30,14 +36,17 @@ const MapInfoPane = (props) => {
 
                     </div>
                     <div style={{position:"relative", display:"flex", flexFlow: "row", transform: "translateY(-3vh)"}}>
-                        <img style={{paddingLeft: "3vw",width:"5vw"}} src={_pin}/>
+                        <img style={{paddingLeft: "6vw",width:"5vw", position:"absolute"}} src={_pin}/>
                         <p className={"venue--container_content-address"}
-                           style={{maxWidth: "30vw", color: "white", fontWeight: 300, marginLeft:"1em"}}>
+                           style={{maxWidth: "30vw", color: "white", fontWeight: 300, left: "7vw", position:"absolute"}}>
                             {venue["address"]["street"]}{" "}
                             {venue["address"]["houseNumber"]},{" "}
                             {venue["address"]["postalCode"]}{" "}
                             {venue["address"]["city"]}
                         </p>
+                        <div onClick={() => nav(`/venue/${venue.venueName}`)} className="button-mask_transparant" style={{position:"absolute", right:"21vw"}}>
+                            <p>read more</p>
+                        </div>{" "}
                     </div>
 
                 </div>
@@ -46,10 +55,17 @@ const MapInfoPane = (props) => {
                     <h1>
                         {venue.venueName}
                     </h1>
-                    <p>
-                        {venue["type"][0]}
-                    </p>
+                    <div style={{display: "flex", gap: "2vw"}}>
+                        <p>
+                            {venue["type"][0]}
+                        </p>
+                        {venue["cuisineUsed"][0] &&
+                            <p> - {venue["cuisineUsed"][0]["name"]} </p>
+                        }
+
                 </div>
+
+            </div>
 
             </div>
             {/* WEB UI */}
