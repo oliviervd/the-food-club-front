@@ -1162,10 +1162,10 @@ header nav {
   border-radius: 25px;
   position: absolute;
   left: 30px;
-  top: 15%;
+  top: 10%;
   z-index: 100;
   background-color: white;
-  max-height: 80vh;
+  max-height: 90vh;
   overflow-y: scroll;
 }
 
