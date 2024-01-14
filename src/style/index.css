@@ -788,7 +788,10 @@ header nav {
   margin: none;
   height: 60vh;
   width: 100vw;
-  background: var(--main-blue);
+  background-image: url("../elements/images/PHOTO-2023-11-03-17-09-48.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
   & h2,
   p,
@@ -888,7 +891,7 @@ header nav {
 }
 
 .open-now_container.closed {
-  height: 0vh;
+  display:none;
 
   & .button-mask {
     display: none;
