@@ -3,7 +3,8 @@ import GridUI from "../elements/gridUI.jsx";
 import { fetchAPI } from "../utils/utils.jsx";
 import { useNavigate } from "react-router-dom";
 import Header from "../elements/header.jsx";
-import CategoryList from "../elements/categoryList.tsx";
+import _mapIcon from "../elements/SVG/Map_icon.svg"
+import Highlighted from "../elements/highlight.jsx";
 
 const Categories = () => {
   // onLoad scroll to top.
@@ -47,14 +48,6 @@ const Categories = () => {
         >
             <h2>Welcome to the foodclub</h2>
             <p>a place where locals share their precious food discoveries.</p>
-            {/*<div onClick={() => setShowIntro(false)} className="button-mask">
-          <p>let's go </p>
-
-        </div>{" "}
-      </div>
-        <CategoryList categories={_cats} mapButton={true}/>
-
-        </div>{" "}*/}
             <div onClick={() => setShowIntro(false)} className={"button"}>
                 <p>take me</p>
             </div>
