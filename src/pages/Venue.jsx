@@ -151,20 +151,9 @@ const Venue = () => {
 
               {/* FOOD CLUB TIP */}
               {_venue["clubOrder"] && (
-                  <svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 163.35 51.61">
-                    <defs>
-                      <style>
-                        {'.cls-1 { fill: #f7b2c9; stroke: #f7b2c9; stroke-miterlimit: 10; }'}
-                      </style>
-                    </defs>
-                    <g id="Layer_1-2" data-name="Layer 1">
-                      <path className="cls-1"
-                            d="m144.56,51.11H18.8c-10.11,0-18.3-8.28-18.3-18.49v-11.03c0-10.21,8.19-18.49,18.3-18.49L144.56.5c10.11,0,18.3,10.88,18.3,21.09v11.03c0,10.21-8.19,18.49-18.3,18.49Z"/>
-                    </g>
-                    <foreignObject x="10" y="10" width="100%" height="100%">
-                      <p xmlns="http://www.w3.org/1999/xhtml">{_venue["clubOrder"][0]["children"][0]["text"]}</p>
-                    </foreignObject>
-                  </svg>
+                  <div className={"venue--container_content-tipbox"}>
+                    <p>{_venue["clubOrder"][0]["children"][0]["text"]}</p>
+                  </div>
               )}
 
               {/* ADDRESS + OPENINGSHOURS */}
