@@ -14,11 +14,7 @@ body {
     overflow-x: hidden;
 }
 
-@media (max-width: 600px) {
-  body {
-    padding-bottom: 5vh; /* or margin-bottom: 150px; Adjust as needed */
-  }
-}
+
 
 * {
   margin: 0;
@@ -1073,5 +1069,12 @@ header nav {
   }
 
   header h1 {
+  }
+}
+
+
+@media (max-width: 600px) {
+  body, .map--ui_pop-up-container {
+    padding-bottom: 5vh; /* or margin-bottom: 150px; Adjust as needed */
   }
 }
