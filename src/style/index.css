@@ -918,7 +918,7 @@ header nav {
 .categories--welcome_container.closed {
   height: 0vh;
 
-  & .button-mask {
+  & .button-mask, .button {
     display: none;
   }
 }
