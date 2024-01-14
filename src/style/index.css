@@ -2,11 +2,16 @@
 
 html,
 body {
-  max-width: 100%;
-  overflow: auto;
-  margin: 0;
-  display: block;
-  place-items: center;
+    display: block;
+    position: fixed;
+    width: 100vw;
+    max-height: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 * {
@@ -240,7 +245,6 @@ header nav {
 
 .main--container {
   width: 100vw;
-  overflow: clip;
 }
 
 .BG--gradient {
@@ -455,6 +459,7 @@ header nav {
   text-align: left;
   max-width: 30vw;
   font-weight: 900;
+  font-size: 6vw;
   line-height: 0.8;
   padding-top: 0px;
 }
@@ -641,8 +646,10 @@ header nav {
 }
 
 .venue--header_title {
+  padding-top: 1vh;
   font-size: 3em;
   font-weight: 900;
+  line-height: 1;
 }
 
 .venue--header_subtitle {
@@ -1113,5 +1120,12 @@ header nav {
   }
 
   header h1 {
+  }
+}
+
+
+@media (max-width: 600px) {
+  body, .map--ui_pop-up-container {
+    padding-bottom: 5vh; /* or margin-bottom: 150px; Adjust as needed */
   }
 }

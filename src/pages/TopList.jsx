@@ -24,7 +24,7 @@ const TopList = () => {
   }
 
   if (!openNavMenu) {
-    document.body.style.overflow = "unset";
+    document.body.style.overflowX = "auto";
   }
 
   //fetch id from URL param
