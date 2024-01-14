@@ -266,15 +266,69 @@ header nav {
   height: 25%;
 
   background: #2a326d;
-  border-top: var(--main-blue) 2px solid;
-  display: flex;
-  flex-direction: column;
+
+  display: grid;
+  grid-template-columns: 50% 50%;
   z-index: 2;
+}
+
+.map--ui_pop-up-container-left {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+
+.map--ui_pop-up-container-right {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+
+.map--ui_pop-up-container-right h1{
+  font-family: Onest-VariableFont;
+  text-align: left;
+  color: #edb5c9;
+  font-size: 7vw;
+  font-weight: 700;
+}
+
+.map--ui_pop-up-container-right p{
+  font-family: Onest-VariableFont;
+  text-align: left;
+  color: white;
+  font-size: 5vw;
+}
+
+.map--ui_pop-up-container-left .address{
+  display: flex;
+  gap: 10px;
+}
+
+.map--ui_pop-up-container-left .address p {
+  max-width: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 3.5vw;
+}
+
+
+.map--ui_pop-up--image_container{
+  position: absolute;
+  left: 15%;
+  top:-30%;
+  -webkit-mask-image: url("../elements/SVG/VenueMask2.svg");
+  mask-image: url("../elements/SVG/VenueMask2.svg");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  height: 120%;
+  width: 120%;
+}
+
+.map--ui_pop-up--image_container img {
+  height: 33%;
+  width:33vw;
 }
 
 .cross-ui {
   padding: 10px;
-  position: fixed;
   width: 30px;
   top:76%;
   right: 3%;
