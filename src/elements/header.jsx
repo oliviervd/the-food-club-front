@@ -15,7 +15,10 @@ const Header_A = (props) => {
   const [openMenu, setOpenMenu] = useState(false);
   const selected = props.location;
 
-  let style, header, gent= {}
+  let header, gent = {}
+  let style = {
+    display:"flex"
+  }
 
     if (props.map) {
         // add styling for header used on the map page.
