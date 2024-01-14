@@ -16,7 +16,7 @@ body {
 
 @media (max-width: 600px) {
   body {
-    padding-bottom: 70px; /* or margin-bottom: 70px; Adjust as needed */
+    padding-bottom: 150px; /* or margin-bottom: 150px; Adjust as needed */
   }
 }
 
