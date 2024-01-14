@@ -67,7 +67,7 @@ const MapInfoPane = (props) => {
                     />
 
                 </div>
-                <div style={{marginTop: "20%"}}>
+                <div style={{position:"absolute",top: "20%"}}>
                     <h1>
                         {venue.venueName}
                     </h1>
