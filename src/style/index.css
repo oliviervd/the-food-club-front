@@ -674,9 +674,9 @@ header nav {
 }
 
 .venue--container_content-tipbox{
-  border: 3px solid var(--main-pink);
+  border: none;
   padding: 10px;
-  background-color: white;
+  background-color: #ffea00;
   border-radius: 25px;
   margin-left: -20px;
 }
@@ -1032,11 +1032,13 @@ header nav {
 }
 
 .pillbox {
-  background: rgba(253, 121, 168, 50%);
+  background: #2a326d;
   border-radius: 30px;
   width: fit-content;
   padding: 0px 5px;
   margin-bottom: 10px;
+  color:white;
+  z-index: 100;
 }
 
 .pillbox-phone {
@@ -1050,6 +1052,10 @@ header nav {
   margin-bottom: 10px;
   text-align: center;
   text-transform: uppercase;
+}
+
+.pillbox p {
+  color:white;
 }
 
 .pillbox-website {
