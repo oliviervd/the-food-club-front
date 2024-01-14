@@ -2,17 +2,24 @@
 
 html,
 body {
-  max-width: 100%;
-  overflow: auto;
-  margin: 0;
-  display: block;
-  place-items: center;
+    display: block;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    max-height: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow-x: hidden;
 }
 
 * {
   margin: 0;
   padding: 0;
 }
+
+
 
 :root {
   font-family: OstrichSans-Heavy;
