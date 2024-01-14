@@ -23,44 +23,51 @@ const MapInfoPane = (props) => {
 
     return (
         <div className={"map--ui_pop-up-container"}>
-            <div className="cross-ui">
-                <img
-                    onClick={()=>closePane()}
-                    alt="UI element used to close the element"
-                    src={_cross}
-                    style={{pointerEvents: 'auto', zIndex:"10000"}}
-                />
-            </div>
-            <div>
-                <div>
-                    <div className={"toplist--image_container"}
-                         style={{transform: "translateY(-5vh)", width: "35vw", height: "20vh"}}>
+            <div className={"map--ui_pop-up-container-left"}>
+                <div style={{position: "relative"}}>
+                    <div className={"map--ui_pop-up--image_container"}>
                         <img
-                            style={{height: "33%", width: "36vw"}}
                             onClick={() => nav(`/venue/${venue.venueName}`)}
                             className={"toplist--image_img"}
                             src={venue["media"]["sizes"]["tablet"]["url"]}
                             alt=""
                         />
-
                     </div>
-                    <div style={{position:"relative", display:"flex", flexFlow: "row", transform: "translateY(-5vh)"}}>
-                        <img style={{paddingLeft: "6vw",width:"5vw", position:"absolute"}} src={_pin}/>
-                        <p className={"venue--container_content-address"}
-                           style={{maxWidth: "30vw", color: "white", fontWeight: 300, left: "7vw", position:"absolute"}}>
-                            {venue["address"]["street"]}{" "}
-                            {venue["address"]["houseNumber"]},{" "}
-                            {venue["address"]["postalCode"]}{" "}
-                            {venue["address"]["city"]}
-                        </p>
-                        <div onClick={() => nav(`/venue/${venue.venueName}`)} className="button-mask_transparant" style={{position:"absolute", right:"21vw"}}>
-                            <p>read more</p>
-                        </div>{" "}
+                </div>
+                <div className={"address"}>
+                    <div>
+                        <img style={{paddingLeft: "6vw", width: "5vw"}} src={_pin}/>
                     </div>
+                    <p
+                        style={{
+                            color: "white",
+                            fontWeight: 300,
+                        }}>
+                        {venue["address"]["street"]}{" "}
+                        {venue["address"]["houseNumber"]},{" "}
+                        {venue["address"]["postalCode"]}{" "}
+                        {venue["address"]["city"]}
+                    </p>
 
                 </div>
+                {/*
+                <div onClick={() => nav(`/venue/${venue.venueName}`)} className="button-mask_transparant">
+                    <p>read more</p>
+                </div>
+                */}
 
-                <div className={"mapInfoPane--container_venue"}>
+            </div>
+            <div className={"map--ui_pop-up-container-right"}>
+                {/*     <div className="cross-ui">
+                    <img
+                        onClick={() => closePane()}
+                        alt="UI element used to close the element"
+                        src={_cross}
+                        style={{pointerEvents: 'auto', zIndex: "10000"}}
+                    />
+
+                </div>*/}
+                <div>
                     <h1>
                         {venue.venueName}
                     </h1>
@@ -71,16 +78,11 @@ const MapInfoPane = (props) => {
                         {venue["cuisineUsed"][0] &&
                             <p> - {venue["cuisineUsed"][0]["name"]} </p>
                         }
-
+                    </div>
                 </div>
-
             </div>
-
-            </div>
-            {/* WEB UI */}
-            <div></div>
         </div>
-    )
+    );
 }
 
 export default MapInfoPane
