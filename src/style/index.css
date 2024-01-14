@@ -673,6 +673,18 @@ header nav {
   padding-top: 4em;
 }
 
+.venue--container_content-tipbox{
+  border: 3px solid var(--main-pink);
+  padding: 10px;
+  background-color: white;
+  border-radius: 25px;
+}
+
+.venue--container_content-tipbox p {
+  font-family: Onest-VariableFont;
+  font-weight: 500;
+}
+
 .venue--container_content-slug {
   padding-left: 60px;
   padding-bottom: 10px;
