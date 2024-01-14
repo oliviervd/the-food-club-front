@@ -267,7 +267,7 @@ header nav {
   left: 0;
   bottom: 0;
   right: 0;
-  height: 25%;
+  height: 20%;
 
   background: #2a326d;
 
@@ -332,11 +332,12 @@ header nav {
 }
 
 .cross-ui {
-  padding: 10px;
+  position: absolute;
+  align-items: end;
   width: 30px;
-  bottom:22vh;
-  right: 3%;
   z-index: 10000000000;
+  top: 8px;
+  right: 8px;
 }
 
 .map--ui_pop-up-container__img {

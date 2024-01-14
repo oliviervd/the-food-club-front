@@ -60,39 +60,6 @@ const Venue = () => {
             <h2 className={"venue--header_title"}>{id.id.toUpperCase()}</h2>
           </div>
 
-          {/* PILLBOX CUISINE -- PRICING -- VEG */}
-          {/*
-                        <div style={{marginTop: "-1.2em", marginBottom: "20px"}} >
-                             check if multiple types to define UI
-                            {isObject(_venue["cuisineUsed"]) &&
-                                <div className={"pillbox--container"}>
-                                    {_venue["vegetarian"] &&
-                                        <p className={"pillbox pricing"}>🌱</p>
-                                    }
-                                    {_venue["vegan"] &&
-                                        <p className={"pillbox pricing"}>🌾</p>
-                                    }
-                                    <p className={"pillbox pricing"}>{pricingLabel(_venue["pricing"])}</p>
-                                    {_venue["cuisineUsed"].map(cuisine => (
-                                        <p className={"pillbox"}>{cuisine["name"]}</p>
-                                    ))}
-                                </div>
-                            }
-                            {!isObject(_venue["cuisineUsed"]) &&
-                                <div className={"pillbox--container"}>
-                                    {_venue["vegetarian"] &&
-                                        <p className={"pillbox veg"} >🌱</p>
-                                    }
-                                    {_venue["vegan"] &&
-                                        <p className={"pillbox pricing"}>🌾</p>
-                                    }
-                                    <p className={"pillbox pricing"}>{pricingLabel(_venue["pricing"])}</p>
-                                    <p className={"pillbox"}>{_venue["cuisineUsed"][0]["name"]}</p>
-                                </div>
-                            }
-                        </div>
-                        */}
-
           {/* CONTENT SLUG */}
           <div>
             {_venue["slugs"]["slugEN"][0]["children"][0]["text"] && (
@@ -148,16 +115,6 @@ const Venue = () => {
                     </p>
                   )}
                 </div>
-
-                {/* BUTTONS NAV*/}
-                {/*<div className={"headerB--button_main"}>
-                                    <div className={"headerB--button_container"}>
-                                        <img onClick={()=>nav("/")} className={"headerB--button"} src={_map}></img>
-                                    </div>
-                                    <div className={"headerB--button_container"}>
-                                        <img onClick={()=>nav("/categories")} className={"headerB--button"} src={_list}></img>
-                                    </div>
-                                </div>*/}
               </div>
             )}
           </div>
@@ -194,27 +151,38 @@ const Venue = () => {
 
               {/* FOOD CLUB TIP */}
               {_venue["clubOrder"] && (
-                <div className={"venue--container_content-tip_container"}>
-                  <p>{_venue["clubOrder"][0]["children"][0]["text"]}</p>
-                </div>
+                  <svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 163.35 51.61">
+                    <defs>
+                      <style>
+                        {'.cls-1 { fill: #f7b2c9; stroke: #f7b2c9; stroke-miterlimit: 10; }'}
+                      </style>
+                    </defs>
+                    <g id="Layer_1-2" data-name="Layer 1">
+                      <path className="cls-1"
+                            d="m144.56,51.11H18.8c-10.11,0-18.3-8.28-18.3-18.49v-11.03c0-10.21,8.19-18.49,18.3-18.49L144.56.5c10.11,0,18.3,10.88,18.3,21.09v11.03c0,10.21-8.19,18.49-18.3,18.49Z"/>
+                    </g>
+                    <foreignObject x="10" y="10" width="100%" height="100%">
+                      <p xmlns="http://www.w3.org/1999/xhtml">{_venue["clubOrder"][0]["children"][0]["text"]}</p>
+                    </foreignObject>
+                  </svg>
               )}
 
               {/* ADDRESS + OPENINGSHOURS */}
               {_venue["openOn"] && (
-                <div style={{ paddingTop: "10px" }}>
-                  <p className={"venue--container_content-address"}>
-                    <div className={"venue--container_content-openDays"}>
-                      {" "}
-                      open:
-                      {_venue["openOn"].map((day) => (
-                        <p className={"venue--container_content-openDays-day"}>
-                          {day.toUpperCase()}
-                        </p>
-                      ))}
-                    </div>
-                  </p>
+                  <div style={{paddingTop: "10px"}}>
+                    <p className={"venue--container_content-address"}>
+                      <div className={"venue--container_content-openDays"}>
+                        {" "}
+                        open:
+                        {_venue["openOn"].map((day) => (
+                            <p className={"venue--container_content-openDays-day"}>
+                              {day.toUpperCase()}
+                            </p>
+                        ))}
+                      </div>
+                    </p>
 
-                  <p className={"venue--container_content-address"}>
+                    <p className={"venue--container_content-address"}>
                     {_venue["address"]["street"]}{" "}
                     {_venue["address"]["houseNumber"]},{" "}
                     {_venue["address"]["postalCode"]}{" "}
