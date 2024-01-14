@@ -20,7 +20,7 @@ const Desktop = () => {
         console.log(e);
     }
     return(
-        <>
+        <div style={{maxHeight: "100vh", overflow:"hidden"}}>
             <Map/>
             <header style={{backgroundColor: "transparent"}}>
                 <nav className={"desktop-UI_nav"}>
@@ -32,7 +32,7 @@ const Desktop = () => {
             <div className={"desktop-UI_categories"} >
                 <CategoryList categories={_cats}/>
             </div>
-        </>
+        </div>
     )
 }
 
