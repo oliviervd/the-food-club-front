@@ -851,6 +851,7 @@ header nav {
   align-items: center;
   border-radius: 20px;
   height: 20px;
+  font-weight: 700;
 }
 
 .button-mask_transparant {
