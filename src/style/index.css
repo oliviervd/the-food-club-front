@@ -97,7 +97,7 @@ blockquote {
 
 header {
   display: flex;
-  height: 7vh;
+  height: 10vh;
   align-items: center;
   justify-content: space-between;
   z-index: 10000000000000000000;
