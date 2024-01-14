@@ -55,22 +55,25 @@ const Categories = () => {
         </div>
       </div>
 
-      <div
-        className={
-          showIntro
-            ? "categories--welcome_container"
-            : "categories--welcome_container closed"
-        }
-      >
-        <h2>Welcome to the foodclub</h2>
-        <p>a place where locals share their precious food discoveries.</p>
-        <div onClick={() => setShowIntro(false)} className="button-mask">
+        <div
+            className={
+                showIntro
+                    ? "categories--welcome_container"
+                    : "categories--welcome_container closed"
+            }
+        >
+            <h2>Welcome to the foodclub</h2>
+            <p>a place where locals share their precious food discoveries.</p>
+            {/*<div onClick={() => setShowIntro(false)} className="button-mask">
           <p>let's go </p>
-        </div>{" "}
-      </div>
+        </div>{" "}*/}
+            <div onClick={() => setShowIntro(false)} className={"button"}>
+                <p>take me</p>
+            </div>
+        </div>
 
-      <div className={"categories--container"}>
-        <a onClick={() => nav("/map")} className="sticky--button_map">
+        <div className={"categories--container"}>
+            <a onClick={() => nav("/map")} className="sticky--button_map">
           <img src={_mapIcon} />
         </a>
         {_cats.map((cat) => {
