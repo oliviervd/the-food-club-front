@@ -267,7 +267,7 @@ header nav {
   left: 0;
   bottom: 0;
   right: 0;
-  height: 20%;
+  height: 18%;
 
   background: #2a326d;
 
@@ -278,7 +278,7 @@ header nav {
 
 .map--ui_pop-up-container-left {
   display: grid;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 2fr 1fr;
 }
 
 .map--ui_pop-up-container-right {
@@ -291,7 +291,7 @@ header nav {
   text-align: left;
   color: #edb5c9;
   font-size: 7vw;
-  font-weight: 700;
+  font-weight: 900;
 }
 
 .map--ui_pop-up-container-right p{
@@ -322,8 +322,8 @@ header nav {
   mask-image: url("../elements/SVG/VenueMask2.svg");
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
-  height: 120%;
-  width: 120%;
+  height: 130%;
+  width: 130%;
 }
 
 .map--ui_pop-up--image_container img {
@@ -336,8 +336,8 @@ header nav {
   align-items: end;
   width: 30px;
   z-index: 10000000000;
-  top: 8px;
-  right: 8px;
+  top: 16px;
+  right: 16px;
 }
 
 .map--ui_pop-up-container__img {
