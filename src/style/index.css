@@ -262,10 +262,10 @@ header nav {
   position: fixed;
   left: 0;
   bottom: 0;
-  width: 100%;
+  right: 0;
   height: 25%;
 
-  background: white;
+  background: #2a326d;
   border-top: var(--main-blue) 2px solid;
   display: flex;
   flex-direction: column;
@@ -273,13 +273,12 @@ header nav {
 }
 
 .cross-ui {
-  display: none;
-  background-color: #edb5c9;
   padding: 10px;
-  border-radius: 100%;
   position: fixed;
   width: 30px;
-  left: 190px;
+  top:76%;
+  right: 3%;
+  z-index: 10000000000;
 }
 
 .map--ui_pop-up-container__img {
@@ -383,6 +382,33 @@ header nav {
   color: var(--deep-pink);
   border-radius: 20px;
 }
+
+
+.toplist--image_container{
+  position: relative;
+}
+.mapInfoPane--container_venue{
+  position: absolute;
+  left: 50%;
+  right:0;
+  top:10%;
+}
+
+.mapInfoPane--container_venue h1 {
+  color: #edb5c9;
+  font-family: Onest-VariableFont;
+  text-align: left;
+  max-width: 30vw;
+  font-weight: 900;
+  line-height: 0.8;
+  padding-top: 0px;
+}
+.mapInfoPane--container_venue p {
+  padding-top: 20px;
+  text-align: left;
+  color: white;
+}
+
 
 .activePill {
   border: var(--deep-pink) 2px solid;
@@ -730,6 +756,28 @@ header nav {
       bottom: 15px;
       padding-top: 30px;
     }
+  }
+}
+
+.button-mask_transparant {
+  -webkit-mask-image: url("../elements/SVG/Highlight_shape.svg");
+  mask-image: url("../elements/SVG/Highlight_shape.svg");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  width: 30vw;
+  margin-left: 30px;
+  margin-bottom: 20px;
+
+  & p {
+    background-color: #edb5c9;
+    width: contain;
+    font-weight: 900;
+    text-align: center;
+    padding-bottom: 30px;
+    color: var(--main-text-color);
+    position: relative;
+    bottom: 15px;
+    padding-top: 30px;
   }
 }
 
