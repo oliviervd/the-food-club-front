@@ -58,7 +58,7 @@ const MapInfoPane = (props) => {
 
             </div>
             <div className={"map--ui_pop-up-container-right"}>
-                {/*     <div className="cross-ui">
+                <div className="cross-ui">
                     <img
                         onClick={() => closePane()}
                         alt="UI element used to close the element"
@@ -66,8 +66,8 @@ const MapInfoPane = (props) => {
                         style={{pointerEvents: 'auto', zIndex: "10000"}}
                     />
 
-                </div>*/}
-                <div>
+                </div>
+                <div style={{marginTop: "20%"}}>
                     <h1>
                         {venue.venueName}
                     </h1>
@@ -82,7 +82,7 @@ const MapInfoPane = (props) => {
                 </div>
             </div>
         </div>
-    );
+    )
 }
 
 export default MapInfoPane
