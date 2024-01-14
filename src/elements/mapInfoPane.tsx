@@ -25,7 +25,7 @@ const MapInfoPane = (props) => {
             <div>
                 <div>
                     <div className={"toplist--image_container"}
-                         style={{transform: "translateY(-3vh)", width: "33vw", height: "20vh"}}>
+                         style={{transform: "translateY(-5vh)", width: "33vw", height: "20vh"}}>
                         <img
                             style={{height: "33%", width: "34vw"}}
                             onClick={() => nav(`/venue/${venue.venueName}`)}
@@ -35,7 +35,7 @@ const MapInfoPane = (props) => {
                         />
 
                     </div>
-                    <div style={{position:"relative", display:"flex", flexFlow: "row", transform: "translateY(-3vh)"}}>
+                    <div style={{position:"relative", display:"flex", flexFlow: "row", transform: "translateY(-5vh)"}}>
                         <img style={{paddingLeft: "6vw",width:"5vw", position:"absolute"}} src={_pin}/>
                         <p className={"venue--container_content-address"}
                            style={{maxWidth: "30vw", color: "white", fontWeight: 300, left: "7vw", position:"absolute"}}>

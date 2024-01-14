@@ -391,7 +391,7 @@ header nav {
   position: absolute;
   left: 50%;
   right:0;
-  top:10%;
+  top:5%;
 }
 
 .mapInfoPane--container_venue h1 {
@@ -404,7 +404,7 @@ header nav {
   padding-top: 0px;
 }
 .mapInfoPane--container_venue p {
-  padding-top: 20px;
+  padding-top: 10px;
   text-align: left;
   color: white;
 }
@@ -647,13 +647,12 @@ header nav {
 .venue--container_content-tip_container {
   background-image: url("../elements/SVG/Highlight_borderPink.svg");
   background-repeat: no-repeat;
-  background-position: left center;
-  background-size: contain no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
 
   position: relative;
-  padding: 10px 20px;
+  padding: 20px 20px;
   margin-left: -3em;
-  height: 100px;
   overflow: auto;
   font-weight: 700;
 }
