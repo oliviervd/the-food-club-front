@@ -3,6 +3,15 @@ import _cross from "../elements/SVG/Close_icon.svg"
 import _pin from "../elements/SVG/Location_indicator_1.svg"
 import {useNavigate} from "react-router-dom";
 
+/**
+ * Component representing a map info pane.
+ *
+ * @param {Object} props - The props object containing venue information and control functions.
+ * @param {Object} props.venue - The venue object containing information about the venue.
+ * @param {function} props.setOpenInfoPane - The function to control the visibility of the info pane.
+ * @returns {JSX.Element} The map info pane component.
+ */
+
 const MapInfoPane = (props) => {
     const nav = useNavigate();
     const venue = props.venue
