@@ -1173,6 +1173,25 @@ header nav {
   overflow-y: scroll;
 }
 
+.desktop-UI_nav {
+  display: flex;
+  top:0;
+  right: 0;
+  z-index: 10000000;
+
+  padding-right: 80px;
+  gap: 20px;
+}
+
+.desktop-UI_nav a {
+  background-color: #ffea00;
+  color: black;
+  padding: 20px;
+  border-radius: 25px;
+  font-family: Onest-VariableFont;
+  font-weight: 500;
+}
+
 @media (min-width: 900px) {
   .map--ui_pop-up-container {
     position: absolute;

@@ -10,7 +10,8 @@ const Desktop = () => {
     let _cats = [];
 
     const nav = useNavigate();
-    const [showIntro, setShowIntro] = useState(true);
+    const [showIntro, setShowIntro] = useState(true); // on first load, show welcome screen.
+    const [category, setCategory] = useState(null); // category chosen to filter places
 
     try {
         _categories = fetchAPI("categories");
@@ -21,6 +22,13 @@ const Desktop = () => {
     return(
         <>
             <Map/>
+            <header style={{position:"absolute", backgroundColor: "transparent"}}>
+                <nav className={"desktop-UI_nav"}>
+                    <a>about</a>
+                    <a>subscribe</a>
+                    <a>nl</a>
+                </nav>
+            </header>
             <div className={"desktop-UI_categories"} >
                 <CategoryList categories={_cats}/>
             </div>
