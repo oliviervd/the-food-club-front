@@ -134,7 +134,7 @@ const map = () => {
       className={"container"}
       style={{ overflow: "hidden", maxWidth: "100vw" }}
     >
-      <Header />
+      <Header map={true} />
 
       {/*<img className={"UI-GRID"} src={GridUI} style={{height:"100vh", objectFit:"cover"}}/>*/}
       <MapContainer

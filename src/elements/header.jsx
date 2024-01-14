@@ -15,9 +15,29 @@ const Header_A = (props) => {
   const [openMenu, setOpenMenu] = useState(false);
   const selected = props.location;
 
+  let style, header, gent= {}
+
+    if (props.map) {
+        // add styling for header used on the map page.
+        style = {
+            backgroundColor: "transparent",
+            position: "fixed"
+        }
+        header = {
+            position: "absolute",
+            top: "20px",
+            left: "20px"
+        }
+        gent={
+            position: "absolute",
+            top: "70px",
+            left: "70px"
+        }
+    }
+
   return (
-    <header>
-      <h1>
+    <header style={style}>
+      <h1 style={header}>
         <img
           onClick={() => nav("/categories")}
           src={_logo}
@@ -25,19 +45,21 @@ const Header_A = (props) => {
         />
       </h1>
 
-      <nav>
-        <a>
-          <img onClick={() => setOpenMenu(!openMenu)} src={_hamburger} />
-        </a>
-      </nav>
+        {!props.map &&
+            <nav>
+                <a>
+                    <img onClick={() => setOpenMenu(!openMenu)} src={_hamburger}/>
+                </a>
+            </nav>
+        }
 
-      <nav className="gent">
-        <a>
-          <img src={_gent} />
-        </a>
-      </nav>
+        <nav className="gent" style={gent}>
+            <a>
+                <img src={_gent}/>
+            </a>
+        </nav>
 
-      {openMenu && (
+        {openMenu && (
         <div
           class={
             openMenu ? "menu_container menu_container-open" : "menu_container"
