@@ -43,7 +43,7 @@ export function colorWordInString(string, substring) {
 }
 
 
-export function useIntersectionObserver() {
+export function useIntersectionObserver({delay}) {
     // function that checks if an element is in the viewport
     const [isIntersecting, setIsIntersecting] = useState(false);
     const ref = useRef(null);
@@ -55,14 +55,18 @@ export function useIntersectionObserver() {
             }
         )
 
-        if (ref.current) {
-            observer.observe(ref.current);
-        }
+        // delay added to the intersection observer
+        const timerId = setTimeout(()=>{
+            if (ref.current){
+                observer.observe(ref.current)
+            }
+        }, delay)
 
         return () => {
             if (ref.current) {
                 observer.unobserve(ref.current)
             }
+            clearTimeout(timerId)
         }
     }, []);
 
@@ -70,7 +74,7 @@ export function useIntersectionObserver() {
 }
 
 export function FadeInComponent({children}) {
-    const [ref, isIntersecting] = useIntersectionObserver()
+    const [ref, isIntersecting] = useIntersectionObserver(0)
 
     return (
         <div ref={ref} className={`fade-in-section ${isIntersecting ? 'is-visible' : ''}`}>

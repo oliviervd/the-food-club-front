@@ -20,6 +20,11 @@ export default function App() {
     },
   });
 
+  // make sure each time a new page loads the user starts from the top of the page
+  if ('scrollRestoration' in window.history) {
+    window.history.scrollRestoration = 'manual';
+  }
+
   return (
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>

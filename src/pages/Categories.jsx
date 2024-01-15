@@ -1,16 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import GridUI from "../elements/gridUI.jsx";
 import { fetchAPI, FadeInComponent } from "../utils/utils.jsx";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import Header from "../elements/header.jsx";
 import _mapIcon from "../elements/SVG/Map_icon.svg"
 import Highlighted from "../elements/highlight.jsx";
 
 const Categories = () => {
   // onLoad scroll to top.
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    const location = useLocation();
+    const topRef = useRef(null)
+
+    useEffect(() => {
+        topRef.current?.scrollIntoView({behavior:"smooth"})
+    }, [location]);
+
 
   let _categories;
   let _cats = [];
@@ -26,7 +30,7 @@ const Categories = () => {
   }
 
   return (
-    <div className={"main--container"}>
+    <div className={"main--container"} ref={topRef}>
       <GridUI />
         <Header/>
       <div

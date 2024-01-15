@@ -1,15 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import GridUI from "../elements/gridUI.jsx";
+import {useLocation} from "react-router-dom";
 
 import { fetchAPI, FadeInComponent } from "../utils/utils.jsx";
 import _backIcon from "../elements/SVG/Back_icon.svg";
 
 const TopList = () => {
   // onLoad scroll to top.
+  const location = useLocation()
+  const topRef = useRef(null)
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    topRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [location]);
 
   const [openNavMenu, setOpenNavMenu] = useState(false);
 
@@ -55,7 +58,7 @@ const TopList = () => {
   } catch (e) {}
 
   return (
-    <div className={"main--container"}>
+    <div className={"main--container"} ref={topRef}>
       <GridUI />
       <div
         className={"categories--container"}
