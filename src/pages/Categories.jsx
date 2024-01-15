@@ -38,9 +38,15 @@ const Categories = () => {
           showIntro ? "open-now_container closed" : "open-now_container"
         }
       >
-        <div className="button-mask">
-          <p>open today</p>
-        </div>
+          <div className={"buttons-main"}>
+              <div className="button-open_today">
+                  <p>open now</p>
+              </div>
+              <div className="button-open_today">
+                  <p>suprise me</p>
+              </div>
+          </div>
+
       </div>
 
         <div
