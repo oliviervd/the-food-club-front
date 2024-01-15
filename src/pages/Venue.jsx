@@ -1,12 +1,19 @@
-import React, { useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import Header from "../elements/header.jsx";
+import React, {useEffect, useRef} from "react";
+import {useLocation, useNavigate, useParams} from "react-router-dom";
 import GridUI from "../elements/gridUI.jsx";
-import { fetchAPI } from "../utils/utils.jsx";
+import { fetchAPI, FadeInComponent } from "../utils/utils.jsx";
 
 import _backIcon from "../elements/SVG/Back_icon.svg";
 
 const Venue = () => {
+  // onLoad scroll to top.
+  const location = useLocation();
+  const topRef = useRef(null)
+
+  useEffect(() => {
+    topRef.current?.scrollIntoView({behavior:"smooth"})
+  }, [location]);
+
   // fetch content based on id
   let id = useParams(); // use id to set content
 
@@ -44,7 +51,7 @@ const Venue = () => {
   }, []);
 
   return (
-    <div className={"BG_pink main--container"} style={{ maxWidth: "100vw" }}>
+    <div className={"BG_pink main--container"} style={{ maxWidth: "100vw" }} ref={topRef}>
       {/*GRID SVG*/}
       <GridUI />
 
