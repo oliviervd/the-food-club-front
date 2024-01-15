@@ -128,6 +128,15 @@ header nav {
   }
 }
 
+.fade-in-section {
+  transition: opacity 1s;
+  opacity: 0;
+}
+
+.fade-in-section.is-visible {
+  opacity: 1;
+}
+
 .nav-desktop{
   display: flex;
   transform: translateY(-50%);

@@ -1,4 +1,5 @@
 import {useQuery} from "@tanstack/react-query";
+import {useEffect, useState, useRef} from "react";
 
 export function fetchAPI(endpoint) {
     // fetch all data from a certain collection.
@@ -39,4 +40,41 @@ export function colorWordInString(string, substring) {
 
     const hightlightedTitle = styledWords.join("");
     return hightlightedTitle;
+}
+
+
+export function useIntersectionObserver() {
+    // function that checks if an element is in the viewport
+    const [isIntersecting, setIsIntersecting] = useState(false);
+    const ref = useRef(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                setIsIntersecting(entry.isIntersecting)
+            }
+        )
+
+        if (ref.current) {
+            observer.observe(ref.current);
+        }
+
+        return () => {
+            if (ref.current) {
+                observer.unobserve(ref.current)
+            }
+        }
+    }, []);
+
+    return [ref, isIntersecting]
+}
+
+export function FadeInComponent({children}) {
+    const [ref, isIntersecting] = useIntersectionObserver()
+
+    return (
+        <div ref={ref} className={`fade-in-section ${isIntersecting ? 'is-visible' : ''}`}>
+            {children}
+        </div>
+    )
 }

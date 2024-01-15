@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import GridUI from "../elements/gridUI.jsx";
 
-import { fetchAPI } from "../utils/utils.jsx";
+import { fetchAPI, FadeInComponent } from "../utils/utils.jsx";
 import _backIcon from "../elements/SVG/Back_icon.svg";
 
 const TopList = () => {
@@ -68,7 +68,7 @@ const TopList = () => {
           <h2 className={"venue--header_title"}>{id.id.toUpperCase()}</h2>
         </div>
 
-        {_listFiltered.map((venue) => {
+        {_listFiltered.map((venue, index) => {
           let _im;
           if (venue.media) {
             _im = venue["media"]["sizes"]["tablet"]["url"];
@@ -77,28 +77,31 @@ const TopList = () => {
           }
           //console.log(_im)
           return (
-            <div className={"toplist--counter"}>
-              <div className={"toplist--image_container"}>
-                <div>
-                  <div>
-                    <div className={"toplist--image"}>
-                      <img
-                        onClick={() => nav(`/venue/${venue.venueName}`)}
-                        className={"toplist--image_img"}
-                        src={_im}
-                      />
-                      <h2
-                        onClick={() => nav(`/venue/${venue.venueName}`)}
-                        className={"toplist--venue_title"}
-                      >
-                        {venue.venueName}
-                      </h2>
+
+              <FadeInComponent key={index}>
+                <div className={"toplist--counter"}>
+                  <div className={"toplist--image_container"}>
+                    <div>
+                      <div>
+                        <div className={"toplist--image"}>
+                          <img
+                              onClick={() => nav(`/venue/${venue.venueName}`)}
+                              className={"toplist--image_img"}
+                              src={_im}
+                          />
+                          <h2
+                              onClick={() => nav(`/venue/${venue.venueName}`)}
+                              className={"toplist--venue_title"}
+                          >
+                            {venue.venueName}
+                          </h2>
+                        </div>
+                      </div>
                     </div>
                   </div>
+                  <br/>
                 </div>
-              </div>
-              <br />
-            </div>
+              </FadeInComponent>
           );
         })}
         <br />

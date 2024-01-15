@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import GridUI from "../elements/gridUI.jsx";
-import { fetchAPI } from "../utils/utils.jsx";
+import { fetchAPI, FadeInComponent } from "../utils/utils.jsx";
 import { useNavigate } from "react-router-dom";
 import Header from "../elements/header.jsx";
 import _mapIcon from "../elements/SVG/Map_icon.svg"
@@ -57,9 +57,9 @@ const Categories = () => {
             <a onClick={() => nav("/map")} className="sticky--button_map">
           <img src={_mapIcon} />
         </a>
-        {_cats.map((cat) => {
+        {_cats.map((cat, index) => {
           return (
-            <div>
+            <FadeInComponent key={index}>
               {cat["categoryTitle"] !== "UNCATEGORISED" && (
                 <div>
                   <a>
@@ -76,7 +76,7 @@ const Categories = () => {
                   <p>{cat["categorySubTitle"]}</p>
                 </div>
               )}
-            </div>
+            </FadeInComponent>
           );
         })}
       </div>
