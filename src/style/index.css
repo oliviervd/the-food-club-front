@@ -137,6 +137,53 @@ header nav {
   opacity: 1;
 }
 
+.filter--container{
+
+}
+
+.filter--container .open {
+  background-color: #2a326d;
+  color: white;
+  padding: 20px;
+
+  font-size: 1.5em;
+  font-weight: bolder;
+  font-family: Onest-VariableFont;
+}
+
+.filter--results_venue{
+  display: grid;
+  grid-template-columns: 30% 70%;
+  padding: 20px;
+
+}
+
+.filter--results_venue h2{
+  line-height: 1;
+  color: #edb5c9;
+}
+
+.filter--results_venue h2:hover{
+  color: #ffea00;
+}
+
+.filter--result_image-container{
+  position: relative;
+  align-items: center;
+  width: 100%;
+  height: 10vh;
+  -webkit-mask-image: url("../elements/SVG/VenueMask2.svg");
+  mask-image: url("../elements/SVG/VenueMask2.svg");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+.filter--results_venue img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
 .nav-desktop{
   display: flex;
   transform: translateY(-50%);

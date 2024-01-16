@@ -9,6 +9,7 @@ import Categories from "./pages/Categories.jsx";
 import Venue from "./pages/Venue.jsx";
 import About from "./pages/About.jsx";
 import Home from "./pages/Home.tsx";
+import FilteredView from "./pages/FilteredView.tsx";
 
 import "leaflet/dist/leaflet.css";
 import "./style/index.css";
@@ -35,6 +36,7 @@ export default function App() {
           <Route path="/categories" element={<Categories />} />
           <Route path="/map" element={<Places />} />
           <Route path="/about" element={<About />} />
+          <Route path="/open-now" element={<FilteredView/>} />
         </Routes>
       </QueryClientProvider>
     </BrowserRouter>

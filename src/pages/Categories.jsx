@@ -39,7 +39,7 @@ const Categories = () => {
         }
       >
           <div className={"buttons-main"}>
-              <div className="button-open_today">
+              <div onClick={()=>nav("/open-now")} className="button-open_today">
                   <p>open now</p>
               </div>
               <div className="button-open_today">
