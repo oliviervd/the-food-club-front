@@ -903,9 +903,9 @@ header nav {
 
 .categories--welcome_container {
   margin: none;
-  height: 60vh;
+  height: 56vh;
   width: 100vw;
-  background-image: url("../elements/images/PHOTO-2023-11-03-17-09-48.jpg");
+  background-image: url("../elements/images/hero-home.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -922,13 +922,14 @@ header nav {
     line-height: 1;
     font-weight: 900;
     font-size: 3rem;
-    text-align: center;
   }
 
   & p {
     font-size: 1.8rem;
     padding-top: 10px;
-    text-align: center;
+  }
+
+  & div, .button {
   }
 
   & .button-mask {
@@ -944,7 +945,6 @@ header nav {
       background-color: var(--main-pink);
       width: contain;
       font-weight: 900;
-      text-align: center;
       padding-bottom: 30px;
       color: var(--main-blue);
       position: relative;
@@ -955,20 +955,19 @@ header nav {
 }
 
 .categories--welcome_container .button {
-  width: 50%;
-  display: flex;
+  position: absolute;
+  background-image: url("../elements/SVG/yellow-button-shape.svg");
+  background-repeat:no-repeat;
   margin: auto;
-  align-items: center;
-  justify-content: center;
+  left: 30px;
 }
 
 .categories--welcome_container .button p {
   color: #221f20;
-  background-color: #ffea00;
-  align-items: center;
   border-radius: 20px;
   height: 20px;
   font-weight: 700;
+  transform: translateX(-8px);
 }
 
 .button-mask_transparant {
