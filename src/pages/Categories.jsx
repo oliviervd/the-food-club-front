@@ -17,6 +17,7 @@ const Categories = () => {
 
 
   let _categories;
+  let _venues;
   let _cats = [];
 
   const nav = useNavigate();
@@ -24,9 +25,17 @@ const Categories = () => {
 
   try {
     _categories = fetchAPI("categories");
+    _venues = fetchAPI("venue")
     _cats = _categories["docs"];
   } catch (e) {
     console.log(e);
+  }
+
+  function suprise() {
+      console.log(_venues)
+      var _v = _venues["docs"]
+      var randomItem = _v[Math.floor(Math.random()*_v.length)]
+      nav(`/venue/${randomItem.venueName}`)
   }
 
   return (
@@ -42,7 +51,7 @@ const Categories = () => {
               <div onClick={()=>nav("/open-now")} className="button-open_today">
                   <p>open now</p>
               </div>
-              <div className="button-open_today">
+              <div onClick={()=>suprise()} className="button-open_today">
                   <p>suprise me</p>
               </div>
           </div>
