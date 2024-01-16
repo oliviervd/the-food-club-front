@@ -4,6 +4,9 @@ import GridUI from "../elements/gridUI.jsx";
 import { fetchAPI, FadeInComponent } from "../utils/utils.jsx";
 
 import _backIcon from "../elements/SVG/Back_icon.svg";
+import _buttonWebsite from "../elements/SVG/button-website.svg"
+import _buttonBook from "../elements/SVG/button-book-a-table.svg"
+import _buttonPhone from "../elements/SVG/button-phone.svg"
 
 const Venue = () => {
   // onLoad scroll to top.
@@ -95,31 +98,26 @@ const Venue = () => {
 
                 <div className={"venue--container_content-links"}>
                   {_venue["website"] && (
-                    // open website in new window
-                    <p
-                      onClick={() => window.open(_venue["website"])}
-                      className={"pillbox-website"}
-                    >
-                      website
-                    </p>
+                    // open website in new window<>
+                    <img
+                        src={_buttonWebsite}
+                        onClick={() => window.open(_venue["website"])}
+                    />
                   )}
                   {_venue["reservations"] && (
                     // open new window to book a table (Resengo/..)
-                    <p
-                      onClick={() => window.open(_venue["reservations"])}
-                      className={"pillbox-phone"}
-                    >
-                      book a table
-                    </p>
+                    <img
+                        src={_buttonBook} style={{height: "47px"}}
+                        onClick={() => window.open(_venue["reservations"])}
+                    />
                   )}
                   {_venue["phone"] && (
                     // call number when mobile
-                    <p
-                      onClick={() => window.open(`tel:${_venue["phone"]}`)}
-                      className={"pillbox--directions"}
-                    >
-                      phone
-                    </p>
+                    <img
+                        src={_buttonPhone} style={{height: "41px"}}
+                        onClick={() => window.open(`tel:${_venue["phone"]}`)}
+                    />
+
                   )}
                 </div>
               </div>
@@ -165,7 +163,7 @@ const Venue = () => {
 
               {/* ADDRESS + OPENINGSHOURS */}
               {_venue["openOn"] && (
-                  <div style={{paddingTop: "10px"}}>
+                  <div style={{paddingTop: "20px"}}>
                     <p className={"venue--container_content-address"}>
                       <div className={"venue--container_content-openDays"}>
                         {" "}

@@ -757,7 +757,7 @@ header nav {
 }
 
 .nav--back img {
-  height: 40px;
+  height: 34px;
   padding-top: 35%;
   margin-right: 20px;
 }
@@ -786,13 +786,18 @@ header nav {
   border-radius: 50px;
   font-size: 1.2em;
   z-index: 100000;
-  left: -4em;
+  left: -3.5em;
+  top: -10px;
   padding-top: 4em;
+}
+
+.venue--container_content-links img{
+  height: 43px;
 }
 
 .venue--container_content-tipbox{
   border: none;
-  padding: 10px;
+  padding: 20px;
   background-color: #ffea00;
   border-radius: 25px;
   margin-left: -20px;
@@ -805,7 +810,8 @@ header nav {
 
 .venue--container_content-slug {
   padding-left: 60px;
-  padding-bottom: 10px;
+  padding-left: 60px;
+  padding-bottom: 1.3em;
 }
 
 .venue--container_content-slug blockquote {
@@ -832,7 +838,7 @@ header nav {
 
 .venue--container_content-review {
   margin-left: 2em;
-  padding-bottom: 1em;
+  padding-bottom: 1.3em;
   font-weight: 500;
 }
 
@@ -1156,10 +1162,11 @@ header nav {
   background: #2a326d;
   border-radius: 30px;
   width: fit-content;
-  padding: 0px 5px;
+  padding: 6px 6px;
   margin-bottom: 10px;
   color:white;
   z-index: 100;
+  position: relative;
 }
 
 .pillbox-phone {
