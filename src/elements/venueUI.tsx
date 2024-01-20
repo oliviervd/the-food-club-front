@@ -3,7 +3,7 @@ import _closeIcon from "./SVG/cross.svg"
 
 const VenueUI = (props) => {
     const venue = props.venue;
-
+    console.log(venue)
     const closePane = () => {
         props.setOpenInfoPane(false)
         console.log("close")
@@ -18,7 +18,18 @@ const VenueUI = (props) => {
                     onClick={() => closePane()}
                 />
             </a>
-            <h1>{venue.venueName}</h1>
+            <div className={"flex"}>
+                <div className={"image"}>
+                    <img src={venue["media"]["sizes"]["tablet"]["url"]}/>
+                </div>
+                <div>
+                    <h1>{venue.venueName}</h1>
+                    <div className={"slug"}>
+                        <p>{venue["slugs"]["slugEN"][0]["children"][0]["text"]}</p>
+                    </div>
+                </div>
+            </div>
+
         </div>
     )
 }
