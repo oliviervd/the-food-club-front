@@ -119,12 +119,27 @@ const Venue = () => {
           <div>
             {/* check if multiple types to define UI */}
             {!isObject(_venue["type"]) && (
-              <p className={"pillbox"}>{_venue["type"]}</p>
+                <div className={"pillbox--container"}>
+                  <p className={"pillbox"}>{_venue["type"]}</p>
+                  {_venue["cuisineUsed"].map((cuisine)=> {
+                    console.log(cuisine)
+                    return (
+                        <p className={"pillbox_yellow"}>{cuisine.name}</p>
+                    )
+                  })}
+                </div>
             )}
             {isObject(_venue["type"]) && (
               <div className={"pillbox--container"}>
                 <p className={"pillbox"}>{_venue["type"][0]}</p>
                 <p className={"pillbox"}>{_venue["type"][1]}</p>
+                {_venue["cuisineUsed"].map((cuisine)=> {
+                  console.log(cuisine)
+                  return (
+                      <p className={"pillbox yellow"}>{cuisine.name}</p>
+                  )
+
+                })}
               </div>
             )}
           </div>

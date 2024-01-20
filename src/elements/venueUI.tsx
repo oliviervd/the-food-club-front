@@ -32,14 +32,22 @@ const VenueUI = (props) => {
                             <div className={"pillbox--container_desktop"}>
                                 <p className={"pillbox"}>{venue["type"][0]}</p>
                                 <p className={"pillbox"}>{venue["type"][1]}</p>
+                                {venue["cuisineUsed"].map((cuisine)=> {
+                                    console.log(cuisine)
+                                    return (
+                                        <p className={"pillbox yellow"}>{cuisine.name}</p>
+                                    )
+
+                                })}
                             </div>
                         )}
+
                     </div>
                 </div>
                 <div>
                     <h1>{venue.venueName}</h1>
                     <div className={"slug"}>
-                    <p>{venue["slugs"]["slugEN"][0]["children"][0]["text"]}</p>
+                        <p>{venue["slugs"]["slugEN"][0]["children"][0]["text"]}</p>
                     </div>
                 </div>
             </div>

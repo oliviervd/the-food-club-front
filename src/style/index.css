@@ -239,8 +239,13 @@ header nav {
     display: flex;
     flex-wrap: wrap;
     width: 50%;
-    gap: 2%;
+    gap: 10px;
     padding-bottom: 10px;
+
+  & .yellow {
+    border-color: #ffea00;
+    color: var(--main-text-color);
+  }
 }
 
 
@@ -1265,6 +1270,18 @@ header nav {
   padding: 6px 6px;
   margin-bottom: 10px;
   color:#2c3583;
+  z-index: 100;
+  position: relative;
+  font-weight: 500;
+}
+
+.pillbox_yellow {
+  border: 2px solid #ffea00;
+  border-radius: 30px;
+  width: fit-content;
+  padding: 6px 6px;
+  margin-bottom: 10px;
+  color: var(--main-text-color);
   z-index: 100;
   position: relative;
   font-weight: 500;
