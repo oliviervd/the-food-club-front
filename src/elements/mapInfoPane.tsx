@@ -1,5 +1,5 @@
 import * as React from "react";
-import _cross from "../elements/SVG/Close_icon.svg"
+import _cross from "../elements/SVG/cross.svg"
 import _pin from "../elements/SVG/Location_indicator_1.svg"
 import {useNavigate} from "react-router-dom";
 
@@ -15,7 +15,6 @@ import {useNavigate} from "react-router-dom";
 const MapInfoPane = (props) => {
     const nav = useNavigate();
     const venue = props.venue
-    console.log(venue)
 
     const closePane = () => {
         props.setOpenInfoPane(false);
@@ -34,9 +33,41 @@ const MapInfoPane = (props) => {
                         />
                     </div>
                 </div>
+                {/*
+                <div onClick={() => nav(`/venue/${venue.venueName}`)} className="button-mask_transparant">
+                    <p>read more</p>
+                </div>
+                */}
+
+            </div>
+
+            <div className={"map--ui_pop-up-container-right"}>
+                <div className="cross-ui">
+                    <img
+                        onClick={() => closePane()}
+                        alt="UI element used to close the element"
+                        src={_cross}
+                        style={{pointerEvents: 'auto', zIndex: "10000"}}
+                    />
+
+                </div>
+
+                <h1>
+                    {venue.venueName}
+                </h1>
+
+                <div style={{display: "flex", gap: "2vw", paddingTop:"8px"}}>
+                    <p>
+                        {venue["type"][0]}
+                    </p>
+                    {venue["cuisineUsed"][0] &&
+                        <p> - {venue["cuisineUsed"][0]["name"]} </p>
+                    }
+                </div>
+
                 <div className={"address"}>
                     <div>
-                        <img style={{paddingLeft: "6vw", width: "5vw"}} src={_pin}/>
+                        <img style={{width: "5vw"}} src={_pin}/>
                     </div>
                     <p
                         style={{
@@ -50,36 +81,7 @@ const MapInfoPane = (props) => {
                     </p>
 
                 </div>
-                {/*
-                <div onClick={() => nav(`/venue/${venue.venueName}`)} className="button-mask_transparant">
-                    <p>read more</p>
-                </div>
-                */}
 
-            </div>
-            <div className={"map--ui_pop-up-container-right"}>
-                <div className="cross-ui">
-                    <img
-                        onClick={() => closePane()}
-                        alt="UI element used to close the element"
-                        src={_cross}
-                        style={{pointerEvents: 'auto', zIndex: "10000"}}
-                    />
-
-                </div>
-                <div style={{position:"absolute",top: "20%"}}>
-                    <h1>
-                        {venue.venueName}
-                    </h1>
-                    <div style={{display: "flex", gap: "2vw"}}>
-                        <p>
-                            {venue["type"][0]}
-                        </p>
-                        {venue["cuisineUsed"][0] &&
-                            <p> - {venue["cuisineUsed"][0]["name"]} </p>
-                        }
-                    </div>
-                </div>
             </div>
         </div>
     )

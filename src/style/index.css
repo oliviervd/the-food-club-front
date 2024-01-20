@@ -399,8 +399,10 @@ header nav {
 }
 
 .map--ui_pop-up-container-right {
+  padding-top: 10px;
   display: grid;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  max-height: 100%;
 }
 
 .map--ui_pop-up-container-right h1{
@@ -418,12 +420,12 @@ header nav {
   font-size: 5vw;
 }
 
-.map--ui_pop-up-container-left .address{
+.map--ui_pop-up-container-right .address{
   display: flex;
   gap: 10px;
 }
 
-.map--ui_pop-up-container-left .address p {
+.map--ui_pop-up-container-right .address p {
   max-width: 50%;
   display: flex;
   flex-wrap: wrap;
@@ -434,7 +436,7 @@ header nav {
 .map--ui_pop-up--image_container{
   position: absolute;
   left: 15%;
-  top:-30%;
+  top: 20%;
   -webkit-mask-image: url("../elements/SVG/VenueMask2.svg");
   mask-image: url("../elements/SVG/VenueMask2.svg");
   -webkit-mask-repeat: no-repeat;
@@ -451,10 +453,10 @@ header nav {
 .cross-ui {
   position: absolute;
   align-items: end;
-  width: 30px;
+  width: 20px;
   z-index: 10000000000;
-  top: 16px;
-  right: 16px;
+  top: 35px;
+  right: 25px;
 }
 
 .map--ui_pop-up-container__img {

@@ -90,11 +90,7 @@ const Categories = () => {
             <a onClick={() => nav("/map")} className="sticky--button_map">
                 <img src={_mapIcon} />
             </a>
-            {!showButton &&
-                <a onClick={() => scrollToTop()} className={"sticky--button_up"}>
-                    <img src={_upIcon}/>
-                </a>
-            }
+
             {_cats.map((cat, index) => {
                 return (
                     <FadeInComponent key={index}>
