@@ -210,7 +210,7 @@ header nav {
     font-size: 1.2rem;
     font-weight: 500;
     font-family: Onest-VariableFont;
-    max-width: 70%;
+    max-width: 90%;
     padding-bottom: 30px;
   }
 
@@ -237,7 +237,7 @@ header nav {
       background: #ffea00;
       border-radius: 25px;
       padding: 15px 15px;
-      max-width: 50%;
+      max-width: 90%;
       font-weight: 500;
     }
   }
