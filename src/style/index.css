@@ -391,7 +391,14 @@ header nav {
   display: grid;
   grid-template-columns: 50% 50%;
   z-index: 2;
+  transition: transform 1s ease;
+  transform: translateY(0%);
 }
+
+.map--ui_pop-up-container .hidden{
+  transform: translateY(120%);
+}
+
 
 .map--ui_pop-up-container-left {
   display: grid;
@@ -399,7 +406,7 @@ header nav {
 }
 
 .map--ui_pop-up-container-right {
-  padding-top: 10px;
+  padding-top: 15px;
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
   max-height: 100%;
@@ -450,13 +457,14 @@ header nav {
   width:33vw;
 }
 
-.cross-ui {
+.arrow--down_UI {
   position: absolute;
   align-items: end;
-  width: 20px;
+  width: 50px;
   z-index: 10000000000;
-  top: 35px;
-  right: 25px;
+  top: -39px;
+  right: 50%;
+  transform: translateX(50%) rotate(180deg);
 }
 
 .map--ui_pop-up-container__img {

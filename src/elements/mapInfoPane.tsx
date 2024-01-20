@@ -1,5 +1,6 @@
 import * as React from "react";
 import _cross from "../elements/SVG/cross.svg"
+import _arrow from "../elements/SVG/button-scroll-to-top.svg"
 import _pin from "../elements/SVG/Location_indicator_1.svg"
 import {useNavigate} from "react-router-dom";
 
@@ -14,14 +15,14 @@ import {useNavigate} from "react-router-dom";
 
 const MapInfoPane = (props) => {
     const nav = useNavigate();
-    const venue = props.venue
+    let venue = props.venue
 
     const closePane = () => {
         props.setOpenInfoPane(false);
     }
 
     return (
-        <div className={"map--ui_pop-up-container"}>
+        <div className={props.openInfoPane ? "map--ui_pop-up-container hidden" : "map--ui_pop-up-container "}>
             <div className={"map--ui_pop-up-container-left"}>
                 <div style={{position: "relative"}}>
                     <div className={"map--ui_pop-up--image_container"}>
@@ -42,11 +43,11 @@ const MapInfoPane = (props) => {
             </div>
 
             <div className={"map--ui_pop-up-container-right"}>
-                <div className="cross-ui">
+                <div className="arrow--down_UI">
                     <img
                         onClick={() => closePane()}
                         alt="UI element used to close the element"
-                        src={_cross}
+                        src={_arrow}
                         style={{pointerEvents: 'auto', zIndex: "10000"}}
                     />
 
@@ -56,7 +57,7 @@ const MapInfoPane = (props) => {
                     {venue.venueName}
                 </h1>
 
-                <div style={{display: "flex", gap: "2vw", paddingTop:"8px"}}>
+                <div style={{display: "flex", gap: "2vw", paddingTop: "8px"}}>
                     <p>
                         {venue["type"][0]}
                     </p>
@@ -84,6 +85,7 @@ const MapInfoPane = (props) => {
 
             </div>
         </div>
+
     )
 }
 
