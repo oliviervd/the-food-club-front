@@ -211,6 +211,7 @@ header nav {
     font-weight: 500;
     font-family: Onest-VariableFont;
     max-width: 70%;
+    padding-bottom: 30px;
   }
 
   & .flex {
@@ -230,6 +231,14 @@ header nav {
         max-height:40vh;
         border-radius:25px;
       }
+    }
+
+    & .venue_tipbox {
+      background: #ffea00;
+      border-radius: 25px;
+      padding: 15px 15px;
+      max-width: 50%;
+      font-weight: 500;
     }
   }
 

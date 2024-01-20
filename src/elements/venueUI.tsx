@@ -37,7 +37,6 @@ const VenueUI = (props) => {
                                     return (
                                         <p className={"pillbox yellow"}>{cuisine.name}</p>
                                     )
-
                                 })}
                             </div>
                         )}
@@ -49,6 +48,12 @@ const VenueUI = (props) => {
                     <div className={"slug"}>
                         <p>{venue["slugs"]["slugEN"][0]["children"][0]["text"]}</p>
                     </div>
+
+                    {venue["clubOrder"] && (
+                        <div className={"venue_tipbox"}>
+                            <p>{venue["clubOrder"][0]["children"][0]["text"]}</p>
+                        </div>
+                    )}
                 </div>
             </div>
 
