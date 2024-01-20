@@ -22,16 +22,18 @@ const MapInfoPane = (props) => {
     }
 
     return (
-        <div className={props.openInfoPane ? "map--ui_pop-up-container hidden" : "map--ui_pop-up-container "}>
+        <div className={"map--ui_pop-up-container"}>
             <div className={"map--ui_pop-up-container-left"}>
                 <div style={{position: "relative"}}>
                     <div className={"map--ui_pop-up--image_container"}>
-                        <img
-                            onClick={() => nav(`/venue/${venue.venueName}`)}
-                            className={"toplist--image_img"}
-                            src={venue["media"]["sizes"]["tablet"]["url"]}
-                            alt=""
-                        />
+                        {venue.venueName &&
+                            <img
+                                onClick={() => nav(`/venue/${venue.venueName}`)}
+                                className={"toplist--image_img"}
+                                src={venue["media"]["sizes"]["tablet"]["url"]}
+                                alt=""
+                            />
+                        }
                     </div>
                 </div>
                 {/*
@@ -53,15 +55,19 @@ const MapInfoPane = (props) => {
 
                 </div>
 
-                <h1>
-                    {venue.venueName}
-                </h1>
+                {venue.venueName &&
+                    <h1>
+                        {venue.venueName}
+                    </h1>
+                }
 
-                <div style={{display: "flex", gap: "2vw", paddingTop: "8px"}}>
-                    <p>
-                        {venue["type"][0]}
-                    </p>
-                    {venue["cuisineUsed"][0] &&
+                <div style={{display: "flex", gap: "2vw"}}>
+                    {venue && venue["type"][0] &&
+                        <p>
+                            {venue["type"][0]}
+                        </p>
+                    }
+                    {venue && venue["cuisineUsed"][0] &&
                         <p> - {venue["cuisineUsed"][0]["name"]} </p>
                     }
                 </div>
@@ -70,16 +76,18 @@ const MapInfoPane = (props) => {
                     <div>
                         <img style={{width: "5vw"}} src={_pin}/>
                     </div>
-                    <p
-                        style={{
-                            color: "white",
-                            fontWeight: 300,
-                        }}>
-                        {venue["address"]["street"]}{" "}
-                        {venue["address"]["houseNumber"]},{" "}
-                        {venue["address"]["postalCode"]}{" "}
-                        {venue["address"]["city"]}
-                    </p>
+                    {venue["address"] &&
+                        <p
+                            style={{
+                                color: "white",
+                                fontWeight: 300,
+                            }}>
+                            {venue["address"]["street"]}{" "}
+                            {venue["address"]["houseNumber"]},{" "}
+                            {venue["address"]["postalCode"]}{" "}
+                            {venue["address"]["city"]}
+                        </p>
+                    }
 
                 </div>
 
