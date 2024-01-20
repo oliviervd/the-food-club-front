@@ -26,7 +26,16 @@ const VenueUI = (props) => {
                     </div>
                     <div className={"pills"}>
                         {!isObject(venue["type"]) && (
-                            <p className={"pillbox"}>{venue["type"]}</p>
+                            <div className={"pillbox--container_desktop"}>
+                                <p className={"pillbox"}>{venue["type"]}</p>
+                                {venue["cuisineUsed"].map((cuisine)=> {
+                                    console.log(cuisine)
+                                    return (
+                                        <p className={"pillbox yellow"}>{cuisine.name}</p>
+                                    )
+                                })}
+                            </div>
+
                         )}
                         {isObject(venue["type"]) && (
                             <div className={"pillbox--container_desktop"}>
