@@ -208,7 +208,7 @@ header nav {
     padding-top: 15px;
     text-align: left;
     font-size: 1.2rem;
-    font-weight: 500;
+    font-weight: 700;
     font-family: Onest-VariableFont;
     max-width: 90%;
     padding-bottom: 30px;
@@ -964,6 +964,7 @@ header nav {
 }
 
 .venue--container_content-review {
+  padding-top: 10px;
   margin-left: 2em;
   padding-bottom: 1.3em;
   font-weight: 500;
@@ -1296,6 +1297,7 @@ header nav {
   z-index: 100;
   position: relative;
   font-weight: 500;
+  margin-bottom: 10px;
 }
 
 .pillbox_yellow {
