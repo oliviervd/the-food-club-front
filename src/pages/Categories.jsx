@@ -90,7 +90,7 @@ const Categories = () => {
             <a onClick={() => nav("/map")} className="sticky--button_map">
                 <img src={_mapIcon} />
             </a>
-            {showButton &&
+            {!showButton &&
                 <a onClick={() => scrollToTop()} className={"sticky--button_up"}>
                     <img src={_upIcon}/>
                 </a>
