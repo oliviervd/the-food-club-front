@@ -188,7 +188,7 @@ header nav {
 .desktop-UI-venue__container{
   position: absolute;
   right: 30px;
-  top: 10vh;
+  top: 100px;
   bottom: 10vh;
   width: 50vw;
   background: white;
@@ -216,6 +216,7 @@ header nav {
   & .flex {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    max-width: 90%;
 
     & .image {
       padding-top: 30px;
@@ -1347,7 +1348,7 @@ header nav {
   border-radius: 25px;
   position: absolute;
   left: 30px;
-  top: 10%;
+  top: 100px;
   bottom: 10vh;
   z-index: 100;
   background-color: white;
