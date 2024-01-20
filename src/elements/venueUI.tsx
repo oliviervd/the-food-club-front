@@ -58,11 +58,23 @@ const VenueUI = (props) => {
                         <p>{venue["slugs"]["slugEN"][0]["children"][0]["text"]}</p>
                     </div>
 
+                    {venue["reviews"]["reviewEN"] && (
+                        <div className={"review"}>
+                            {venue["reviews"]["reviewEN"].map((review) => (
+                                <p className={""}>
+                                    {review["children"][0]["text"]}
+                                </p>
+                            ))}
+                        </div>
+                    )}
+
                     {venue["clubOrder"] && (
                         <div className={"venue_tipbox"}>
+                            <div class={"fine"}>👌🏻</div>
                             <p>{venue["clubOrder"][0]["children"][0]["text"]}</p>
                         </div>
                     )}
+
                 </div>
             </div>
 

@@ -234,11 +234,26 @@ header nav {
     }
 
     & .venue_tipbox {
+      position: relative;
       background: #ffea00;
       border-radius: 25px;
       padding: 15px 15px;
       max-width: 90%;
       font-weight: 500;
+
+      & .fine {
+        position: absolute;
+        top: -15px;
+        left: -18px;
+        font-size: 2rem;
+        background: #ffea00;
+        border-radius: 50px;
+      }
+    }
+
+    & .review{
+      font-weight: 500;
+      padding-bottom: 30px;
     }
   }
 
