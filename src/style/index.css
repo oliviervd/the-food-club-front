@@ -262,7 +262,7 @@ header nav {
 .pillbox--container_desktop {
     display: flex;
     flex-wrap: wrap;
-    width: 90%;
+    width: 95%;
     gap: 10px;
     padding-bottom: 10px;
 
