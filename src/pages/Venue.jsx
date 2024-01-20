@@ -136,7 +136,7 @@ const Venue = () => {
                 {_venue["cuisineUsed"].map((cuisine)=> {
                   console.log(cuisine)
                   return (
-                      <p className={"pillbox yellow"}>{cuisine.name}</p>
+                      <p className={"pillbox_yellow"}>{cuisine.name}</p>
                   )
 
                 })}
