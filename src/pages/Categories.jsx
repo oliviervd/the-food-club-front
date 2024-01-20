@@ -1,10 +1,9 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useLayoutEffect } from "react";
 import GridUI from "../elements/gridUI.jsx";
 import { fetchAPI, FadeInComponent } from "../utils/utils.jsx";
 import { useNavigate, useLocation } from "react-router-dom";
 import Header from "../elements/header.jsx";
 
-import _upIcon from "../elements/SVG/button-scroll-to-top.svg"
 import _mapIcon from "../elements/SVG/Map_icon.svg"
 import Highlighted from "../elements/highlight.jsx";
 
