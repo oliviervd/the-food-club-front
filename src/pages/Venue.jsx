@@ -1,7 +1,7 @@
 import React, {useEffect, useRef} from "react";
 import {useLocation, useNavigate, useParams} from "react-router-dom";
 import GridUI from "../elements/gridUI.jsx";
-import { fetchAPI, FadeInComponent } from "../utils/utils.jsx";
+import { fetchAPI, FadeInComponent, isObject } from "../utils/utils.jsx";
 
 import _backIcon from "../elements/SVG/Back_icon.svg";
 import _buttonWebsite from "../elements/SVG/button-website.svg"
@@ -38,15 +38,6 @@ const Venue = () => {
       }
     }
   } catch (e) {}
-
-  // function to check type
-  function isObject(input) {
-    if (typeof input === "object" && input[1]) {
-      return true;
-    } else {
-      return false;
-    }
-  }
 
   // onLoad scroll to top.
   useEffect(() => {
