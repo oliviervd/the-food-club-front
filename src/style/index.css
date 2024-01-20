@@ -472,6 +472,15 @@ header nav {
   /*filter: drop-shadow(2px 2px 2px #d3cfcf);*/
 }
 
+.sticky--button_up{
+  position: fixed;
+  top: 70vh;
+  left: 75vw;
+  height: 75px;
+  width: 75px;
+  z-index: 10000;
+}
+
 .leaflet-container {
   width: 100%;
   height: 100vh;

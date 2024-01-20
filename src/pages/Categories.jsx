@@ -3,6 +3,8 @@ import GridUI from "../elements/gridUI.jsx";
 import { fetchAPI, FadeInComponent } from "../utils/utils.jsx";
 import { useNavigate, useLocation } from "react-router-dom";
 import Header from "../elements/header.jsx";
+
+import _upIcon from "../elements/SVG/button-scroll-to-top.svg"
 import _mapIcon from "../elements/SVG/Map_icon.svg"
 import Highlighted from "../elements/highlight.jsx";
 
@@ -23,6 +25,11 @@ const Categories = () => {
   const nav = useNavigate();
   const [showIntro, setShowIntro] = useState(true);
 
+  function closeIntro(){
+      scrollToTop()
+      setShowIntro(false)
+  }
+
   try {
     _categories = fetchAPI("categories");
     _venues = fetchAPI("venue")
@@ -37,6 +44,13 @@ const Categories = () => {
       var randomItem = _v[Math.floor(Math.random()*_v.length)]
       nav(`/venue/${randomItem.venueName}`)
   }
+
+  //todo: add this as an element that can be reused.
+    const [showButton, setShowButton] = useState(true);
+
+    function scrollToTop() {
+      topRef.current?.scrollIntoView({behavior:"smooth"})
+    }
 
   return (
     <div className={"main--container"} ref={topRef}>
@@ -67,19 +81,24 @@ const Categories = () => {
         >
             <h2>Welcome to the foodclub</h2>
             <p>a place where locals share their precious food discoveries.</p>
-            <div onClick={() => setShowIntro(false)} className={"button"}>
+            <div onClick={() => closeIntro()} className={"button"}>
                 <p>take me</p>
             </div>
         </div>
 
         <div className={"categories--container"}>
             <a onClick={() => nav("/map")} className="sticky--button_map">
-          <img src={_mapIcon} />
-        </a>
-        {_cats.map((cat, index) => {
-          return (
-            <FadeInComponent key={index}>
-              {cat["categoryTitle"] !== "UNCATEGORISED" && (
+                <img src={_mapIcon} />
+            </a>
+            {showButton &&
+                <a onClick={() => scrollToTop()} className={"sticky--button_up"}>
+                    <img src={_upIcon}/>
+                </a>
+            }
+            {_cats.map((cat, index) => {
+                return (
+                    <FadeInComponent key={index}>
+                        {cat["categoryTitle"] !== "UNCATEGORISED" && (
                 <div>
                   <a>
                     <h2
