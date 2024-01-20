@@ -82,3 +82,11 @@ export function FadeInComponent({children}) {
         </div>
     )
 }
+
+export function isObject(input) {
+    if (typeof input === "object" && input[1]) {
+        return true;
+    } else {
+        return false;
+    }
+}
