@@ -185,6 +185,33 @@ header nav {
   height: 100%;
 }
 
+.desktop-UI-venue__container{
+  position: absolute;
+  right: 30px;
+  top: 10vh;
+  bottom: 10vh;
+  width: 30vw;
+  background: white;
+  z-index: 10000000000000000000000000000000;
+  border-radius: 25px;
+  padding-left: 30px;
+
+  & h1 {
+    text-align: left;
+    font-size: 2.5rem;
+    color: var(--main-pink);
+    font-weight: 900;
+    font-family: Onest-VariableFont;
+  }
+}
+
+.desktop-UI-venue__container .cross {
+  position: absolute;
+  width: 30px;
+  right: 30px;
+  top: 30px;
+}
+
 .nav-desktop{
   display: flex;
   transform: translateY(-50%);
@@ -1294,6 +1321,7 @@ header nav {
   position: absolute;
   left: 30px;
   top: 10%;
+  bottom: 10vh;
   z-index: 100;
   background-color: white;
   max-height: 90vh;
@@ -1349,7 +1377,8 @@ header nav {
     display: flex;
   }
 
-  header h1 {
+  h2 {
+    font-size: 1.5rem;
   }
 }
 

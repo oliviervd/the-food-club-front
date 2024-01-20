@@ -4,12 +4,14 @@ import MarkerClusterGroup from "react-leaflet-cluster";
 
 import React, { useState } from "react";
 import _im from "../elements/SVG/Location_indicator_1.svg";
-import _cross from "./SVG/Close_icon.svg";
 import MapInfoPane from "./mapInfoPane.tsx";
 
 import Header from "./header";
 import { fetchAPI } from "../utils/utils.jsx";
 import { useNavigate } from "react-router-dom";
+
+import {useMediaQuery} from "react-responsive";
+import VenueUI from "./venueUI.tsx";
 
 const map = () => {
   const [openInfoPane, setOpenInfoPane] = useState(false);
@@ -21,6 +23,16 @@ const map = () => {
   const [activePillsOcassion, setActivePillsOccasion] = useState([]);
 
   const nav = useNavigate();
+
+  const isDesktopOrLaptop = useMediaQuery({
+    query: '(min-width: 601px)'
+  })
+  const isMobile = useMediaQuery({ query: '(max-width: 600px)' })
+
+  let zoom = 12.5
+  if (isDesktopOrLaptop) {
+    zoom = 14;
+  }
 
   function handlePillClick(id, _type) {
     switch (_type) {
@@ -143,7 +155,7 @@ const map = () => {
       <MapContainer
         className={"map--ui"}
         center={[51.0544, 3.7256]}
-        zoom={12.5}
+        zoom={zoom}
         zoomControl={false}
       >
         <TileLayer
@@ -264,18 +276,14 @@ const map = () => {
                 </div>
               )}
             </div>
-            {/* <div className={"map--ui_pop-up-container-section"}>
-                            <p className={"map--ui_pop-up-container-search_prompt"}>diet</p>
-                            <div className={"map--ui_pop-up-container-search_pills"}>
-                                <p className={"map--ui_pop-up-container-search_pillbox"}>vegetarian</p>
-                                <p className={"map--ui_pop-up-container-search_pillbox"}>vegan</p>
-                            </div>
-                        </div>*/}
           </div>
         )}
       </div>
-      {openInfoPane && (
+      {(isMobile && openInfoPane) && (
         <MapInfoPane venue={venue} openInfoPane={openInfoPane} setOpenInfoPane={setOpenInfoPane}/>
+      )}
+      {(isDesktopOrLaptop && openInfoPane) && (
+          <VenueUI venue={venue} openInfoPane={openInfoPane} setOpenInfoPane={setOpenInfoPane}/>
       )}
     </div>
   );

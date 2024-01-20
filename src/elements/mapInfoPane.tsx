@@ -36,12 +36,6 @@ const MapInfoPane = (props) => {
                         }
                     </div>
                 </div>
-                {/*
-                <div onClick={() => nav(`/venue/${venue.venueName}`)} className="button-mask_transparant">
-                    <p>read more</p>
-                </div>
-                */}
-
             </div>
 
             <div className={"map--ui_pop-up-container-right"}>
