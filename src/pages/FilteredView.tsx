@@ -17,9 +17,8 @@ const FilteredView = (props) => {
         "4": "Thu",
         "5": "Fr",
         "6": "Sat",
-        "7": "Sun"
+        "0": "Sun"
     }
-    console.log(dates[day])
 
     try {
         let _l = fetchAPI("venue") //unfiltered list
