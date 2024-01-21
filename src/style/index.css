@@ -202,6 +202,7 @@ header nav {
     color: var(--main-pink);
     font-weight: 900;
     font-family: Onest-VariableFont;
+    padding-bottom: 10px;
   }
 
   & .slug {
@@ -212,6 +213,7 @@ header nav {
     font-family: Onest-VariableFont;
     max-width: 90%;
     padding-bottom: 30px;
+    border-top: 4px solid #ffea00;
   }
 
   & .flex {
@@ -263,7 +265,7 @@ header nav {
     display: flex;
     flex-wrap: wrap;
     width: 95%;
-    gap: 10px;
+    column-gap: 10px;
     padding-bottom: 10px;
 
   & .yellow {
