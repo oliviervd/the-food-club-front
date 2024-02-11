@@ -61,7 +61,6 @@ const Categories = () => {
 
     return (
         <div className={"main--container"} ref={topRef}>
-            <GridUI />
             <Header/>
             <div
                 className={
@@ -94,6 +93,7 @@ const Categories = () => {
             </div>
 
             <div className={"categories--container"}>
+                <GridUI />
                 <a onClick={() => nav(`/${lang}/map`)} className="sticky--button_map">
                     <img src={_mapIcon} />
                 </a>
