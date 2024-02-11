@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import Places from "./pages/Places.jsx";
@@ -30,6 +30,7 @@ export default function App() {
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
         <Routes>
+          <Route path="/" element={<Navigate to="/en" replace />}/>
           <Route path="/:lang" element={<Home />} />
           <Route path="/:lang/toplist/:id" element={<TopList />} />
           <Route path="/:lang/venue/:id" element={<Venue />} />
