@@ -6,7 +6,7 @@ export function fetchAPI(endpoint, locale) {
     const {data, isLoading, status} = useQuery({
         queryKey:[endpoint],
         queryFn: () =>
-            fetch(`https://p01--cms--j4bvc8vdjtjb.code.run/api/${endpoint}/?locale=${locale}`,{
+            fetch(`https://p01--cms--j4bvc8vdjtjb.code.run/api/${endpoint}/?locale=${locale}&limit=1000`,{
                 credentials: 'include',
                 method: 'GET'
             }).then((req)=>req.json())
