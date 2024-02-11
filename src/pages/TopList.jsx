@@ -46,7 +46,7 @@ const TopList = () => {
   let _listFiltered = []; // create empty array for filtered venues
 
   try {
-    _l = fetchAPI("venue", lang, 100);
+    _l = fetchAPI("venue", lang);
     _list = _l["docs"];
     // filter based on category
     for (let i = 0; i < _list.length; i++) {
