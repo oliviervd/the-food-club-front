@@ -1176,6 +1176,9 @@ header nav {
   & .button-mask, .button {
     display: none;
   }
+  & h2 {
+      display: none;
+  }
 }
 .categories--welcome_container.closed::after {
   display: none;
