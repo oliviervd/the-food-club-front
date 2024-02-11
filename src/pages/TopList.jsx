@@ -10,6 +10,7 @@ const TopList = () => {
   // onLoad scroll to top.
   const location = useLocation()
   const topRef = useRef(null)
+
   useEffect(() => {
     topRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [location]);
@@ -28,33 +29,34 @@ const TopList = () => {
 
   if (!openNavMenu) {
     document.body.style.overflowX = "hidden";
-    document.body.style.overflowY = "scroll";
+    document.body.style.overflowY =   "scroll";
   }
 
   //fetch id from URL param
-  let id = useParams();
+  // set lang
+  const [lang, setLang] = useState("en")
+  let id = useParams()
+  if (id.lang != lang){
+    setLang(id.lang)
+    console.log(id.lang)
+  }
 
   let _l;
   let _list;
   let _listFiltered = []; // create empty array for filtered venues
 
   try {
-    _l = fetchAPI("venue");
+    _l = fetchAPI("venue", lang, 100);
     _list = _l["docs"];
-    console.log(_list);
-    //console.log(_list)
     // filter based on category
     for (let i = 0; i < _list.length; i++) {
-      //console.log(_list[i])
       for (let x = 0; x < _list[i]["category"].length; x++) {
-        console.log(_list[i]["category"]);
         if (_list[i]["category"][x]["categoryTitle"] === id.id) {
           // if same category push venue to new list.
           _listFiltered.push(_list[i]);
         }
       }
     }
-    //console.log(_listFiltered)
   } catch (e) {}
 
   return (
@@ -65,7 +67,7 @@ const TopList = () => {
         style={{ maxWidth: "100vw", overflow: "hidden" }}
       >
         <div className={"content_header-toplist"}>
-          <a onClick={() => nav("/")} className="nav--back">
+          <a onClick={() => nav("/en/")} className="nav--back">
             <img src={_backIcon} alt="icon to navigate back" />
           </a>
           <h2 className={"venue--header_title"}>{id.id.toUpperCase()}</h2>
@@ -74,11 +76,11 @@ const TopList = () => {
         {_listFiltered.map((venue, index) => {
           let _im;
           if (venue.media) {
+            //todo: add mobile (if available) to increase performance
             _im = venue["media"]["sizes"]["tablet"]["url"];
           } else {
             _im = "";
           }
-          //console.log(_im)
           return (
 
               <FadeInComponent key={index}>
@@ -88,12 +90,12 @@ const TopList = () => {
                       <div>
                         <div className={"toplist--image"}>
                           <img
-                              onClick={() => nav(`/venue/${venue.venueName}`)}
+                              onClick={() => nav(`/${lang}/venue/${venue.venueName}`)}
                               className={"toplist--image_img"}
                               src={_im}
                           />
                           <h2
-                              onClick={() => nav(`/venue/${venue.venueName}`)}
+                              onClick={() => nav(`/${lang}/venue/${venue.venueName}`)}
                               className={"toplist--venue_title"}
                           >
                             {venue.venueName}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef, useLayoutEffect } from "react";
 import GridUI from "../elements/gridUI.jsx";
 import { fetchAPI, FadeInComponent } from "../utils/utils.jsx";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 import Header from "../elements/header.jsx";
 
 import _mapIcon from "../elements/SVG/Map_icon.svg"
@@ -16,6 +16,13 @@ const Categories = () => {
         topRef.current?.scrollIntoView({behavior:"smooth"})
     }, [location]);
 
+    // set lang
+    const [lang, setLang] = useState("en")
+    let id = useParams()
+    if (id.lang != lang){
+        setLang(id.lang)
+        console.log(id.lang)
+    }
 
   let _categories;
   let _venues;
@@ -30,7 +37,7 @@ const Categories = () => {
   }
 
   try {
-    _categories = fetchAPI("categories");
+    _categories = fetchAPI("categories", lang);
     _venues = fetchAPI("venue")
     _cats = _categories["docs"];
   } catch (e) {
@@ -41,7 +48,7 @@ const Categories = () => {
       console.log(_venues)
       var _v = _venues["docs"]
       var randomItem = _v[Math.floor(Math.random()*_v.length)]
-      nav(`/venue/${randomItem.venueName}`)
+      nav(`/${lang}/venue/${randomItem.venueName}`)
   }
 
   //todo: add this as an element that can be reused.
@@ -50,6 +57,7 @@ const Categories = () => {
     function scrollToTop() {
       topRef.current?.scrollIntoView({behavior:"smooth"})
     }
+
 
   return (
     <div className={"main--container"} ref={topRef}>
@@ -86,7 +94,7 @@ const Categories = () => {
         </div>
 
         <div className={"categories--container"}>
-            <a onClick={() => nav("/map")} className="sticky--button_map">
+            <a onClick={() => nav(`/${lang}/map`)} className="sticky--button_map">
                 <img src={_mapIcon} />
             </a>
 
@@ -98,7 +106,7 @@ const Categories = () => {
                   <a>
                     <h2
                       className={"categories--title_font"}
-                      onClick={() => nav(`/toplist/${cat["categoryTitle"]}`)}
+                      onClick={() => nav(`/${lang}/toplist/${cat["categoryTitle"]}`)}
                     >
                       <Highlighted
                         string={cat["categoryTitle"]}

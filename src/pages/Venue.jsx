@@ -163,15 +163,15 @@ const Venue = () => {
               )}
 
               {/* ADDRESS + OPENINGSHOURS */}
-              {_venue["openOn"] && (
+              {_venue["hours"] && (
                   <div style={{paddingTop: "20px"}}>
                     <p className={"venue--container_content-address"}>
                       <div className={"venue--container_content-openDays"}>
                         {" "}
                         open:
-                        {_venue["openOn"].map((day) => (
+                        {_venue["hours"].map((day) => (
                             <p className={"venue--container_content-openDays-day"}>
-                              {day.toUpperCase()}
+                              {day.openDay.toUpperCase()}
                             </p>
                         ))}
                       </div>
