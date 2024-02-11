@@ -1,12 +1,12 @@
 import {useQuery} from "@tanstack/react-query";
 import {useEffect, useState, useRef} from "react";
 
-export function fetchAPI(endpoint) {
-    // fetch all data from a certain collection.
+export function fetchAPI(endpoint, locale, limit) {
+    // fetch all data from a certain collection based on a given locale and limit.
     const {data, isLoading, status} = useQuery({
         queryKey:[endpoint],
         queryFn: () =>
-            fetch(`https://p01--cms--j4bvc8vdjtjb.code.run/api/${endpoint}/?limit=0`,{
+            fetch(`https://p01--cms--j4bvc8vdjtjb.code.run/api/${endpoint}/?locale=${locale}&limit=${limit}&draft=false`,{
                 credentials: 'include',
                 method: 'GET'
             }).then((req)=>req.json())
