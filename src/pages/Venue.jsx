@@ -19,22 +19,19 @@ const Venue = () => {
 
   // fetch content based on id
   let id = useParams(); // use id to set content
-
+  console.log(id)
   // initiate cache
   let _venue;
-  let _im;
-  let _review;
 
   const nav = useNavigate();
 
   try {
-    let _venueList = fetchAPI("venue");
+    let _venueList = fetchAPI("venue", id.lang);
+    console.log(_venueList)
     for (let i = 0; i < _venueList["docs"].length; i++) {
-      //console.log(_venueList["docs"][i])
       if (_venueList["docs"][i]["venueName"] === id.id) {
         _venue = _venueList["docs"][i];
-        console.log(_venue);
-        console.log(typeof _venue["type"]);
+        console.log(_venue)
       }
     }
   } catch (e) {}
@@ -63,10 +60,10 @@ const Venue = () => {
 
           {/* CONTENT SLUG */}
           <div>
-            {_venue["slugs"]["slugEN"][0]["children"][0]["text"] && (
+            {_venue["slugs"]["slug"][0]["children"][0]["text"] && (
               <div className={"venue--container_content-slug"}>
                 <blockquote>
-                  {_venue["slugs"]["slugEN"][0]["children"][0]["text"]}
+                  {_venue["slugs"]["slug"][0]["children"][0]["text"]}
                 </blockquote>
               </div>
             )}
@@ -122,7 +119,6 @@ const Venue = () => {
                 <div className={"pillbox--container"}>
                   <p className={"pillbox"}>{_venue["type"]}</p>
                   {_venue["cuisineUsed"].map((cuisine)=> {
-                    console.log(cuisine)
                     return (
                         <p className={"pillbox_yellow"}>{cuisine.name}</p>
                     )
@@ -134,7 +130,6 @@ const Venue = () => {
                 <p className={"pillbox"}>{_venue["type"][0]}</p>
                 <p className={"pillbox"}>{_venue["type"][1]}</p>
                 {_venue["cuisineUsed"].map((cuisine)=> {
-                  console.log(cuisine)
                   return (
                       <p className={"pillbox_yellow"}>{cuisine.name}</p>
                   )
@@ -149,9 +144,9 @@ const Venue = () => {
             {/* REVIEW */}
             <div className={"lightBox__correction"}>
               <div style={{ paddingTop: "9vh" }}>
-                {_venue["reviews"]["reviewEN"] && (
+                {_venue["reviews"]["review"] && (
                   <div>
-                    {_venue["reviews"]["reviewEN"].map((review) => (
+                    {_venue["reviews"]["review"].map((review) => (
                       <p className={"venue--container_content-review"}>
                         {review["children"][0]["text"]}
                       </p>
@@ -161,9 +156,9 @@ const Venue = () => {
               </div>
 
               {/* FOOD CLUB TIP */}
-              {_venue["clubOrder"] && (
+              {_venue["foodClubOrder"] && (
                   <div className={"venue--container_content-tipbox"}>
-                    <p>{_venue["clubOrder"][0]["children"][0]["text"]}</p>
+                    <p>{_venue["foodClubOrder"][0]["children"][0]["text"]}</p>
                   </div>
               )}
 
