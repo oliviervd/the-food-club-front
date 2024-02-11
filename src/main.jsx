@@ -31,12 +31,12 @@ export default function App() {
       <QueryClientProvider client={queryClient}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/toplist/:id" element={<TopList />} />
-          <Route path="/venue/:id" element={<Venue />} />
-          <Route path="/categories" element={<Categories />} />
-          <Route path="/map" element={<Places />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/open-now" element={<FilteredView/>} />
+          <Route path="/:lang/toplist/:id" element={<TopList />} />
+          <Route path="/:lang/venue/:id" element={<Venue />} />
+          <Route path="/:lang/categories" element={<Categories />} />
+          <Route path="/:lang/map" element={<Places />} />
+          <Route path="/:lang/about" element={<About />} />
+          <Route path="/:lang/open-now" element={<FilteredView/>} />
         </Routes>
       </QueryClientProvider>
     </BrowserRouter>
