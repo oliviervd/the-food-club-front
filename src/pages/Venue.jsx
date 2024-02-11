@@ -51,7 +51,7 @@ const Venue = () => {
           {/* CONTENT HEADER (title and classification) */}
           <div className={"content_header"}>
             <nav>
-              <a onClick={() => nav("/categories")} className="nav--back">
+              <a onClick={() => nav(-1)} className="nav--back">
                 <img src={_backIcon} alt="icon to navigate back" />
               </a>
             </nav>
