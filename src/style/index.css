@@ -135,6 +135,9 @@ header nav {
 
 .fade-in-section.is-visible {
   opacity: 1;
+  border-top: 3px var(--main-pink) solid;
+  padding: 0 20px;
+  padding-bottom: 10px;
 }
 
 .filter--container{
@@ -1027,7 +1030,6 @@ header nav {
 }
 
 .categories--container {
-  padding: 20px;
   background: transparent;
   /*width: 90vw;*/
 
