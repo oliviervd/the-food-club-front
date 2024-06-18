@@ -73,11 +73,11 @@ export function useIntersectionObserver({delay}) {
     return [ref, isIntersecting]
 }
 
-export function FadeInComponent({children}) {
+export function InComponent({children}) {
     const [ref, isIntersecting] = useIntersectionObserver(0)
 
     return (
-        <div ref={ref} className={`fade-in-section ${isIntersecting ? 'is-visible' : ''}`}>
+        <div ref={ref} className={`-in-section ${isIntersecting ? 'is-visible' : ''}`}>
             {children}
         </div>
     )

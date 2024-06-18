@@ -1,0 +1,49 @@
+@font-face {
+    font-family: "trim-bold";
+    src: url("../assets/Karrik-Regular.woff2") format("opentype");
+}
+
+
+@font-face {
+    font-family: "Onest";
+    src: url("../assets/Onest-VariableFont_wght.ttf") format("opentype");
+}
+
+
+:root {
+    --background-color: #F0CA4F;
+    --font-xxl: 6rem;
+    --font-xl: 3rem
+}
+
+
+body{
+    font-family: "Ones", Arial, Helvetica, sans-serif;
+    background-color: var(--background-color);
+    padding: 0;
+    margin: 0;
+}
+
+h1 {
+    margin-top: 0;
+    font-family: "Onest";
+    font-weight: 900;
+}
+
+
+h2 {
+    padding: 0;
+    margin: 0;
+    font-family: "Onest";
+    font-weight: 900;
+}
+
+.text-logo{
+    font-family: "Onest";
+    font-weight: 800;
+}
+
+
+ul {
+    color: black;
+}
