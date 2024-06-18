@@ -1,0 +1,20 @@
+.home__container {
+    display: grid;
+    grid-template-columns: 0.7fr 0.3fr;
+
+    section:last-child {
+        border-left: 2px solid black;
+        height: 100vh;
+    }
+}
+
+@media (max-width:1200px) {
+    .home__container {
+        display: block;
+
+        section:last-child {
+            border-left: none;
+        }
+    }
+    }
+}
