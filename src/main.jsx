@@ -12,7 +12,6 @@ import "../src/style/categories.css"
 
 import Home from "./pages/Home.jsx";
 
-
 export default function App() {
   const queryClient = new QueryClient({
     defaultOptions: {
