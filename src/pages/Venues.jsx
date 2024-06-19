@@ -7,6 +7,7 @@ import {useQuery} from "@tanstack/react-query";
 import DitherImage from "../elements/DitherImage.jsx";
 
 //todo: add hover effect
+// todo: add locales
 
 const Venues = () => {
 

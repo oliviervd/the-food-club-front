@@ -1,11 +1,10 @@
-import DitherImage from "./DitherImage.jsx";
 import AutoResizeText from "./AutoResizeText.jsx";
 import {useNavigate} from "react-router-dom";
 
-const Header = () => {
+const Header = ({location, setLocation, interact}) => {
     // todo: add languages
-    // todo: add home button
     // todo: add map button
+    // todo: make header logo "FOOD CLUB" (fold) when scrolling down.
 
     // navigate back to home
     const nav = useNavigate();
@@ -20,9 +19,9 @@ const Header = () => {
             </div>
 
             <nav>
-                <h2>GENT</h2>
-                <h2>ANTWERP</h2>
-                <h2>BRUSSELS</h2>
+               <h2 className={`link ${location === "gent" ? "selected" : ""}`} onClick={interact ? ()=>{setLocation("gent")}: null}>GENT</h2>
+               <h2 className={`link ${location === "antwerp" ? "selected" : ""}`} onClick={interact ? ()=>{setLocation("antwerp")}: null}>ANTWERP</h2>
+               <h2 className={`link ${location === "brussels" ? "selected" : ""}`} onClick={interact ? ()=>{setLocation("brussels")}: null}>BRUSSELS</h2>
             </nav>
             
         </header>

@@ -11,7 +11,6 @@ const CategoryList = ({data}) => {
 
     if (data.docs){
         const categories = data.docs[0].items
-        console.log(categories)
         return(
             <section className="category-list__container">
                 {categories.map((cat, index)=>{

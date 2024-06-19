@@ -6,6 +6,9 @@ import {fetchAPI} from "../utils/utils.jsx";
 import {useQuery} from "@tanstack/react-query";
 import {useEffect, useState} from "react";
 
+//todo : improve loading speed
+// todo: add locales
+
 const Home = () => {
 
     // fetch data
@@ -16,6 +19,7 @@ const Home = () => {
             setCategoryList(list);
         }
     }, [list]);
+
     if (isLoading) return <div>Loading...</div>;
     if (error) return <div>Error: {error.message}</div>;
 

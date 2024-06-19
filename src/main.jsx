@@ -4,11 +4,13 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Venues from "./pages/Venues.jsx";
 import Venue from "./pages/Venue.jsx";
+import Search from "./pages/Search.jsx"
 
 import "../src/style/fonts.css"
 import "../src/style/media.css"
 import "../src/style/home.css"
 import "../src/style/categories.css"
+import "../src/style/venue.css"
 
 import Home from "./pages/Home.jsx";
 
@@ -32,6 +34,7 @@ export default function App() {
           <Route path="/:lang" element={<Home />} />
           <Route path="/categories/:category" element={<Venues />}/>
           <Route path="/venue/:venue" element={<Venue />}/>
+          <Route path="/venues/" element={<Search />}/>
         </Routes>
       </QueryClientProvider>
     </BrowserRouter>

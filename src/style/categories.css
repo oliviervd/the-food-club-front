@@ -34,4 +34,19 @@
         position: absolute;
         transform: translateX(-50%) translateY(-50%);
     }
+
+    i {
+        font-size: var(--font-m);
+        font-weight: 700;
+        background-color: #F0CA4F;
+        padding: 10px;
+        justify-content: center;
+        border-radius: 50px;
+        border: 3px solid black;
+        left: 50%;
+        top: 50%;
+        width: 70%;
+        position: absolute;
+        transform: translateX(-50%) translateY(-50%);
+    }
 }

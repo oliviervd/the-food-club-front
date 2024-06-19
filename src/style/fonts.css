@@ -16,6 +16,7 @@
     --font-xl: 3rem;
     --font-l: 2rem;
     --font-m: 1.3rem;
+    --font-s: 1rem;
 }
 
 
@@ -31,7 +32,6 @@ h1 {
     font-family: "Onest";
     font-weight: 900;
 }
-
 
 h2 {
     padding: 0;
@@ -65,7 +65,26 @@ h2 {
     font-size: var(--font-m);
 }
 
+.link:hover {
+    cursor: pointer
+}
+
+.link.selected {
+    background-color: black;
+    color: #F0CA4F;
+}
 
 ul {
     color: black;
 }
+
+@media (max-width: 600px) {
+    h2 {
+        font-size: var(--font-s);
+    }
+
+    .subtitle {
+        line-height: 1.2rem;
+    }
+}
+
