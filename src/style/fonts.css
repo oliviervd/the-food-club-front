@@ -13,7 +13,9 @@
 :root {
     --background-color: #F0CA4F;
     --font-xxl: 6rem;
-    --font-xl: 3rem
+    --font-xl: 3rem;
+    --font-l: 2rem;
+    --font-m: 1.3rem;
 }
 
 
@@ -46,11 +48,21 @@ h2 {
 .subtitle{
     font-weight: 500;
     line-height: 1.6rem;
+
+    p {
+        margin: 0;
+    }
 }
 
 .text-logo{
     font-family: "Onest";
     font-weight: 800;
+}
+
+.text-main {
+    font-family: "Onest";
+    font-weight: 500;
+    font-size: var(--font-m);
 }
 
 
