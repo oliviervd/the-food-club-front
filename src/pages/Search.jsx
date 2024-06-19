@@ -59,7 +59,7 @@ const Search = () => {
                 <div className={"divider"}></div>
                 <section style={{padding: "10px", position: "relative"}}>
                     <div style={{width: '100%', height: 'auto'}}>
-                        <AutoResizeText text={`a list for those ${prompt} craving ${search}`} maxFontSize={600} minFontSize={10}/>
+                        <AutoResizeText text={`a list for those ${prompt} and craving ${search}`} maxFontSize={600} minFontSize={10}/>
                     </div>
                     {matches.map((match,index)=>{
                         return (
