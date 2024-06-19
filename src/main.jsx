@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Venues from "./pages/Venues.jsx";
+import Venue from "./pages/Venue.jsx";
 
 import "../src/style/fonts.css"
 import "../src/style/media.css"
@@ -31,6 +32,7 @@ export default function App() {
           <Route path="/" element={<Navigate to="/en" replace />}/>
           <Route path="/:lang" element={<Home />} />
           <Route path="/categories/:category" element={<Venues />}/>
+          <Route path="/venue/:venue" element={<Venue />}/>
         </Routes>
       </QueryClientProvider>
     </BrowserRouter>
