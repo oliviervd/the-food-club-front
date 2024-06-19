@@ -1,5 +1,5 @@
 import Header from "../elements/Header.jsx";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import AutoResizeText from "../elements/AutoResizeText.jsx";
 import {fetchAPI} from "../utils/utils.jsx";
 import {useEffect, useState} from "react";
@@ -9,6 +9,9 @@ import DitherImage from "../elements/DitherImage.jsx";
 //todo: add hover effect
 
 const Venues = () => {
+
+    const nav = useNavigate()
+
     const [_category, _setCategory] = useState(null);
     const { category: categoryParam } = useParams();
     const { data: categories, isLoading, error } = useQuery(['categories', categoryParam], () => fetchAPI('categories', 'en'));
@@ -26,6 +29,11 @@ const Venues = () => {
 
     if (isLoading) return <div>Loading...</div>;
     if (error) return <div>Error: {error.message}</div>;
+
+    //navigate to selected venue
+    function navigateTo(route) {
+        nav(`/venue/${route}`)
+    }
 
     return(
         <>
@@ -45,13 +53,17 @@ const Venues = () => {
                     <section style={{padding: "10px"}}>
                         {_category.venues &&
                             _category.venues.venues.map((venue, index) => {
-                                console.log(venue.venue)
-                                return (
-                                    <div key={index} className={"category-list__box"}>
-                                        <DitherImage url={venue.venue.media.hero.sizes.tablet.url}/>
-                                        <h2 style={{textAlign: "center"}}>{venue.venue.venueName}</h2>
-                                    </div>
-                                )
+                                let v = venue.venue
+                                // check if status is published (_status) and if part of the club (status)
+                                if (v._status == "published" && v.status == "yes") {
+                                    return (
+                                        <div key={index} className={"category-list__box"} onClick={()=>{navigateTo(v.url)}}>
+                                            <DitherImage url={v.media.hero.sizes.tablet.url}/>
+                                            <h2 style={{textAlign: "center"}}>{v.venueName}</h2>
+                                        </div>
+                                    )
+                                }
+
                             })
                         }
                     </section>
