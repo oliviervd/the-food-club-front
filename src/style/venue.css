@@ -1,0 +1,10 @@
+.cuisines{
+    display: flex;
+    flex-flow: row;
+    gap: 5px;
+
+    h2 {
+        border: 2px black solid;
+        padding: 0px 5px;
+    }
+}
