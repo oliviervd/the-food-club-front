@@ -2,10 +2,34 @@
     padding: 10px;
 
     h2 {
-        margin-bottom: 10px;
+        margin-bottom: 5px;
         width: 100%;
         text-align: center;
         justify-content: center;
         border: 2px solid black;
+    }
+}
+
+.category-list__box{
+    position: relative;
+    padding-bottom: 5px;
+
+    img {
+        width: 100%;
+        background-size: cover; /* Ensures the image covers the container */
+        background-position: center; /* Centers the image */
+        background-repeat: no-repeat; /* Prevents the image from repeating */
+    }
+
+    h2 {
+        background-color: #F0CA4F;
+        padding: 10px;
+        justify-content: center;
+        border-radius: 50px;
+        left: 50%;
+        top: 50%;
+        width: 40%;
+        position: absolute;
+        transform: translateX(-50%) translateY(-50%);
     }
 }

@@ -1,7 +1,7 @@
 import {useQuery} from "@tanstack/react-query";
 import {useEffect, useState, useRef} from "react";
 
-export function fetchAPI(endpoint, locale) {
+/*export function fetchAPI(endpoint, locale) {
     // fetch all data from a certain collection based on a given locale and limit.
     const {data, isLoading, status} = useQuery({
         queryKey:[endpoint],
@@ -12,7 +12,19 @@ export function fetchAPI(endpoint, locale) {
             }).then((req)=>req.json())
     })
     return data
+}*/
+
+export async function fetchAPI(endpoint, locale) {
+    const response = await fetch(`https://p01--cms--j4bvc8vdjtjb.code.run/api/${endpoint}/?locale=${locale}&limit=1000`, {
+        credentials: 'include',
+        method: 'GET'
+    });
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
+    }
+    return response.json();
 }
+
 
 export function pricingLabel(input) {
     // function that translates string from Payload into Euro Symbols.

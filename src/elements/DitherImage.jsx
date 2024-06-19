@@ -6,8 +6,6 @@ const DitherImage = ({ url }) => {
 
     useEffect(() => {
         if (url) {
-            console.log(url)
-
             const dither = (url) => {
                 const img = new Image();
                 img.crossOrigin = 'Anonymous'; // Handle CORS issues if the image is from a different origin

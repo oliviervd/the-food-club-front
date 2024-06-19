@@ -1,7 +1,15 @@
 import DitherImage from "./DitherImage.jsx";
 import AutoResizeText from "./AutoResizeText.jsx";
+import {useNavigate} from "react-router-dom";
 
 const Header = () => {
+    // todo: add languages
+    // todo: add home button
+    // todo: add map button
+
+    // navigate back to home
+    const nav = useNavigate();
+
     return(
         <header>
             <div style={{width: '100%', height: 'auto'}}>
