@@ -23,6 +23,10 @@ const Home = () => {
     return(
         <div>
             <Header></Header>
+            <div className={"divider"}></div>
+            <section style={{padding: "10px"}}>
+                <h2 className={"subtitle"}> FOOD CLUB loves lists. That's why we created some specially for you. From healthy snacks to absurdly comforting food, the order is yours.</h2>
+            </section>
             <section className={"home__container"}>
                 {categoryList &&
                     <CategoryList data={categoryList}/>

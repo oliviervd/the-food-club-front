@@ -19,6 +19,7 @@
         background-size: cover; /* Ensures the image covers the container */
         background-position: center; /* Centers the image */
         background-repeat: no-repeat; /* Prevents the image from repeating */
+        border: black 3px solid;
     }
 
     h2 {
@@ -26,6 +27,7 @@
         padding: 10px;
         justify-content: center;
         border-radius: 50px;
+        border: 3px solid black;
         left: 50%;
         top: 50%;
         width: 40%;

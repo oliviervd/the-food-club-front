@@ -38,6 +38,16 @@ h2 {
     font-weight: 900;
 }
 
+.divider {
+    border-bottom: 3px solid black;
+    margin: 10px;
+}
+
+.subtitle{
+    font-weight: 500;
+    line-height: 1.6rem;
+}
+
 .text-logo{
     font-family: "Onest";
     font-weight: 800;

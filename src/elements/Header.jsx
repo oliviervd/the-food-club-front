@@ -12,7 +12,7 @@ const Header = () => {
 
     return(
         <header>
-            <div style={{width: '100%', height: 'auto'}}>
+            <div style={{width: '100%', height: 'auto'}} onClick={()=>{nav("/")}}>
                 <AutoResizeText text="FOOD CLUB" maxFontSize={600} minFontSize={10}/>
             </div>
             <div style={{width: '100%', height: 'auto'}}>
