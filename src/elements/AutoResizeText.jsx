@@ -16,8 +16,7 @@ const AutoResizeText = ({ text, maxFontSize = 100, minFontSize = 10 }) => {
             textElement.style.fontSize = `${currentFontSize}px`;
 
             while (
-                (textElement.scrollWidth > container.clientWidth ||
-                    textElement.scrollHeight > container.clientHeight) &&
+                (textElement.scrollWidth > container.clientWidth)  &&
                 currentFontSize > minFontSize
                 ) {
                 currentFontSize -= 1;
@@ -37,7 +36,7 @@ const AutoResizeText = ({ text, maxFontSize = 100, minFontSize = 10 }) => {
         <div ref={containerRef} style={{ width: '100%', height: '100%' }}>
             <div className={"text-logo"}
                 ref={textRef}
-                style={{fontSize: `${fontSize}px`, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'}}
+                style={{fontSize: `${fontSize}px`, whiteSpace: 'nowrap', overflow: 'hidden'}}
             >
                 {text}
             </div>
