@@ -30,7 +30,11 @@ const Venue = () => {
             if (venues) {
                 const res = venues.docs.find(venue => venue.url === venueParam);
                 setVenue(res)
-                setLocation(res.club)
+                try {
+                    setLocation(res.club)
+                } catch (e) {
+                    console.error(e)
+                }
             }
         }
         getVenue()

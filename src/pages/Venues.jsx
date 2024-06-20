@@ -107,7 +107,7 @@ const Venues = () => {
                                                             return (
                                                                 <a style={{color: "black", textDecoration: "none"}}><h2
                                                                     className={"link"}
-                                                                    onClick={() => navigateTo(`/venues/?cuisine=${cuisine.name}`)}>{cuisine.name}</h2>
+                                                                    onClick={() => nav(`/venues/?cuisine=${cuisine.name}`)}>{cuisine.name}</h2>
                                                                 </a>
                                                             )
                                                         })}
