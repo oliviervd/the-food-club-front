@@ -18,6 +18,8 @@ const Home = () => {
     const [target, setTarget] = useState(null);
     const [location, setLocation] = useState(null);
     const isSmall = useMediaQuery("(max-width: 600px)");
+    const isBig = useMediaQuery("(min-width: 1400px)");
+
 
     const {data: list, isLoading, error} = useQuery(["lists"], ()=> fetchAPI('lists','en'))
 
@@ -81,7 +83,7 @@ const Home = () => {
                     </div>
                 }
                 {categoryList &&
-                    <div>
+                    <div style={{paddingLeft : isBig ? "20px" : "0"}}>
                         <section style={{padding: "10px 0"}}>
                             <h2 className={"subtitle"}> FOOD CLUB loves lists. That's why we created some specially for
                                 you.

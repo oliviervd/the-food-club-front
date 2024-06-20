@@ -5,10 +5,10 @@ import {useEffect, useState} from "react";
 import DitherImage from "./DitherImage.jsx";
 
 const Header = ({location, setLocation, interact, landing, setTarget}) => {
+
     // todo: add languages
     // todo: add map button
     // todo: make header logo "FOOD CLUB" (fold) when scrolling down.
-    // todo: add different experience for landing screen -->
 
     // navigate back to home
     const nav = useNavigate();
@@ -22,7 +22,7 @@ const Header = ({location, setLocation, interact, landing, setTarget}) => {
                         <div style={{width: '100%', height: 'auto'}} onClick={() => {
                             nav("/")
                         }}>
-                            <AutoResizeText text="FOOD CLUB" maxFontSize={600} minFontSize={10}/>
+                            <AutoResizeText text="FOOD CLUB" maxFontSize={600} minFontSize={10} padding={"0px 0px"}/>
                         </div>
                         <div style={{display:"flex", flexFlow:"row", flexDirection: "revert"}}>
                             <div style={{width:"90%"}}></div>
@@ -46,7 +46,7 @@ const Header = ({location, setLocation, interact, landing, setTarget}) => {
                     <div style={{width: '100%', height: 'auto'}} onClick={() => {
                         nav("/")
                     }}>
-                        <AutoResizeText text="FOOD CLUB" maxFontSize={600} minFontSize={10}/>
+                        <AutoResizeText text="FOOD CLUB" maxFontSize={600} minFontSize={10} padding={"0px 0px"}/>
                     </div>
                 }
 
@@ -54,7 +54,7 @@ const Header = ({location, setLocation, interact, landing, setTarget}) => {
                     <div>
                         <div style={{width: '100%', height: 'auto'}}>
                             <AutoResizeText text="WELCOME TO FOOD CLUB. LOOKING FOR SOMETHING IN..?" maxFontSize={600}
-                                            minFontSize={10}/>
+                                            minFontSize={10} padding={"0px 0px"}/>
                         </div>
                         <nav className={"flex-buttons"}>
                             <h2 className={`link ${location === "gent" ? "selected" : ""}`} onClick={interact ? () => {
@@ -74,7 +74,7 @@ const Header = ({location, setLocation, interact, landing, setTarget}) => {
                                 <div style={{width: '100%', height: 'auto'}}>
                                     <AutoResizeText text={`WE LOVE ${location.toUpperCase()}! HOW CAN WE HELP YOU?`}
                                                     maxFontSize={600}
-                                                    minFontSize={10}/>
+                                                    minFontSize={10} />
                                 </div>
                                 <nav className={"flex-buttons"}>
                                     <h2 className={`link selected`} onClick={() => {
@@ -85,7 +85,7 @@ const Header = ({location, setLocation, interact, landing, setTarget}) => {
                                 <div onClick={() => {
                                     setTarget("cat_list")
                                 }} style={{border: "black 2px solid", marginTop: "2px"}}>
-                                    <AutoResizeText text={`↓ OR CHECK OUT THE LISTS BELOW ↓`}/>
+                                    <AutoResizeText text={`↓ OR CHECK OUT THE LISTS BELOW ↓`} />
                                 </div>
                             </>
 

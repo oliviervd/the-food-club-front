@@ -7,14 +7,18 @@ import {useQuery} from "@tanstack/react-query";
 import DitherImage from "../elements/DitherImage.jsx";
 import {useMediaQuery} from "@uidotdev/usehooks";
 import CategoryList from "../elements/CategoryList";
+import serialize from "../utils/serialize.jsx";
 
-//todo: add hover effect
+// todo: add hover effect
+// todo: highlight locations (clubs) that are relevant and grey out others.
+// todo: make locations selectable to filter.
 // todo: add locales
 
 const Venues = () => {
 
     const nav = useNavigate()
     const isSmall = useMediaQuery("(max-width: 600px)");
+    const isBig = useMediaQuery("(min-width: 1400px)");
 
     const [_category, _setCategory] = useState(null);
     const [categoryList, setCategoryList] = useState([]);
@@ -64,39 +68,60 @@ const Venues = () => {
                                 <h2 className={"subtitle"}>{_category.categorySubTitles}</h2>
                             </div>
                         </section>
-                        <section>
-                            {_category.venues &&
-                                _category.venues.venues.map((venue, index) => {
-                                    let v = venue.venue
-                                    // check if status is published (_status) and if part of the club (status)
-                                    if (v._status == "published" && v.status == "yes") {
+                        {isSmall &&
+                            <section>
+                                {_category.venues &&
+                                    _category.venues.venues.map((venue, index) => {
+                                        let v = venue.venue
+                                        // check if status is published (_status) and if part of the club (status)
+                                        if (v._status == "published" && v.status == "yes") {
+                                            return (
+                                                <div key={index} className={"category-list__box"} onClick={() => {
+                                                    navigateTo(v.url)
+                                                }}>
+                                                    <DitherImage url={v.media.hero.sizes.tablet.url}/>
+                                                    <h2 style={{textAlign: "center"}}>{v.venueName}</h2>
+                                                </div>
+                                            )
+                                        }
+
+                                    })
+                                }
+                            </section>
+                        }
+                        {!isSmall &&
+                            <section>
+                                {_category.venues &&
+                                    _category.venues.venues.map((venue, index) => {
+                                        let v = venue.venue
+                                        // ceheck if status is published (_status) and if part of the club.
                                         return (
-                                            <div key={index} className={"category-list__box"} onClick={()=>{navigateTo(v.url)}}>
+                                            <div className={"venue-list__container"}>
                                                 <DitherImage url={v.media.hero.sizes.tablet.url}/>
-                                                <h2 style={{textAlign: "center"}}>{v.venueName}</h2>
+                                                <div style={{width: "90%"}}>
+                                                    <AutoResizeText text={v.venueName} padding={"0px 0px"}/>
+                                                </div>
                                             </div>
                                         )
-                                    }
-
-                                })
-                            }
-                        </section>
+                                    })
+                                }
+                            </section>
+                        }
                     </div>
+                        }
+                        {categoryList && isBig &&
+                            <div style={{marginLeft: "20px"}}>
+                                <section style={{padding: "10px"}}>
+                                    <h2 className={"subtitle"}> FOOD CLUB loves lists. That's why we created some
+                                        specially for
+                                        you.
+                                        From healthy snacks to absurdly comforting food, the order is yours.</h2>
+                                </section>
+                                <CategoryList data={categoryList}/>
+                            </div>
+                        }
+                    </section>
+                    </>
+                    )
                 }
-                {categoryList && !isSmall &&
-                    <div>
-                        <section style={{padding: "10px"}}>
-                            <h2 className={"subtitle"}> FOOD CLUB loves lists. That's why we created some specially for
-                                you.
-                                From healthy snacks to absurdly comforting food, the order is yours.</h2>
-                        </section>
-                        <CategoryList data={categoryList}/>
-                    </div>
-                }
-            </section>
-
-
-        </>
-    )
-}
 export default Venues;

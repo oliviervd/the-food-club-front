@@ -1,10 +1,9 @@
 import DitherImage from "./DitherImage.jsx";
 import {useNavigate} from "react-router-dom";
-// category list
+// todo: add hover effect on desktop (show text explaining the category)
+
 const CategoryList = ({data}) => {
-
     const nav = useNavigate()
-
     function navigateTo(route){
         nav(`/categories/${route}`)
     }
@@ -27,8 +26,5 @@ const CategoryList = ({data}) => {
             </section>
         )
     }
-
-
-
 }
 export default CategoryList

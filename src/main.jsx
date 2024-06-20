@@ -11,6 +11,8 @@ import "../src/style/media.css"
 import "../src/style/home.css"
 import "../src/style/categories.css"
 import "../src/style/venue.css"
+import "../src/style/main.css"
+
 
 import Home from "./pages/Home.jsx";
 

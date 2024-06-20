@@ -1,7 +1,8 @@
 // src/AutoResizeText.jsx
 import React, { useState, useEffect, useRef } from 'react';
 
-const AutoResizeText = ({ text, maxFontSize = 100, minFontSize = 10 }) => {
+const AutoResizeText = ({ text, maxFontSize = 100, minFontSize = 10 , padding = "15px 0px"}) => {
+
     const [fontSize, setFontSize] = useState(maxFontSize);
     const containerRef = useRef(null);
     const textRef = useRef(null);
@@ -36,7 +37,7 @@ const AutoResizeText = ({ text, maxFontSize = 100, minFontSize = 10 }) => {
         <div ref={containerRef} style={{ width: '100%', height: '100%' }}>
             <div className={"text-logo"}
                 ref={textRef}
-                style={{fontSize: `${fontSize}px`, whiteSpace: 'nowrap', overflow: 'hidden'}}
+                style={{fontSize: `${fontSize}px`, whiteSpace: 'nowrap', overflow: 'hidden', padding: padding}}
             >
                 {text}
             </div>

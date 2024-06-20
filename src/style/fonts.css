@@ -47,6 +47,8 @@ h2 {
 
 .text-logo{
     font-weight: 800;
+    line-height: 0.9;
+    padding: 15px 0;
 }
 
 .text-main {
