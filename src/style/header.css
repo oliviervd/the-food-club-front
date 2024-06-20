@@ -10,6 +10,7 @@ header > h1 {
     display: flex;
     justify-content: space-evenly;
     flex-flow: row;
+    flex-wrap: wrap;
     gap :2px;
     > h2 {
         padding: 0;

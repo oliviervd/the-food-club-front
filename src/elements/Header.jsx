@@ -13,32 +13,33 @@ const Header = ({location, setLocation, interact, landing, setTarget}) => {
     // navigate back to home
     const nav = useNavigate();
     const isSmall = useMediaQuery("(max-width: 600px)");
-    const [fullHeader, setFullHeader] = useState(true);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            if (window.scrollY > 0) {
-                setFullHeader(false); // Reduced height when not at the top
-            } else {
-                setFullHeader(true); // Original height at the top
-            }
-        };
-
-        window.addEventListener('scroll', handleScroll);
-
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, []);
 
     if (landing) {
         return(
             <header>
                 {!isSmall &&
-                    <div style={{width: '30%', height: 'auto'}} onClick={() => {
-                        nav("/")
-                    }}>
-                        <AutoResizeText text="FOOD CLUB" maxFontSize={600} minFontSize={10}/>
+                    <div style={{display: 'grid', gridTemplateColumns: "30% 70%"}}>
+                        <div style={{width: '100%', height: 'auto'}} onClick={() => {
+                            nav("/")
+                        }}>
+                            <AutoResizeText text="FOOD CLUB" maxFontSize={600} minFontSize={10}/>
+                        </div>
+                        <div style={{display:"flex", flexFlow:"row", flexDirection: "revert"}}>
+                            <div style={{width:"90%"}}></div>
+                            <nav className={"flex-buttons"} style={{
+                                display: "flex",
+                                flexFlow: "column",
+                                justifyContent: "space-between",
+                                textAlign: "right",
+                                width: "10%"
+                            }}>
+                                <h2 className={"link"}>NL</h2>
+                                <h2 className={"link"}>FR</h2>
+                                <h2 className={"link selected"}>EN</h2>
+                            </nav>
+                        </div>
+
+
                     </div>
                 }
                 {isSmall &&
@@ -97,11 +98,36 @@ const Header = ({location, setLocation, interact, landing, setTarget}) => {
     } else {
         return (
             <header>
-                <div style={{width: '100%', height: 'auto'}} onClick={() => {
-                    nav("/")
-                }}>
-                <AutoResizeText text="FOOD CLUB" maxFontSize={600} minFontSize={10}/>
-                </div>
+                {!isSmall &&
+                    <div style={{display: 'grid', gridTemplateColumns: "30% 70%"}}>
+                        <div style={{width: '100%', height: 'auto'}} onClick={() => {
+                            nav("/")
+                        }}>
+                            <AutoResizeText text="FOOD CLUB" maxFontSize={600} minFontSize={10}/>
+                        </div>
+                        <div style={{display:"flex", flexFlow:"row", flexDirection: "revert"}}>
+                            <div style={{width:"90%"}}></div>
+                            <nav className={"flex-buttons"} style={{
+                                display: "flex",
+                                flexFlow: "column",
+                                justifyContent: "space-between",
+                                textAlign: "right",
+                                width: "10%"
+                            }}>
+                                <h2 className={"link"}>NL</h2>
+                                <h2 className={"link"}>FR</h2>
+                                <h2 className={"link selected"}>EN</h2>
+                            </nav>
+                        </div>
+                    </div>
+                }
+                {isSmall &&
+                    <div style={{width: '100%', height: 'auto'}} onClick={() => {
+                        nav("/")
+                    }}>
+                        <AutoResizeText text="FOOD CLUB" maxFontSize={600} minFontSize={10}/>
+                    </div>
+                }
                 <div style={{width: '100%', height: 'auto'}}>
                     <AutoResizeText text="TAKING YOU OUT FOR SERIOUS GOOD FOOD IN .." maxFontSize={600}
                                     minFontSize={10}/>
