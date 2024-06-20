@@ -5,6 +5,8 @@ import {fetchAPI} from "../utils/utils.jsx";
 import {useEffect, useState} from "react";
 import {useQuery} from "@tanstack/react-query";
 import DitherImage from "../elements/DitherImage.jsx";
+import {useMediaQuery} from "@uidotdev/usehooks";
+import CategoryList from "../elements/CategoryList";
 
 //todo: add hover effect
 // todo: add locales
@@ -12,8 +14,11 @@ import DitherImage from "../elements/DitherImage.jsx";
 const Venues = () => {
 
     const nav = useNavigate()
+    const isSmall = useMediaQuery("(max-width: 600px)");
 
     const [_category, _setCategory] = useState(null);
+    const [categoryList, setCategoryList] = useState([]);
+
     const { category: categoryParam } = useParams();
     const { data: categories, isLoading, error } = useQuery(['categories', categoryParam], () => fetchAPI('categories', 'en'));
 
@@ -28,6 +33,13 @@ const Venues = () => {
         getCategory();
     },[categoryParam])
 
+    const {data: list} = useQuery(["lists"], ()=> fetchAPI('lists','en'))
+    useEffect(() => {
+        if(list) {
+            setCategoryList(list);
+        }
+    }, [list]);
+
     if (isLoading) return <div></div>;
     if (error) return <div>Error: {error.message}</div>;
 
@@ -41,36 +53,48 @@ const Venues = () => {
             <Header/>
             <div className={"divider"}></div>
 
-            {_category &&
-                <div>
-                    <section style={{padding: "10px"}}>
-                        <div style={{width: '50%', height: 'auto'}}>
-                            <AutoResizeText text={_category.categoryTitle} maxFontSize={600} minFontSize={10}/>
-                        </div>
-                        <div style={{width: '100%', height: 'auto'}}>
-                            <h2 className={"subtitle"}>{_category.categorySubTitles}</h2>
-                        </div>
-                    </section>
-                    <section style={{padding: "10px"}}>
-                        {_category.venues &&
-                            _category.venues.venues.map((venue, index) => {
-                                let v = venue.venue
-                                // check if status is published (_status) and if part of the club (status)
-                                if (v._status == "published" && v.status == "yes") {
-                                    return (
-                                        <div key={index} className={"category-list__box"} onClick={()=>{navigateTo(v.url)}}>
-                                            <DitherImage url={v.media.hero.sizes.tablet.url}/>
-                                            <h2 style={{textAlign: "center"}}>{v.venueName}</h2>
-                                        </div>
-                                    )
-                                }
+            <section class={"home__container"}>
+                {_category &&
+                    <div>
+                        <section style={{padding: "10px"}}>
+                            <div style={{width: '50%', height: 'auto'}}>
+                                <AutoResizeText text={_category.categoryTitle} maxFontSize={600} minFontSize={10}/>
+                            </div>
+                            <div style={{width: '100%', height: 'auto'}}>
+                                <h2 className={"subtitle"}>{_category.categorySubTitles}</h2>
+                            </div>
+                        </section>
+                        <section style={{padding: "10px"}}>
+                            {_category.venues &&
+                                _category.venues.venues.map((venue, index) => {
+                                    let v = venue.venue
+                                    // check if status is published (_status) and if part of the club (status)
+                                    if (v._status == "published" && v.status == "yes") {
+                                        return (
+                                            <div key={index} className={"category-list__box"} onClick={()=>{navigateTo(v.url)}}>
+                                                <DitherImage url={v.media.hero.sizes.tablet.url}/>
+                                                <h2 style={{textAlign: "center"}}>{v.venueName}</h2>
+                                            </div>
+                                        )
+                                    }
 
-                            })
-                        }
-                    </section>
-                </div>
+                                })
+                            }
+                        </section>
+                    </div>
+                }
+                {categoryList && !isSmall &&
+                    <div>
+                        <section style={{padding: "10px"}}>
+                            <h2 className={"subtitle"}> FOOD CLUB loves lists. That's why we created some specially for
+                                you.
+                                From healthy snacks to absurdly comforting food, the order is yours.</h2>
+                        </section>
+                        <CategoryList data={categoryList}/>
+                    </div>
+                }
+            </section>
 
-            }
 
         </>
     )
