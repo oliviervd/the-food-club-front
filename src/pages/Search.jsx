@@ -5,6 +5,8 @@ import AutoResizeText from "../elements/AutoResizeText.jsx";
 import {useQuery} from "@tanstack/react-query";
 import {fetchAPI} from "../utils/utils.jsx";
 import DitherImage from "../elements/DitherImage.jsx";
+import {useMediaQuery} from "@uidotdev/usehooks";
+import serialize from "../utils/serialize.jsx";
 
 const Search = () => {
 
@@ -14,24 +16,31 @@ const Search = () => {
     const [searchParams, setSearchParams] = useSearchParams()
     const [search, setSearch] = useState("");
     const [matches, setMatches] = useState([]);
+    const [cuisine, setCuisine] = useState()
     const nav = useNavigate();
+    const isSmall = useMediaQuery("(max-width: 600px)");
+    const isBig = useMediaQuery("(min-width: 1400px)");
+
+    const {data: venues, isLoading, error} =    useQuery(["venues"], ()=> fetchAPI('venue', 'en'));
+    const {data: cuisines} = useQuery(["cuisines"], ()=>fetchAPI("cuisine", "en"))
 
     const [location, setLocation] = useState(null);
     const [prompt, setPrompt] = useState("");
 
     // fetch all venues
-    const {data: venues, isLoading, error} = useQuery(["venue"], ()=>fetchAPI("venue", "en"))
 
     useEffect(() => {
         const getVenues = async () => {
             const venues = await fetchAPI("venue", "en");
-            console.log(venues)
+            const cuisines = await fetchAPI("cuisine", "en");
             const searchCuisine = searchParams.get("cuisine");
             const searchLocation = location
             const matchedVenues = venues.docs.filter(venue =>
                 venue.cuisineUsed.some(cuisine => cuisine.name === searchCuisine) &&
                 (!searchLocation || venue.club === searchLocation)
             );
+            const matchedCuisine = cuisines.docs.filter(cuisine => cuisine.name === searchCuisine);
+            setCuisine(matchedCuisine)
             setMatches(matchedVenues);
         }
         getVenues();
@@ -60,19 +69,64 @@ const Search = () => {
             <>
                 <Header location={location} setLocation={setLocation} interact={true}/>
                 <div className={"divider"}></div>
-                <section style={{padding: "10px", position: "relative"}}>
-                    <div style={{width: '100%', height: 'auto'}}>
-                        <AutoResizeText text={`a list for those ${prompt} craving ${search}`} maxFontSize={600} minFontSize={10}/>
-                    </div>
-                    {matches.map((match,index)=>{
-                        return (
-                            <div key={index} className={"category-list__box"} onClick={()=>{navigateTo(match.url)}}>
-                                <DitherImage url={match.media.hero.sizes.tablet.url}/>
-                                <h2 style={{textAlign: "center"}}>{match.venueName}</h2>
-                            </div>
-                        )
+                <div style={{width: '99%', height: 'auto'}}>
+                    <AutoResizeText text={`a list for those ${prompt} craving ${search}`} maxFontSize={600}
+                                    minFontSize={10} padding={"20px 20px"}/>
+                </div>
+                <div className={"divider"}></div>
 
-                    })}
+                <section class={"home__container"}>
+                    <section style={{padding: "10px", position: "relative"}}>
+                        {isSmall &&
+                            matches.map((match, index) => {
+                                return (
+                                    <div key={index} className={"category-list__box"} onClick={() => {
+                                        navigateTo(match.url)
+                                    }}>
+                                        <DitherImage url={match.media.hero.sizes.tablet.url}/>
+                                        <h2 style={{textAlign: "center"}}>{match.venueName}</h2>
+                                    </div>
+                                )
+
+                            })
+                        }
+                        {!isSmall &&
+                            matches.map((match, index) => {
+                                return (
+                                    <div className={"venue-list__container"}>
+                                        <DitherImage url={match.media.hero.sizes.tablet.url}/>
+                                        <div>
+                                            <div style={{width: "90%"}}>
+                                                <AutoResizeText text={match.venueName} padding={"0px 0px 20px 0px"}/>
+                                            </div>
+                                            <div className={"cuisines"}>
+                                                {match.cuisineUsed.map((cuisine) => {
+                                                    return (
+                                                        <a style={{color: "black", textDecoration: "none"}}><h2
+                                                            className={"link"}
+                                                            onClick={() => nav(`/venues/?cuisine=${cuisine.name}`)}>{cuisine.name}</h2>
+                                                        </a>
+                                                    )
+                                                })}
+                                            </div>
+                                        </div>
+                                    </div>
+                                )
+
+                            })
+                        }
+
+                    </section>
+                    {!isSmall &&
+                        <section>
+                            {cuisine[0].description &&
+                                <p className={"text-main"} style={{fontSize: "var(--font-m)", paddingLeft: "20px"}}>
+                                    {serialize(cuisine[0].description)}
+                                </p>
+                            }
+
+                        </section>
+                    }
                 </section>
 
             </>
@@ -80,7 +134,7 @@ const Search = () => {
     } else {
         return (
             <>
-                <Header location={location} setLocation={setLocation} interact={true}/>
+            <Header location={location} setLocation={setLocation} interact={true}/>
                 <section style={{padding: "10px", position: "relative"}}>
                     <div style={{width: '100%', height: 'auto'}}>
                         <AutoResizeText text={`we realize you are ${prompt} craving ${search} but...`} maxFontSize={600}
