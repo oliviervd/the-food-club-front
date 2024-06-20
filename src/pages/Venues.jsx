@@ -28,7 +28,7 @@ const Venues = () => {
         getCategory();
     },[categoryParam])
 
-    if (isLoading) return <div>Loading...</div>;
+    if (isLoading) return <div></div>;
     if (error) return <div>Error: {error.message}</div>;
 
     //navigate to selected venue
