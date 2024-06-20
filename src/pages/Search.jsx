@@ -8,6 +8,9 @@ import DitherImage from "../elements/DitherImage.jsx";
 
 const Search = () => {
 
+    // todo: update search to be cleaner for larger screens
+    // todo: update sentence, when there is no location set.
+
     const [searchParams, setSearchParams] = useSearchParams()
     const [search, setSearch] = useState("");
     const [matches, setMatches] = useState([]);
@@ -48,7 +51,7 @@ const Search = () => {
         if (!location) {
             return ""
         } else {
-            return `in ${location}`
+            return `in ${location} and`
         }
     }
 
@@ -59,7 +62,7 @@ const Search = () => {
                 <div className={"divider"}></div>
                 <section style={{padding: "10px", position: "relative"}}>
                     <div style={{width: '100%', height: 'auto'}}>
-                        <AutoResizeText text={`a list for those ${prompt} and craving ${search}`} maxFontSize={600} minFontSize={10}/>
+                        <AutoResizeText text={`a list for those ${prompt} craving ${search}`} maxFontSize={600} minFontSize={10}/>
                     </div>
                     {matches.map((match,index)=>{
                         return (
@@ -80,7 +83,7 @@ const Search = () => {
                 <Header location={location} setLocation={setLocation} interact={true}/>
                 <section style={{padding: "10px", position: "relative"}}>
                     <div style={{width: '100%', height: 'auto'}}>
-                        <AutoResizeText text={`we realize you are ${prompt} and craving ${search} but...`} maxFontSize={600}
+                        <AutoResizeText text={`we realize you are ${prompt} craving ${search} but...`} maxFontSize={600}
                                         minFontSize={10}/>
                     </div>
                 </section>
