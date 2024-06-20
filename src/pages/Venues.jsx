@@ -98,8 +98,20 @@ const Venues = () => {
                                         return (
                                             <div className={"venue-list__container"}>
                                                 <DitherImage url={v.media.hero.sizes.tablet.url}/>
-                                                <div style={{width: "90%"}}>
-                                                    <AutoResizeText text={v.venueName} padding={"0px 0px"}/>
+                                                <div>
+                                                    <div style={{width: "90%"}}>
+                                                        <AutoResizeText text={v.venueName} padding={"0px 0px 20px 0px"}/>
+                                                    </div>
+                                                    <div className={"cuisines"}>
+                                                        {v.cuisineUsed.map((cuisine) => {
+                                                            return (
+                                                                <a style={{color: "black", textDecoration: "none"}}><h2
+                                                                    className={"link"}
+                                                                    onClick={() => navigateTo(`/venues/?cuisine=${cuisine.name}`)}>{cuisine.name}</h2>
+                                                                </a>
+                                                            )
+                                                        })}
+                                                    </div>
                                                 </div>
                                             </div>
                                         )
@@ -108,10 +120,10 @@ const Venues = () => {
                             </section>
                         }
                     </div>
-                        }
-                        {categoryList && isBig &&
-                            <div style={{marginLeft: "20px"}}>
-                                <section style={{padding: "10px"}}>
+                }
+                {categoryList && isBig &&
+                    <div style={{marginLeft: "20px"}}>
+                    <section style={{padding: "10px"}}>
                                     <h2 className={"subtitle"}> FOOD CLUB loves lists. That's why we created some
                                         specially for
                                         you.
