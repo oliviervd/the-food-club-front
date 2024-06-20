@@ -82,7 +82,7 @@ const Home = () => {
                 }
                 {categoryList &&
                     <div>
-                        <section style={{padding: "10px"}}>
+                        <section style={{padding: "10px 0"}}>
                             <h2 className={"subtitle"}> FOOD CLUB loves lists. That's why we created some specially for
                                 you.
                                 From healthy snacks to absurdly comforting food, the order is yours.</h2>

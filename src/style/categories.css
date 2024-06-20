@@ -1,5 +1,5 @@
 .category-list__container{
-    padding: 10px;
+
     h2 {
         margin-bottom: 5px;
         width: 100%;
@@ -14,7 +14,8 @@
     padding-bottom: 5px;
 
     img {
-        width: 100%;
+        width: 99%;
+        justify-content: center;
         background-size: cover; /* Ensures the image covers the container */
         background-position: center; /* Centers the image */
         background-repeat: no-repeat; /* Prevents the image from repeating */
