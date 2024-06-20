@@ -25,6 +25,12 @@ export async function fetchAPI(endpoint, locale) {
     return response.json();
 }
 
+export function scrollTo(id) {
+    const element = document.getElementById(id);
+    if (element){
+        element.scrollIntoView({behavior:"smooth"});
+    }
+}
 
 export function pricingLabel(input) {
     // function that translates string from Payload into Euro Symbols.
@@ -37,23 +43,6 @@ export function pricingLabel(input) {
         case "four": return "€€€€"
     }
 }
-
-export function colorWordInString(string, substring) {
-    // based on a given substring, replace the style using a span.
-    const words = string.split("");
-    const styledWords = words.map((w) => {
-        //if the word matches
-        if (w === substring) {
-            return `<span className="highlight">${w}</span>`;
-        }
-        //else
-        return w;
-    });
-
-    const hightlightedTitle = styledWords.join("");
-    return hightlightedTitle;
-}
-
 
 export function useIntersectionObserver({delay}) {
     // function that checks if an element is in the viewport
