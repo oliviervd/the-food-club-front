@@ -36,9 +36,10 @@ const Venue = () => {
         getVenue()
     }, [venueParam]);
 
-    console.log(venue)
-
-    const address = "☞ " + venue.address.street + " " + venue.address.houseNumber + ", " + venue.address.postalCode + " " + venue.address.city;
+    let address = ""
+    if (venue.address) {
+        address = "☞ " + venue.address.street + " " + venue.address.houseNumber + ", " + venue.address.postalCode + " " + venue.address.city;
+    }
 
     return (
         <>
