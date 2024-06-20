@@ -41,8 +41,8 @@ const Venue = () => {
         <>
             <Header setLocation={setLocation} location={location} interact={false}/>
             {venue &&
-                <section style={{padding: "10px", position: "relative"}}>
-                    <DitherImage url={venue.media.hero.sizes.tablet.url}/>
+                <section style={{padding: "0 10px", position: "relative"}}>
+                    <DitherImage style={{justifyContent:"center", maxWidth:"99%"}} url={venue.media.hero.sizes.tablet.url}/>
                     <div style={{width: "100%", height: 'auto', position: "relative"}}>
                         <AutoResizeText text={venue.venueName}/>
                     </div>
@@ -59,11 +59,12 @@ const Venue = () => {
                         {serialize(venue.reviews.review)}
                     </p>
                     <div style={{
-                        width: "98%",
+                        width: "99%",
                         height: 'auto',
+                        textAlign:"center",
+                        justifyContent:"center",
                         position: "relative",
                         border: "4px solid black",
-                        padding: "0 5px"
                     }}>
                         {venue.reservations &&
                             <a className={"link"} style={{color: "black", textDecoration:"none"}} href={venue.reservations}>
@@ -71,7 +72,9 @@ const Venue = () => {
                             </a>
                         }
                         {!venue.reservations &&
-                            <AutoResizeText text='NO RESERVATIONS POSSIBLE'/>
+                            <div style={{maxWidth:"99%"}}>
+                                <AutoResizeText text='NO RESERVATIONS POSSIBLE'/>
+                            </div>
                         }
                     </div>
                     <div className={"divider"}></div>

@@ -1,5 +1,7 @@
 img {
-    max-width: 100%;
+    max-width: 99%;
+    text-align: center;
+    justify-content: center;
     margin-top: 5px;
     border: black 3px solid;
 }
