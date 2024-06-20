@@ -56,7 +56,7 @@ const Venues = () => {
             <section class={"home__container"}>
                 {_category &&
                     <div>
-                        <section style={{padding: "10px"}}>
+                        <section>
                             <div style={{width: '50%', height: 'auto'}}>
                                 <AutoResizeText text={_category.categoryTitle} maxFontSize={600} minFontSize={10}/>
                             </div>
@@ -64,7 +64,7 @@ const Venues = () => {
                                 <h2 className={"subtitle"}>{_category.categorySubTitles}</h2>
                             </div>
                         </section>
-                        <section style={{padding: "10px"}}>
+                        <section>
                             {_category.venues &&
                                 _category.venues.venues.map((venue, index) => {
                                     let v = venue.venue
