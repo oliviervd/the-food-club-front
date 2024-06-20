@@ -17,9 +17,8 @@ const Venue = () => {
     const [location, setLocation] = useState(null);
 
     // todo: add locales
-    // todo: add button to see it on the map
+    // todo: add map
     // todo: add section with extra info; telephone, website, socials?
-    // todo: add location (highlight in header)
 
     function navigateTo(route) {
         nav(route)
@@ -36,6 +35,10 @@ const Venue = () => {
         }
         getVenue()
     }, [venueParam]);
+
+    console.log(venue)
+
+    const address = "☞ " + venue.address.street + " " + venue.address.houseNumber + ", " + venue.address.postalCode + " " + venue.address.city;
 
     return (
         <>
@@ -78,11 +81,12 @@ const Venue = () => {
                         }
                     </div>
                     <div className={"divider"}></div>
-                    <h2>more info</h2>
-                    <div className={"cuisines"}>
-                        <h2>website</h2>
-                        <h2>phone</h2>
+
+                    <div>
+                        <AutoResizeText text={address}/>
                     </div>
+
+
                 </section>
             }
         </>
