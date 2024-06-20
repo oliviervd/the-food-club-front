@@ -79,7 +79,7 @@ const Venues = () => {
                                                 <div key={index} className={"category-list__box"} onClick={() => {
                                                     navigateTo(v.url)
                                                 }}>
-                                                    <DitherImage url={v.media.hero.sizes.tablet.url}/>
+                                                    <DitherImage url={v.media.hero.sizes.tablet.url} link={`/venue/${v.url}`}/>
                                                     <h2 style={{textAlign: "center"}}>{v.venueName}</h2>
                                                 </div>
                                             )
@@ -97,7 +97,7 @@ const Venues = () => {
                                         // ceheck if status is published (_status) and if part of the club.
                                         return (
                                             <div className={"venue-list__container"}>
-                                                <DitherImage url={v.media.hero.sizes.tablet.url}/>
+                                                <DitherImage url={v.media.hero.sizes.tablet.url} link={`/venue/${v.url}`}/>
                                                 <div>
                                                     <div style={{width: "90%"}}>
                                                         <AutoResizeText text={v.venueName} padding={"0px 0px 20px 0px"}/>

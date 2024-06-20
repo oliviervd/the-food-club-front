@@ -94,10 +94,10 @@ const Search = () => {
                             matches.map((match, index) => {
                                 return (
                                     <div className={"venue-list__container"}>
-                                        <DitherImage url={match.media.hero.sizes.tablet.url}/>
+                                        <DitherImage url={match.media.hero.sizes.tablet.url} link={`/venue/${match.url}`}/>
                                         <div>
                                             <div style={{width: "90%"}}>
-                                                <AutoResizeText text={match.venueName} padding={"0px 0px 20px 0px"}/>
+                                                <AutoResizeText text={match.venueName} padding={"0px 0px 20px 0px"} onClick={() => {navigateTo(match.url)}}/>
                                             </div>
                                             <div className={"cuisines"}>
                                                 {match.cuisineUsed.map((cuisine) => {
