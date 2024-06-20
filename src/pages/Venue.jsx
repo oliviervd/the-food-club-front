@@ -36,11 +36,6 @@ const Venue = () => {
         getVenue()
     }, [venueParam]);
 
-    let address = ""
-    if (venue.address) {
-        address = "☞ " + venue.address.street + " " + venue.address.houseNumber + ", " + venue.address.postalCode + " " + venue.address.city;
-    }
-
     return (
         <>
             <Header setLocation={setLocation} location={location} interact={false}/>
@@ -84,7 +79,9 @@ const Venue = () => {
                     <div className={"divider"}></div>
 
                     <div>
-                        <AutoResizeText text={address}/>
+                        {venue.address &&
+                            <AutoResizeText text={"☞ " + venue.address.street + " " + venue.address.houseNumber + ", " + venue.address.postalCode + " " + venue.address.city}/>
+                        }
                     </div>
 
 
