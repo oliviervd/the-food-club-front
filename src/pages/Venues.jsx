@@ -65,7 +65,7 @@ const Venues = () => {
                                 <AutoResizeText text={_category.categoryTitle} maxFontSize={600} minFontSize={10}/>
                             </div>
                             <div style={{width: '100%', height: 'auto'}}>
-                                <h2 className={"subtitle text-main"}>{_category.categorySubTitles}</h2>
+                                <h2 className={"subtitle"}>{_category.categorySubTitles}</h2>
                             </div>
                         </section>
                         <div className={"divider"} style={{margin: '20px 0'}}></div>
@@ -81,11 +81,11 @@ const Venues = () => {
                                                     navigateTo(v.url)
                                                 }}>
                                                     <div>
-                                                        <p className={"image__club-tag text-main"}>{v.club}</p>
+                                                        <p className={"image__club-tag"}>{v.club}</p>
                                                         <DitherImage url={v.media.hero.sizes.tablet.url}
                                                                      link={`/venue/${v.url}`}/>
                                                     </div>
-                                                    <h2 className={"text-main"} style={{textAlign: "center"}}>{v.venueName}</h2>
+                                                    <h2 style={{textAlign: "center"}}>{v.venueName}</h2>
                                                 </div>
                                             )
                                         }
