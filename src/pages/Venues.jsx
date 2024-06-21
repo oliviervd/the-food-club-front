@@ -110,6 +110,7 @@ const Venues = () => {
                                                                         padding={"0px 0px 20px 0px"}/>
                                                     </div>
                                                     <div className={"cuisines"}>
+                                                        <a className={"link"}><h2 style={{color: "#F0CA4F", backgroundColor:"black"}}>{v.club}</h2></a>
                                                         {v.cuisineUsed.map((cuisine) => {
                                                             return (
                                                                 <a style={{color: "black", textDecoration: "none"}}><h2
@@ -118,6 +119,7 @@ const Venues = () => {
                                                                 </a>
                                                             )
                                                         })}
+
                                                     </div>
                                                 </div>
                                             </div>
