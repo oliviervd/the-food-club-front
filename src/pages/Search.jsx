@@ -76,7 +76,7 @@ const Search = () => {
                 <div className={"divider"}></div>
 
                 <section class={"home__container"}>
-                    <section style={{padding: "10px", position: "relative"}}>
+                    <section style={{position: "relative"}}>
                         {isSmall &&
                             matches.map((match, index) => {
                                 return (
