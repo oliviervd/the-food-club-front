@@ -67,6 +67,16 @@ h2 {
     color: #F0CA4F;
 }
 
+.link.greyed-out {
+    color: black;
+    opacity: 0.5;
+}
+
+.link.greyed-out:hover {
+    color: black;
+    background-color: #F0CA4F;
+}
+
 ul {
     color: black;
 }

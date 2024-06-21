@@ -4,7 +4,7 @@ import {useMediaQuery} from "@uidotdev/usehooks";
 import {useEffect, useState} from "react";
 import DitherImage from "./DitherImage.jsx";
 
-const Header = ({location, setLocation, interact, landing, setTarget}) => {
+const Header = ({location, setLocation, interact, landing, setTarget, greyOut=false}) => {
 
     // todo: add languages
     // todo: add map button
@@ -57,14 +57,14 @@ const Header = ({location, setLocation, interact, landing, setTarget}) => {
                                             minFontSize={10} padding={"10px 0px"}/>
                         </div>
                         <nav className={"flex-buttons"}>
-                            <h2 className={`link ${location === "gent" ? "selected" : ""}`} onClick={interact ? () => {
+                            <h2 className={`link ${location === "gent" ? "selected" : ""}${greyOut && location !== "gent" ? "greyed-out" : ""}`} onClick={interact ? () => {
                                 setLocation("gent")
                             } : null}>GENT</h2>
-                            <h2 className={`link ${location === "antwerp" ? "selected" : ""}`}
+                            <h2 className={`link ${location === "antwerp" ? "selected" : ""}${greyOut && location !== "antwerp" ? "greyed-out" : ""}`}
                                 onClick={interact ? () => {
                                     setLocation("antwerp")
                                 } : null}>ANTWERP</h2>
-                            <h2 className={`link ${location === "brussels" ? "selected" : ""}`}
+                            <h2 className={`link ${location === "brussels" ? "selected" : ""}${greyOut && location !== "brussels" ? "greyed-out" : ""}`}
                                 onClick={interact ? () => {
                                     setLocation("brussels")
                                 } : null}>BRUSSELS</h2>
@@ -134,13 +134,13 @@ const Header = ({location, setLocation, interact, landing, setTarget}) => {
                 </div>
 
                 <nav className={"flex-buttons"}>
-                    <h2 className={`link ${location === "gent" ? "selected" : ""}`} onClick={interact ? () => {
+                    <h2 className={`link ${location === "gent" ? "selected" : ""}${greyOut && location !== "gent" ? "greyed-out" : ""}`} onClick={interact ? () => {
                         setLocation("gent")
                     } : null}>GENT</h2>
-                    <h2 className={`link ${location === "antwerp" ? "selected" : ""}`} onClick={interact ? () => {
+                    <h2 className={`link ${location === "antwerp" ? "selected" : ""}${greyOut && location !== "antwerp" ? "greyed-out" : ""}`} onClick={interact ? () => {
                         setLocation("antwerp")
                     } : null}>ANTWERP</h2>
-                    <h2 className={`link ${location === "brussels" ? "selected" : ""}`} onClick={interact ? () => {
+                    <h2 className={`link ${location === "brussels" ? "selected" : ""}${greyOut && location !== "brussels" ? "greyed-out" : ""}`} onClick={interact ? () => {
                         setLocation("brussels")
                     } : null}>BRUSSELS</h2>
                 </nav>

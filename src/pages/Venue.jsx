@@ -43,7 +43,7 @@ const Venue = () => {
 
     return (
         <>
-            <Header setLocation={setLocation} location={location} interact={false}/>
+            <Header setLocation={setLocation} location={location} interact={false} greyOut={true}/>
             {venue &&
                 <section style={{padding: "0 10px", position: "relative"}}>
                     <DitherImage style={{justifyContent: "center", maxWidth: "99%"}}
