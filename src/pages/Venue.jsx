@@ -88,6 +88,7 @@ const Venue = () => {
                         justifyContent: "center",
                         position: "relative",
                         border: "4px solid black",
+                        marginBottom: "20px"
                     }}>
                         {venue.reservations &&
                             <a className={"link"} style={{color: "black", textDecoration: "none"}}
@@ -101,8 +102,6 @@ const Venue = () => {
                             </div>
                         }
                     </div>
-
-
                 </section>
             }
         </>
