@@ -20,14 +20,19 @@ const Home = () => {
     const isSmall = useMediaQuery("(max-width: 600px)");
     const isBig = useMediaQuery("(min-width: 1400px)");
 
-
     const {data: list, isLoading, error} = useQuery(["lists"], ()=> fetchAPI('lists','en'))
 
     useEffect(() => {
-        if(list) {
-            setCategoryList(list);
+
+        const getLists = async() => {
+            const cat = await fetchAPI("lists", "en");
+            setCategoryList(cat)
         }
-    }, [list]);
+        getLists();
+
+    }, []);
+
+    console.log(categoryList)
 
     useEffect(()=>{
         scrollTo(target)
@@ -67,7 +72,7 @@ const Home = () => {
                                                     minFontSize={10}/>
                                 </div>
                                 <nav className={"flex-buttons"}>
-                                    <h2 className={`link selected`} onClick={() => {
+                                    <h2 className={`link`} onClick={() => {
                                     }}>SUPRISE ME!</h2>
                                     <h2 className={`link`} onClick={() => {
                                     }}>WHAT'S OPEN?</h2>

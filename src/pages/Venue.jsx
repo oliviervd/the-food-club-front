@@ -19,6 +19,7 @@ const Venue = () => {
     // todo: add locales
     // todo: add map
     // todo: add section with extra info; telephone, website, socials?
+    // todo: add tip box
 
     function navigateTo(route) {
         nav(route)
@@ -45,14 +46,17 @@ const Venue = () => {
             <Header setLocation={setLocation} location={location} interact={false}/>
             {venue &&
                 <section style={{padding: "0 10px", position: "relative"}}>
-                    <DitherImage style={{justifyContent:"center", maxWidth:"99%"}} url={venue.media.hero.sizes.tablet.url}/>
+                    <DitherImage style={{justifyContent: "center", maxWidth: "99%"}}
+                                 url={venue.media.hero.sizes.tablet.url}/>
                     <div style={{width: "100%", height: 'auto', position: "relative"}}>
-                        <AutoResizeText text={venue.venueName}/>
+                        <AutoResizeText text={venue.venueName} padding={"10px 0 30px 0"}/>
                     </div>
                     <div className={"cuisines"}>
                         {venue.cuisineUsed.map((cuisine) => {
                             return (
-                                <a style={{color: "black", textDecoration:"none"}}><h2 className={"link"} onClick={() => navigateTo(`/venues/?cuisine=${cuisine.name}`)}>{cuisine.name}</h2></a>
+                                <a style={{color: "black", textDecoration: "none"}}><h2 className={"link"}
+                                                                                        onClick={() => navigateTo(`/venues/?cuisine=${cuisine.name}`)}>{cuisine.name}</h2>
+                                </a>
                             )
                         })}
                     </div>
@@ -61,30 +65,38 @@ const Venue = () => {
                     <p className={"text-main"}>
                         {serialize(venue.reviews.review)}
                     </p>
+
+                    {console.log(venue.foodClubOrder)}
+                    <div className={"venue-tip__container"}>
+                        <div className={"text-main"}>☞</div>
+                        <p className={"text-main"}>{serialize(venue.foodClubOrder)}</p>
+                    </div>
+
+                    <div>
+                        {venue.address &&
+                            <AutoResizeText
+                                text={venue.address.street + " " + venue.address.houseNumber + ", " + venue.address.postalCode + " " + venue.address.city}/>
+                        }
+                    </div>
+
                     <div style={{
                         width: "99%",
                         height: 'auto',
-                        textAlign:"center",
-                        justifyContent:"center",
+                        textAlign: "center",
+                        justifyContent: "center",
                         position: "relative",
                         border: "4px solid black",
                     }}>
                         {venue.reservations &&
-                            <a className={"link"} style={{color: "black", textDecoration:"none"}} href={venue.reservations}>
+                            <a className={"link"} style={{color: "black", textDecoration: "none"}}
+                               href={venue.reservations}>
                                 <AutoResizeText text='BOOK A TABLE'/>
                             </a>
                         }
                         {!venue.reservations &&
-                            <div style={{maxWidth:"99%"}}>
+                            <div style={{maxWidth: "99%"}}>
                                 <AutoResizeText text='NO RESERVATIONS POSSIBLE'/>
                             </div>
-                        }
-                    </div>
-                    <div className={"divider"}></div>
-
-                    <div>
-                        {venue.address &&
-                            <AutoResizeText text={"☞ " + venue.address.street + " " + venue.address.houseNumber + ", " + venue.address.postalCode + " " + venue.address.city}/>
                         }
                     </div>
 

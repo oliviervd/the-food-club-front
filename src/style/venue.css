@@ -9,3 +9,16 @@
         padding: 0px 5px;
     }
 }
+
+.venue-tip__container{
+    display: grid;
+    grid-template-columns: 10% 90%;
+    max-width: 99%;
+    border: 2px black dashed;
+    padding: 10px;
+
+    p {
+        margin-block: 0;
+    }
+
+}
