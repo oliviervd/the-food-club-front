@@ -57,7 +57,7 @@ const Venues = () => {
             <Header/>
             <div className={"divider"}></div>
 
-            <section class={"home__container"}>
+            <section className={"home__container"}>
                 {_category &&
                     <div>
                         <section>
@@ -65,9 +65,10 @@ const Venues = () => {
                                 <AutoResizeText text={_category.categoryTitle} maxFontSize={600} minFontSize={10}/>
                             </div>
                             <div style={{width: '100%', height: 'auto'}}>
-                                <h2 className={"subtitle"}>{_category.categorySubTitles}</h2>
+                                <h2 className={"subtitle text-main"}>{_category.categorySubTitles}</h2>
                             </div>
                         </section>
+                        <div className={"divider"} style={{margin: '20px 0'}}></div>
                         {isSmall &&
                             <section>
                                 {_category.venues &&
@@ -79,8 +80,12 @@ const Venues = () => {
                                                 <div key={index} className={"category-list__box"} onClick={() => {
                                                     navigateTo(v.url)
                                                 }}>
-                                                    <DitherImage url={v.media.hero.sizes.tablet.url} link={`/venue/${v.url}`}/>
-                                                    <h2 style={{textAlign: "center"}}>{v.venueName}</h2>
+                                                    <div>
+                                                        <p className={"image__club-tag text-main"}>{v.club}</p>
+                                                        <DitherImage url={v.media.hero.sizes.tablet.url}
+                                                                     link={`/venue/${v.url}`}/>
+                                                    </div>
+                                                    <h2 className={"text-main"} style={{textAlign: "center"}}>{v.venueName}</h2>
                                                 </div>
                                             )
                                         }
@@ -97,10 +102,12 @@ const Venues = () => {
                                         // ceheck if status is published (_status) and if part of the club.
                                         return (
                                             <div className={"venue-list__container"}>
-                                                <DitherImage url={v.media.hero.sizes.tablet.url} link={`/venue/${v.url}`}/>
+                                                <DitherImage url={v.media.hero.sizes.tablet.url}
+                                                             link={`/venue/${v.url}`}/>
                                                 <div>
                                                     <div style={{width: "90%"}}>
-                                                        <AutoResizeText text={v.venueName} padding={"0px 0px 20px 0px"}/>
+                                                        <AutoResizeText text={v.venueName}
+                                                                        padding={"0px 0px 20px 0px"}/>
                                                     </div>
                                                     <div className={"cuisines"}>
                                                         {v.cuisineUsed.map((cuisine) => {
@@ -124,7 +131,7 @@ const Venues = () => {
                 {categoryList && isBig &&
                     <div style={{marginLeft: "20px"}}>
                     <section style={{padding: "10px"}}>
-                                    <h2 className={"subtitle"}> FOOD CLUB loves lists. That's why we created some
+                                    <h2 className={"subtitle text-main"}> FOOD CLUB loves lists. That's why we created some
                                         specially for
                                         you.
                                         From healthy snacks to absurdly comforting food, the order is yours.</h2>

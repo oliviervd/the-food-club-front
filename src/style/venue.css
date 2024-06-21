@@ -16,9 +16,14 @@
     max-width: 99%;
     border: 2px black dashed;
     padding: 10px;
+    margin: 10px 0px;
 
     p {
         margin-block: 0;
     }
+}
 
+.venue-info__container {
+    display: grid;
+    grid-template-columns: 50% 50%;
 }

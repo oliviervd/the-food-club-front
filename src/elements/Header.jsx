@@ -54,7 +54,7 @@ const Header = ({location, setLocation, interact, landing, setTarget}) => {
                     <div>
                         <div style={{width: '100%', height: 'auto'}}>
                             <AutoResizeText text="WELCOME TO FOOD CLUB. LOOKING FOR SOMETHING IN..?" maxFontSize={600}
-                                            minFontSize={10} padding={"0px 0px"}/>
+                                            minFontSize={10} padding={"10px 0px"}/>
                         </div>
                         <nav className={"flex-buttons"}>
                             <h2 className={`link ${location === "gent" ? "selected" : ""}`} onClick={interact ? () => {
