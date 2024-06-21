@@ -55,8 +55,9 @@ const Header = ({location, setLocation, interact, landing, setTarget, greyOut=fa
                         <div style={{width: '100%', height: 'auto'}}>
                             <AutoResizeText text="WELCOME TO FOOD CLUB" maxFontSize={600}
                                             minFontSize={10} padding={"0 0px"}/>
-                            <AutoResizeText text="LOOKING FOR SOMETHING IN..?" maxFontSize={600}
-                                            minFontSize={10} padding={"0 0px"}/>
+                            <div className={"divider"}></div>
+                            <AutoResizeText text="LOOKING FOR SOMETHING IN" maxFontSize={600}
+                                            minFontSize={10} padding={"0 0 10px 0"}/>
                         </div>
                         <nav className={"flex-buttons"}>
                             <h2 className={`link ${location === "gent" ? "selected" : ""}${greyOut && location !== "gent" ? "greyed-out" : ""}`} onClick={interact ? () => {
