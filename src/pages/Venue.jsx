@@ -66,11 +66,12 @@ const Venue = () => {
                         {serialize(venue.reviews.review)}
                     </p>
 
-                    {console.log(venue.foodClubOrder)}
-                    <div className={"venue-tip__container"}>
-                        <div className={"text-main"}>☞</div>
-                        <p className={"text-main"}>{serialize(venue.foodClubOrder)}</p>
-                    </div>
+                    {venue.foodClubOrder &&
+                        <div className={"venue-tip__container"}>
+                            <div className={"text-main"}>☞</div>
+                            <p className={"text-main"}>{serialize(venue.foodClubOrder)}</p>
+                        </div>
+                    }
 
                     <div>
                         {venue.address &&
