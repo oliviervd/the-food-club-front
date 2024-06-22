@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Venues from "./pages/Venues.jsx";
 import Venue from "./pages/Venue.jsx";
 import Search from "./pages/Search.jsx"
+import {BackgroundColorProvider} from "./utils/BackgroundColorContext.jsx";
 
 import "../src/style/fonts.css"
 import "../src/style/media.css"
@@ -13,6 +14,7 @@ import "../src/style/categories.css"
 import "../src/style/venue.css"
 import "../src/style/main.css"
 
+//todo: add language provider (API Context)
 
 import Home from "./pages/Home.jsx";
 
@@ -31,13 +33,15 @@ export default function App() {
   return (
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
-        <Routes>
-          <Route path="/" element={<Navigate to="/en" replace />}/>
-          <Route path="/:lang" element={<Home />} />
-          <Route path="/categories/:category" element={<Venues />}/>
-          <Route path="/venue/:venue" element={<Venue />}/>
-          <Route path="/venues/" element={<Search />}/>
-        </Routes>
+        <BackgroundColorProvider>
+          <Routes>
+            <Route path="/" element={<Navigate to="/en" replace />}/>
+            <Route path="/:lang" element={<Home />} />
+            <Route path="/categories/:category" element={<Venues />}/>
+            <Route path="/venue/:venue" element={<Venue />}/>
+            <Route path="/venues/" element={<Search />}/>
+          </Routes>
+        </BackgroundColorProvider>
       </QueryClientProvider>
     </BrowserRouter>
   );

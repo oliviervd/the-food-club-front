@@ -1,6 +1,11 @@
 import {useQuery} from "@tanstack/react-query";
 import {useEffect, useState, useRef} from "react";
 
+export function getCSSVariableValue(variableName){
+    // function to get value from css variable
+    return getComputedStyle(document.documentElement).getPropertyValue(variableName).trim();
+}
+
 /*export function fetchAPI(endpoint, locale) {
     // fetch all data from a certain collection based on a given locale and limit.
     const {data, isLoading, status} = useQuery({

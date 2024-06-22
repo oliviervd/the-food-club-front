@@ -1,18 +1,22 @@
 import AutoResizeText from "./AutoResizeText.jsx";
 import {useNavigate} from "react-router-dom";
 import {useMediaQuery} from "@uidotdev/usehooks";
-import {useEffect, useState} from "react";
+import {useContext} from "react";
+import {BackgroundColorContext} from "../utils/BackgroundColorContext.jsx";
 import DitherImage from "./DitherImage.jsx";
+import {getCSSVariableValue} from "../utils/utils.jsx";
 
-const Header = ({location, setLocation, interact, landing, setTarget, greyOut=false}) => {
+const Header = ({location, setLocation, interact, landing, setTarget, greyOut=false, color}) => {
 
     // todo: add languages
     // todo: add map button
-    // todo: make header logo "FOOD CLUB" (fold) when scrolling down.
+    // todo: make header logo "FOOD CLUB" (fold) when scrolling down
+    // todo: add colors when swithcing .
 
     // navigate back to home
     const nav = useNavigate();
     const isSmall = useMediaQuery("(max-width: 600px)");
+    const { setBgColor } = useContext(BackgroundColorContext);
 
     if (landing) {
         return(
@@ -61,15 +65,18 @@ const Header = ({location, setLocation, interact, landing, setTarget, greyOut=fa
                         </div>
                         <nav className={"flex-buttons"}>
                             <h2 className={`link ${location === "gent" ? "selected" : ""}${greyOut && location !== "gent" ? "greyed-out" : ""}`} onClick={interact ? () => {
-                                setLocation("gent")
+                                setLocation("gent");
+                                setBgColor(getCSSVariableValue("--pale-lemon-yellow"));
                             } : null}>GENT</h2>
                             <h2 className={`link ${location === "antwerp" ? "selected" : ""}${greyOut && location !== "antwerp" ? "greyed-out" : ""}`}
                                 onClick={interact ? () => {
-                                    setLocation("antwerp")
+                                    setLocation("antwerp");
+                                    setBgColor(getCSSVariableValue("--turquoise-green"));
                                 } : null}>ANTWERP</h2>
                             <h2 className={`link ${location === "brussels" ? "selected" : ""}${greyOut && location !== "brussels" ? "greyed-out" : ""}`}
                                 onClick={interact ? () => {
-                                    setLocation("brussels")
+                                    setLocation("brussels");
+                                    setBgColor(getCSSVariableValue("--salvia-blue"));
                                 } : null}>BRUSSELS</h2>
                         </nav>
                         {location &&
@@ -138,13 +145,16 @@ const Header = ({location, setLocation, interact, landing, setTarget, greyOut=fa
 
                 <nav className={"flex-buttons"}>
                     <h2 className={`link ${location === "gent" ? "selected" : ""}${greyOut && location !== "gent" ? "greyed-out" : ""}`} onClick={interact ? () => {
-                        setLocation("gent")
+                        setLocation("gent");
+                        setBgColor(getCSSVariableValue("--pale-lemon-yellow"));
                     } : null}>GENT</h2>
                     <h2 className={`link ${location === "antwerp" ? "selected" : ""}${greyOut && location !== "antwerp" ? "greyed-out" : ""}`} onClick={interact ? () => {
-                        setLocation("antwerp")
+                        setLocation("antwerp");
+                        setBgColor(getCSSVariableValue("--turquoise-green"));
                     } : null}>ANTWERP</h2>
                     <h2 className={`link ${location === "brussels" ? "selected" : ""}${greyOut && location !== "brussels" ? "greyed-out" : ""}`} onClick={interact ? () => {
-                        setLocation("brussels")
+                        setLocation("brussels");
+                        setBgColor(getCSSVariableValue("--salvia-blue"));
                     } : null}>BRUSSELS</h2>
                 </nav>
             </header>

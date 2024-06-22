@@ -2,11 +2,12 @@ import Header from "../elements/Header.jsx";
 import "../style/header.css"
 import "../style/fonts.css"
 import CategoryList from "../elements/CategoryList.jsx";
-import {fetchAPI, scrollTo} from "../utils/utils.jsx";
+import {fetchAPI, getCSSVariableValue, scrollTo} from "../utils/utils.jsx";
 import {useQuery} from "@tanstack/react-query";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import AutoResizeText from "../elements/AutoResizeText.jsx";
 import {useMediaQuery} from "@uidotdev/usehooks";
+import {BackgroundColorContext} from "../utils/BackgroundColorContext.jsx";
 
 //todo : improve loading speed
 // todo: add locales
@@ -19,6 +20,9 @@ const Home = () => {
     const [location, setLocation] = useState(null);
     const isSmall = useMediaQuery("(max-width: 600px)");
     const isBig = useMediaQuery("(min-width: 1400px)");
+
+    // fetch backgroundcolor from context
+    const { setBgColor } = useContext(BackgroundColorContext);
 
     const {data: list, isLoading, error} = useQuery(["lists"], ()=> fetchAPI('lists','en'))
 
@@ -55,13 +59,16 @@ const Home = () => {
                         </div>
                         <nav className={"flex-buttons"}>
                             <h2 className={`link ${location === "gent" ? "selected" : ""}`} onClick={() => {
-                                setLocation("gent")
+                                setLocation("gent");
+                                setBgColor(getCSSVariableValue("--pale-lemon-yellow"));
                             }}>GENT</h2>
                             <h2 className={`link ${location === "antwerp" ? "selected" : ""}`} onClick={() => {
-                                setLocation("antwerp")
+                                setLocation("antwerp");
+                                setBgColor(getCSSVariableValue("--turquoise-green"));
                             }}>ANTWERP</h2>
                             <h2 className={`link ${location === "brussels" ? "selected" : ""}`} onClick={() => {
-                                setLocation("brussels")
+                                setLocation("brussels");
+                                setBgColor(getCSSVariableValue("--salvia-blue"));
                             }}>BRUSSELS</h2>
                         </nav>
                         {location &&

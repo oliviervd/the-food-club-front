@@ -20,6 +20,7 @@ const Venue = () => {
     // todo: add map
     // todo: add section with extra info; telephone, website, socials?
     // todo: add tip box
+    // todo: change color when clicking on diferent city.
 
     function navigateTo(route) {
         nav(route)
