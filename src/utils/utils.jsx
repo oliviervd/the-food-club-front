@@ -1,6 +1,19 @@
 import {useQuery} from "@tanstack/react-query";
 import {useEffect, useState, useRef} from "react";
 
+// handle location changes
+
+
+export function handleLocationChange(newLocation, setLocation, setBgColor) {
+    const clubColors = {
+        antwerp: getCSSVariableValue("--turquoise-green"),
+        gent: getCSSVariableValue("--pale-lemon-yellow"),
+        brussels: getCSSVariableValue("--salvia-blue"),
+    }
+    setLocation(newLocation)
+    setBgColor(clubColors[newLocation])
+}
+
 export function getCSSVariableValue(variableName){
     // function to get value from css variable
     return getComputedStyle(document.documentElement).getPropertyValue(variableName).trim();

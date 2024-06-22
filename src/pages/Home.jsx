@@ -2,7 +2,7 @@ import Header from "../elements/Header.jsx";
 import "../style/header.css"
 import "../style/fonts.css"
 import CategoryList from "../elements/CategoryList.jsx";
-import {fetchAPI, getCSSVariableValue, scrollTo} from "../utils/utils.jsx";
+import {fetchAPI, getCSSVariableValue, scrollTo, handleLocationChange} from "../utils/utils.jsx";
 import {useQuery} from "@tanstack/react-query";
 import {useContext, useEffect, useState} from "react";
 import AutoResizeText from "../elements/AutoResizeText.jsx";
@@ -59,16 +59,13 @@ const Home = () => {
                         </div>
                         <nav className={"flex-buttons"}>
                             <h2 className={`link ${location === "gent" ? "selected" : ""}`} onClick={() => {
-                                setLocation("gent");
-                                setBgColor(getCSSVariableValue("--pale-lemon-yellow"));
+                                handleLocationChange("gent", setLocation, setBgColor);
                             }}>GENT</h2>
                             <h2 className={`link ${location === "antwerp" ? "selected" : ""}`} onClick={() => {
-                                setLocation("antwerp");
-                                setBgColor(getCSSVariableValue("--turquoise-green"));
+                                handleLocationChange("antwerp", setLocation, setBgColor);
                             }}>ANTWERP</h2>
                             <h2 className={`link ${location === "brussels" ? "selected" : ""}`} onClick={() => {
-                                setLocation("brussels");
-                                setBgColor(getCSSVariableValue("--salvia-blue"));
+                                handleLocationChange("brussels", setLocation, setBgColor);
                             }}>BRUSSELS</h2>
                         </nav>
                         {location &&
@@ -95,7 +92,7 @@ const Home = () => {
                     </div>
                 }
                 {categoryList &&
-                    <div style={{paddingLeft : isBig ? "20px" : "0"}}>
+                    <div style={{paddingLeft : isBig ? "0" : "20px"}}>
                         <section style={{padding: "10px 0"}}>
                             <h2 className={"subtitle"}> FOOD CLUB loves lists. That's why we created some specially for
                                 you.

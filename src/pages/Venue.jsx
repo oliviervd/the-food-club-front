@@ -1,11 +1,12 @@
 import Header from "../elements/Header.jsx";
 import {useNavigate, useParams} from "react-router-dom";
-import {useEffect, useState} from "react";
-import {fetchAPI} from "../utils/utils.jsx";
+import {useContext, useEffect, useState} from "react";
+import {fetchAPI, getCSSVariableValue} from "../utils/utils.jsx";
 import {useQuery} from "@tanstack/react-query";
 import AutoResizeText from "../elements/AutoResizeText.jsx";
 import DitherImage from "../elements/DitherImage.jsx";
 import serialize from "../utils/serialize.jsx";
+import {BackgroundColorContext} from "../utils/BackgroundColorContext.jsx";
 
 const Venue = () => {
 
@@ -13,6 +14,7 @@ const Venue = () => {
     const {data: venues, isLoading, error} =    useQuery(["venues"], ()=> fetchAPI('venue', 'en'));
     const [venue, setVenue] = useState(null);
     const nav = useNavigate()
+    const { setBgColor } = useContext(BackgroundColorContext);
 
     const [location, setLocation] = useState(null);
 
@@ -20,7 +22,6 @@ const Venue = () => {
     // todo: add map
     // todo: add section with extra info; telephone, website, socials?
     // todo: add tip box
-    // todo: change color when clicking on diferent city.
 
     function navigateTo(route) {
         nav(route)
@@ -34,6 +35,13 @@ const Venue = () => {
                 setVenue(res)
                 try {
                     setLocation(res.club)
+                    if (res.club == "antwerp") {
+                        setBgColor(getCSSVariableValue("--turquoise-green"));
+                    } else if (res.club == "gent") {
+                        setBgColor(getCSSVariableValue("--pale-lemon-yellow"));
+                    } else {
+                        setBgColor(getCSSVariableValue("--salvia-blue"));
+                    }
                 } catch (e) {
                     console.error(e)
                 }
