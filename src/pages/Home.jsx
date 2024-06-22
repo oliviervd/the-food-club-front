@@ -52,7 +52,7 @@ const Home = () => {
             <div id={"cat_list"} className={"divider"}></div>
             <section className={"home__container"}>
                 {!isSmall &&
-                    <div>
+                    <div style={{paddingRight:"20px"}}>
                         <div style={{width: '100%', height: 'auto'}}>
                             <AutoResizeText text="WELCOME TO FOOD CLUB. LOOKING FOR SOMETHING IN..?" maxFontSize={600}
                                             minFontSize={10}/>
@@ -92,7 +92,7 @@ const Home = () => {
                     </div>
                 }
                 {categoryList &&
-                    <div style={{paddingLeft : isBig ? "0" : "20px"}}>
+                    <div>
                         <section style={{padding: "10px 0"}}>
                             <h2 className={"subtitle"}> FOOD CLUB loves lists. That's why we created some specially for
                                 you.
