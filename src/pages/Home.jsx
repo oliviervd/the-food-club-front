@@ -76,7 +76,7 @@ const Home = () => {
                                                     minFontSize={10}/>
                                 </div>
                                 <nav className={"flex-buttons"}>
-                                    <h2 className={`link greyed-out`} onClick={() => {surprise(location, nav)
+                                    <h2 className={`link`} onClick={() => {surprise(location, nav)
                                     }}>SUPRISE ME!</h2>
                                     <h2 className={`link greyed-out`} onClick={() => {
                                     }}>WHAT'S OPEN?</h2>
