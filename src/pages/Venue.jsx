@@ -1,7 +1,7 @@
 import Header from "../elements/Header.jsx";
-import {useNavigate, useParams} from "react-router-dom";
+import {useNavigate, useParams, useSearchParams} from "react-router-dom";
 import {useContext, useEffect, useState} from "react";
-import {fetchAPI, getCSSVariableValue} from "../utils/utils.jsx";
+import {fetchAPI, getCSSVariableValue, surprise} from "../utils/utils.jsx";
 import {useQuery} from "@tanstack/react-query";
 import AutoResizeText from "../elements/AutoResizeText.jsx";
 import DitherImage from "../elements/DitherImage.jsx";
@@ -11,6 +11,7 @@ import {BackgroundColorContext} from "../utils/BackgroundColorContext.jsx";
 const Venue = () => {
 
     const {venue: venueParam} = useParams();
+    const [searchParams, setSearchParams]= useSearchParams()
     const {data: venues, isLoading, error} =    useQuery(["venues"], ()=> fetchAPI('venue', 'en'));
     const [venue, setVenue] = useState(null);
     const nav = useNavigate()
@@ -21,6 +22,9 @@ const Venue = () => {
     // todo: add locales
     // todo: add map
     // todo: add section with extra info; telephone, website, socials
+
+    // if surprise in params, add button to surprise again.
+    console.log(searchParams)
 
     function navigateTo(route) {
         nav(route)
@@ -54,9 +58,24 @@ const Venue = () => {
             <Header setLocation={setLocation} location={location} interact={false} greyOut={true}/>
             {venue &&
                 <section style={{padding: "0 10px", position: "relative"}}>
+                    {searchParams.get("surprise") && location &&
+                        <div style={{
+                            width: "99%",
+                            height: 'auto',
+                            textAlign: "center",
+                            justifyContent: "center",
+                            position: "relative",
+                            border: "4px solid black",
+                            marginBottom: "5px"
+                        }} onClick={()=>{surprise(location, nav)}}>
+                            <div style={{maxWidth: "99%"}}>
+                                <AutoResizeText text={`SURPRISE AGAIN IN ${location.toUpperCase()}`}/>
+                            </div>
+                        </div>
+                    }
                     <DitherImage style={{justifyContent: "center", maxWidth: "99%"}}
-                                 url={venue.media.hero.sizes.tablet.url}/>
-                    <div style={{width: "100%", height: 'auto', position: "relative"}}>
+                         url={venue.media.hero.sizes.tablet.url}/>
+            <div style={{width: "100%", height: 'auto', position: "relative"}}>
                         <AutoResizeText text={venue.venueName} padding={"10px 0 30px 0"}/>
                     </div>
                     <div className={"cuisines"}>

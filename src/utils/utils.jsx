@@ -26,7 +26,7 @@ export async function surprise(club, nav, ) {
         const res = venues.docs.filter(venue => venue.club == club)
         // pick random one
         const random = Math.floor(Math.random()*res.length)
-        nav(`/venue/${res[random].url}`)
+        nav(`/venue/${res[random].url}?surprise=true`)
     }
 
 }
