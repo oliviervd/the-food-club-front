@@ -136,6 +136,7 @@ const Header = ({location, setLocation, interact, landing, setTarget, greyOut=fa
                         <AutoResizeText text="FOOD CLUB" maxFontSize={600} minFontSize={10}/>
                     </div>
                 }
+                <div className={"divider"}></div>
                 <div style={{width: '100%', height: 'auto'}}>
                     <AutoResizeText text="TAKING YOU OUT FOR SERIOUS GOOD FOOD IN .." maxFontSize={600}
                                     minFontSize={10}/>
