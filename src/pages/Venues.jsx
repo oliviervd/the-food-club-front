@@ -1,7 +1,7 @@
 import Header from "../elements/Header.jsx";
 import {useNavigate, useParams} from "react-router-dom";
 import AutoResizeText from "../elements/AutoResizeText.jsx";
-import {fetchAPI} from "../utils/utils.jsx";
+import {fetchAPI, shuffleArray} from "../utils/utils.jsx";
 import {useEffect, useState} from "react";
 import {useQuery} from "@tanstack/react-query";
 import DitherImage from "../elements/DitherImage.jsx";
@@ -52,6 +52,8 @@ const Venues = () => {
         nav(`/venue/${route}`)
     }
 
+    const shuffledVenues = _category && _category.venues ? shuffleArray([..._category.venues.venues]) : [];
+
     return(
         <>
             <Header/>
@@ -71,8 +73,8 @@ const Venues = () => {
                         <div className={"divider"} style={{margin: '20px 0'}}></div>
                         {isSmall &&
                             <section>
-                                {_category.venues &&
-                                    _category.venues.venues.map((venue, index) => {
+                                {shuffledVenues &&
+                                    shuffledVenues.map((venue, index) => {
                                         let v = venue.venue
                                         // check if status is published (_status) and if part of the club (status)
                                         if (v._status == "published" && v.status == "yes") {
@@ -96,8 +98,8 @@ const Venues = () => {
                         }
                         {!isSmall &&
                             <section>
-                                {_category.venues &&
-                                    _category.venues.venues.map((venue, index) => {
+                                {shuffledVenues &&
+                                    shuffledVenues.map((venue, index) => {
                                         let v = venue.venue
                                         // ceheck if status is published (_status) and if part of the club.
                                         return (
