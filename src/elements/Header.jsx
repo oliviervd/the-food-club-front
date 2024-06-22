@@ -4,7 +4,7 @@ import {useMediaQuery} from "@uidotdev/usehooks";
 import {useContext} from "react";
 import {BackgroundColorContext} from "../utils/BackgroundColorContext.jsx";
 import DitherImage from "./DitherImage.jsx";
-import {suprise, handleLocationChange} from "../utils/utils.jsx";
+import {surprise, handleLocationChange} from "../utils/utils.jsx";
 
 const Header = ({location, setLocation, interact, landing, setTarget, greyOut=false, color}) => {
 
