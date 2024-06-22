@@ -2,20 +2,22 @@ import Header from "../elements/Header.jsx";
 import "../style/header.css"
 import "../style/fonts.css"
 import CategoryList from "../elements/CategoryList.jsx";
-import {fetchAPI, getCSSVariableValue, scrollTo, handleLocationChange} from "../utils/utils.jsx";
+import {fetchAPI, scrollTo, handleLocationChange, suprise} from "../utils/utils.jsx";
 import {useQuery} from "@tanstack/react-query";
 import {useContext, useEffect, useState} from "react";
 import AutoResizeText from "../elements/AutoResizeText.jsx";
 import {useMediaQuery} from "@uidotdev/usehooks";
 import {BackgroundColorContext} from "../utils/BackgroundColorContext.jsx";
+import {useNavigate} from "react-router-dom";
 
-//todo : improve loading speed
+// todo : improve loading speed
 // todo: add locales
 
 const Home = () => {
 
     // fetch data
     const [categoryList, setCategoryList] = useState([]);
+    const nav = useNavigate();
     const [target, setTarget] = useState(null);
     const [location, setLocation] = useState(null);
     const isSmall = useMediaQuery("(max-width: 600px)");
@@ -27,13 +29,11 @@ const Home = () => {
     const {data: list, isLoading, error} = useQuery(["lists"], ()=> fetchAPI('lists','en'))
 
     useEffect(() => {
-
         const getLists = async() => {
             const cat = await fetchAPI("lists", "en");
             setCategoryList(cat)
         }
         getLists();
-
     }, []);
 
     console.log(categoryList)
@@ -76,9 +76,9 @@ const Home = () => {
                                                     minFontSize={10}/>
                                 </div>
                                 <nav className={"flex-buttons"}>
-                                    <h2 className={`link`} onClick={() => {
+                                    <h2 className={`link greyed-out`} onClick={() => {suprise(location, nav)
                                     }}>SUPRISE ME!</h2>
-                                    <h2 className={`link`} onClick={() => {
+                                    <h2 className={`link greyed-out`} onClick={() => {
                                     }}>WHAT'S OPEN?</h2>
                                 </nav>
                                 <div onClick={() => {

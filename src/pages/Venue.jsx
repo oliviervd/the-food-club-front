@@ -20,8 +20,7 @@ const Venue = () => {
 
     // todo: add locales
     // todo: add map
-    // todo: add section with extra info; telephone, website, socials?
-    // todo: add tip box
+    // todo: add section with extra info; telephone, website, socials
 
     function navigateTo(route) {
         nav(route)

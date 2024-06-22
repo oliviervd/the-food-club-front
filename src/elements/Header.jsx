@@ -11,7 +11,6 @@ const Header = ({location, setLocation, interact, landing, setTarget, greyOut=fa
     // todo: add languages
     // todo: add map button
     // todo: make header logo "FOOD CLUB" (fold) when scrolling down
-    // todo: add colors when swithcing .
 
     // navigate back to home
     const nav = useNavigate();
@@ -37,8 +36,8 @@ const Header = ({location, setLocation, interact, landing, setTarget, greyOut=fa
                                 textAlign: "right",
                                 width: "10%"
                             }}>
-                                <h2 className={"link"}>NL</h2>
-                                <h2 className={"link"}>FR</h2>
+                                <h2 className={"link greyed-out"}>NL</h2>
+                                <h2 className={"link greyed-out"}>FR</h2>
                                 <h2 className={"link selected"}>EN</h2>
                             </nav>
                         </div>
@@ -85,9 +84,9 @@ const Header = ({location, setLocation, interact, landing, setTarget, greyOut=fa
                                                     minFontSize={10} />
                                 </div>
                                 <nav className={"flex-buttons"}>
-                                    <h2 className={`link`} onClick={() => {
+                                    <h2 className={`link greyed-out`} onClick={() => {
                                     }}>SUPRISE ME!</h2>
-                                    <h2 className={`link`} onClick={() => {
+                                    <h2 className={`link greyed-out`} onClick={() => {
                                     }}>WHAT'S OPEN?</h2>
                                 </nav>
                                 <div onClick={() => {

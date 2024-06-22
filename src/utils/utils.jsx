@@ -2,10 +2,9 @@ import {useQuery} from "@tanstack/react-query";
 import {useEffect, useState, useRef} from "react";
 
 // handle location changes
-
-
 export function handleLocationChange(newLocation, setLocation, setBgColor) {
     const clubColors = {
+        // list with club locations and matching colors.
         antwerp: getCSSVariableValue("--turquoise-green"),
         gent: getCSSVariableValue("--pale-lemon-yellow"),
         brussels: getCSSVariableValue("--salvia-blue"),
@@ -17,6 +16,19 @@ export function handleLocationChange(newLocation, setLocation, setBgColor) {
 export function getCSSVariableValue(variableName){
     // function to get value from css variable
     return getComputedStyle(document.documentElement).getPropertyValue(variableName).trim();
+}
+
+export async function suprise(club, nav, ) {
+    console.log(`returning a random location in ${club}`)
+    const venues = await fetchAPI("venue", "en");
+    if (venues) {
+        // fetch all venues in this location
+        const res = venues.docs.filter(venue => venue.club == club)
+        // pick random one
+        const random = Math.floor(Math.random()*res.length)
+        nav(`/venue/${res[random].url}`)
+    }
+
 }
 
 /*export function fetchAPI(endpoint, locale) {
