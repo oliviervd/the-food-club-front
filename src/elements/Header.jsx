@@ -4,7 +4,7 @@ import {useMediaQuery} from "@uidotdev/usehooks";
 import {useContext} from "react";
 import {BackgroundColorContext} from "../utils/BackgroundColorContext.jsx";
 import DitherImage from "./DitherImage.jsx";
-import {getCSSVariableValue, handleLocationChange} from "../utils/utils.jsx";
+import {suprise, handleLocationChange} from "../utils/utils.jsx";
 
 const Header = ({location, setLocation, interact, landing, setTarget, greyOut=false, color}) => {
 
@@ -84,7 +84,8 @@ const Header = ({location, setLocation, interact, landing, setTarget, greyOut=fa
                                                     minFontSize={10} />
                                 </div>
                                 <nav className={"flex-buttons"}>
-                                    <h2 className={`link greyed-out`} onClick={() => {
+                                    <h2 className={`link`} onClick={() => {
+                                        surprise(location, nav);
                                     }}>SUPRISE ME!</h2>
                                     <h2 className={`link greyed-out`} onClick={() => {
                                     }}>WHAT'S OPEN?</h2>

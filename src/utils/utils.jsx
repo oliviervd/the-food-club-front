@@ -18,7 +18,7 @@ export function getCSSVariableValue(variableName){
     return getComputedStyle(document.documentElement).getPropertyValue(variableName).trim();
 }
 
-export async function suprise(club, nav, ) {
+export async function surprise(club, nav, ) {
     console.log(`returning a random location in ${club}`)
     const venues = await fetchAPI("venue", "en");
     if (venues) {
