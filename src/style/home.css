@@ -13,5 +13,10 @@
             border-left: none;
         }
     }
+}
+
+@media (min-width: 1700px) {
+    .home__container {
+        padding: 0px 10vw;
     }
 }

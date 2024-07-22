@@ -27,3 +27,13 @@
     display: grid;
     grid-template-columns: 50% 50%;
 }
+
+.venue__container {
+    padding: 10px 10px;
+}
+
+@media (min-width: 1700px) {
+    .venue__container {
+        padding: 10px 10vw;
+    }
+}

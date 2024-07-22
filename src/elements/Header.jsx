@@ -21,28 +21,35 @@ const Header = ({location, setLocation, interact, landing, setTarget, greyOut=fa
         return(
             <header>
                 {!isSmall &&
-                    <div style={{display: 'grid', gridTemplateColumns: "30% 70%"}}>
-                        <div style={{width: '100%', height: 'auto'}} onClick={() => {
-                            nav("/")
-                        }}>
-                            <AutoResizeText text="FOOD CLUB" maxFontSize={600} minFontSize={10} padding={"0px 0px"}/>
-                        </div>
-                        <div style={{display:"flex", flexFlow:"row", flexDirection: "revert"}}>
-                            <div style={{width:"90%"}}></div>
-                            <nav className={"flex-buttons"} style={{
-                                display: "flex",
-                                flexFlow: "column",
-                                justifyContent: "space-between",
-                                textAlign: "right",
-                                width: "10%"
+                    <div>
+                        <div style={{display: 'grid', gridTemplateColumns: "20% 60% 20%"}}>
+                            <div/>
+                            <div style={{width: '100%', height: 'auto'}} onClick={() => {
+                                nav("/")
                             }}>
-                                <h2 className={"link greyed-out"}>NL</h2>
-                                <h2 className={"link greyed-out"}>FR</h2>
-                                <h2 className={"link selected"}>EN</h2>
-                            </nav>
+                                <AutoResizeText text="FOOD CLUB" maxFontSize={600} minFontSize={10}
+                                                padding={"0px 0px"}/>
+                            </div>
+
                         </div>
-
-
+                        <div>
+                            <div style={{display: "flex", flexFlow: "row", flexDirection: "revert"}}>
+                                <nav className={"flex-buttons"} style={{
+                                    display: "flex",
+                                    flexFlow: "row",
+                                    textAlign: "right",
+                                    width: "100%",
+                                    gap: "0px"
+                                }}>
+                                    <h2 className={"link greyed-out"}>categories</h2>
+                                    <h2 className={"link greyed-out"}>map</h2>
+                                    <h2 className={"link greyed-out"}>about</h2>
+                                    <h2 className={"link greyed-out"}>NL</h2>
+                                    <h2 className={"link greyed-out"}>FR</h2>
+                                    <h2 className={"link selected"}>EN</h2>
+                                </nav>
+                            </div>
+                        </div>
                     </div>
                 }
                 {isSmall &&

@@ -57,7 +57,7 @@ const Venue = () => {
         <>
             <Header setLocation={setLocation} location={location} interact={false} greyOut={true}/>
             {venue &&
-                <section style={{padding: "0 10px", position: "relative"}}>
+                <section className={"venue__container"}>
                     {searchParams.get("surprise") && location &&
                         <div style={{
                             width: "99%",
