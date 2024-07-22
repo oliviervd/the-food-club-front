@@ -24,6 +24,10 @@ header > h1 {
     };
 }
 
+header h2 {
+    font-size: var(--font-s);
+}
+
 header .flex-buttons > h2 {
     border-left: none;
     border-color: black;

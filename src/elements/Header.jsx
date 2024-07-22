@@ -23,23 +23,26 @@ const Header = ({location, setLocation, interact, landing, setTarget, greyOut=fa
                 {!isSmall &&
                     <div>
                         <div style={{display: 'grid', gridTemplateColumns: "30% 40% 30%"}}>
-                            <div>
-
+                            <div style={{display: 'flex', flexFlow: "row", height: '100%', justifyContent: 'center'}}>
+                                <h2 style={{margin: "auto"}}>welcome to the club</h2>
                             </div>
                             <div style={{width: '100%', height: 'auto'}} onClick={() => {
                                 nav("/")
                             }}>
-                                <AutoResizeText text="FOOD CLUB" maxFontSize={600} minFontSize={10}
+                                <AutoResizeText text="FOODCLUB" maxFontSize={600} minFontSize={10}
                                                 padding={"0px 0px"}/>
                             </div>
-                            <div className={"button-src"}>
-                                <svg width="31" height="100%" viewBox="0 0 31 26" fill="none"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="10.8333" cy="10.8333" r="9.83333" stroke="black"
-                                            stroke-width="2"></circle>
-                                    <line x1="19.3504" y1="17.1214" x2="29.5022" y2="24.6017" stroke="black"
-                                          stroke-width="2" stroke-linecap="round"></line>
-                                </svg>
+                            <div style={{display: 'flex', flexFlow: "row", height: '100%', justifyContent: 'center'}}>
+                                <h2 style={{margin: "auto"}}>looking for something?</h2>
+                                <div className={"button-src"}>
+                                    <svg width="31" height="100%" viewBox="0 0 31 26" fill="none"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="10.8333" cy="10.8333" r="9.83333" stroke="black"
+                                                stroke-width="2"></circle>
+                                        <line x1="19.3504" y1="17.1214" x2="29.5022" y2="24.6017" stroke="black"
+                                              stroke-width="2" stroke-linecap="round"></line>
+                                    </svg>
+                                </div>
                             </div>
 
                         </div>
@@ -52,7 +55,7 @@ const Header = ({location, setLocation, interact, landing, setTarget, greyOut=fa
                                     width: "100%",
                                     gap: "0px"
                                 }}>
-                                <h2 className={"link"}>categories</h2>
+                                    <h2 className={"link"}>categories</h2>
                                     <h2 className={"link"}>map</h2>
                                     <h2 className={"link"}>about</h2>
                                     <h2 className={"link"}>NL</h2>
@@ -68,7 +71,7 @@ const Header = ({location, setLocation, interact, landing, setTarget, greyOut=fa
                     <div style={{width: '100%', height: 'auto'}} onClick={() => {
                         nav("/")
                     }}>
-                        <AutoResizeText text="FOOD CLUB" maxFontSize={600} minFontSize={10} padding={"0px 0px"}/>
+                        <AutoResizeText text="FOODCLUB" maxFontSize={600} minFontSize={10} padding={"0px 0px"}/>
                     </div>
                 }
 

@@ -50,9 +50,10 @@ const Home = () => {
         <div>
             <Header landing={true} interact={true} setLocation={setLocation} location={location} setTarget={setTarget}></Header>
             <section className={"home__container"}>
+
                 {!isSmall &&
                     <div style={{paddingRight:"20px"}}>
-                        <div style={{width: '100%', height: 'auto'}}>
+                        {/*<div style={{width: '100%', height: 'auto'}}>
                             <AutoResizeText text="WELCOME TO FOOD CLUB. LOOKING FOR SOMETHING IN..?" maxFontSize={600}
                                             minFontSize={10}/>
                         </div>
@@ -87,7 +88,7 @@ const Home = () => {
                                 </div>
                             </>
 
-                        }
+                        }*/}
                     </div>
                 }
                 {categoryList &&
