@@ -10,7 +10,6 @@ header > h1 {
     display: flex;
     justify-content: space-evenly;
     flex-flow: row;
-    gap :2px;
     > h2 {
         padding: 0;
         margin: 0;
@@ -19,6 +18,10 @@ header > h1 {
         justify-content: center;
         text-align: center;
     }
+
+    > h2:last-child {
+        border-right:none;
+    };
 }
 
 header .flex-buttons > h2 {
