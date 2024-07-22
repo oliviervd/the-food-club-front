@@ -22,7 +22,7 @@ const Header = ({location, setLocation, interact, landing, setTarget, greyOut=fa
             <header>
                 {!isSmall &&
                     <div>
-                        <div style={{display: 'grid', gridTemplateColumns: "20% 60% 20%"}}>
+                        <div style={{display: 'grid', gridTemplateColumns: "30% 40% 30%"}}>
                             <div/>
                             <div style={{width: '100%', height: 'auto'}} onClick={() => {
                                 nav("/")
@@ -41,17 +41,18 @@ const Header = ({location, setLocation, interact, landing, setTarget, greyOut=fa
                                     width: "100%",
                                     gap: "0px"
                                 }}>
-                                    <h2 className={"link greyed-out"}>categories</h2>
-                                    <h2 className={"link greyed-out"}>map</h2>
-                                    <h2 className={"link greyed-out"}>about</h2>
-                                    <h2 className={"link greyed-out"}>NL</h2>
-                                    <h2 className={"link greyed-out"}>FR</h2>
+                                    <h2 className={"link"}>categories</h2>
+                                    <h2 className={"link"}>map</h2>
+                                    <h2 className={"link"}>about</h2>
+                                    <h2 className={"link"}>NL</h2>
+                                    <h2 className={"link"}>FR</h2>
                                     <h2 className={"link selected"}>EN</h2>
                                 </nav>
                             </div>
                         </div>
                     </div>
                 }
+
                 {isSmall &&
                     <div style={{width: '100%', height: 'auto'}} onClick={() => {
                         nav("/")

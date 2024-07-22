@@ -49,7 +49,6 @@ const Home = () => {
     return(
         <div>
             <Header landing={true} interact={true} setLocation={setLocation} location={location} setTarget={setTarget}></Header>
-            <div id={"cat_list"} className={"divider"}></div>
             <section className={"home__container"}>
                 {!isSmall &&
                     <div style={{paddingRight:"20px"}}>
