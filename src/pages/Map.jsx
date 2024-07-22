@@ -6,7 +6,7 @@ const Map = ({}) => {
     let zoom = 12.5
 
     return(
-        <div>
+        <div style={{maxHeight: "100vh", overflow: "hidden"}}>
             <Header landing={true}/>
             <div style={{height:"100vh", width: "100vw"}}>
                 <MapContainer
