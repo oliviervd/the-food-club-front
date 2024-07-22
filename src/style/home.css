@@ -5,6 +5,17 @@
 
 }
 
+.map-container{
+    width: 100vw;
+    height: 50vh;
+}
+
+.leaflet-container {
+    width: 100%;
+    height: 100vh;
+    z-index: 1;
+}
+
 @media (max-width:1200px) {
     .home__container {
         display: block;

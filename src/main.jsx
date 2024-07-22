@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Venues from "./pages/Venues.jsx";
 import Venue from "./pages/Venue.jsx";
 import Search from "./pages/Search.jsx"
+import Map from "./pages/Map.jsx";
 import {BackgroundColorProvider} from "./utils/BackgroundColorContext.jsx";
 
 import "../src/style/fonts.css"
@@ -13,6 +14,7 @@ import "../src/style/home.css"
 import "../src/style/categories.css"
 import "../src/style/venue.css"
 import "../src/style/main.css"
+import "leaflet/dist/leaflet.css";
 
 //todo: add language provider (API Context)
 
@@ -40,6 +42,7 @@ export default function App() {
             <Route path="/categories/:category" element={<Venues />}/>
             <Route path="/venue/:venue" element={<Venue />}/>
             <Route path="/venues/" element={<Search />}/>
+            <Route path="/map/" element={<Map />}/>
           </Routes>
         </BackgroundColorProvider>
       </QueryClientProvider>
