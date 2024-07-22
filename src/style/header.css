@@ -35,6 +35,13 @@ header .flex-buttons > h2 {
     gap: 0px
 }
 
+.button-src {
+    justify-content: center;
+    text-align: end;
+    margin-right: 20px;
+    height: 100%;
+}
+
 @media (max-width: 600px) {
     header > h1 {
         font-size: var(--font-xxl);
