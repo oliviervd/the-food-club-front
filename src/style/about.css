@@ -1,0 +1,10 @@
+.about {
+    width: 100vw;
+    padding-top: 50px;
+}
+
+.about h1, p {
+    width: 100%;
+    text-align: center;
+}
+
