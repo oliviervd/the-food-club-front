@@ -6,10 +6,12 @@ const Map = ({}) => {
     let zoom = 12.5
 
     return(
-        <div style={{maxHeight: "100vh", overflow: "hidden"}}>
+        <div className={"map--ui_container"}
+             style={{ overflow: "hidden", maxWidth: "100vw", height: "100vh"}}>
             <Header landing={true}/>
-            <div style={{height:"100vh", width: "100vw"}}>
+            <div style={{ height: '100%', width: '100%'}}>
                 <MapContainer
+                    className={"map--ui"}
                     center={[51.0544, 3.7256]}
                     zoom={zoom}
                     zoomControl={false}
@@ -20,6 +22,9 @@ const Map = ({}) => {
                         url="https://api.mapbox.com/styles/v1/oliviervd-tfc/clllwhqvq009s01pea2rw8mpt/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoib2xpdmllcnZkLXRmYyIsImEiOiJjbGxqZWFjd3MweTBzM2psaWFiemlnZnZnIn0.fMu0iJpz82mNYQ5Rrrwi-w"
                     />
                 </MapContainer>
+            </div>
+            <div className={"map--filter_container"}>
+
             </div>
         </div>
     )
