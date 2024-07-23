@@ -18,7 +18,9 @@ import "../src/style/home.css"
 import "../src/style/categories.css"
 import "../src/style/venue.css"
 import "../src/style/main.css"
+import "../src/style/about.css"
 import "leaflet/dist/leaflet.css";
+import "../src/style/map.css"
 
 //todo: add language provider (API Context)
 

@@ -1,6 +1,7 @@
 import Header from "../elements/Header.jsx";
 import "../style/header.css"
 import "../style/fonts.css"
+
 import CategoryList from "../elements/CategoryList.jsx";
 import {fetchAPI, scrollTo, handleLocationChange, surprise} from "../utils/utils.jsx";
 import {useQuery} from "@tanstack/react-query";
