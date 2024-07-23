@@ -2,10 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+import Home from "./pages/Home.jsx";
 import Venues from "./pages/Venues.jsx";
 import Venue from "./pages/Venue.jsx";
 import Search from "./pages/Search.jsx"
 import Map from "./pages/Map.jsx";
+import About from "./pages/About.jsx";
+import Categories from "./pages/Categories.jsx";
 import {BackgroundColorProvider} from "./utils/BackgroundColorContext.jsx";
 
 import "../src/style/fonts.css"
@@ -18,7 +22,6 @@ import "leaflet/dist/leaflet.css";
 
 //todo: add language provider (API Context)
 
-import Home from "./pages/Home.jsx";
 
 export default function App() {
   const queryClient = new QueryClient({
@@ -43,6 +46,8 @@ export default function App() {
             <Route path="/venue/:venue" element={<Venue />}/>
             <Route path="/venues/" element={<Search />}/>
             <Route path="/map/" element={<Map />}/>
+            <Route path="/about/" element={<About />}/>
+            <Route path="/categories" element={<Categories />}/>
           </Routes>
         </BackgroundColorProvider>
       </QueryClientProvider>

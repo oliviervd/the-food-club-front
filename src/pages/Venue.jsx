@@ -55,7 +55,7 @@ const Venue = () => {
 
     return (
         <>
-            <Header setLocation={setLocation} location={location} interact={false} greyOut={true}/>
+            <Header landing={true} setLocation={setLocation} location={location} interact={false} greyOut={true}/>
             {venue &&
                 <section className={"venue__container"}>
                     {searchParams.get("surprise") && location &&

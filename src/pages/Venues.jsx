@@ -56,7 +56,7 @@ const Venues = () => {
 
     return(
         <>
-            <Header/>
+            <Header landing={true}/>
             <div className={"divider"}></div>
 
             <section className={"home__container"}>

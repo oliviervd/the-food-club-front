@@ -55,9 +55,9 @@ const Header = ({location, setLocation, interact, landing, setTarget, greyOut=fa
                                     width: "100%",
                                     gap: "0px"
                                 }}>
-                                    <h2 className={"link"}>categories</h2>
-                                    <h2 className={"link"} onClick={()=>nav("/map/")}>map</h2>
-                                    <h2 className={"link"}>about</h2>
+                                    <h2 className={"link"} onClick={() => nav("/categories/")}>categories</h2>
+                                    <h2 className={"link"} onClick={() => nav("/map/")}>map</h2>
+                                    <h2 className={"link"} onClick={() => nav("/about/")}>about</h2>
                                     <h2 className={"link"}>NL</h2>
                                     <h2 className={"link"}>FR</h2>
                                     <h2 className={"link selected"}>EN</h2>
