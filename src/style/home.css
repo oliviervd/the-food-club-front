@@ -8,6 +8,7 @@
 .map-container{
     width: 100vw;
     height: 50vh;
+    position: fixed;
 }
 
 .leaflet-container {
