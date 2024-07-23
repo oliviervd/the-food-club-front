@@ -2,6 +2,7 @@ import Header from "../elements/Header.jsx";
 import {MapContainer, TileLayer, useMap, Marker, Popup} from "react-leaflet";
 import {useContext, useState, useEffect} from "react";
 import {BackgroundColorContext} from "../utils/BackgroundColorContext.jsx";
+import {fetchAPI, getCSSVariableValue} from "../utils/utils.jsx";
 
 // Custom hook to update the map center
 const ChangeView = ({ center }) => {
@@ -14,10 +15,12 @@ const ChangeView = ({ center }) => {
 
 const Map = ({}) => {
 
-    let zoom = 12.5
     const [target, setTarget] = useState(null);
     const [location, setLocation] = useState(null);
+
+    let zoom = 14 // set zoom of map
     const [mapCenter, setMapCenter] = useState([51.0544, 3.7256]); // Initial coordinates
+
     // fetch backgroundcolor from context
     const { bgColor: backgroundColor } = useContext(BackgroundColorContext);
 
@@ -29,41 +32,88 @@ const Map = ({}) => {
     };
 
 
+    // change styling/view map based on location
     useEffect(() => {
+        // restyle UI (color) based on selected location
         const filterContainer = document.querySelector('.map--filter_container');
         if (filterContainer) {
             filterContainer.style.backgroundColor = backgroundColor;
         }
 
+        // reposition map (center) based on selected location
         if (colorToCoordinatesMap[location]) {
             setMapCenter(colorToCoordinatesMap[location]);
         }
-
     }, [backgroundColor, location]);
 
-    console.log(mapCenter)
+    // add locations on map
+    const [venues, setVenues] = useState([]);
+    const getVenues = async () => {
+        const result = await fetchAPI("venue", "en");
+        setVenues(result.docs)
+    }
+
+    useEffect(() => {
+        getVenues();
+    },[])
+
+    // Function to create a custom SVG icon with a given color
+    const createCustomIcon = (color) => {
+        return L.divIcon({
+            className: "custom-marker-icon",
+            html: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="${color}" stroke="black"><circle cx="12" cy="12" r="10"/></svg>`,
+            iconSize: [24, 24],
+            iconAnchor: [12, 12]
+        });
+    };
+
+    // Function to get color based on club/location
+    const getColorForClub = (club) => {
+        switch (club) {
+            case "antwerp":
+                return getCSSVariableValue("--turquoise-green");
+            case "gent":
+                return getCSSVariableValue("--pale-lemon-yellow");
+            default:
+                return getCSSVariableValue("--salvia-blue");
+        }
+    };
 
     return(
         <div className={"map--ui_container"}
-             style={{ overflow: "hidden", maxWidth: "100vw", height: "100vh"}}>
+             style={{ overflow: "hidden", maxWidth: "100vw", maxHeight: "100vh", position: "relative" }}>
             <Header landing={true} interact={true} setLocation={setLocation} location={location} setTarget={setTarget}/>
-            <div style={{ height: '100%', width: '100%'}}>
+            <div style={{height: '80%', width: '100%', position: 'relative'}}>
                 <MapContainer
                     className={"map--ui"}
                     center={mapCenter}
                     zoom={zoom}
                     zoomControl={false}
                 >
-                    <ChangeView center={mapCenter} />
+
+                    {/* plot markers*/}
+                    {venues && venues.map((venue)=>{
+                        console.log(venue.address.latitude);
+                        console.log(venue.address.longitude);
+
+                        const color = getColorForClub(venue.club);
+
+                        return(
+                            <Marker
+                                position={[venue.address.longitude, venue.address.latitude]}
+                                icon={createCustomIcon(color)}
+                            />
+                        )
+                    })}
+
+                    <ChangeView center={mapCenter}/>
                     <TileLayer
-                        //attribution='Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'
-                        //url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
                         url="https://api.mapbox.com/styles/v1/oliviervd-tfc/clllwhqvq009s01pea2rw8mpt/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoib2xpdmllcnZkLXRmYyIsImEiOiJjbGxqZWFjd3MweTBzM2psaWFiemlnZnZnIn0.fMu0iJpz82mNYQ5Rrrwi-w"
                     />
                 </MapContainer>
-            </div>
-            <div className={"map--filter_container"} style={{ backgroundColor:"Background" }}>
+                <div className={"map--filter_container"} style={{backgroundColor: "Background"}}>
 
+                </div>
             </div>
         </div>
     )
