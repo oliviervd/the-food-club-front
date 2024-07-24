@@ -80,13 +80,13 @@ const Header = ({location, setLocation, interact, landing, setTarget, greyOut=fa
 
                 {isSmall &&
                     <div>
-                        <div style={{width: '100%', height: 'auto'}}>
+                       {/* <div style={{width: '100%', height: 'auto'}}>
                             <AutoResizeText text="WELCOME TO FOOD CLUB" maxFontSize={600}
                                             minFontSize={10} padding={"0px 5px"}/>
                             <div className={"divider"}></div>
                             <AutoResizeText text="LOOKING FOR SOMETHING IN" maxFontSize={600}
                                             minFontSize={10} padding={"0px 0px 5px 5px"}/>
-                        </div>
+                        </div>*/}
                         <nav className={"flex-buttons"}>
                             <h2 className={`link ${location === "gent" ? "selected" : ""}${greyOut && location !== "gent" ? "greyed-out" : ""}`}
                                 onClick={interact ? () => {
@@ -103,23 +103,23 @@ const Header = ({location, setLocation, interact, landing, setTarget, greyOut=fa
                         </nav>
                         {location &&
                             <>
-                                <div style={{width: '100%', height: 'auto'}}>
+                                {/*<div style={{width: '100%', height: 'auto'}}>
                                     <AutoResizeText text={`WE LOVE ${location.toUpperCase()}! HOW CAN WE HELP YOU?`}
                                                     maxFontSize={600}
                                                     minFontSize={10} />
-                                </div>
+                                </div>*/}
                                 <nav className={"flex-buttons"}>
                                     <h2 className={`link`} onClick={() => {
                                         surprise(location, nav);
-                                    }}>SUPRISE ME!</h2>
+                                    }} style={{borderTop:"none"}}>SUPRISE ME!</h2>
                                     <h2 className={`link greyed-out`} onClick={() => {
-                                    }}>WHAT'S OPEN?</h2>
+                                    }} style={{borderTop:"none"}}>WHAT'S OPEN?</h2>
                                 </nav>
-                                <div onClick={() => {
+                                {/*<div onClick={() => {
                                     setTarget("cat_list")
                                 }} style={{border: "black 2px solid", marginTop: "2px"}}>
                                     <AutoResizeText text={`↓ OR CHECK OUT THE LISTS BELOW ↓`} />
-                                </div>
+                                </div>*/}
                             </>
 
                         }
