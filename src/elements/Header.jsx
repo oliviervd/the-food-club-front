@@ -7,7 +7,7 @@ import DitherImage from "./DitherImage.jsx";
 import {surprise, handleLocationChange} from "../utils/utils.jsx";
 import LinkComponent from "./LinkComponent.jsx";
 
-const Header = ({location, setLocation, interact, landing, setTarget, greyOut=false, color}) => {
+const Header = ({location, setLocation, interact, landing, setTarget, greyOut=false, color, map}) => {
 
     // todo: add languages
     // todo: add map button
@@ -96,7 +96,11 @@ const Header = ({location, setLocation, interact, landing, setTarget, greyOut=fa
                                     handleLocationChange("brussels", setLocation, setBgColor);
                                 } : null}>BRUSSELS</h2>
                         </nav>
-                        {location &&
+                        <nav className={"flex-buttons"}>
+                            <h2 className={"link"} style={{borderTop: "none"}} onClick={()=>nav("/map/")}>map</h2>
+                            <h2 className={"link"} style={{borderTop: "none"}} onClick={()=>nav("/categories/")}>categories</h2>
+                        </nav>
+                        {location && !map &&
                             <>
                                 <nav className={"flex-buttons"}>
                                     <h2 className={`link`} onClick={() => {

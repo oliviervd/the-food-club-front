@@ -28,3 +28,9 @@
     width: 100%;
     height: 83vh;
 }
+
+@media (max-width: 1200px) {
+    .map--filter_container {
+        display: none;
+    }
+}
