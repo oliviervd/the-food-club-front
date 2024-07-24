@@ -7,6 +7,7 @@ import AutoResizeText from "../elements/AutoResizeText.jsx";
 import DitherImage from "../elements/DitherImage.jsx";
 import serialize from "../utils/serialize.jsx";
 import {BackgroundColorContext} from "../utils/BackgroundColorContext.jsx";
+import {useMediaQuery} from "@uidotdev/usehooks";
 
 const Venue = () => {
 
@@ -16,6 +17,7 @@ const Venue = () => {
     const [venue, setVenue] = useState(null);
     const nav = useNavigate()
     const { setBgColor } = useContext(BackgroundColorContext);
+    const isDesktop = useMediaQuery("(min-width: 1200px)");
 
     const [location, setLocation] = useState(null);
 
@@ -73,62 +75,117 @@ const Venue = () => {
                             </div>
                         </div>
                     }
-                    <DitherImage style={{justifyContent: "center", maxWidth: "99%"}}
-                         url={venue.media.hero.sizes.tablet.url}/>
-            <div style={{width: "100%", height: 'auto', position: "relative"}}>
-                        <AutoResizeText text={venue.venueName} padding={"10px 0 30px 0"}/>
-                    </div>
-                    <div className={"cuisines"}>
-                        {venue.cuisineUsed.map((cuisine) => {
-                            return (
-                                <a style={{color: "black", textDecoration: "none"}}><h2 className={"link"}
-                                                                                        onClick={() => navigateTo(`/venues/?cuisine=${cuisine.name}`)}>{cuisine.name}</h2>
-                                </a>
-                            )
-                        })}
-                    </div>
-                    <section>
-                    </section>
-                    <p className={"text-main"}>
-                        {serialize(venue.reviews.review)}
-                    </p>
+                    <div className={"grid"}>
+                        <div>
+                            <DitherImage style={{justifyContent: "center", maxWidth: "99%"}}
+                                         url={venue.media.hero.sizes.tablet.url}/>
+                            {!isDesktop &&
+                                <div style={{width: "100%", height: 'auto', position: "relative"}}>
+                                    <AutoResizeText text={venue.venueName} padding={"10px 0 30px 0"}/>
+                                </div>
+                            }
+                            <div className={"cuisines"}>
+                                {venue.cuisineUsed.map((cuisine) => {
+                                    return (
+                                        <a style={{color: "black", textDecoration: "none"}}><h2 className={"link"}
+                                                                                                onClick={() => navigateTo(`/venues/?cuisine=${cuisine.name}`)}>{cuisine.name}</h2>
+                                        </a>
+                                    )
+                                })}
+                            </div>
+                            {isDesktop &&
+                                <div style={{display:"none"}}>
+                                    <div>
+                                        {venue.address &&
+                                            <div style={{maxWidth: "100%"}}>
+                                                <AutoResizeText
+                                                    text={venue.address.street + " " + venue.address.houseNumber + ", " + venue.address.postalCode + " " + venue.address.city}/>
+                                            </div>
+                                        }
+                                    </div>
 
-                    {venue.foodClubOrder &&
-                        <div className={"venue-tip__container"}>
-                            <div className={"text-main"}>☞</div>
-                            <p className={"text-main"}>{serialize(venue.foodClubOrder)}</p>
+                                    <div style={{
+                                        width: "99%",
+                                        height: 'auto',
+                                        textAlign: "center",
+                                        justifyContent: "center",
+                                        position: "relative",
+                                        border: "4px solid black",
+                                        marginBottom: "20px"
+                                    }}>
+                                        {venue.reservations &&
+                                            <div className={"link"}
+                                                 href={venue.reservations}>
+                                                <AutoResizeText text='BOOK A TABLE'/>
+                                            </div>
+                                        }
+                                        {!venue.reservations &&
+                                            <div style={{maxWidth: "99%"}}>
+                                                <AutoResizeText text='NO RESERVATIONS POSSIBLE'/>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+
+                            }
                         </div>
-                    }
+                        <div className={"container-big"}>
+                            {isDesktop &&
+                                <div style={{width: "100%", height: 'auto', position: "relative"}}>
+                                    <AutoResizeText text={venue.venueName} padding={"10px 0 30px 0"}/>
+                                </div>
+                            }
+                            <p className={"text-main"}>
+                                {serialize(venue.reviews.review)}
+                            </p>
 
-                    <div>
-                        {venue.address &&
-                            <div style={{maxWidth: "100%"}}>
-                                <AutoResizeText text={venue.address.street + " " + venue.address.houseNumber + ", " + venue.address.postalCode + " " + venue.address.city} />
-                            </div>
-                        }
+                            {venue.foodClubOrder &&
+                                <div className={"venue-tip__container"}>
+                                    <div className={"text-main"}>☞</div>
+                                    <p className={"text-main"}>{serialize(venue.foodClubOrder)}</p>
+                                </div>
+                            }
+
+                            {!isDesktop &&
+                                <section>
+                                    <div>
+                                        {venue.address &&
+                                            <div style={{maxWidth: "100%"}}>
+                                                <AutoResizeText
+                                                    text={venue.address.street + " " + venue.address.houseNumber + ", " + venue.address.postalCode + " " + venue.address.city}/>
+                                            </div>
+                                        }
+                                    </div>
+
+                                    <div style={{
+                                        width: "99%",
+                                        height: 'auto',
+                                        textAlign: "center",
+                                        justifyContent: "center",
+                                        position: "relative",
+                                        border: "4px solid black",
+                                        marginBottom: "20px"
+                                    }}>
+                                        {venue.reservations &&
+                                            <div className={"link"}
+                                                 href={venue.reservations}>
+                                                <AutoResizeText text='BOOK A TABLE'/>
+                                            </div>
+                                        }
+                                        {!venue.reservations &&
+                                            <div style={{maxWidth: "99%"}}>
+                                                <AutoResizeText text='NO RESERVATIONS POSSIBLE'/>
+                                            </div>
+                                        }
+                                    </div>
+                                </section>
+                            }
+
+
+                        </div>
                     </div>
 
-                    <div style={{
-                        width: "99%",
-                        height: 'auto',
-                        textAlign: "center",
-                        justifyContent: "center",
-                        position: "relative",
-                        border: "4px solid black",
-                        marginBottom: "20px"
-                    }}>
-                        {venue.reservations &&
-                            <div className={"link"}
-                               href={venue.reservations}>
-                                <AutoResizeText text='BOOK A TABLE'/>
-                            </div>
-                        }
-                        {!venue.reservations &&
-                            <div style={{maxWidth: "99%"}}>
-                                <AutoResizeText text='NO RESERVATIONS POSSIBLE'/>
-                            </div>
-                        }
-                    </div>
+
                 </section>
             }
         </>

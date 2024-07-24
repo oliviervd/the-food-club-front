@@ -32,8 +32,31 @@
     padding: 10px 10px;
 }
 
+@media (min-width: 1200px) {
+    .grid {
+        display: grid;
+        grid-template-columns: 50% 50%;
+    }
+
+    .container-big {
+        padding: 0 20px;
+    }
+
+    .text-main {
+        margin-top: 0;
+        text-align: left;
+
+        p {
+            margin: 0;
+            text-align: left;
+
+        }
+    }
+}
+
 @media (min-width: 1700px) {
     .venue__container {
         padding: 10px 10vw;
     }
+
 }
