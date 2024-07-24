@@ -23,6 +23,24 @@
     border-radius: 20px;
 }
 
+.map-tip__container {
+    position: absolute;
+    z-index: 10000;
+    top: 20px;
+    left: 20px;
+    width: 50%;
+    border: 2px black solid;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+
+    p{
+        margin: 0;
+    }
+}
+
 .leaflet-container {
     position: absolute;
     width: 100%;

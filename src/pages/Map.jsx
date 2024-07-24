@@ -3,6 +3,7 @@ import {MapContainer, TileLayer, useMap, Marker, Popup} from "react-leaflet";
 import {useContext, useState, useEffect} from "react";
 import {BackgroundColorContext} from "../utils/BackgroundColorContext.jsx";
 import {fetchAPI, getCSSVariableValue} from "../utils/utils.jsx";
+import serialize from "../utils/serialize.jsx";
 
 // Custom hook to update the map center
 const ChangeView = ({ center }) => {
@@ -36,8 +37,13 @@ const Map = ({}) => {
     useEffect(() => {
         // restyle UI (color) based on selected location
         const filterContainer = document.querySelector('.map--filter_container');
+        const tipContainer = document.querySelector('.map-tip__container');
         if (filterContainer) {
             filterContainer.style.backgroundColor = backgroundColor;
+        }
+
+        if (tipContainer) {
+            tipContainer.style.backgroundColor = backgroundColor;
         }
 
         // reposition map (center) based on selected location
@@ -92,13 +98,13 @@ const Map = ({}) => {
                 >
 
                     {/* plot markers*/}
-                    {venues && venues.map((venue)=>{
+                    {venues && venues.map((venue) => {
                         console.log(venue.address.latitude);
                         console.log(venue.address.longitude);
 
                         const color = getColorForClub(venue.club);
 
-                        return(
+                        return (
                             <Marker
                                 position={[venue.address.longitude, venue.address.latitude]}
                                 icon={createCustomIcon(color)}
@@ -113,6 +119,10 @@ const Map = ({}) => {
                 </MapContainer>
                 <div className={"map--filter_container"} style={{backgroundColor: "Background"}}>
 
+                </div>
+                <div className={"map-tip__container"}>
+                    <div className={"text-main"}>☞</div>
+                    <p className={"text-main"}>click on one of the icons of the map or narrow down the selection using the filters to the right.</p>
                 </div>
             </div>
         </div>
