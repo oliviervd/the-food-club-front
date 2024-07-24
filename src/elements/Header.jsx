@@ -5,12 +5,14 @@ import {useContext} from "react";
 import {BackgroundColorContext} from "../utils/BackgroundColorContext.jsx";
 import DitherImage from "./DitherImage.jsx";
 import {surprise, handleLocationChange} from "../utils/utils.jsx";
+import LinkComponent from "./LinkComponent.jsx";
 
 const Header = ({location, setLocation, interact, landing, setTarget, greyOut=false, color}) => {
 
     // todo: add languages
     // todo: add map button
     // todo: make header logo "FOOD CLUB" (fold) when scrolling down
+    // todo: add animation when links are interacted with.
 
     // navigate back to home
     const nav = useNavigate();
@@ -80,13 +82,6 @@ const Header = ({location, setLocation, interact, landing, setTarget, greyOut=fa
 
                 {isSmall &&
                     <div>
-                       {/* <div style={{width: '100%', height: 'auto'}}>
-                            <AutoResizeText text="WELCOME TO FOOD CLUB" maxFontSize={600}
-                                            minFontSize={10} padding={"0px 5px"}/>
-                            <div className={"divider"}></div>
-                            <AutoResizeText text="LOOKING FOR SOMETHING IN" maxFontSize={600}
-                                            minFontSize={10} padding={"0px 0px 5px 5px"}/>
-                        </div>*/}
                         <nav className={"flex-buttons"}>
                             <h2 className={`link ${location === "gent" ? "selected" : ""}${greyOut && location !== "gent" ? "greyed-out" : ""}`}
                                 onClick={interact ? () => {
@@ -103,11 +98,6 @@ const Header = ({location, setLocation, interact, landing, setTarget, greyOut=fa
                         </nav>
                         {location &&
                             <>
-                                {/*<div style={{width: '100%', height: 'auto'}}>
-                                    <AutoResizeText text={`WE LOVE ${location.toUpperCase()}! HOW CAN WE HELP YOU?`}
-                                                    maxFontSize={600}
-                                                    minFontSize={10} />
-                                </div>*/}
                                 <nav className={"flex-buttons"}>
                                     <h2 className={`link`} onClick={() => {
                                         surprise(location, nav);
@@ -115,11 +105,6 @@ const Header = ({location, setLocation, interact, landing, setTarget, greyOut=fa
                                     <h2 className={`link greyed-out`} onClick={() => {
                                     }} style={{borderTop:"none"}}>WHAT'S OPEN?</h2>
                                 </nav>
-                                {/*<div onClick={() => {
-                                    setTarget("cat_list")
-                                }} style={{border: "black 2px solid", marginTop: "2px"}}>
-                                    <AutoResizeText text={`↓ OR CHECK OUT THE LISTS BELOW ↓`} />
-                                </div>*/}
                             </>
 
                         }

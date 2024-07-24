@@ -55,6 +55,12 @@ h2 {
     font-size: var(--font-m);
 }
 
+.link {
+    position: relative;
+    overflow: hidden;
+}
+
+
 .link:hover {
     cursor: pointer;
     background-color: black;

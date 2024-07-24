@@ -68,7 +68,7 @@ const Venue = () => {
                             border: "4px solid black",
                             marginBottom: "5px"
                         }} onClick={()=>{surprise(location, nav)}}>
-                            <div style={{maxWidth: "99%"}}>
+                            <div className={"link"} style={{maxWidth: "100%"}}>
                                 <AutoResizeText text={`SURPRISE AGAIN IN ${location.toUpperCase()}`}/>
                             </div>
                         </div>
@@ -118,10 +118,10 @@ const Venue = () => {
                         marginBottom: "20px"
                     }}>
                         {venue.reservations &&
-                            <a className={"link"} style={{color: "black", textDecoration: "none"}}
+                            <div className={"link"}
                                href={venue.reservations}>
                                 <AutoResizeText text='BOOK A TABLE'/>
-                            </a>
+                            </div>
                         }
                         {!venue.reservations &&
                             <div style={{maxWidth: "99%"}}>
