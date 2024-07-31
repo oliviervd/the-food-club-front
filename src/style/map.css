@@ -36,7 +36,7 @@
     flex-direction: row;
     gap: 20px;
 
-    p{
+    p {
         margin: 0;
     }
 }
@@ -45,6 +45,13 @@
     position: absolute;
     width: 100%;
     height: 83vh;
+}
+
+@media (max-width: 1200px) {
+    .map-tip__container {
+        right: 20px;
+        width: auto;
+    }
 }
 
 @media (max-width: 1200px) {
