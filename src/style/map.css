@@ -51,6 +51,10 @@
     .map-tip__container {
         right: 20px;
         width: auto;
+
+        p {
+            font-size: var(--font-s);
+        }
     }
 }
 
