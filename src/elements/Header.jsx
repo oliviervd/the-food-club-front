@@ -57,9 +57,9 @@ const Header = ({location, setLocation, interact, landing, setTarget, greyOut=fa
                                     width: "100%",
                                     gap: "0px"
                                 }}>
-                                    <h2 className={"link"} onClick={() => nav("/categories/")}>categories</h2>
-                                    <h2 className={"link"} onClick={() => nav("/map/")}>map</h2>
-                                    <h2 className={"link"} onClick={() => nav("/about/")}>about</h2>
+                                    <h2 className={"link"} onClick={() => nav("/categories/")}>CATEGORIES</h2>
+                                    <h2 className={"link"} onClick={() => nav("/map/")}>MAP</h2>
+                                    <h2 className={"link"} onClick={() => nav("/about/")}>ABOUT</h2>
                                     <h2 className={"link"} onClick={()=>{handleLocationChange("gent", setLocation, setBgColor)}}>@GENT</h2>
                                     <h2 className={"link"} onClick={()=>{handleLocationChange("brussels", setLocation, setBgColor)}}>@BRUSSELS</h2>
                                     <h2 className={"link"} onClick={()=>{handleLocationChange("antwerp", setLocation, setBgColor)}}>@ANTWERP</h2>
@@ -97,9 +97,9 @@ const Header = ({location, setLocation, interact, landing, setTarget, greyOut=fa
                                 } : null}>BRUSSELS</h2>
                         </nav>
                         <nav className={"flex-buttons"}>
-                            <h2 className={"link"} style={{borderTop: "none"}} onClick={() => nav("/map/")}>map</h2>
-                            <h2 className={"link"} style={{borderTop: "none"}} onClick={() => nav("/categories/")}>categories</h2>
-                            <h2 className={"link"} style={{borderTop: "none"}} onClick={() => nav("/about/")}>about</h2>
+                            <h2 className={"link"} style={{borderTop: "none"}} onClick={() => nav("/map/")}>MAP</h2>
+                            <h2 className={"link"} style={{borderTop: "none"}} onClick={() => nav("/categories/")}>CATEGORIES</h2>
+                            <h2 className={"link"} style={{borderTop: "none"}} onClick={() => nav("/about/")}>ABOUT</h2>
                         </nav>
                         {location && !map &&
                             <>
