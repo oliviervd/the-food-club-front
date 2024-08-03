@@ -82,7 +82,22 @@
 
 .category-list__explainer{
     max-width: 100%;
-    margin: 10px;
+    margin: 0 10px;
+    font-size: 0.7rem;
+}
+
+@media (max-width: 800px) {
+    .container__categories {
+        gap: 5px;
+        grid-template-columns: 40% 60%;
+        font-weight: 700;
+    }
+    .container__categories > .category-list__box {
+        h2 {
+            font-size: 10px;
+            width: 70%
+        }
+    }
 }
 
 @media (min-width: 800px) {

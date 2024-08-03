@@ -2,6 +2,7 @@ import Header from "../elements/Header.jsx";
 import {useEffect, useState} from "react";
 import {fetchAPI} from "../utils/utils.jsx";
 import DitherImage from "../elements/DitherImage.jsx";
+import Serialize from "../utils/serialize.jsx";
 
 const Categories = ({}) => {
 
@@ -31,7 +32,9 @@ const Categories = ({}) => {
                             </div>
 
                             <div className={"category-list__explainer"}>
-                                <h1>lorem ipsum devidas panctum sipsos heritas lorem ipsum devidas panctum sipsos heritas lorem ipsum devidas panctum sipsos heritas</h1>
+                                {category.item.value.categoryDescription &&
+                                    <p>{Serialize(category.item.value.categoryDescription)}</p>
+                                }
                             </div>
                         </section>
                     )
