@@ -25,9 +25,13 @@ const Categories = ({}) => {
                     console.log(category);
                     return(
                         <section className={"container__categories"}>
-                            <DitherImage url={category.item.value.media.hero.sizes.tablet.url}/>
-                            <div>
-                                <h1>{category.item.value.categoryTitle}</h1>
+                            <div className={"category-list__box"}>
+                                <DitherImage url={category.item.value.media.hero.sizes.tablet.url}/>
+                                <h2>{category.item.value.categoryTitle}</h2>
+                            </div>
+
+                            <div className={"category-list__explainer"}>
+                                <h1>lorem ipsum devidas panctum sipsos heritas lorem ipsum devidas panctum sipsos heritas lorem ipsum devidas panctum sipsos heritas</h1>
                             </div>
                         </section>
                     )
