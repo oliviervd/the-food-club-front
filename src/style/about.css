@@ -2,10 +2,14 @@
     width: 100vw;
 }
 
-.about h1, p {
+.about h1 {
     max-width: 100%;
-    margin: 50px 50px 50px 50px;
+    margin: 20px 50px 20px 50px;
     text-align: center;
 }
 
+.about p {
+    margin: 20px 50px 20px 50px;
+    text-align: center;
+}
 

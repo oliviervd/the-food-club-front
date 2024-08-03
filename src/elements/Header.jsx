@@ -97,12 +97,13 @@ const Header = ({location, setLocation, interact, landing, setTarget, greyOut=fa
                                 } : null}>BRUSSELS</h2>
                         </nav>
                         <nav className={"flex-buttons"}>
-                            <h2 className={"link"} style={{borderTop: "none"}} onClick={()=>nav("/map/")}>map</h2>
-                            <h2 className={"link"} style={{borderTop: "none"}} onClick={()=>nav("/categories/")}>categories</h2>
+                            <h2 className={"link"} style={{borderTop: "none"}} onClick={() => nav("/map/")}>map</h2>
+                            <h2 className={"link"} style={{borderTop: "none"}} onClick={() => nav("/categories/")}>categories</h2>
+                            <h2 className={"link"} style={{borderTop: "none"}} onClick={() => nav("/about/")}>about</h2>
                         </nav>
                         {location && !map &&
                             <>
-                                <nav className={"flex-buttons"}>
+                            <nav className={"flex-buttons"}>
                                     <h2 className={`link`} onClick={() => {
                                         surprise(location, nav);
                                     }} style={{borderTop:"none"}}>SUPRISE ME!</h2>
