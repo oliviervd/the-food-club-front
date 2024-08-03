@@ -24,20 +24,22 @@ const Categories = ({}) => {
             <section>
                 {categoryList.map(category => {
                     console.log(category);
-                    return(
-                        <section className={"container__categories"}>
-                            <div className={"category-list__box"}>
-                                <DitherImage url={category.item.value.media.hero.sizes.tablet.url}/>
-                                <h2>{category.item.value.categoryTitle}</h2>
-                            </div>
+                    if (category.item.value.media.hero.sizes.tablet.url) {
+                        return(
+                            <section className={"container__categories"}>
+                                <div className={"category-list__box"}>
+                                    <DitherImage url={category.item.value.media.hero.sizes.mobileFriendly.url}/>
+                                    <h2>{category.item.value.categoryTitle}</h2>
+                                </div>
 
-                            <div className={"category-list__explainer"}>
-                                {category.item.value.categoryDescription &&
-                                    <p>{Serialize(category.item.value.categoryDescription)}</p>
-                                }
-                            </div>
-                        </section>
-                    )
+                                <div className={"category-list__explainer"}>
+                                    {category.item.value.categoryDescription &&
+                                        <p>{Serialize(category.item.value.categoryDescription)}</p>
+                                    }
+                                </div>
+                            </section>
+                        )
+                    }
                 })}
             </section>
         </div>
