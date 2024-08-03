@@ -16,7 +16,7 @@
 
 .container__categories{
     max-width: 100%;
-    margin: 0 10px;
+    margin: 0 5px;
     display: grid;
     grid-template-columns: 40% 60%;
     gap: 20px;
