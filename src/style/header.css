@@ -56,7 +56,6 @@ header .flex-buttons > h2 {
 
 @media (min-width: 1700px) {
     header{
-        padding: 0px 10vw;
     }
 
     header > h1 {
