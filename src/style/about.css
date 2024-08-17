@@ -13,6 +13,13 @@
     margin: 20px 50px 20px 50px;
     text-align: center;
     line-height: 1.2rem;
+    width: 50vw;
+    margin: 0 auto;
+}
 
+@media (max-width: 800px) {
+    .about p {
+        width: 90vw;
+    }
 }
 
