@@ -16,10 +16,11 @@
 
 .container__categories{
     max-width: 100%;
-    margin: 0 5px;
+    padding: 0 5px;
     display: grid;
     grid-template-columns: 40% 60%;
     gap: 20px;
+    border-bottom: black solid 2px;
 }
 
 
