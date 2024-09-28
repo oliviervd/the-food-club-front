@@ -29,7 +29,6 @@ const Categories = ({}) => {
                             <section className={"container__categories"}>
                                 <div className={"category-list__box"}>
                                     <DitherImage url={category.item.value.media.hero.sizes.mobileFriendly.url}/>
-                                    <h2>{category.item.value.categoryTitle}</h2>
                                     <div className={"counter"}>
                                         <p>
                                             {category.item.value.venues.venues.length}
@@ -38,6 +37,7 @@ const Categories = ({}) => {
                                 </div>
 
                                 <div className={"category-list__explainer"}>
+                                    <h2>{category.item.value.categoryTitle}</h2>
                                     {category.item.value.categoryDescription &&
                                         <div>
                                             <p>{Serialize(category.item.value.categoryDescription)}</p>
