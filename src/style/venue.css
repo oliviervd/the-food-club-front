@@ -82,3 +82,8 @@
     background-color: var(--color-gent-secondary);
     color: var(--color-gent-main);
 }
+
+.address{
+    font-size: 1.5rem;
+    margin: 10px 0px;
+}

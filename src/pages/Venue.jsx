@@ -142,8 +142,9 @@ const Venue = () => {
                                     <div>
                                         {venue.address &&
                                             <div style={{maxWidth: "100%"}}>
-                                                <AutoResizeText
-                                                    text={venue.address.street + " " + venue.address.houseNumber + ", " + venue.address.postalCode + " " + venue.address.city}/>
+                                                <h2 className={"address"}>
+                                                    {venue.address.street + " " + venue.address.houseNumber + ", " + venue.address.postalCode + " " + venue.address.city}
+                                                </h2>
                                             </div>
                                         }
                                     </div>
