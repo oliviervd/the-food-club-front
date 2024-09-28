@@ -48,7 +48,7 @@
 
     h2 {
         color: var(--color-gent-main);
-        font-size: 3rem;
+        font-size: 2rem;
         padding: 10px;
         justify-content: center;
         text-align: center;
@@ -132,6 +132,13 @@
             width: 70%
         }
     }
+
+    .category-list__box {
+        h2 {
+            font-size: 3rem;
+        }
+    }
+
     .category-list__explainer {
         margin-top: 0;
         padding: 0;
