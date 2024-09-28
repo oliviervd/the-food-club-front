@@ -148,27 +148,14 @@ const Venue = () => {
                                         }
                                     </div>
 
-                                    <div style={{
-                                        width: "99%",
-                                        height: 'auto',
-                                        textAlign: "center",
-                                        justifyContent: "center",
-                                        position: "relative",
-                                        border: "4px solid black",
-                                        marginBottom: "20px"
-                                    }}>
+
                                         {venue.reservations &&
-                                            <div className={"link"}
-                                                 href={venue.reservations}>
-                                                <AutoResizeText text='BOOK A TABLE'/>
-                                            </div>
+
+                                                <div className={"link reservations"}
+                                                     href={venue.reservations}>
+                                                    <h2>book a table</h2>
+                                                </div>
                                         }
-                                        {!venue.reservations &&
-                                            <div style={{maxWidth: "99%"}}>
-                                                <AutoResizeText text='NO RESERVATIONS POSSIBLE'/>
-                                            </div>
-                                        }
-                                    </div>
                                 </section>
                             }
 
