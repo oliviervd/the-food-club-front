@@ -51,7 +51,7 @@ const Venue = () => {
             <Header landing={true} setLocation={setLocation} location={location} interact={false} greyOut={true}/>
             {venue &&
                 <section className={"venue__container"}>
-                    {searchParams.get("surprise") && location &&
+                    {/*{searchParams.get("surprise") && location &&
                         <div style={{
                             width: "99%",
                             height: 'auto',
@@ -65,7 +65,7 @@ const Venue = () => {
                                 <AutoResizeText text={`SURPRISE AGAIN IN ${location.toUpperCase()}`}/>
                             </div>
                         </div>
-                    }
+                    }*/}
                     <div className={"grid"}>
                         <div>
                             <DitherImage style={{justifyContent: "center", maxWidth: "99%"}}
