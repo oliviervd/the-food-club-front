@@ -8,7 +8,6 @@ import {useQuery} from "@tanstack/react-query";
 import {useContext, useEffect, useState} from "react";
 import AutoResizeText from "../elements/AutoResizeText.jsx";
 import {useMediaQuery} from "@uidotdev/usehooks";
-import {BackgroundColorContext} from "../utils/BackgroundColorContext.jsx";
 import {useNavigate} from "react-router-dom";
 
 // todo : improve loading speed
@@ -25,7 +24,6 @@ const Home = () => {
     const isBig = useMediaQuery("(min-width: 1400px)");
 
     // fetch backgroundcolor from context
-    const { setBgColor } = useContext(BackgroundColorContext);
 
     const {data: list, isLoading, error} = useQuery(["lists"], ()=> fetchAPI('lists','en'))
 

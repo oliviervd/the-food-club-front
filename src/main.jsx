@@ -10,7 +10,6 @@ import Search from "./pages/Search.jsx"
 import Map from "./pages/Map.jsx";
 import About from "./pages/About.jsx";
 import Categories from "./pages/Categories.jsx";
-import {BackgroundColorProvider} from "./utils/BackgroundColorContext.jsx";
 
 import "../src/style/fonts.css"
 import "../src/style/media.css"
@@ -40,7 +39,6 @@ export default function App() {
   return (
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
-        <BackgroundColorProvider>
           <Routes>
             <Route path="/" element={<Navigate to="/en" replace />}/>
             <Route path="/:lang" element={<Home />} />
@@ -51,7 +49,6 @@ export default function App() {
             <Route path="/about/" element={<About />}/>
             <Route path="/categories" element={<Categories />}/>
           </Routes>
-        </BackgroundColorProvider>
       </QueryClientProvider>
     </BrowserRouter>
   );

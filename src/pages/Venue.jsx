@@ -6,7 +6,6 @@ import {useQuery} from "@tanstack/react-query";
 import AutoResizeText from "../elements/AutoResizeText.jsx";
 import DitherImage from "../elements/DitherImage.jsx";
 import serialize from "../utils/serialize.jsx";
-import {BackgroundColorContext} from "../utils/BackgroundColorContext.jsx";
 import {useMediaQuery} from "@uidotdev/usehooks";
 
 const Venue = () => {
@@ -16,7 +15,6 @@ const Venue = () => {
     const {data: venues, isLoading, error} =    useQuery(["venues"], ()=> fetchAPI('venue', 'en'));
     const [venue, setVenue] = useState(null);
     const nav = useNavigate()
-    const { setBgColor } = useContext(BackgroundColorContext);
     const isDesktop = useMediaQuery("(min-width: 1200px)");
 
     const [location, setLocation] = useState(null);
@@ -40,13 +38,6 @@ const Venue = () => {
                 setVenue(res)
                 try {
                     setLocation(res.club)
-                    if (res.club == "antwerp") {
-                        setBgColor(getCSSVariableValue("--turquoise-green"));
-                    } else if (res.club == "gent") {
-                        setBgColor(getCSSVariableValue("--pale-lemon-yellow"));
-                    } else {
-                        setBgColor(getCSSVariableValue("--salvia-blue"));
-                    }
                 } catch (e) {
                     console.error(e)
                 }

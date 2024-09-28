@@ -7,7 +7,6 @@ import {useQuery} from "@tanstack/react-query";
 import DitherImage from "../elements/DitherImage.jsx";
 import {useMediaQuery} from "@uidotdev/usehooks";
 import CategoryList from "../elements/CategoryList";
-import serialize from "../utils/serialize.jsx";
 
 // todo: add hover effect
 // todo: highlight locations (clubs) that are relevant and grey out others.

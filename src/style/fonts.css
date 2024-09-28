@@ -1,6 +1,11 @@
 @font-face {
-    font-family: "Onest";
-    src: url("../assets/Onest-VariableFont_wght.ttf") format("opentype");
+    font-family: "DM-sans";
+    src: url("../assets/fonts/DMSans-VariableFont_opsz,wght.ttf") format("opentype");
+}
+
+@font-face {
+    font-family: "DM-sans-italic";
+    src: url("../assets/fonts/DMSans-Italic-VariableFont_opsz,wght.ttf") format("opentype");
 }
 
 :root {
@@ -14,7 +19,7 @@
 }
 
 body{
-    font-family: "Onest", Arial, Helvetica, sans-serif;
+    font-family: "DM-sans-italic", Arial, Helvetica, sans-serif;
     padding: 0;
     margin: 0;
 }

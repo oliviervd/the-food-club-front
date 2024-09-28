@@ -6,6 +6,18 @@ img {
     border: black 3px solid;
 }
 
+.logo-container {
+    margin: 10px auto;
+    text-align: center;
+    justify-content: center;
+}
+
+.logo {
+    border: none;
+    width: 50%;
+
+}
+
 .image__club-tag {
     position: absolute;
     width: auto;

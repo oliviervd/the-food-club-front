@@ -1,7 +1,6 @@
 import Header from "../elements/Header.jsx";
 import {MapContainer, TileLayer, useMap, Marker, Popup} from "react-leaflet";
 import {useContext, useState, useEffect} from "react";
-import {BackgroundColorContext} from "../utils/BackgroundColorContext.jsx";
 import {fetchAPI, getCSSVariableValue} from "../utils/utils.jsx";
 import serialize from "../utils/serialize.jsx";
 
@@ -23,7 +22,6 @@ const Map = ({}) => {
     const [mapCenter, setMapCenter] = useState([51.0544, 3.7256]); // Initial coordinates
 
     // fetch backgroundcolor from context
-    const { bgColor: backgroundColor } = useContext(BackgroundColorContext);
 
     const colorToCoordinatesMap = {
         'gent': [51.0544, 3.7256],
@@ -38,13 +36,6 @@ const Map = ({}) => {
         // restyle UI (color) based on selected location
         const filterContainer = document.querySelector('.map--filter_container');
         const tipContainer = document.querySelector('.map-tip__container');
-        if (filterContainer) {
-            filterContainer.style.backgroundColor = backgroundColor;
-        }
-
-        if (tipContainer) {
-            tipContainer.style.backgroundColor = backgroundColor;
-        }
 
         // reposition map (center) based on selected location
         if (colorToCoordinatesMap[location]) {

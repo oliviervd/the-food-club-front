@@ -1,11 +1,8 @@
 import AutoResizeText from "./AutoResizeText.jsx";
 import {useNavigate} from "react-router-dom";
 import {useMediaQuery} from "@uidotdev/usehooks";
-import {useContext} from "react";
-import {BackgroundColorContext} from "../utils/BackgroundColorContext.jsx";
-import DitherImage from "./DitherImage.jsx";
 import {surprise, handleLocationChange} from "../utils/utils.jsx";
-import LinkComponent from "./LinkComponent.jsx";
+import logo from "../assets/img/logo-blue.jpeg"
 
 const Header = ({location, setLocation, interact, landing, setTarget, greyOut=false, color, map}) => {
 
@@ -17,7 +14,6 @@ const Header = ({location, setLocation, interact, landing, setTarget, greyOut=fa
     // navigate back to home
     const nav = useNavigate();
     const isSmall = useMediaQuery("(max-width: 600px)");
-    const { setBgColor } = useContext(BackgroundColorContext);
 
     if (landing) {
         return(
@@ -31,8 +27,7 @@ const Header = ({location, setLocation, interact, landing, setTarget, greyOut=fa
                             <div style={{width: '100%', height: 'auto'}} onClick={() => {
                                 nav("/")
                             }}>
-                                <AutoResizeText text="FOODCLUB" maxFontSize={600} minFontSize={10}
-                                                padding={"0px 0px"}/>
+                                <img src={logo}/>
                             </div>
                             <div style={{display: 'flex', flexFlow: "row", height: '100%', justifyContent: 'center'}}>
                                 <h2 style={{margin: "auto"}}>looking for something?</h2>
@@ -73,10 +68,10 @@ const Header = ({location, setLocation, interact, landing, setTarget, greyOut=fa
                 }
 
                 {isSmall &&
-                    <div style={{width: '100%', height: 'auto'}} onClick={() => {
+                    <div className={"logo-container"} onClick={() => {
                         nav("/")
                     }}>
-                        <AutoResizeText text="FOODCLUB" maxFontSize={600} minFontSize={10} padding={"0px 0px"}/>
+                        <img className={"logo"} src={logo}/>
                     </div>
                 }
 
