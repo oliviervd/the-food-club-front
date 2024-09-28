@@ -28,6 +28,19 @@ const Home = () => {
     const isBig = useMediaQuery("(min-width: 1400px)");
     const scrollPosition = useScrollPosition();
 
+    const [visible, setVisible] = useState(false);
+
+    useEffect(() => {
+        if (scrollPosition > 150) {
+            setVisible(true); // Show the LuckyButton when scrollPosition is more than 100
+        } else {
+            setVisible(false); // Hide the LuckyButton when scrollPosition is less than 100
+        }
+    }, [scrollPosition]);
+
+    // Add animation classes based on visibility state
+    const classNames = visible ? "slide-in" : "slide-out";
+
     const {data: list, isLoading, error} = useQuery(["lists"], ()=> fetchAPI('lists','en'))
 
     useEffect(() => {
@@ -60,7 +73,9 @@ const Home = () => {
                                 From healthy snacks to absurdly comforting food, the order is yours.</h2>
                         </section>
                         <CategoryList data={categoryList}/>
-                        { scrollPosition > 120 && <LuckyButton nav={nav}/> }
+                        <div className={`fixed-wrapper ${classNames}`}>
+                            <LuckyButton nav={nav}/>
+                        </div>
 
                     </div>
                 }
