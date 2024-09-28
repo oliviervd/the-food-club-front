@@ -21,8 +21,6 @@ const Map = ({}) => {
     let zoom = 14 // set zoom of map
     const [mapCenter, setMapCenter] = useState([51.0544, 3.7256]); // Initial coordinates
 
-    // fetch backgroundcolor from context
-
     const colorToCoordinatesMap = {
         'gent': [51.0544, 3.7256],
         'brussels': [50.848375753126724, 4.357218040236126],
@@ -41,7 +39,7 @@ const Map = ({}) => {
         if (colorToCoordinatesMap[location]) {
             setMapCenter(colorToCoordinatesMap[location]);
         }
-    }, [backgroundColor, location]);
+    }, [location]);
 
     // add locations on map
     const [venues, setVenues] = useState([]);
@@ -58,7 +56,7 @@ const Map = ({}) => {
     const createCustomIcon = (color) => {
         return L.divIcon({
             className: "custom-marker-icon",
-            html: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="${color}" stroke="black"><circle cx="12" cy="12" r="10"/></svg>`,
+            html: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="${color}" stroke="black" stroke-width="1.5"><circle cx="12" cy="12" r="10"/></svg>`,
             iconSize: [24, 24],
             iconAnchor: [12, 12]
         });
@@ -68,11 +66,11 @@ const Map = ({}) => {
     const getColorForClub = (club) => {
         switch (club) {
             case "antwerp":
-                return getCSSVariableValue("--turquoise-green");
+                return getCSSVariableValue("--color-antwerp-main");
             case "gent":
-                return getCSSVariableValue("--pale-lemon-yellow");
+                return getCSSVariableValue("--color-gent-main");
             default:
-                return getCSSVariableValue("--salvia-blue");
+                return getCSSVariableValue("--color-brussels-main");
         }
     };
 
