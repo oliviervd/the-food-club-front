@@ -81,24 +81,25 @@ const Header = ({location, setLocation, interact, landing, setTarget, greyOut=fa
                             <h2 className={`link ${location === "gent" ? "selected" : ""}${greyOut && location !== "gent" ? "greyed-out" : ""}`}
                                 onClick={interact ? () => {
                                     handleLocationChange("gent", setLocation, setBgColor);
-                            } : null}>GENT</h2>
+                            } : null}>gent</h2>
                             <h2 className={`link ${location === "antwerp" ? "selected" : ""}${greyOut && location !== "antwerp" ? "greyed-out" : ""}`}
                                 onClick={interact ? () => {
                                     handleLocationChange("antwerp", setLocation, setBgColor);
-                                } : null}>ANTWERP</h2>
+                                } : null}>antwerp</h2>
                             <h2 className={`link ${location === "brussels" ? "selected" : ""}${greyOut && location !== "brussels" ? "greyed-out" : ""}`}
                                 onClick={interact ? () => {
                                     handleLocationChange("brussels", setLocation, setBgColor);
-                                } : null}>BRUSSELS</h2>
+                                } : null}>brussels</h2>
                         </nav>
                         <nav className={"flex-buttons"}>
-                            <h2 className={"link"} style={{borderTop: "none"}} onClick={() => nav("/map/")}>MAP</h2>
-                            <h2 className={"link"} style={{borderTop: "none"}} onClick={() => nav("/categories/")}>CATEGORIES</h2>
-                            <h2 className={"link"} style={{borderTop: "none"}} onClick={() => nav("/about/")}>ABOUT</h2>
+                            <h2 className={"link"} style={{borderTop: "none"}}
+                                onClick={() => nav("/categories/")}>lists</h2>
+                            <h2 className={"link"} style={{borderTop: "none"}} onClick={() => nav("/map/")}>map</h2>
+
                         </nav>
                         {location && !map &&
                             <>
-                            <nav className={"flex-buttons"}>
+                                <nav className={"flex-buttons"}>
                                     <h2 className={`link`} onClick={() => {
                                         surprise(location, nav);
                                     }} style={{borderTop:"none"}}>SUPRISE ME!</h2>
