@@ -56,7 +56,6 @@ const Venues = () => {
     return(
         <>
             <Header landing={true}/>
-            <div className={"divider"}></div>
 
             <section className={"home__container"}>
                 {_category &&
@@ -65,11 +64,10 @@ const Venues = () => {
                             <div style={{width: '50%', height: 'auto'}}>
                                 <AutoResizeText text={_category.categoryTitle} maxFontSize={600} minFontSize={10}/>
                             </div>
-                            <div style={{width: '100%', height: 'auto'}}>
+                            <div style={{width: '100%', height: 'auto', marginBlock: "20px", marginTop: "0px"}}>
                                 <h2 className={"subtitle"}>{_category.categorySubTitles}</h2>
                             </div>
                         </section>
-                        <div className={"divider"} style={{margin: '20px 0'}}></div>
                         {isSmall &&
                             <section>
                                 {shuffledVenues &&

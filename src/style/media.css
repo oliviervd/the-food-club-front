@@ -23,9 +23,8 @@ img {
     width: auto;
     top: 5px;
     left: 20px;
-    border: 3px solid black;
-    border-radius: 50px;
     padding: 0 10px;
-    color: #F0CA4F;
-    background-color: black;
+    color: var(--color-gent-main);
+    background-color: var(--color-gent-secondary);
+    font-family: DM-sans;
 }

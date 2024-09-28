@@ -51,9 +51,8 @@
     }
 
     h2:hover {
-        color: #F0CA4F;
-        background-color: black;
-        border-color: #F0CA4F;
+        background-color: var(--color-gent-secondary);
+        color: var(--color-gent-main);
     }
 
     i {

@@ -50,6 +50,8 @@ h2 {
 }
 
 .text-logo{
+    font-family: "DM-sans";
+    color: var(--color-gent-secondary);
     font-weight: 800;
     line-height: 0.9;
     padding: 15px 0;
@@ -68,17 +70,17 @@ h2 {
 
 .link:hover {
     cursor: pointer;
-    background-color: black;
-    color: #F0CA4F;
+    color: var(--color-gent-secondary);
 }
 
 .link.selected {
-    background-color: black;
-    color: #F0CA4F;
+    background-color: var(--color-gent-secondary);
+    color: var(--color-gent-main);
 }
 
 .link.greyed-out {
-    color: black;
+    background-color: var(--color-gent-secondary);
+    color: var(--color-gent-main);
     opacity: 0.5;
 }
 
