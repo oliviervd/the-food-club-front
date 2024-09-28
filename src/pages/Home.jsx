@@ -60,7 +60,7 @@ const Home = () => {
                         <CategoryList data={categoryList}/>
                     </div>
                 }
-                {!isSmall && categoryList &&
+                {!isSmall && categoryList && categoryList.docs &&
                     <DesktopHome categories={categoryList.docs[0].items}/>
                 }
             </section>
