@@ -1,12 +1,9 @@
 .home__container {
-    display: grid;
-    grid-template-columns: 70% 30%;
     padding: 0 10px;
 }
 
 @media (max-width:1200px) {
     .home__container {
-        display: block;
 
         section:last-child {
             border-left: none;
@@ -21,9 +18,8 @@
 }
 
 .home-grid{
-    margin-top:5vh;
+    margin: 5vh auto auto;
     width: 80vw;
-    max-width: 1800px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
