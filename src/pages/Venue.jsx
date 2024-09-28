@@ -74,7 +74,17 @@ const Venue = () => {
                                 <div style={{width: "100%", height: 'auto', position: "relative"}}>
                                     <AutoResizeText text={venue.venueName} padding={"10px 0 30px 0"}/>
                                 </div>
+
                             }
+                            <div>
+                                {venue.address &&
+                                    <div style={{maxWidth: "100%"}}>
+                                        <h2 className={"address"}>
+                                            {venue.address.street + " " + venue.address.houseNumber + ", " + venue.address.postalCode + " " + venue.address.city}
+                                        </h2>
+                                    </div>
+                                }
+                            </div>
                             <div className={"cuisines"}>
                                 {venue.cuisineUsed.map((cuisine) => {
                                     return (
@@ -85,7 +95,7 @@ const Venue = () => {
                                 })}
                             </div>
                             {isDesktop &&
-                                <div style={{display:"none"}}>
+                                <div style={{display: "none"}}>
                                     <div>
                                         {venue.address &&
                                             <div style={{maxWidth: "100%"}}>
@@ -139,16 +149,6 @@ const Venue = () => {
 
                             {!isDesktop &&
                                 <section>
-                                    <div>
-                                        {venue.address &&
-                                            <div style={{maxWidth: "100%"}}>
-                                                <h2 className={"address"}>
-                                                    {venue.address.street + " " + venue.address.houseNumber + ", " + venue.address.postalCode + " " + venue.address.city}
-                                                </h2>
-                                            </div>
-                                        }
-                                    </div>
-
 
                                         {venue.reservations &&
 
