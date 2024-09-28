@@ -60,12 +60,12 @@ const Venues = () => {
             <section className={"home__container"}>
                 {_category &&
                     <div>
-                        <section>
-                            <div style={{width: '50%', height: 'auto'}}>
-                                <AutoResizeText text={_category.categoryTitle} maxFontSize={600} minFontSize={10}/>
+                        <section className={"category-meta"}>
+                            <div>
+                                <h2 className={""}>{_category.categoryTitle}</h2>
                             </div>
                             <div style={{width: '100%', height: 'auto', marginBlock: "20px", marginTop: "0px"}}>
-                                <h2 className={"subtitle"}>{_category.categorySubTitles}</h2>
+                                <p className={"subtitle"}>{_category.categorySubTitles}</p>
                             </div>
                         </section>
                         {isSmall &&
