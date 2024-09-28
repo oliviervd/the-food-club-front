@@ -5,14 +5,14 @@ import "../style/fonts.css"
 
 import CategoryList from "../elements/CategoryList.jsx";
 import DesktopHome from "./desktop/desktopHome.jsx";
-import {fetchAPI, scrollTo, handleLocationChange, surprise} from "../utils/utils.jsx";
+import {fetchAPI, scrollTo} from "../utils/utils.jsx";
 import {useQuery} from "@tanstack/react-query";
-import {useContext, useEffect, useState, useRef} from "react";
-import AutoResizeText from "../elements/AutoResizeText.jsx";
+import {useEffect, useState} from "react";
 import {useMediaQuery} from "@uidotdev/usehooks";
 import {useNavigate} from "react-router-dom";
 import LuckyButton from "../elements/luckyButton.jsx";
-import ScrollTrigger from "@terwanerik/scrolltrigger/dist/ScrollTrigger.js";
+
+import {useScrollPosition} from "../hooks/useScrollPosition.jsx";
 
 // todo : improve loading speed
 // todo: add locales
@@ -26,6 +26,7 @@ const Home = () => {
     const [location, setLocation] = useState(null);
     const isSmall = useMediaQuery("(max-width: 600px)");
     const isBig = useMediaQuery("(min-width: 1400px)");
+    const scrollPosition = useScrollPosition();
 
     const {data: list, isLoading, error} = useQuery(["lists"], ()=> fetchAPI('lists','en'))
 
@@ -59,7 +60,7 @@ const Home = () => {
                                 From healthy snacks to absurdly comforting food, the order is yours.</h2>
                         </section>
                         <CategoryList data={categoryList}/>
-                        <LuckyButton nav={nav}/>
+                        { scrollPosition > 120 && <LuckyButton nav={nav}/> }
 
                     </div>
                 }
