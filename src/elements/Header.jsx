@@ -24,10 +24,10 @@ const Header = ({location, setLocation, interact, landing, setTarget, greyOut=fa
                             <div style={{display: 'flex', flexFlow: "row", height: '100%', justifyContent: 'center'}}>
                                 <h2 style={{margin: "auto"}}>welcome to the club</h2>
                             </div>
-                            <div style={{width: '100%', height: 'auto'}} onClick={() => {
+                            <div className={"logo-container"} onClick={() => {
                                 nav("/")
                             }}>
-                                <img src={logo}/>
+                                <img className={"logo"} src={logo}/>
                             </div>
                             <div style={{display: 'flex', flexFlow: "row", height: '100%', justifyContent: 'center'}}>
                                 <h2 style={{margin: "auto"}}>looking for something?</h2>
@@ -97,7 +97,7 @@ const Header = ({location, setLocation, interact, landing, setTarget, greyOut=fa
                             <h2 className={"link"} style={{borderTop: "none"}} onClick={() => nav("/map/")}>map</h2>
 
                         </nav>
-                        {location && !map &&
+                        {/*{location && !map &&
                             <>
                                 <nav className={"flex-buttons"}>
                                     <h2 className={`link`} onClick={() => {
@@ -108,7 +108,7 @@ const Header = ({location, setLocation, interact, landing, setTarget, greyOut=fa
                                 </nav>
                             </>
 
-                        }
+                        }*/}
                     </div>
                 }
 

@@ -79,9 +79,8 @@ h2 {
 }
 
 .link.greyed-out {
-    background-color: var(--color-gent-secondary);
-    color: var(--color-gent-main);
-    opacity: 0.5;
+    background-color: var(--color-gent-main);
+    color:  var(--color-gent-secondary);
 }
 
 .link.greyed-out:hover {
