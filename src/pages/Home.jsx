@@ -1,4 +1,5 @@
 import Header from "../elements/Header.jsx";
+import Footer from "../elements/Footer.jsx";
 import "../style/header.css"
 import "../style/fonts.css"
 
@@ -64,6 +65,7 @@ const Home = () => {
                     <DesktopHome categories={categoryList.docs[0].items}/>
                 }
             </section>
+            <Footer position={isSmall}/>
         </div>
     )
 }

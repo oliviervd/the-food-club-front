@@ -47,6 +47,24 @@ header .flex-buttons > h2 {
     height: 100%;
 }
 
+.footer--container {
+    bottom: 0;
+    height: 40px;
+    left:0;
+    right: 0;
+}
+
+.static {
+    position: static;
+    background-color: black;
+    height: 50px
+}
+
+.fixed {
+    position: fixed;
+    background-color: var(--color-gent-main);
+}
+
 @media (max-width: 600px) {
     header > h1 {
         font-size: var(--font-xxl);
