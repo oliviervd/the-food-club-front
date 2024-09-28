@@ -1,4 +1,6 @@
 // handle location changes
+import venues from "../pages/Venues.jsx";
+
 export function handleLocationChange(newLocation, setLocation, setBgColor) {
     const clubColors = {
         // list with club locations and matching colors.
@@ -19,8 +21,15 @@ export async function surprise(club, nav, ) {
     console.log(`returning a random location in ${club}`)
     const venues = await fetchAPI("venue", "en");
     if (venues) {
-        // fetch all venues in this location
-        const res = venues.docs.filter(venue => venue.club == club)
+
+        let res = [];
+
+        if (club !== "all") {
+            // fetch all venues in this location
+            res = venues.docs.filter(venue => venue.club == club)
+        }
+
+        res = venues.docs;
         // pick random one
         const random = Math.floor(Math.random()*res.length)
         nav(`/venue/${res[random].url}?surprise=true`)
