@@ -3,6 +3,7 @@ import "../style/header.css"
 import "../style/fonts.css"
 
 import CategoryList from "../elements/CategoryList.jsx";
+import DesktopHome from "./desktop/desktopHome.jsx";
 import {fetchAPI, scrollTo, handleLocationChange, surprise} from "../utils/utils.jsx";
 import {useQuery} from "@tanstack/react-query";
 import {useContext, useEffect, useState} from "react";
@@ -49,13 +50,7 @@ const Home = () => {
         <div>
             <Header landing={true} interact={true} setLocation={setLocation} location={location} setTarget={setTarget}></Header>
             <section className={"home__container"}>
-
-                {!isSmall &&
-                    <div style={{paddingRight:"20px"}}>
-
-                    </div>
-                }
-                {categoryList &&
+                {isSmall && categoryList &&
                     <div>
                         <section style={{padding: "10px 0"}}>
                             <h2 className={"subtitle"}> FOOD CLUB loves lists. That's why we created some specially for
@@ -64,6 +59,9 @@ const Home = () => {
                         </section>
                         <CategoryList data={categoryList}/>
                     </div>
+                }
+                {!isSmall && categoryList &&
+                    <DesktopHome categories={categoryList.docs[0].items}/>
                 }
             </section>
         </div>

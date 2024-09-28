@@ -19,3 +19,20 @@
         padding: 0px 10vw;
     }
 }
+
+.home-grid{
+    margin-top:5vh;
+    width: 80vw;
+    max-width: 1800px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.home-grid .category-list__box  {
+    width: 18vw;
+    justify-content: center;
+    text-align: center;
+    margin: auto
+}
