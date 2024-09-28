@@ -1,5 +1,9 @@
 :root {
     --background-color: #f4f0ec;
-    --color-gent-active: #c9ff00;
-    --color-gent-inactive: #000eff;
+    --color-gent-main: #c9ff00;
+    --color-gent-secondary: #000eff;
+    --color-antwerp-main: #b5ffc2;
+    --color-antwerp-secondary: #ff00ff;
+    --color-brussels-main: #fff59e;
+    --color-brussels-secondary: #ff5733;
 }

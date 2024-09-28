@@ -52,42 +52,7 @@ const Home = () => {
 
                 {!isSmall &&
                     <div style={{paddingRight:"20px"}}>
-                        {/*<div style={{width: '100%', height: 'auto'}}>
-                            <AutoResizeText text="WELCOME TO FOOD CLUB. LOOKING FOR SOMETHING IN..?" maxFontSize={600}
-                                            minFontSize={10}/>
-                        </div>
-                        <nav className={"flex-buttons"}>
-                            <h2 className={`link ${location === "gent" ? "selected" : ""}`} onClick={() => {
-                                handleLocationChange("gent", setLocation, setBgColor);
-                            }}>GENT</h2>
-                            <h2 className={`link ${location === "antwerp" ? "selected" : ""}`} onClick={() => {
-                                handleLocationChange("antwerp", setLocation, setBgColor);
-                            }}>ANTWERP</h2>
-                            <h2 className={`link ${location === "brussels" ? "selected" : ""}`} onClick={() => {
-                                handleLocationChange("brussels", setLocation, setBgColor);
-                            }}>BRUSSELS</h2>
-                        </nav>
-                        {location &&
-                            <>
-                                <div style={{width: '100%', height: 'auto'}}>
-                                    <AutoResizeText text={`WE LOVE ${location.toUpperCase()}! HOW CAN WE HELP YOU?`}
-                                                    maxFontSize={600}
-                                                    minFontSize={10}/>
-                                </div>
-                                <nav className={"flex-buttons"}>
-                                    <h2 className={`link`} onClick={() => {surprise(location, nav)
-                                    }}>SUPRISE ME!</h2>
-                                    <h2 className={`link greyed-out`} onClick={() => {
-                                    }}>WHAT'S OPEN?</h2>
-                                </nav>
-                                <div onClick={() => {
-                                    setTarget("cat_list")
-                                }} style={{border: "black 2px solid", marginTop: "2px"}}>
-                                    <AutoResizeText text={`→ OR CHECK OUT THE LISTS TO THE RIGHT →`}/>
-                                </div>
-                            </>
 
-                        }*/}
                     </div>
                 }
                 {categoryList &&
