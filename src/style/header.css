@@ -9,10 +9,12 @@ header > h1 {
     display: flex;
     justify-content: space-evenly;
     flex-flow: row;
+    background-color: var(--color-gent-main);
     > h2 {
         padding: 0;
         margin: 0;
-        border: 2px solid black;
+        color: var(--color-gent-secondary);
+        border: 2px solid var(--color-gent-secondary);
         width: 100%;
         justify-content: center;
         text-align: center;
@@ -29,7 +31,7 @@ header h2 {
 
 header .flex-buttons > h2 {
     border-left: none;
-    border-color: black;
+    border-color: var(--color-gent-secondary);
     font-size: var(--font-s);
     padding: 5px 0;
 }
