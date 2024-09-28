@@ -8,3 +8,11 @@ body {
     max-width: 100%;
     overflow-x: hidden;
 }
+
+.visibleClass {
+    display: block;
+}
+
+.hiddenClass {
+    display: none;
+}
