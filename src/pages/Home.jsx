@@ -59,7 +59,7 @@ const Home = () => {
                                 From healthy snacks to absurdly comforting food, the order is yours.</h2>
                         </section>
                         <div className={"surprise"} onClick={()=>{surprise("all",nav)}}>
-                            feeling lucky
+                            feeling lucky   ☉ ‿ ⚆
                         </div>
                         <CategoryList data={categoryList}/>
                     </div>
