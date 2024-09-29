@@ -50,7 +50,7 @@
 
 .home-grid{
     margin: 5vh auto auto;
-    width: 80vw;
+    width: 95vw;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -58,20 +58,23 @@
 }
 
 .home-grid .category-list__box  {
-    width: 18vw;
+    width: 22vw;
     justify-content: center;
     text-align: center;
     margin: auto
 }
 
 @media (max-width:1500px){
+
+    .home-grid {
+    }
+
     .home-grid .category-list__box {
-        width: 25vw;
     }
 }
 
 @media (max-width:1300px){
     .home-grid .category-list__box {
-        width: 30vw;
+        width: 45vw
     }
 }
