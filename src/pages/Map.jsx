@@ -19,10 +19,9 @@ const Map = ({}) => {
     const [target, setTarget] = useState(null);
     const [location, setLocation] = useState(null);
 
-    const { locationColor, handleLocationChange } = useContext(LocationColorContext);
-    let { newLocation } = locationColor
+    const { locationColor} = useContext(LocationColorContext);
 
-    let zoom = 14 // set zoom of map
+    let zoom = 12.5 // set zoom of map
     const [mapCenter, setMapCenter] = useState([51.0544, 3.7256]); // Initial coordinates
 
     const colorToCoordinatesMap = {
@@ -32,19 +31,10 @@ const Map = ({}) => {
         // Add more mappings if needed
     };
 
-
-    // change styling/view map based on location
     useEffect(() => {
-        // restyle UI (color) based on selected location
-        const filterContainer = document.querySelector('.map--filter_container');
-        const tipContainer = document.querySelector('.map-tip__container');
-
-        // reposition map (center) based on selected location
-        if (colorToCoordinatesMap[location]) {
-            setMapCenter(colorToCoordinatesMap[location]);
-        }
-
-    }, [location,newLocation]);
+        // function to set the map center based on the location color
+        setMapCenter(colorToCoordinatesMap[locationColor.location])
+    }, [locationColor]);
 
     // add locations on map
     const [venues, setVenues] = useState([]);
@@ -56,10 +46,6 @@ const Map = ({}) => {
     useEffect(() => {
         getVenues();
     },[])
-
-    useEffect(() => {
-        setLocation(colorToCoordinatesMap[location])
-    }, [location]);
 
     // Function to create a custom SVG icon with a given color
     const createCustomIcon = (color) => {
@@ -97,11 +83,7 @@ const Map = ({}) => {
 
                     {/* plot markers*/}
                     {venues && venues.map((venue) => {
-                        console.log(venue.address.latitude);
-                        console.log(venue.address.longitude);
-
                         const color = getColorForClub(venue.club);
-
                         return (
                             <Marker
                                 position={[venue.address.longitude, venue.address.latitude]}
