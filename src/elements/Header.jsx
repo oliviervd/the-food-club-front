@@ -3,7 +3,7 @@ import {useNavigate} from "react-router-dom";
 import {useContext} from "react";
 import {useMediaQuery} from "@uidotdev/usehooks";
 import {LocationColorContext, LocationColorProvider} from "../utils/LocationColorContext.jsx";
-import logo from "../assets/img/logo-blue.jpeg"
+import logo from "../assets/img/logo-blue.png"
 
 const Header = ({ interact, landing, venueLocation, setTarget, greyOut=false, color, map}) => {
 
