@@ -3,6 +3,7 @@ import {MapContainer, TileLayer, useMap, Marker, Popup} from "react-leaflet";
 import {useContext, useState, useEffect} from "react";
 import {fetchAPI, getCSSVariableValue} from "../utils/utils.jsx";
 import serialize from "../utils/serialize.jsx";
+import {LocationColorContext} from "../utils/LocationColorContext.jsx";
 
 // Custom hook to update the map center
 const ChangeView = ({ center }) => {
@@ -17,6 +18,9 @@ const Map = ({}) => {
 
     const [target, setTarget] = useState(null);
     const [location, setLocation] = useState(null);
+
+    const { locationColor, handleLocationChange } = useContext(LocationColorContext);
+    let { newLocation } = locationColor
 
     let zoom = 14 // set zoom of map
     const [mapCenter, setMapCenter] = useState([51.0544, 3.7256]); // Initial coordinates
@@ -39,7 +43,8 @@ const Map = ({}) => {
         if (colorToCoordinatesMap[location]) {
             setMapCenter(colorToCoordinatesMap[location]);
         }
-    }, [location]);
+
+    }, [location,newLocation]);
 
     // add locations on map
     const [venues, setVenues] = useState([]);
@@ -51,6 +56,10 @@ const Map = ({}) => {
     useEffect(() => {
         getVenues();
     },[])
+
+    useEffect(() => {
+        setLocation(colorToCoordinatesMap[location])
+    }, [location]);
 
     // Function to create a custom SVG icon with a given color
     const createCustomIcon = (color) => {

@@ -88,3 +88,23 @@
     color: var(--color-secondary);
     margin: 10px 0px;
 }
+
+.venue-open {
+    padding: 0 10px;
+    border: 2px dashed black;
+
+    div {
+        display: flex;
+        flex-flow: row;
+        gap: 10px;
+        justify-content: space-between;
+
+        p {
+            margin: 2px 0px;
+        }
+
+        .day {
+            font-weight: bold;
+        }
+    }
+}

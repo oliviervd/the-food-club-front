@@ -1,7 +1,7 @@
 import Header from "../elements/Header.jsx";
 import {useNavigate, useParams, useSearchParams} from "react-router-dom";
 import {useContext, useEffect, useState} from "react";
-import {fetchAPI, getCSSVariableValue, surprise} from "../utils/utils.jsx";
+import {fetchAPI, convertHour} from "../utils/utils.jsx";
 import {useQuery} from "@tanstack/react-query";
 import AutoResizeText from "../elements/AutoResizeText.jsx";
 import DitherImage from "../elements/DitherImage.jsx";
@@ -145,7 +145,23 @@ const Venue = () => {
                                 </section>
                             }
 
+                            {venue.hours &&
+                                <section className={"venue-open"}>
+                                    {venue.hours.map((day) => {
+                                        return(
+                                            <div>
+                                                <p className={"day"}>{day.openDay}</p>
+                                                <div>
+                                                    <p>{convertHour(day.openFrom)}</p>
+                                                    <p>-</p>
+                                                    <p>{convertHour(day.openTill)}</p>
+                                                </div>
 
+                                            </div>
+                                        )
+                                    })}
+                                </section>
+                            }
                         </div>
                     </div>
 

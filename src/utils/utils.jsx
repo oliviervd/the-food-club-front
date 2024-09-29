@@ -76,4 +76,13 @@ export function pricingLabel(input) {
 }
 
 
+export function convertHour(input) {
+    const date = new Date(input);
+    const hour = date.getUTCHours()
+    let minutes = date.getUTCMinutes();
+    if (minutes === 0) {
+        minutes = "00"
+    }
+    return `${hour}:${minutes}`;
+}
 
