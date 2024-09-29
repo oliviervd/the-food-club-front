@@ -145,7 +145,7 @@ const Venue = () => {
                                 </section>
                             }
 
-                            {venue.hours &&
+                            {venue.hours.length > 1 &&
                                 <section className={"venue-open"}>
                                     {venue.hours.map((day) => {
                                         return(
@@ -160,6 +160,11 @@ const Venue = () => {
                                             </div>
                                         )
                                     })}
+                                </section>
+                            }
+                            {venue.otherOpeningHours &&
+                                <section className={"venue-open"}>
+                                    {serialize(venue.otherOpeningHours)}
                                 </section>
                             }
                         </div>
