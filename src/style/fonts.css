@@ -108,12 +108,15 @@ ul {
     animation: scroll 10s linear infinite;
     background-color: var(--color-secondary);
     border-bottom: 2px solid var(--color-main);
+    height: 60px
 }
 
 .banner {
-    width: 50%;
     font-size: 3rem;
-    color: var(--color-main)
+    color: var(--color-main);
+    white-space: nowrap;
+    margin: 0 0;
+    padding: 0 20px;
 }
 
 @media (max-width: 600px) {
