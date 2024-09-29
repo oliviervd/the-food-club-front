@@ -17,7 +17,7 @@ const Venue = () => {
     const nav = useNavigate()
     const isDesktop = useMediaQuery("(min-width: 1200px)");
 
-    const [location, setLocation] = useState(null);
+    const [venueLocation, setVenueLocation] = useState(null);
 
     // todo: add locales
     // todo: add map
@@ -37,7 +37,7 @@ const Venue = () => {
                 const res = venues.docs.find(venue => venue.url === venueParam);
                 setVenue(res)
                 try {
-                    setLocation(res.club)
+                    setVenueLocation(res.club)
                 } catch (e) {
                     console.error(e)
                 }
@@ -48,7 +48,7 @@ const Venue = () => {
 
     return (
         <>
-            <Header landing={true} setLocation={setLocation} location={location} interact={false} greyOut={true}/>
+            <Header landing={true} setLocation={setVenueLocation} venueLocation={venueLocation} interact={false} greyOut={true}/>
             {venue &&
                 <section className={"venue__container"}>
                     {/*{searchParams.get("surprise") && location &&

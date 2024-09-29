@@ -51,8 +51,6 @@ const Home = () => {
         getLists();
     }, []);
 
-    console.log(categoryList)
-
     useEffect(()=>{
         scrollTo(target)
     },[target])

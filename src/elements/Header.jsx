@@ -5,7 +5,7 @@ import {useMediaQuery} from "@uidotdev/usehooks";
 import {LocationColorContext, LocationColorProvider} from "../utils/LocationColorContext.jsx";
 import logo from "../assets/img/logo-blue.jpeg"
 
-const Header = ({ interact, landing, setTarget, greyOut=false, color, map}) => {
+const Header = ({ interact, landing, venueLocation, setTarget, greyOut=false, color, map}) => {
 
     // todo: add languages
     // todo: add map button
@@ -14,7 +14,13 @@ const Header = ({ interact, landing, setTarget, greyOut=false, color, map}) => {
 
     // get context value
     const { locationColor, handleLocationChange } = useContext(LocationColorContext);
-    const { location } = locationColor
+    let { location } = locationColor
+    if (venueLocation) {
+        location = venueLocation;
+        handleLocationChange(venueLocation);
+    } else {
+        const { location } = locationColor
+    }
 
     // navigate back to home
     const nav = useNavigate();
