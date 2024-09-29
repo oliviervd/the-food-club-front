@@ -97,10 +97,19 @@ ul {
     color: black;
 }
 
+.banner-container {
+    width: 100%;
+    overflow: hidden; /* Ensures that any overflow is hidden */
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
 .banner {
     background-color: var(--color-secondary);
     margin: 0 0;
     padding: 0 20px;
+    overflow: hidden; /* Ensures that Marquee content doesn't overflow */
+    display: inline-block;
+
     h2{
         font-size: 3rem;
         color: var(--color-main);

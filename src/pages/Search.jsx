@@ -69,7 +69,7 @@ const Search = () => {
         return (
             <>
                 <Header landing={true} location={location} setLocation={setLocation} interact={true}/>
-                <div style={{width: '99%', height: 'auto'}}>
+                <div>
                     <Banner content={search}/>
                 </div>
                 <section class={"home__container"}>
