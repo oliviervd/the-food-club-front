@@ -23,6 +23,11 @@ header > h1 {
     > h2:last-child {
         border-right:none;
     };
+
+    > h2:hover {
+        color: var(--color-main);
+        background-color: var(--color-secondary);
+    }
 }
 
 header h2 {
