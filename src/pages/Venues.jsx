@@ -7,6 +7,7 @@ import {useQuery} from "@tanstack/react-query";
 import DitherImage from "../elements/DitherImage.jsx";
 import {useMediaQuery} from "@uidotdev/usehooks";
 import CategoryList from "../elements/CategoryList";
+import serialize from "../utils/serialize.jsx";
 
 // todo: add hover effect
 // todo: highlight locations (clubs) that are relevant and grey out others.
@@ -63,9 +64,11 @@ const Venues = () => {
                             <div>
                                 <h2 className={""}>{_category.categoryTitle}</h2>
                             </div>
-                            <div style={{width: '100%', height: 'auto', marginBlock: "20px", marginTop: "0px"}}>
-                                <p className={"subtitle"}>{_category.categorySubTitles}</p>
-                            </div>
+                            {_category.categoryDescription &&
+                                <div style={{width: '100%', height: 'auto', marginBlock: "20px", marginTop: "0px"}}>
+                                    <p className={"subtitle"}>{serialize(_category.categoryDescription)}</p>
+                                </div>
+                            }
                         </section>
                         {isSmall &&
                             <section>
