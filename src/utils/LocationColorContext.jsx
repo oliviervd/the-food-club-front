@@ -3,21 +3,25 @@ import React from 'react';
 const locationColors = {
     "gent": {
         "main": "#c9ff00",
-        "secondary": "#000eff"
+        "secondary": "#000eff",
+        "location": "gent"
     },
     "antwerp": {
         "main": "#b5ffc2",
-        "secondary": "#ff00ff"
+        "secondary": "#ff00ff",
+        'location': "antwerp"
     },
     "brussels": {
         "main": "#fff59e",
-        "secondary": "#ff5733"
+        "secondary": "#ff5733",
+        'location': "brussels"
     }
 };
 
 const defaultLocationColors = {
     main: "#c9ff00",
-    secondary: "#000eff"
+    secondary: "#000eff",
+    location: "gent"
 }
 
 export const LocationColorContext = React.createContext();
@@ -36,7 +40,7 @@ export const LocationColorProvider = ({ children }) => {
     };
 
     return (
-        <LocationColorContext.Provider value={{ locationColor, handleLocationChange }}>
+        <LocationColorContext.Provider value={{locationColor, handleLocationChange }}>
             {children}
         </LocationColorContext.Provider>
     );

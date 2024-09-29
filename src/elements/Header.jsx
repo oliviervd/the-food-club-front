@@ -2,11 +2,10 @@ import AutoResizeText from "./AutoResizeText.jsx";
 import {useNavigate} from "react-router-dom";
 import {useContext} from "react";
 import {useMediaQuery} from "@uidotdev/usehooks";
-import {surprise, handleLocationChange} from "../utils/utils.jsx";
-import {LocationColorContext} from "../utils/LocationColorContext.jsx";
+import {LocationColorContext, LocationColorProvider} from "../utils/LocationColorContext.jsx";
 import logo from "../assets/img/logo-blue.jpeg"
 
-const Header = ({location, setLocation, interact, landing, setTarget, greyOut=false, color, map}) => {
+const Header = ({ interact, landing, setTarget, greyOut=false, color, map}) => {
 
     // todo: add languages
     // todo: add map button
@@ -14,7 +13,8 @@ const Header = ({location, setLocation, interact, landing, setTarget, greyOut=fa
     // todo: add animation when links are interacted with.
 
     // get context value
-    const { handleLocationChange } = useContext(LocationColorContext);
+    const { locationColor, handleLocationChange } = useContext(LocationColorContext);
+    const { location } = locationColor
 
     // navigate back to home
     const nav = useNavigate();
