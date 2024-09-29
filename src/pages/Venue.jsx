@@ -132,12 +132,9 @@ const Venue = () => {
 
                             {!isDesktop &&
                                 <section>
-
                                         {venue.reservations &&
-
-                                                <div className={"link reservations"}
-                                                     href={venue.reservations}>
-                                                    <h2>book a table</h2>
+                                                <div className={"link reservations"}>
+                                                    <a href={venue.reservations}>book a table</a>
                                                 </div>
                                         }
                                 </section>
