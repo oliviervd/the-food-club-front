@@ -51,28 +51,13 @@ const Venue = () => {
             <Header landing={true} setLocation={setVenueLocation} venueLocation={venueLocation} interact={false} greyOut={true}/>
             {venue &&
                 <section className={"venue__container"}>
-                    {/*{searchParams.get("surprise") && location &&
-                        <div style={{
-                            width: "99%",
-                            height: 'auto',
-                            textAlign: "center",
-                            justifyContent: "center",
-                            position: "relative",
-                            border: "4px solid black",
-                            marginBottom: "5px"
-                        }} onClick={()=>{surprise(location, nav)}}>
-                            <div className={"link"} style={{maxWidth: "100%"}}>
-                                <AutoResizeText text={`SURPRISE AGAIN IN ${location.toUpperCase()}`}/>
-                            </div>
-                        </div>
-                    }*/}
                     <div className={"grid"}>
                         <div>
                             <DitherImage style={{justifyContent: "center", maxWidth: "99%"}}
                                          url={venue.media.hero.sizes.tablet.url}/>
                             {!isDesktop &&
                                 <div style={{width: "100%", height: 'auto', position: "relative"}}>
-                                    <AutoResizeText text={venue.venueName} padding={"10px 0 30px 0"}/>
+                                    <AutoResizeText text={venue.venueName} padding={"10px 0 10px 0"}/>
                                 </div>
 
                             }
