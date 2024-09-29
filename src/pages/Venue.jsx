@@ -158,7 +158,7 @@ const Venue = () => {
                                         )
                                     })}
                                     <p style={{marginBottom: "0px", marginTop: "5px"}}>
-                                      * kitchen hours might differ, make sure to double-check!
+                                      * kitchen hours might differ.
                                     </p>
                                 </section>
                             }
