@@ -10,11 +10,11 @@ import {LocationColorContext} from "../utils/LocationColorContext.jsx";
 // todo add icons to zoom in / zoom out / show my location.
 
 // Custom hook to update the map center
-const ChangeView = ({ center }) => {
+const ChangeView = ({ center, zoom }) => {
     const map = useMap();
     useEffect(() => {
-        map.setView(center);
-    }, [center, map]);
+        map.setView(center, zoom);
+    }, [center, zoom, map]);
     return null;
 }
 
@@ -25,7 +25,7 @@ const Map = ({}) => {
 
     const { locationColor} = useContext(LocationColorContext);
 
-    let zoom = 12.5 // set zoom of map
+    let [zoom, setZoom] = useState(12.5) // set zoom of map
     const [mapCenter, setMapCenter] = useState([51.0544, 3.7256]); // Initial coordinates
 
     const colorToCoordinatesMap = {
@@ -38,6 +38,7 @@ const Map = ({}) => {
     useEffect(() => {
         // function to set the map center based on the location color
         setMapCenter(colorToCoordinatesMap[locationColor.location])
+        setZoom(12.5)
     }, [locationColor]);
 
     // add locations on map
@@ -94,7 +95,7 @@ const Map = ({}) => {
                     zoom={zoom}
                     zoomControl={false}
                 >
-                    <ChangeView center={mapCenter}/>
+                    <ChangeView center={mapCenter} zoom={zoom}/>
                     <TileLayer
                         url="https://api.mapbox.com/styles/v1/oliviervd-tfc/clllwhqvq009s01pea2rw8mpt/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoib2xpdmllcnZkLXRmYyIsImEiOiJjbGxqZWFjd3MweTBzM2psaWFiemlnZnZnIn0.fMu0iJpz82mNYQ5Rrrwi-w"
                     />
