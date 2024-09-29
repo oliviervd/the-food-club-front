@@ -56,7 +56,6 @@ const Venues = () => {
     return(
         <>
             <Header landing={true}/>
-
             <section className={"home__container"}>
                 {_category &&
                     <div>

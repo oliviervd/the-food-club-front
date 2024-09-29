@@ -97,6 +97,25 @@ ul {
     color: black;
 }
 
+@keyframes scroll {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+}
+
+.scrolling-banner-container {
+    width: 200%;
+    display: flex;
+    animation: scroll 10s linear infinite;
+    background-color: var(--color-secondary);
+    border-bottom: 2px solid var(--color-main);
+}
+
+.banner {
+    width: 50%;
+    font-size: 3rem;
+    color: var(--color-main)
+}
+
 @media (max-width: 600px) {
     h2 {
         font-size: var(--font-s);

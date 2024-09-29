@@ -7,6 +7,7 @@ import {fetchAPI} from "../utils/utils.jsx";
 import DitherImage from "../elements/DitherImage.jsx";
 import {useMediaQuery} from "@uidotdev/usehooks";
 import serialize from "../utils/serialize.jsx";
+import Banner from "../elements/Banner.jsx";
 
 const Search = () => {
 
@@ -65,16 +66,12 @@ const Search = () => {
     }
 
     if (matches[0]) {
-        return(
+        return (
             <>
-                <Header location={location} setLocation={setLocation} interact={true}/>
-                <div className={"divider"}></div>
+                <Header landing={true} location={location} setLocation={setLocation} interact={true}/>
                 <div style={{width: '99%', height: 'auto'}}>
-                    <AutoResizeText text={`a list for those ${prompt} craving ${search}`} maxFontSize={600}
-                                    minFontSize={10} padding={"20px 20px"}/>
+                    <Banner content={search}/>
                 </div>
-                <div className={"divider"}></div>
-
                 <section class={"home__container"}>
                     <section style={{position: "relative"}}>
                         {isSmall &&
@@ -94,10 +91,14 @@ const Search = () => {
                             matches.map((match, index) => {
                                 return (
                                     <div className={"venue-list__container"}>
-                                        <DitherImage url={match.media.hero.sizes.tablet.url} link={`/venue/${match.url}`}/>
+                                        <DitherImage url={match.media.hero.sizes.tablet.url}
+                                                     link={`/venue/${match.url}`}/>
                                         <div>
                                             <div style={{width: "90%"}}>
-                                                <AutoResizeText text={match.venueName} padding={"0px 0px 20px 0px"} onClick={() => {navigateTo(match.url)}}/>
+                                                <AutoResizeText text={match.venueName} padding={"0px 0px 20px 0px"}
+                                                                onClick={() => {
+                                                                    navigateTo(match.url)
+                                                                }}/>
                                             </div>
                                             <div className={"cuisines"}>
                                                 {match.cuisineUsed.map((cuisine) => {
@@ -131,28 +132,7 @@ const Search = () => {
 
             </>
         )
-    } else {
-        return (
-            <>
-            <Header location={location} setLocation={setLocation} interact={true}/>
-                <section style={{padding: "10px", position: "relative"}}>
-                    <div style={{width: '100%', height: 'auto'}}>
-                        <AutoResizeText text={`we realize you are ${prompt} craving ${search} but...`} maxFontSize={600}
-                                        minFontSize={10}/>
-                    </div>
-                </section>
-                <div className={"category-list__box"} style={{padding: "10px", position: "relative"}}>
-                    <DitherImage url={"https://iiif-prod.nypl.org/index.php?id=58835161&t=q"}/>
-                    <i style={{width: "70%", padding: "20px"}}>"at the moment FOOD CLUB can't recommend anything that
-                        fulfills these particular needs... we are truly sorry."</i>
-                </div>
-
-            </>
-        )
-
     }
-
-
 }
 
 export default Search;
