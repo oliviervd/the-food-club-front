@@ -49,6 +49,19 @@
     height: 83vh;
 }
 
+.cluster-icon {
+    background-color: var(--color-main);
+    border-radius: 50%;
+    border: 2px var(--color-secondary) solid;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-secondary);
+    font-size: var(--font-s);
+}
+
 @media (max-width: 1200px) {
     .map-tip__container {
         right: 20px;

@@ -1,5 +1,7 @@
 import Header from "../elements/Header.jsx";
 import {MapContainer, TileLayer, useMap, Marker, Popup} from "react-leaflet";
+import {divIcon, Icon} from "leaflet";
+import MarkerClusterGroup from "react-leaflet-cluster";
 import {useContext, useState, useEffect} from "react";
 import {fetchAPI, getCSSVariableValue} from "../utils/utils.jsx";
 import {LocationColorContext} from "../utils/LocationColorContext.jsx";
@@ -62,6 +64,13 @@ const Map = ({}) => {
         });
     };
 
+    const createCustomClusterIcon = (cluster) => {
+        return new divIcon({
+            html: `<div class="cluster-icon">${cluster.getChildCount()}</div>`,
+            className: '',
+        })
+    }
+
     // Function to get color based on club/location
     const getColorForClub = (club) => {
         switch (club) {
@@ -85,22 +94,25 @@ const Map = ({}) => {
                     zoom={zoom}
                     zoomControl={false}
                 >
-
-                    {/* plot markers*/}
-                    {venues && venues.map((venue) => {
-                        const color = getColorForClub(venue.club);
-                        return (
-                            <Marker
-                                position={[venue.address.longitude, venue.address.latitude]}
-                                icon={createCustomIcon(color)}
-                            />
-                        )
-                    })}
-
                     <ChangeView center={mapCenter}/>
                     <TileLayer
                         url="https://api.mapbox.com/styles/v1/oliviervd-tfc/clllwhqvq009s01pea2rw8mpt/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoib2xpdmllcnZkLXRmYyIsImEiOiJjbGxqZWFjd3MweTBzM2psaWFiemlnZnZnIn0.fMu0iJpz82mNYQ5Rrrwi-w"
                     />
+                    <MarkerClusterGroup
+                        chunkedLoading={true}
+                        iconCreateFunction={createCustomClusterIcon}
+                    >
+                        {/* plot markers*/}
+                        {venues && venues.map((venue) => {
+                            const color = getColorForClub(venue.club);
+                            return (
+                                <Marker
+                                    position={[venue.address.longitude, venue.address.latitude]}
+                                    icon={createCustomIcon(color)}
+                                />
+                            )
+                        })}
+                    </MarkerClusterGroup>
                 </MapContainer>
                 <div className={"map--filter_container"} style={{backgroundColor: "Background"}}>
 
