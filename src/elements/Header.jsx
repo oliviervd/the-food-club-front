@@ -1,11 +1,11 @@
 import AutoResizeText from "./AutoResizeText.jsx";
 import {useNavigate} from "react-router-dom";
-import {useContext} from "react";
+import {useContext, useState} from "react";
 import {useMediaQuery} from "@uidotdev/usehooks";
 import {LocationColorContext, LocationColorProvider} from "../utils/LocationColorContext.jsx";
 import logo from "../assets/img/logo-blue.png"
 
-const Header = ({ interact, landing, venueLocation, setTarget, greyOut=false, color, map}) => {
+const Header = ({ interact, landing, venueLocation, setTarget, greyOut=false, color, map , selectedTab}) => {
 
     // todo: add languages
     // todo: add map button
@@ -103,9 +103,9 @@ const Header = ({ interact, landing, venueLocation, setTarget, greyOut=false, co
                                 } : null}>brussels</h2>
                         </nav>
                         <nav className={"flex-buttons"}>
-                            <h2 className={"link"} style={{borderTop: "none"}}
-                                onClick={() => nav("/categories/")}>lists</h2>
-                            <h2 className={"link"} style={{borderTop: "none"}} onClick={() => nav("/map/")}>map</h2>
+                            <h2 className={`link ${selectedTab === "lists" ? "selected" : "none"}`} style={{borderTop: "none"}}
+                                onClick={() => nav("/")}>lists</h2>
+                            <h2 className={`link ${selectedTab === "map" ? "selected" : "none"}`} style={{borderTop: "none"}} onClick={() => nav("/map/")}>map</h2>
 
                         </nav>
                         {/*{location && !map &&

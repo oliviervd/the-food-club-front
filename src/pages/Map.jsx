@@ -77,7 +77,7 @@ const Map = ({}) => {
     return(
         <div className={"map--ui_container"}
              style={{ overflow: "hidden", maxWidth: "100vw", maxHeight: "100vh", position: "relative" }}>
-            <Header landing={true} interact={true} setLocation={setLocation} location={location} setTarget={setTarget} map={true}/>
+            <Header selectedTab={"map"} landing={true} interact={true} setLocation={setLocation} location={location} setTarget={setTarget} map={true}/>
             <div style={{height: '80%', width: '100%', position: 'relative'}}>
                 <MapContainer
                     className={"map--ui"}
