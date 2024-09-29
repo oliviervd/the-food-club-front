@@ -80,7 +80,7 @@ const Venues = () => {
                                                     navigateTo(v.url)
                                                 }}>
                                                     <div>
-                                                        <p className={"image__club-tag"}>{v.club}</p>
+                                                        <div className={"image__club-tag"}>{v.club}</div>
                                                         <DitherImage url={v.media.hero.sizes.tablet.url}
                                                                      link={`/venue/${v.url}`}/>
                                                     </div>
