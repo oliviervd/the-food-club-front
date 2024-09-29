@@ -78,11 +78,16 @@ export function pricingLabel(input) {
 
 export function convertHour(input) {
     const date = new Date(input);
-    const hour = date.getUTCHours()
-    let minutes = date.getUTCMinutes();
-    if (minutes === 0) {
-        minutes = "00"
-    }
-    return `${hour}:${minutes}`;
+    const options = {
+        timeZone: 'Europe/Brussels',
+        hour: '2-digit',
+        minute: '2-digit',
+        hourCycle: 'h23' // Ensure 24-hour time format
+    };
+
+    const formatter = new Intl.DateTimeFormat('en-US', options);
+    const formattedTime = formatter.format(date);
+
+    return formattedTime;
 }
 
