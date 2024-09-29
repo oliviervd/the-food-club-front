@@ -31,8 +31,6 @@
     right: 15px;
 }
 
-
-
 @media (max-width:1200px) {
     .home__container {
 
@@ -42,11 +40,6 @@
     }
 }
 
-@media (min-width: 1700px) {
-    .home__container {
-        padding: 0px 10vw;
-    }
-}
 
 .home-grid{
     margin: 5vh auto auto;
@@ -62,15 +55,6 @@
     justify-content: center;
     text-align: center;
     margin: auto
-}
-
-@media (max-width:1500px){
-
-    .home-grid {
-    }
-
-    .home-grid .category-list__box {
-    }
 }
 
 @media (max-width:1300px){
