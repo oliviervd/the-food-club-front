@@ -8,6 +8,11 @@
     src: url("../assets/fonts/DMSans-Italic-VariableFont_opsz,wght.ttf") format("opentype");
 }
 
+@font-face {
+    font-family: "DM-serif-display-italic";
+    src: url("../assets/fonts/DMSerifDisplay-Italic.ttf") format("opentype");
+}
+
 :root {
     --background-color: #f4f0ec;
     --text-color: black;
