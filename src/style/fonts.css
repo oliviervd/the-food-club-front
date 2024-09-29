@@ -104,6 +104,7 @@ ul {
 
 .scrolling-banner-container {
     width: 500%;
+    overflowX: clip;
     display: flex;
     animation: scroll 20s linear infinite;
     background-color: var(--color-secondary);

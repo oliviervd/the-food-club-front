@@ -52,9 +52,6 @@ const Map = ({}) => {
         getVenues();
     },[])
 
-
-    //todo: add cluster for icons nearby.
-
     // Function to create a custom SVG icon with a given color
     const createCustomIcon = (color) => {
         return L.divIcon({
