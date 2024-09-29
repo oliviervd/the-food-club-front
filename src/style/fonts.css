@@ -97,27 +97,14 @@ ul {
     color: black;
 }
 
-@keyframes scroll {
-    0% { transform: translateX(0%); }
-    100% { transform: translateX(-50%); }
-}
-
-.scrolling-banner-container {
-    width: 500%;
-    overflowX: clip;
-    display: flex;
-    animation: scroll 20s linear infinite;
-    background-color: var(--color-secondary);
-    border-bottom: 2px solid var(--color-main);
-    height: 60px
-}
-
 .banner {
-    font-size: 3rem;
-    color: var(--color-main);
-    white-space: nowrap;
+    background-color: var(--color-secondary);
     margin: 0 0;
     padding: 0 20px;
+    h2{
+        font-size: 3rem;
+        color: var(--color-main);
+    }
 }
 
 @media (max-width: 600px) {
