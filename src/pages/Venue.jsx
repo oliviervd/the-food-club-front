@@ -151,12 +151,15 @@ const Venue = () => {
                                                 <div>
                                                     <p>{convertHour(day.openFrom)}</p>
                                                     <p>-</p>
-                                                    <p>{convertHour(day.openTill)}</p>
+                                                    <p>{convertHour(day.openTill)}*</p>
                                                 </div>
 
                                             </div>
                                         )
                                     })}
+                                    <p style={{marginBottom: "0px", marginTop: "5px"}}>
+                                      * kitchen hours might differ, make sure to double-check!
+                                    </p>
                                 </section>
                             }
                             {venue.otherOpeningHours &&
