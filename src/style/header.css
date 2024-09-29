@@ -9,12 +9,12 @@ header > h1 {
     display: flex;
     justify-content: space-evenly;
     flex-flow: row;
-    background-color: var(--color-gent-main);
+    background-color: var(--color-main);
     > h2 {
         padding: 0;
         margin: 0;
-        color: var(--color-gent-secondary);
-        border: 2px solid var(--color-gent-secondary);
+        color: var(--color-secondary);
+        border: 2px solid var(--color-secondary);
         width: 100%;
         justify-content: center;
         text-align: center;
@@ -31,7 +31,7 @@ header h2 {
 
 header .flex-buttons > h2 {
     border-left: none;
-    border-color: var(--color-gent-secondary);
+    border-color: var(--color-secondary);
     font-size: var(--font-s);
     padding: 5px 0;
 }
@@ -62,7 +62,7 @@ header .flex-buttons > h2 {
 
 .fixed {
     position: fixed;
-    background-color: var(--color-gent-main);
+    background-color: var(--color--main);
 }
 
 @media (max-width: 600px) {

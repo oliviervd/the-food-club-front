@@ -29,8 +29,8 @@
     top: 20px;
     left: 20px;
     width: 50%;
-    border: 2px var(--color-gent-secondary) solid;
-    background-color: var(--color-gent-main);
+    border: 2px var(--color-secondary) solid;
+    background-color: var(--color-main);
     border-radius: 20px;
     padding: 20px;
     display: flex;
@@ -39,7 +39,7 @@
 
     p {
         margin: 0;
-        color: var(--color-gent-secondary);
+        color: var(--color-secondary);
     }
 }
 

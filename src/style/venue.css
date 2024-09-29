@@ -21,7 +21,7 @@
     border: 2px black dashed;
     padding: 10px;
     margin: 10px 0px;
-    background-color: var(--color-gent-main);
+    background-color: var(--color-main);
 
     p {
         margin-block: 0;
@@ -67,7 +67,7 @@
 }
 
 .reservations {
-    background-color: var(--color-gent-main);
+    background-color: var(--color-main);
     justify-content: center;
     text-align: center;
     margin: 10px 0px;
@@ -79,12 +79,12 @@
 }
 
 .reservations:hover {
-    background-color: var(--color-gent-secondary);
-    color: var(--color-gent-main);
+    background-color: var(--color-secondary);
+    color: var(--color-main);
 }
 
 .address{
     font-size: 1.2rem;
-    color: var(--color-gent-secondary);
+    color: var(--color-secondary);
     margin: 10px 0px;
 }

@@ -1,7 +1,7 @@
 .category-meta {
     h2 {
         margin-top: 10px;
-        color: var(--color-gent-secondary);
+        color: var(--color-secondary);
         font-size: var(--font-l);
         font-weight: 700;
     }
@@ -10,7 +10,7 @@
 .category-list__container{
 
     h2 {
-        color: var(--color-gent-main);
+        color: var(--color-main);
         margin-bottom: 5px;
         width: 100%;
         text-align: center;
@@ -18,7 +18,7 @@
     }
 
     h2:hover {
-        color: var(--color-gent-main);
+        color: var(--color-main);
         background-color: black;
     }
 }
@@ -47,7 +47,7 @@
     }
 
     h2 {
-        color: var(--color-gent-main);
+        color: var(--color-main);
         font-size: 2rem;
         padding: 10px;
         justify-content: center;
@@ -60,8 +60,8 @@
     }
 
     h2:hover {
-        background-color: var(--color-gent-secondary);
-        color: var(--color-gent-main);
+        background-color: var(--color-secondary);
+        color: var(--color-main);
     }
 
     i {
@@ -90,7 +90,7 @@
         p {
             position: relative;
             font-family: DM-sans;
-            color: var(--color-gent-main);
+            color: var(--color-main);
             margin: auto;
             text-align: center;
             justify-content: center;
@@ -113,7 +113,7 @@
 }
 
 .category-list__explainer > h2 {
-    color: var(--color-gent-secondary);
+    color: var(--color-secondary);
     font-family: DM-sans;
     font-size: var(--font-m);
     margin-top: 10px;

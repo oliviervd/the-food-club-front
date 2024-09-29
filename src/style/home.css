@@ -12,15 +12,15 @@
         font-size: 2rem;
         font-weight: 500;
         padding: 10px 0;
-        color: var(--color-gent-secondary);
-        border: 2px solid var(--color-gent-secondary);
-        background-color: var(--color-gent-main);
+        color: var(--color--secondary);
+        border: 2px solid var(--color-secondary);
+        background-color: var(--color-main);
     }
 
     .surprise:hover {
-        color: var(--color-gent-main);
-        border: 2px solid var(--color-gent-main);
-        background-color: var(--color-gent-secondary);
+        color: var(--color-main);
+        border: 2px solid var(--color-main);
+        background-color: var(--color-secondary);
     }
 }
 

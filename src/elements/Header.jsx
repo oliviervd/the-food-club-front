@@ -1,7 +1,9 @@
 import AutoResizeText from "./AutoResizeText.jsx";
 import {useNavigate} from "react-router-dom";
+import {useContext} from "react";
 import {useMediaQuery} from "@uidotdev/usehooks";
 import {surprise, handleLocationChange} from "../utils/utils.jsx";
+import {LocationColorContext} from "../utils/LocationColorContext.jsx";
 import logo from "../assets/img/logo-blue.jpeg"
 
 const Header = ({location, setLocation, interact, landing, setTarget, greyOut=false, color, map}) => {
@@ -10,6 +12,9 @@ const Header = ({location, setLocation, interact, landing, setTarget, greyOut=fa
     // todo: add map button
     // todo: make header logo "FOOD CLUB" (fold) when scrolling down
     // todo: add animation when links are interacted with.
+
+    // get context value
+    const { handleLocationChange } = useContext(LocationColorContext);
 
     // navigate back to home
     const nav = useNavigate();
@@ -55,9 +60,9 @@ const Header = ({location, setLocation, interact, landing, setTarget, greyOut=fa
                                     <h2 className={"link"} onClick={() => nav("/categories/")}>CATEGORIES</h2>
                                     <h2 className={"link"} onClick={() => nav("/map/")}>MAP</h2>
                                     <h2 className={"link"} onClick={() => nav("/about/")}>ABOUT</h2>
-                                    <h2 className={"link"} onClick={()=>{handleLocationChange("gent", setLocation, setBgColor)}}>@GENT</h2>
-                                    <h2 className={"link"} onClick={()=>{handleLocationChange("brussels", setLocation, setBgColor)}}>@BRUSSELS</h2>
-                                    <h2 className={"link"} onClick={()=>{handleLocationChange("antwerp", setLocation, setBgColor)}}>@ANTWERP</h2>
+                                    <h2 className={"link"} onClick={()=>{handleLocationChange("gent")}}>@GENT</h2>
+                                    <h2 className={"link"} onClick={()=>{handleLocationChange("brussels")}}>@BRUSSELS</h2>
+                                    <h2 className={"link"} onClick={()=>{handleLocationChange("antwerp")}}>@ANTWERP</h2>
                                  {/*   <h2 className={"link"}>NL</h2>
                                     <h2 className={"link"}>FR</h2>
                                     <h2 className={"link selected"}>EN</h2>*/}
@@ -80,15 +85,15 @@ const Header = ({location, setLocation, interact, landing, setTarget, greyOut=fa
                         <nav className={"flex-buttons"}>
                             <h2 className={`link ${location === "gent" ? "selected" : ""}${greyOut && location !== "gent" ? "greyed-out" : ""}`}
                                 onClick={interact ? () => {
-                                    handleLocationChange("gent", setLocation, setBgColor);
+                                    handleLocationChange("gent");
                             } : null}>gent</h2>
                             <h2 className={`link ${location === "antwerp" ? "selected" : ""}${greyOut && location !== "antwerp" ? "greyed-out" : ""}`}
                                 onClick={interact ? () => {
-                                    handleLocationChange("antwerp", setLocation, setBgColor);
+                                    handleLocationChange("antwerp");
                                 } : null}>antwerp</h2>
                             <h2 className={`link ${location === "brussels" ? "selected" : ""}${greyOut && location !== "brussels" ? "greyed-out" : ""}`}
                                 onClick={interact ? () => {
-                                    handleLocationChange("brussels", setLocation, setBgColor);
+                                    handleLocationChange("brussels");
                                 } : null}>brussels</h2>
                         </nav>
                         <nav className={"flex-buttons"}>
@@ -155,13 +160,13 @@ const Header = ({location, setLocation, interact, landing, setTarget, greyOut=fa
 
                 <nav className={"flex-buttons"}>
                     <h2 className={`link ${location === "gent" ? "selected" : ""}${greyOut && location !== "gent" ? "greyed-out" : ""}`} onClick={interact ? () => {
-                        handleLocationChange("gent", setLocation, setBgColor);
+                        handleLocationChange("gent");
                     } : null}>GENT</h2>
                     <h2 className={`link ${location === "antwerp" ? "selected" : ""}${greyOut && location !== "antwerp" ? "greyed-out" : ""}`} onClick={interact ? () => {
-                        handleLocationChange("antwerp", setLocation, setBgColor);
+                        handleLocationChange("antwerp");
                     } : null}>ANTWERP</h2>
                     <h2 className={`link ${location === "brussels" ? "selected" : ""}${greyOut && location !== "brussels" ? "greyed-out" : ""}`} onClick={interact ? () => {
-                        handleLocationChange("brussels", setLocation, setBgColor);
+                        handleLocationChange("brussels");
                     } : null}>BRUSSELS</h2>
                 </nav>
             </header>

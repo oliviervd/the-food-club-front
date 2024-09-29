@@ -24,7 +24,7 @@ img {
     top: 5px;
     left: 20px;
     padding: 0 10px;
-    color: var(--color-gent-main);
-    background-color: var(--color-gent-secondary);
+    color: var(--color-main);
+    background-color: var(--color-secondary);
     font-family: DM-sans;
 }
