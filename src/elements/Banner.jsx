@@ -11,6 +11,16 @@ const Banner = ({content}) => {
             <h2 className="banner">~</h2>
             <h2 className="banner">{content}</h2>
             <h2 className="banner">~</h2>
+            <h2 className="banner">{content}</h2>
+            <h2 className="banner">~</h2>
+            <h2 className="banner">{content}</h2>
+            <h2 className="banner">~</h2>
+            <h2 className="banner">{content}</h2>
+            <h2 className="banner">~</h2>
+            <h2 className="banner">{content}</h2>
+            <h2 className="banner">~</h2>
+            <h2 className="banner">{content}</h2>
+            <h2 className="banner">~</h2>
         </div>
     )
 }

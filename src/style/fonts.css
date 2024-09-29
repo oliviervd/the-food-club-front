@@ -103,9 +103,9 @@ ul {
 }
 
 .scrolling-banner-container {
-    width: 200%;
+    width: 500%;
     display: flex;
-    animation: scroll 10s linear infinite;
+    animation: scroll 20s linear infinite;
     background-color: var(--color-secondary);
     border-bottom: 2px solid var(--color-main);
     height: 60px
