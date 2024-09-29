@@ -61,7 +61,7 @@ const Home = () => {
     // render component
     return(
         <div>
-            <Header selectedTab={"lists"} landing={true} interact={true} setLocation={setLocation} location={location} setTarget={setTarget}></Header>
+            <Header selectedTab={"lists"} landing={true} interact={true} setLocation={setLocation} location={location} setTarget={setTarget} venue={false}></Header>
             <section className={"home__container"}>
                 {isSmall && categoryList &&
                     <div>

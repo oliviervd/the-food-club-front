@@ -1,4 +1,5 @@
 import Header from "../elements/Header.jsx";
+import Footer from "../elements/Footer.jsx";
 import {useNavigate, useParams, useSearchParams} from "react-router-dom";
 import {useContext, useEffect, useState} from "react";
 import {fetchAPI, convertHour} from "../utils/utils.jsx";
@@ -45,7 +46,7 @@ const Venue = () => {
 
     return (
         <>
-            <Header landing={true} setLocation={setVenueLocation} venueLocation={venueLocation} interact={false} greyOut={true}/>
+            <Header landing={true} setLocation={setVenueLocation} venueLocation={venueLocation} interact={false} greyOut={true} venue={true}/>
             {venue &&
                 <section className={"venue__container"}>
                     <div className={"grid"}>
@@ -169,8 +170,6 @@ const Venue = () => {
                             }
                         </div>
                     </div>
-
-
                 </section>
             }
         </>

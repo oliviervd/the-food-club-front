@@ -4,8 +4,9 @@ import {useContext, useState} from "react";
 import {useMediaQuery} from "@uidotdev/usehooks";
 import {LocationColorContext, LocationColorProvider} from "../utils/LocationColorContext.jsx";
 import logo from "../assets/img/logo-blue.png"
+import venue from "../pages/Venue.jsx";
 
-const Header = ({ interact, landing, venueLocation, setTarget, greyOut=false, color, map , selectedTab}) => {
+const Header = ({ interact, landing, venueLocation, setTarget, greyOut=false, color, map , selectedTab, venue}) => {
 
     // todo: add languages
     // todo: add map button
@@ -88,6 +89,7 @@ const Header = ({ interact, landing, venueLocation, setTarget, greyOut=false, co
 
                 {isSmall &&
                     <div>
+                        {!venue &&
                         <nav className={"flex-buttons"}>
                             <h2 className={`link ${location === "gent" ? "selected" : ""}${greyOut && location !== "gent" ? "greyed-out" : ""}`}
                                 onClick={interact ? () => {
@@ -102,6 +104,12 @@ const Header = ({ interact, landing, venueLocation, setTarget, greyOut=false, co
                                     handleLocationChange("brussels");
                                 } : null}>brussels</h2>
                         </nav>
+                        }
+                        {venue &&
+                            <nav className={"flex-buttons"}>
+                                <h2 className={"link selected"}>{location}</h2>
+                            </nav>
+                        }
                         <nav className={"flex-buttons"}>
                             <h2 className={`link ${selectedTab === "lists" ? "selected" : "none"}`} style={{borderTop: "none"}}
                                 onClick={() => nav("/")}>lists</h2>

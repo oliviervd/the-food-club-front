@@ -2,8 +2,10 @@ import Header from "../elements/Header.jsx";
 import {MapContainer, TileLayer, useMap, Marker, Popup} from "react-leaflet";
 import {useContext, useState, useEffect} from "react";
 import {fetchAPI, getCSSVariableValue} from "../utils/utils.jsx";
-import serialize from "../utils/serialize.jsx";
 import {LocationColorContext} from "../utils/LocationColorContext.jsx";
+
+// todo add container that shows preview of the selected item
+// todo add icons to zoom in / zoom out / show my location.
 
 // Custom hook to update the map center
 const ChangeView = ({ center }) => {
@@ -46,6 +48,9 @@ const Map = ({}) => {
     useEffect(() => {
         getVenues();
     },[])
+
+
+    //todo: add cluster for icons nearby.
 
     // Function to create a custom SVG icon with a given color
     const createCustomIcon = (color) => {
