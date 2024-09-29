@@ -92,6 +92,7 @@
 .venue-open {
     padding: 0 10px;
     border: 2px dashed black;
+    margin: 10px 0;
 
     div {
         display: flex;

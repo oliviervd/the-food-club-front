@@ -19,12 +19,9 @@ const Venue = () => {
 
     const [venueLocation, setVenueLocation] = useState(null);
 
-    // todo: add locales
-    // todo: add map
-    // todo: add section with extra info; telephone, website, socials
-
-    // if surprise in params, add button to surprise again.
-    console.log(searchParams)
+    // todo: add map (refer to)
+    // todo: add status (open now / closed)
+    // todo: add section with extra info; telephone, website, socials)
 
     function navigateTo(route) {
         nav(route)
