@@ -135,7 +135,7 @@ const Map = ({}) => {
                 </div>
                 <div className={`map-venue-container ${classNames}`}>
                     <div onClick={()=>{setVisible(!visible)}}>
-                        <Banner content={"⬇ close ⬇"}/>
+                        <Banner small={true} content={"↧ close ↧"}/>
                     </div>
                 </div>
             </div>
