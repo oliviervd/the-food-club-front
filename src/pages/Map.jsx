@@ -24,7 +24,7 @@ const Map = ({}) => {
 
     const [target, setTarget] = useState(null);
     const [location, setLocation] = useState(null);
-    const [visible, setVisible] = useState(false);
+    const [visible, setVisible] = useState(true);
 
     const { locationColor} = useContext(LocationColorContext);
 
@@ -111,11 +111,16 @@ const Map = ({}) => {
                         {venues && venues.map((venue) => {
                             const color = getColorForClub(venue.club);
                             return (
-                                <Marker
-                                    position={[venue.address.longitude, venue.address.latitude]}
-                                    icon={createCustomIcon(color)}
-                                    onClick={()=>setVisible(!visible)}
-                                />
+                                    <Marker
+                                        position={[venue.address.longitude, venue.address.latitude]}
+                                        icon={createCustomIcon(color)}
+                                        eventHandlers={{
+                                            click: () => {
+                                                setVisible(!visible);
+                                            },
+                                        }}
+                                    />
+
                             )
                         })}
                     </MarkerClusterGroup>
@@ -123,12 +128,12 @@ const Map = ({}) => {
                 <div className={"map--filter_container"} style={{backgroundColor: "Background"}}>
 
                 </div>
-                <div className={"map-tip__container"} onClick={()=>setVisible(!visible)}>
+                <div className={"map-tip__container"}>
                     <div className={"text-main"}>☞</div>
                     <p className={"text-main"}>click on one of the icons of the map or narrow down the selection using the filters to the right.</p>
                 </div>
                 <div className={`map-venue-container ${classNames}`}>
-
+                    <div className={"close"}  onClick={()=>{setVisible(!visible)}}>X</div>
                 </div>
             </div>
         </div>
