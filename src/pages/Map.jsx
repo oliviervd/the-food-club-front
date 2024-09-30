@@ -18,10 +18,13 @@ const ChangeView = ({ center, zoom }) => {
     return null;
 }
 
+
+
 const Map = ({}) => {
 
     const [target, setTarget] = useState(null);
     const [location, setLocation] = useState(null);
+    const [visible, setVisible] = useState(false);
 
     const { locationColor} = useContext(LocationColorContext);
 
@@ -51,6 +54,10 @@ const Map = ({}) => {
     useEffect(() => {
         getVenues();
     },[])
+
+    // Add animation classes based on visibility state
+    const classNames = visible ? "slide-up" : "slide-down";
+    console.log(visible)
 
     // Function to create a custom SVG icon with a given color
     const createCustomIcon = (color) => {
@@ -107,6 +114,7 @@ const Map = ({}) => {
                                 <Marker
                                     position={[venue.address.longitude, venue.address.latitude]}
                                     icon={createCustomIcon(color)}
+                                    onClick={()=>setVisible(!visible)}
                                 />
                             )
                         })}
@@ -115,9 +123,12 @@ const Map = ({}) => {
                 <div className={"map--filter_container"} style={{backgroundColor: "Background"}}>
 
                 </div>
-                <div className={"map-tip__container"}>
+                <div className={"map-tip__container"} onClick={()=>setVisible(!visible)}>
                     <div className={"text-main"}>☞</div>
                     <p className={"text-main"}>click on one of the icons of the map or narrow down the selection using the filters to the right.</p>
+                </div>
+                <div className={`map-venue-container ${classNames}`}>
+
                 </div>
             </div>
         </div>

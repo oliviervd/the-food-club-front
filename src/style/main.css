@@ -33,6 +33,28 @@ body {
     }
 }
 
+@keyframes slide-up {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+}
+
+@keyframes slide-down {
+    0% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
 
 .slide-in {
     animation: slide-in 0.5s forwards;
@@ -40,4 +62,13 @@ body {
 
 .slide-out {
     animation: slide-out 0.5s forwards;
+}
+
+.slide-up {
+    animation: slide-up 0.5s forwards;
+}
+
+
+.slide-down {
+    animation: slide-down 0.5s forwards;
 }
