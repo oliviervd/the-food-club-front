@@ -1,5 +1,6 @@
 import Marquee from "react-fast-marquee";
 
+// banner element
 const Banner = ({content}) => {
     return (
         <div className={"banner-container"}>
