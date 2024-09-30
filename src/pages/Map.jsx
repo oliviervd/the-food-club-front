@@ -5,6 +5,7 @@ import MarkerClusterGroup from "react-leaflet-cluster";
 import {useContext, useState, useEffect} from "react";
 import {fetchAPI, getCSSVariableValue} from "../utils/utils.jsx";
 import {LocationColorContext} from "../utils/LocationColorContext.jsx";
+import Banner from "../elements/Banner.jsx";
 
 // todo add container that shows preview of the selected item
 // todo add icons to zoom in / zoom out / show my location.
@@ -133,7 +134,9 @@ const Map = ({}) => {
                     <p className={"text-main"}>click on one of the icons of the map or narrow down the selection using the filters to the right.</p>
                 </div>
                 <div className={`map-venue-container ${classNames}`}>
-                    <div className={"close"}  onClick={()=>{setVisible(!visible)}}>X</div>
+                    <div onClick={()=>{setVisible(!visible)}}>
+                        <Banner content={"⬇ close ⬇"}/>
+                    </div>
                 </div>
             </div>
         </div>
