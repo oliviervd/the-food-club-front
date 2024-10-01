@@ -51,12 +51,30 @@
     right:0;
     height:50vh;
     background-color: var(--color-main);
-    border-top: solid 2px var(--color-gent-secondary);
 
     .close {
         position: absolute;
         right: 10px;
         top: 10px;
+    }
+}
+
+.map-venue-image{
+    margin: 15px;
+    position: relative;
+
+    h2{
+        color: var(--color-main);
+        font-size: 2rem;
+        padding: 10px;
+        justify-content: center;
+        text-align: center;
+        left: 50%;
+        top: 50%;
+        width: 80%;
+        position: absolute;
+        transform: translateX(-50%) translateY(-50%);
+        background-color: var(--color-secondary);
     }
 }
 

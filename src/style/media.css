@@ -2,8 +2,7 @@ img {
     max-width: 99%;
     text-align: center;
     justify-content: center;
-    margin-top: 5px;
-    border: black 3px solid;
+    border: var(--color-secondary) 3px solid;
 }
 
 .logo-container {
@@ -15,7 +14,6 @@ img {
 .logo {
     border: none;
     width: 50%;
-
 }
 
 .image__club-tag {

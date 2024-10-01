@@ -6,6 +6,7 @@ import {useContext, useState, useEffect} from "react";
 import {fetchAPI, getCSSVariableValue} from "../utils/utils.jsx";
 import {LocationColorContext} from "../utils/LocationColorContext.jsx";
 import Banner from "../elements/Banner.jsx";
+import DitherImage from "../elements/DitherImage.jsx";
 
 // todo add container that shows preview of the selected item
 // todo add icons to zoom in / zoom out / show my location.
@@ -26,6 +27,7 @@ const Map = ({}) => {
     const [target, setTarget] = useState(null);
     const [location, setLocation] = useState(null);
     const [visible, setVisible] = useState(true);
+    const [highlightedVenue, setHighlightedVenue] = useState(null);
 
     const { locationColor} = useContext(LocationColorContext);
 
@@ -58,7 +60,6 @@ const Map = ({}) => {
 
     // Add animation classes based on visibility state
     const classNames = visible ? "slide-up" : "slide-down";
-    console.log(visible)
 
     // Function to create a custom SVG icon with a given color
     const createCustomIcon = (color) => {
@@ -89,6 +90,12 @@ const Map = ({}) => {
         }
     };
 
+    const highlightVenue = (venue) => {
+        setVisible(false)
+        setHighlightedVenue(venue)
+    }
+
+    console.log(highlightedVenue)
     return(
         <div className={"map--ui_container"}
              style={{ overflow: "hidden", maxWidth: "100vw", maxHeight: "100vh", position: "relative" }}>
@@ -117,7 +124,7 @@ const Map = ({}) => {
                                         icon={createCustomIcon(color)}
                                         eventHandlers={{
                                             click: () => {
-                                                setVisible(!visible);
+                                                highlightVenue(venue);
                                             },
                                         }}
                                     />
@@ -133,11 +140,23 @@ const Map = ({}) => {
                     <div className={"text-main"}>☞</div>
                     <p className={"text-main"}>click on one of the icons of the map or narrow down the selection using the filters to the right.</p>
                 </div>
-                <div className={`map-venue-container ${classNames}`}>
-                    <div onClick={()=>{setVisible(!visible)}}>
-                        <Banner small={true} content={"↧ close ↧"}/>
+
+                    <div className={`map-venue-container ${classNames}`}>
+                        <div onClick={() => {
+                            setVisible(true)
+                        }}>
+                            <Banner small={true} content={"↧ close ↧"}/>
+                            {highlightedVenue && highlightedVenue.media &&
+                                <div className={"map-venue-image"}>
+                                    <DitherImage style={{justifyContent: "center", maxWidth: "99%"}}
+                                                 url={highlightedVenue.media.hero.sizes.tablet.url}/>
+                                    <h2>{highlightedVenue.venueName}</h2>
+                                </div>
+
+                            }
+                        </div>
                     </div>
-                </div>
+
             </div>
         </div>
     )
