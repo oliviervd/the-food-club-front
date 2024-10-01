@@ -7,6 +7,7 @@ import {fetchAPI, getCSSVariableValue} from "../utils/utils.jsx";
 import {LocationColorContext} from "../utils/LocationColorContext.jsx";
 import Banner from "../elements/Banner.jsx";
 import DitherImage from "../elements/DitherImage.jsx";
+import {useNavigate} from "react-router-dom";
 
 // todo add container that shows preview of the selected item
 // todo add icons to zoom in / zoom out / show my location.
@@ -28,11 +29,11 @@ const Map = ({}) => {
     const [location, setLocation] = useState(null);
     const [visible, setVisible] = useState(true);
     const [highlightedVenue, setHighlightedVenue] = useState(null);
-
     const { locationColor} = useContext(LocationColorContext);
 
     let [zoom, setZoom] = useState(12.5) // set zoom of map
     const [mapCenter, setMapCenter] = useState([51.0544, 3.7256]); // Initial coordinates
+    const nav = useNavigate();
 
     const colorToCoordinatesMap = {
         'gent': [51.0544, 3.7256],
@@ -118,7 +119,8 @@ const Map = ({}) => {
                         {/* plot markers*/}
                         {venues && venues.map((venue) => {
                             const color = getColorForClub(venue.club);
-                            return (
+                            if (venue.club) {
+                                return (
                                     <Marker
                                         position={[venue.address.longitude, venue.address.latitude]}
                                         icon={createCustomIcon(color)}
@@ -129,7 +131,8 @@ const Map = ({}) => {
                                         }}
                                     />
 
-                            )
+                                )
+                            }
                         })}
                     </MarkerClusterGroup>
                 </MapContainer>
@@ -147,12 +150,16 @@ const Map = ({}) => {
                         }}>
                             <Banner small={true} content={"↧ close ↧"}/>
                             {highlightedVenue && highlightedVenue.media &&
-                                <div className={"map-venue-image"}>
-                                    <DitherImage style={{justifyContent: "center", maxWidth: "99%"}}
-                                                 url={highlightedVenue.media.hero.sizes.tablet.url}/>
-                                    <h2>{highlightedVenue.venueName}</h2>
-                                </div>
+                                <section>
+                                    <div className={"map-venue-image"} onClick={() => {nav(`/venue/${highlightedVenue.url}`)}}>
+                                        <DitherImage style={{justifyContent: "center", maxWidth: "99%"}}
+                                                     url={highlightedVenue.media.hero.sizes.tablet.url}/>
+                                        <h2 onClick={() => {nav(`/venue/${highlightedVenue.url}`)}}>{highlightedVenue.venueName}</h2>
+                                    </div>
+                                    <div>
 
+                                    </div>
+                                </section>
                             }
                         </div>
                     </div>
@@ -162,3 +169,4 @@ const Map = ({}) => {
     )
 }
 export default Map
+
