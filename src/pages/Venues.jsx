@@ -1,7 +1,7 @@
 import Header from "../elements/Header.jsx";
 import {useNavigate, useParams} from "react-router-dom";
 import AutoResizeText from "../elements/AutoResizeText.jsx";
-import {fetchAPI, shuffleArray} from "../utils/utils.jsx";
+import {fetchAPI, shuffleArray, venueStatus} from "../utils/utils.jsx";
 import {useEffect, useState} from "react";
 import {useQuery} from "@tanstack/react-query";
 import DitherImage from "../elements/DitherImage.jsx";
@@ -85,6 +85,11 @@ const Venues = () => {
                                                         <div className={"image__club-tag"}>{v.club}</div>
                                                         <DitherImage url={v.media.hero.sizes.tablet.url}
                                                                      link={`/venue/${v.url}`}/>
+                                                        {venueStatus(v) != null &&
+                                                            <div className={"venue-open"}>
+                                                                {venueStatus(v)}
+                                                            </div>
+                                                        }
                                                     </div>
                                                     <h2 style={{textAlign: "center"}}>{v.venueName}</h2>
                                                 </div>

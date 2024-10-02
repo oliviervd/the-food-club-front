@@ -46,6 +46,15 @@
         border: black 3px solid;
     }
 
+    .venue-open{
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        background-color: var(--color-main);
+        color: var(--color-secondary);
+        border: 2px var(--color-secondary) solid;
+    }
+
     h2 {
         color: var(--color-main);
         font-size: 2rem;
