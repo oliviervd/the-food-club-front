@@ -19,8 +19,8 @@ img {
 .image__club-tag {
     position: absolute;
     width: auto;
-    top: 20px;
-    left: 20px;
+    top: 10px;
+    left: 10px;
     padding: 0 10px;
     color: var(--color-main);
     background-color: var(--color-secondary);
