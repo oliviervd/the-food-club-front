@@ -13,6 +13,7 @@ import {useNavigate} from "react-router-dom";
 import LuckyButton from "../elements/luckyButton.jsx";
 
 import {useScrollPosition} from "../hooks/useScrollPosition.jsx";
+import Marquee from "react-fast-marquee";
 
 // todo : improve loading speed
 // todo: add locales
@@ -62,25 +63,36 @@ const Home = () => {
     return(
         <div>
             <Header selectedTab={"lists"} landing={true} interact={true} setLocation={setLocation} location={location} setTarget={setTarget} venue={false}></Header>
-            <section className={"home__container"}>
-                {isSmall && categoryList &&
-                    <div>
-                        <section style={{padding: "10px 0"}}>
-                            <h2 className={"subtitle"}> FOOD CLUB loves lists. That's why we created some specially for
-                                you.
-                                From healthy snacks to absurdly comforting food, the order is yours.</h2>
-                        </section>
-                        <CategoryList data={categoryList}/>
-                        <div className={`fixed-wrapper ${classNames}`}>
-                            <LuckyButton nav={nav}/>
-                        </div>
 
-                    </div>
-                }
-                {!isSmall && categoryList && categoryList.docs &&
-                    <DesktopHome categories={categoryList.docs[0].items}/>
-                }
-            </section>
+            {isSmall && categoryList &&
+                <div>
+                   {/* <Marquee className={"banner"} speed={30} pauseOnHover={false} gradient={false} autoFill={true}>
+                        <h3>#1 Don't talk about foodclub - but psssst…. please spread the word! — #2 The foodclub is
+                            a curated space focused on quality, featuring only restaurants we've personally visited.
+                            — #3 The foodclub is, and will always be, a positive space celebrating local culinary
+                            excellence. There is no place for negativity. —</h3>
+                    </Marquee>*/}
+                    <section className={"home__container"}>
+                        <div>
+                            <section style={{padding: "10px 0"}}>
+                                <h2 className={"subtitle"}> FOOD CLUB loves lists. That's why we created some specially
+                                    for
+                                    you.
+                                    From healthy snacks to absurdly comforting food, the order is yours.</h2>
+                            </section>
+                            <CategoryList data={categoryList}/>
+                            <div className={`fixed-wrapper ${classNames}`}>
+                                <LuckyButton nav={nav}/>
+                            </div>
+
+                        </div>
+                    </section>
+                </div>
+
+            }
+            {!isSmall && categoryList && categoryList.docs &&
+                <DesktopHome categories={categoryList.docs[0].items}/>
+            }
             <Footer position={isSmall}/>
         </div>
     )
