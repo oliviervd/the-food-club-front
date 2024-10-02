@@ -140,11 +140,12 @@ const Map = ({}) => {
                 <div className={"map--filter_container"} style={{backgroundColor: "Background"}}>
 
                 </div>
+                {/*
                 <div className={"map-tip__container"}>
                     <div className={"text-main"}>☞</div>
                     <p className={"text-main"}>click on one of the icons of the map or narrow down the selection using the filters to the right.</p>
                 </div>
-
+*/}
                     <div className={`map-venue-container ${classNames}`}>
                         <div onClick={() => {
                             setVisible(true)
