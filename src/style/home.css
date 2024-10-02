@@ -1,6 +1,5 @@
 .home__container {
     padding: 0 10px;
-
     .surprise{
         position: fixed;
         bottom: 10px;
@@ -39,7 +38,6 @@
         }
     }
 }
-
 
 .home-grid{
     margin: 40px auto auto;

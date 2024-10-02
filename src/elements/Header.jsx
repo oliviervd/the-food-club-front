@@ -4,7 +4,6 @@ import {useContext, useState} from "react";
 import {useMediaQuery} from "@uidotdev/usehooks";
 import {LocationColorContext, LocationColorProvider} from "../utils/LocationColorContext.jsx";
 import logo from "../assets/img/logo-blue.png"
-import venue from "../pages/Venue.jsx";
 
 const Header = ({ interact, landing, venueLocation, setTarget, greyOut=false, color, map , selectedTab, venue}) => {
 
@@ -47,9 +46,9 @@ const Header = ({ interact, landing, venueLocation, setTarget, greyOut=false, co
                                     <svg width="31" height="100%" viewBox="0 0 31 26" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
                                         <circle cx="10.8333" cy="10.8333" r="9.83333" stroke="black"
-                                                stroke-width="2"></circle>
+                                                strokeWidth="2"></circle>
                                         <line x1="19.3504" y1="17.1214" x2="29.5022" y2="24.6017" stroke="black"
-                                              stroke-width="2" stroke-linecap="round"></line>
+                                              strokeWidth="2" strokeLinecap="round"></line>
                                     </svg>
                                 </div>
                             </div>
