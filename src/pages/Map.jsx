@@ -169,7 +169,7 @@ const Map = ({}) => {
                                         {highlightedVenue.cuisineUsed.map((c)=>{
                                             console.log(c)
                                                return(
-                                                   <h2>{c.name}</h2>
+                                                   <h2 onClick={()=>{nav(`/venues/?cuisine=${c.name}`)}}>{c.name}</h2>
                                                )})
                                         }
                                     </div>

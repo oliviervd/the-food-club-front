@@ -12,7 +12,14 @@
         border: 2px black solid;
         padding: 0px 5px;
     }
+
+    h2:hover {
+        background-color: var(--color-secondary);
+        color: var(--color-main);
+    }
 }
+
+
 
 .venue-tip__container{
     display: grid;
