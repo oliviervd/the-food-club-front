@@ -151,31 +151,34 @@ const Map = ({}) => {
                             setVisible(true)
                         }}>
                             <Banner small={true} content={"↧ close ↧"}/>
-                            {highlightedVenue && highlightedVenue.media &&
-                                <section>
-                                    <div className={"map-venue-image"} onClick={() => {
-                                        nav(`/venue/${highlightedVenue.url}`)
-                                    }}>
-                                        <DitherImage style={{justifyContent: "center", maxWidth: "99%"}}
-                                                     url={highlightedVenue.media.hero.sizes.tablet.url}/>
-                                        <h2 onClick={() => {
+                            <section style={{overflowY:"scroll"}}>
+                                {highlightedVenue && highlightedVenue.media &&
+                                    <section>
+                                        <div className={"map-venue-image"} onClick={() => {
                                             nav(`/venue/${highlightedVenue.url}`)
-                                        }}>{highlightedVenue.venueName}</h2>
-                                        <div className={"venue-open"}>
-                                            {venueStatus(highlightedVenue)}
+                                        }}>
+                                            <DitherImage style={{justifyContent: "center", maxWidth: "99%"}}
+                                                         url={highlightedVenue.media.hero.sizes.tablet.url}/>
+                                            <h2 onClick={() => {
+                                                nav(`/venue/${highlightedVenue.url}`)
+                                            }}>{highlightedVenue.venueName}</h2>
+                                            <div className={"venue-open"}>
+                                                {venueStatus(highlightedVenue)}
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div className={"cuisines"} style={{padding: "0 15px"}}>
-                                        {highlightedVenue.cuisineUsed.map((c)=>{
-                                            console.log(c)
-                                               return(
-                                                   <h2 onClick={()=>{nav(`/venues/?cuisine=${c.name}`)}}>{c.name}</h2>
-                                               )})
-                                        }
-                                    </div>
+                                        <div className={"cuisines"} style={{padding: "0 15px"}}>
+                                            {highlightedVenue.cuisineUsed.map((c)=>{
+                                                console.log(c)
+                                                return(
+                                                    <h2 onClick={()=>{nav(`/venues/?cuisine=${c.name}`)}}>{c.name}</h2>
+                                                )})
+                                            }
+                                        </div>
 
-                                </section>
-                            }
+                                    </section>
+                                }
+                            </section>
+
                         </div>
                     </div>
 
