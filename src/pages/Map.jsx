@@ -3,7 +3,7 @@ import {MapContainer, TileLayer, useMap, Marker, Popup} from "react-leaflet";
 import {divIcon, Icon} from "leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import {useContext, useState, useEffect} from "react";
-import {fetchAPI, getCSSVariableValue} from "../utils/utils.jsx";
+import {venueStatus, fetchAPI, getCSSVariableValue} from "../utils/utils.jsx";
 import {LocationColorContext} from "../utils/LocationColorContext.jsx";
 import Banner from "../elements/Banner.jsx";
 import DitherImage from "../elements/DitherImage.jsx";
@@ -30,6 +30,8 @@ const Map = ({}) => {
     const [visible, setVisible] = useState(true);
     const [highlightedVenue, setHighlightedVenue] = useState(null);
     const { locationColor} = useContext(LocationColorContext);
+
+    console.log(highlightedVenue)
 
     let [zoom, setZoom] = useState(12.5) // set zoom of map
     const [mapCenter, setMapCenter] = useState([51.0544, 3.7256]); // Initial coordinates
@@ -96,7 +98,6 @@ const Map = ({}) => {
         setHighlightedVenue(venue)
     }
 
-    console.log(highlightedVenue)
     return(
         <div className={"map--ui_container"}
              style={{ overflow: "hidden", maxWidth: "100vw", maxHeight: "100vh", position: "relative" }}>
@@ -151,14 +152,27 @@ const Map = ({}) => {
                             <Banner small={true} content={"↧ close ↧"}/>
                             {highlightedVenue && highlightedVenue.media &&
                                 <section>
-                                    <div className={"map-venue-image"} onClick={() => {nav(`/venue/${highlightedVenue.url}`)}}>
+                                    <div className={"map-venue-image"} onClick={() => {
+                                        nav(`/venue/${highlightedVenue.url}`)
+                                    }}>
                                         <DitherImage style={{justifyContent: "center", maxWidth: "99%"}}
                                                      url={highlightedVenue.media.hero.sizes.tablet.url}/>
-                                        <h2 onClick={() => {nav(`/venue/${highlightedVenue.url}`)}}>{highlightedVenue.venueName}</h2>
+                                        <h2 onClick={() => {
+                                            nav(`/venue/${highlightedVenue.url}`)
+                                        }}>{highlightedVenue.venueName}</h2>
+                                        <div className={"venue-open"}>
+                                            {venueStatus(highlightedVenue)}
+                                        </div>
                                     </div>
-                                    <div>
+                                    <div className={"cuisines"} style={{padding: "0 15px"}}>
+                                        {highlightedVenue.cuisineUsed.map((c)=>{
+                                            console.log(c)
+                                               return(
+                                                   <h2>{c.name}</h2>
+                                               )})
+                                        }
+                                    </div>
 
-                                    </div>
                                 </section>
                             }
                         </div>

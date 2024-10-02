@@ -1,6 +1,43 @@
-// handle location changes
-import venues from "../pages/Venues.jsx";
+import { DateTime } from 'luxon';
 
+export function venueStatus(venue) {
+    let status = null
+    let days = {
+        "Mo": 1,
+        "Tu": 2,
+        "Wed": 3,
+        "Thu": 4,
+        "Fr": 5,
+        "Sat": 6,
+        "Sun": 7
+    }
+
+    // fetch what time it is now.
+    const now = new Date(); // number
+    //console.log(now.getDay())
+
+    // read opening hours of venue
+    let venueHours = venue.hours
+
+    for (let i = 0; i < venueHours.length; i++) {
+        //console.log(venueHours[i].openDay)
+        if (venueHours[i].openDay = now.getDay()) {
+            //console.log("match")
+            status = "open today"
+        }
+    }
+
+    // compare
+
+    // if in range (is open)
+
+    // if open today, but not now (opens soon)
+
+    // if open tomorrow (opens tomorrow)
+    return status
+}
+
+// handle location changes
 export function handleLocationChange(newLocation, setLocation, setBgColor) {
     const clubColors = {
         // list with club locations and matching colors.
