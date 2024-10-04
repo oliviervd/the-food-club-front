@@ -17,40 +17,40 @@ const Search = () => {
     const [searchParams, setSearchParams] = useSearchParams()
     const [search, setSearch] = useState("");
     const [matches, setMatches] = useState([]);
-    const [cuisine, setCuisine] = useState()
+    const [cuisine, setCuisine] = useState(null);
+    const [location, setLocation] = useState(null);
+
     const nav = useNavigate();
     const isSmall = useMediaQuery("(max-width: 600px)");
-    const isBig = useMediaQuery("(min-width: 1400px)");
 
-    const {data: venues, isLoading, error} =    useQuery(["venues"], ()=> fetchAPI('venue', 'en'));
-    const {data: cuisines} = useQuery(["cuisines"], ()=>fetchAPI("cuisine", "en"))
-
-    const [location, setLocation] = useState(null);
-    const [prompt, setPrompt] = useState("");
+    const {data: venuesData, isLoading: venuesLoading, error:venuesError} =    useQuery(["venues"], ()=> fetchAPI('venue', 'en'));
+    const {data: cuisinesData, isLoading: cuisinesLoading, error:cuisinesError} = useQuery(["cuisines"], ()=>fetchAPI("cuisine", "en"))
 
     // fetch all venues
 
     useEffect(() => {
-        const getVenues = async () => {
-            const venues = await fetchAPI("venue", "en");
-            const cuisines = await fetchAPI("cuisine", "en");
+        if (venuesData && venuesData.docs && cuisinesData && cuisinesData.docs) {
             const searchCuisine = searchParams.get("cuisine");
-            const searchLocation = location
-            const matchedVenues = venues.docs.filter(venue =>
-                venue.cuisineUsed.some(cuisine => cuisine.name === searchCuisine) &&
-                (!searchLocation || venue.club === searchLocation)
+            const matchedVenues = venuesData.docs.filter(venue =>
+                venue.cuisineUsed && venue.cuisineUsed.some(cuisine => cuisine.name === searchCuisine) &&
+                (!location || venue.club === location)
             );
-            const matchedCuisine = cuisines.docs.filter(cuisine => cuisine.name === searchCuisine);
-            setCuisine(matchedCuisine)
-            setMatches(matchedVenues);
-        }
-        getVenues();
-        setSearch(searchParams.get("cuisine"))
-    }, [searchParams, location]);
+            const matchedCuisine = cuisinesData.docs.filter(cuisine => cuisine.name === searchCuisine);
 
-    useEffect(()=>{
-        setPrompt(generatePrompt(location))
-    },[location])
+            setCuisine(matchedCuisine[0]);
+            setMatches(matchedVenues);
+            setSearch(searchCuisine);
+        }
+    }, [searchParams, location, venuesData, cuisinesData]);
+
+    if (venuesLoading || cuisinesLoading) {
+        return <p>Loading...</p>;
+    }
+
+    if (venuesError || cuisinesError) {
+        return <p>Error loading data</p>;
+    }
+
 
     //navigate to selected venue
     function navigateTo(route) {
@@ -74,16 +74,20 @@ const Search = () => {
                 </div>
                 <section class={"home__container"}>
                     <section style={{position: "relative"}}>
-                        {isSmall &&
+                        {isSmall && matches &&
                             matches.map((match, index) => {
-                                return (
-                                    <div key={index} className={"category-list__box"} onClick={() => {
-                                        navigateTo(match.url)
-                                    }}>
-                                        <DitherImage url={match.media.hero.sizes.tablet.url}/>
-                                        <h2 style={{textAlign: "center"}}>{match.venueName}</h2>
-                                    </div>
-                                )
+                                try {
+                                    return (
+                                        <div key={index} className={"category-list__box"} onClick={() => {
+                                            navigateTo(match.url)
+                                        }}>
+                                            <DitherImage url={match.media.hero.sizes.tablet.url}/>
+                                            <h2 style={{textAlign: "center"}}>{match.venueName}</h2>
+                                        </div>
+                                    )
+                                } catch(e) {
+
+                                }
 
                             })
                         }
@@ -95,13 +99,13 @@ const Search = () => {
                                                      link={`/venue/${match.url}`}/>
                                         <div>
                                             <div style={{width: "90%"}}>
-                                                <AutoResizeText text={match.venueName} padding={"0px 0px 20px 0px"}
+                                                <AutoResizeText text={match && match.venueName} padding={"0px 0px 20px 0px"}
                                                                 onClick={() => {
                                                                     navigateTo(match.url)
                                                                 }}/>
                                             </div>
                                             <div className={"cuisines"}>
-                                                {match.cuisineUsed.map((cuisine) => {
+                                                {match && match.cuisineUsed.map((cuisine) => {
                                                     return (
                                                         <a style={{color: "black", textDecoration: "none"}}><h2
                                                             className={"link"}
@@ -123,6 +127,7 @@ const Search = () => {
                             {cuisine[0].description &&
                                 <p className={"text-main"} style={{fontSize: "var(--font-m)", paddingLeft: "20px"}}>
                                     {serialize(cuisine[0].description)}
+
                                 </p>
                             }
 
