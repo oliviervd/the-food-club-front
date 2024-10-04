@@ -119,20 +119,26 @@ const Map = ({}) => {
                     >
                         {/* plot markers*/}
                         {venues && venues.map((venue) => {
-                            const color = getColorForClub(venue.club);
-                            if (venue.club) {
-                                return (
-                                    <Marker
-                                        position={[venue.address.longitude, venue.address.latitude]}
-                                        icon={createCustomIcon(color)}
-                                        eventHandlers={{
-                                            click: () => {
-                                                highlightVenue(venue);
-                                            },
-                                        }}
-                                    />
+                            try {
+                                const color = getColorForClub(venue.club);
+                                if (venue.club && venue.address.longitude && venue.address.latitude) {
+                                    return (
+                                        <Marker
+                                            position={[venue.address.longitude, venue.address.latitude]}
+                                            icon={createCustomIcon(color)}
+                                            eventHandlers={{
+                                                click: () => {
+                                                    highlightVenue(venue);
+                                                },
+                                            }}
+                                        />
 
-                                )
+                                    )
+                                }
+
+                            } catch (e) {
+                                // because they f****ed it up.
+                                console.log("MOTHERFUCKERS.")
                             }
                         })}
                     </MarkerClusterGroup>
