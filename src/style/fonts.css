@@ -105,6 +105,7 @@ ul {
 .banner {
     background-color: var(--color-secondary);
     margin: 0 0;
+    margin-bottom: 10px;
     padding: 0 20px;
     overflow: hidden; /* Ensures that Marquee content doesn't overflow */
     display: inline-block;
@@ -117,6 +118,30 @@ ul {
     h3 {
         margin: 0;
         font-size: 2.5rem;
+        color: var(--color-main);
+    }
+}
+
+.pill-banner {
+    margin: 0 0;
+    padding: 0 20px;
+    overflow: hidden; /* Ensures that Marquee content doesn't overflow */
+    display: inline-block;
+
+    h3 {
+        font-size: var(--font-m);
+        font-weight: 300;
+        font-family: DM-sans;
+        background-color: var(--color-main);
+        color: var(--color-secondary);
+        border: 2px solid var(--color-main);
+        margin: 5px 10px;
+        padding: 0 10px ;
+        text-transform: lowercase;
+    }
+
+    h3:hover {
+        background-color: var(--color-secondary);
         color: var(--color-main);
     }
 }

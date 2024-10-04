@@ -69,9 +69,11 @@ const Header = ({ interact, landing, venueLocation, setTarget, greyOut=false, co
                                     <h2 className={"link"} onClick={()=>{handleLocationChange("gent")}}>@GENT</h2>
                                     <h2 className={"link"} onClick={()=>{handleLocationChange("brussels")}}>@BRUSSELS</h2>
                                     <h2 className={"link"} onClick={()=>{handleLocationChange("antwerp")}}>@ANTWERP</h2>
-                                 {/*   <h2 className={"link"}>NL</h2>
+                                    {/*
+                                    <h2 className={"link"}>NL</h2>
                                     <h2 className={"link"}>FR</h2>
-                                    <h2 className={"link selected"}>EN</h2>*/}
+                                    <h2 className={"link selected"}>EN</h2>
+                                    */}
                                 </nav>
                             </div>
                         </div>
