@@ -132,10 +132,8 @@ const Map = ({}) => {
                                                 },
                                             }}
                                         />
-
                                     )
                                 }
-
                             } catch (e) {
                                 // because they f****ed it up.
                                 console.log("MOTHERFUCKERS.")

@@ -91,12 +91,14 @@ const Search = () => {
 
                             })
                         }
-                        {!isSmall &&
+                        {!isSmall && matches &&
                             matches.map((match, index) => {
                                 return (
                                     <div className={"venue-list__container"}>
-                                        <DitherImage url={match.media.hero.sizes.tablet.url}
-                                                     link={`/venue/${match.url}`}/>
+                                        {match && match.club && match.media.hero.sizes &&
+                                            <DitherImage url={match.media.hero.sizes.tablet.url}
+                                                         link={`/venue/${match.url}`}/>
+                                        }
                                         <div>
                                             <div style={{width: "90%"}}>
                                                 <AutoResizeText text={match && match.venueName} padding={"0px 0px 20px 0px"}
@@ -122,17 +124,6 @@ const Search = () => {
                         }
 
                     </section>
-                    {!isSmall &&
-                        <section>
-                            {cuisine[0].description &&
-                                <p className={"text-main"} style={{fontSize: "var(--font-m)", paddingLeft: "20px"}}>
-                                    {serialize(cuisine[0].description)}
-
-                                </p>
-                            }
-
-                        </section>
-                    }
                 </section>
 
             </>

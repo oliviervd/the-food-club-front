@@ -2,10 +2,13 @@ import DitherImage from "../../elements/DitherImage.jsx";
 import Marquee from "react-fast-marquee";
 import {fetchAPI} from "../../utils/utils.jsx";
 import {useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 const DesktopHome = ({categories}) => {
 
     const [cuisines, setCuisines] = useState([]);
+
+    const nav = useNavigate()
 
     useEffect(() => {
         const getCuisines = async() => {
@@ -23,17 +26,21 @@ const DesktopHome = ({categories}) => {
 
             <Marquee className={"pill-banner"} direction={"right"}>
                 {cuisines && cuisines.map((cuisine, index)=>{
-                    return(
-                        <h3>{cuisine.name}</h3>
-                    )
+                    if (cuisine.active) {
+                        return(
+                            <h3 onClick={() => nav(`/venues/?cuisine=${cuisine.name}`)}>{cuisine.name}</h3>
+                        )
+                    }
                 })}
             </Marquee>
 
             <Marquee className={"pill-banner"} direction={"left"}>
                 {cuisines && cuisines.map((cuisine, index)=>{
-                    return(
-                        <h3>{cuisine.name}</h3>
-                    )
+                    if (cuisine.active) {
+                        return(
+                            <h3 onClick={() => nav(`/venues/?cuisine=${cuisine.name}`)}>{cuisine.name}</h3>
+                        )
+                    }
                 })}
             </Marquee>
 
