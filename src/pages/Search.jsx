@@ -44,7 +44,14 @@ const Search = () => {
     }, [searchParams, location, venuesData, cuisinesData]);
 
     if (venuesLoading || cuisinesLoading) {
-        return <p>Loading...</p>;
+        return (
+            <div>
+                <Header landing={true} location={location} setLocation={setLocation} interact={true}/>
+                <div>
+                    <Banner content={search}/>
+                </div>
+            </div>
+        );
     }
 
     if (venuesError || cuisinesError) {
