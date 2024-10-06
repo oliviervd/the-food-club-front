@@ -8,6 +8,7 @@ import {LocationColorContext} from "../utils/LocationColorContext.jsx";
 import Banner from "../elements/Banner.jsx";
 import DitherImage from "../elements/DitherImage.jsx";
 import {useNavigate} from "react-router-dom";
+import serialize from "../utils/serialize.jsx";
 
 // todo add container that shows preview of the selected item
 // todo add icons to zoom in / zoom out / show my location.
@@ -178,7 +179,6 @@ const Map = ({}) => {
                                                 )})
                                             }
                                         </div>
-
                                     </section>
                                 }
                             </section>
