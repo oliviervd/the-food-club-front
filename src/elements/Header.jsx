@@ -107,18 +107,6 @@ const Header = ({ interact, landing, venueLocation, setTarget, greyOut=false, co
                             <h2 className={`link ${selectedTab === "map" ? "selected" : "none"}`} style={{borderTop: "none"}} onClick={() => nav("/map/")}>map</h2>
 
                         </nav>
-                        {/*{location && !map &&
-                            <>
-                                <nav className={"flex-buttons"}>
-                                    <h2 className={`link`} onClick={() => {
-                                        surprise(location, nav);
-                                    }} style={{borderTop:"none"}}>SUPRISE ME!</h2>
-                                    <h2 className={`link greyed-out`} onClick={() => {
-                                    }} style={{borderTop:"none"}}>WHAT'S OPEN?</h2>
-                                </nav>
-                            </>
-
-                        }*/}
                     </div>
                 }
 
