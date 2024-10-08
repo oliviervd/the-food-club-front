@@ -9,6 +9,9 @@ const DesktopHome = ({categories}) => {
     const [cuisines, setCuisines] = useState([]);
 
     const nav = useNavigate()
+    function navigateTo(route){
+        nav(`/categories/${route}`)
+    }
 
     useEffect(() => {
         const getCuisines = async() => {

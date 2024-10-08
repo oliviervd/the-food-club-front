@@ -9,6 +9,7 @@ import Banner from "../elements/Banner.jsx";
 import DitherImage from "../elements/DitherImage.jsx";
 import {useNavigate} from "react-router-dom";
 import serialize from "../utils/serialize.jsx";
+import {useMediaQuery} from "@uidotdev/usehooks";
 
 // todo add container that shows preview of the selected item
 // todo add icons to zoom in / zoom out / show my location.
@@ -31,6 +32,8 @@ const Map = ({}) => {
     const [visible, setVisible] = useState(true);
     const [highlightedVenue, setHighlightedVenue] = useState(null);
     const { locationColor} = useContext(LocationColorContext);
+    const isSmall = useMediaQuery("(max-width: 600px)");
+
 
     console.log(highlightedVenue)
 
@@ -142,21 +145,42 @@ const Map = ({}) => {
                         })}
                     </MarkerClusterGroup>
                 </MapContainer>
-                <div className={"map--filter_container"} style={{backgroundColor: "Background"}}>
+                <div className={"map--filter_container"}>
 
                 </div>
-                {/*
-                <div className={"map-tip__container"}>
-                    <div className={"text-main"}>☞</div>
-                    <p className={"text-main"}>click on one of the icons of the map or narrow down the selection using the filters to the right.</p>
-                </div>
-*/}
+                {!visible && highlightedVenue && highlightedVenue.media && !isSmall &&
+                    <div className={"map--venue_container_desktop"}>
+                        <div className={"close"} onClick={() => setVisible(true)}>CLOSE</div>
+                        <div className={"map--venue_image"} onClick={() => {
+                            nav(`/venue/${highlightedVenue.url}`)
+                        }}>
+                            <DitherImage style={{justifyContent: "center", maxWidth: "99%"}}
+                                         url={highlightedVenue.media.hero.sizes.tablet.url}/>
+                            <h2 onClick={() => {
+                                nav(`/venue/${highlightedVenue.url}`)
+                            }}>{highlightedVenue.venueName}</h2>
+
+                        </div>
+                        <div className={"cuisines"} style={{padding: "0 15px"}}>
+                            {highlightedVenue.cuisineUsed.map((c) => {
+                                console.log(c)
+                                return (
+                                    <h2 onClick={() => {
+                                        nav(`/venues/?cuisine=${c.name}`)
+                                    }}>{c.name}</h2>
+                                )
+                            })
+                            }
+                        </div>
+                    </div>
+                }
+                {isSmall &&
                     <div className={`map-venue-container ${classNames}`}>
                         <div onClick={() => {
                             setVisible(true)
                         }}>
                             <Banner small={true} content={"↧ close ↧"}/>
-                            <section style={{overflowY:"scroll"}}>
+                            <section style={{overflowY: "scroll"}}>
                                 {highlightedVenue && highlightedVenue.media &&
                                     <section>
                                         <div className={"map-venue-image"} onClick={() => {
@@ -172,20 +196,22 @@ const Map = ({}) => {
                                             </div>
                                         </div>
                                         <div className={"cuisines"} style={{padding: "0 15px"}}>
-                                            {highlightedVenue.cuisineUsed.map((c)=>{
+                                            {highlightedVenue.cuisineUsed.map((c) => {
                                                 console.log(c)
-                                                return(
-                                                    <h2 onClick={()=>{nav(`/venues/?cuisine=${c.name}`)}}>{c.name}</h2>
-                                                )})
+                                                return (
+                                                    <h2 onClick={() => {
+                                                        nav(`/venues/?cuisine=${c.name}`)
+                                                    }}>{c.name}</h2>
+                                                )
+                                            })
                                             }
                                         </div>
                                     </section>
                                 }
                             </section>
-
                         </div>
                     </div>
-
+                }
             </div>
         </div>
     )
