@@ -1,24 +1,25 @@
 import Header from "../elements/Header.jsx";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {useNavigate, useSearchParams} from "react-router-dom";
 import AutoResizeText from "../elements/AutoResizeText.jsx";
 import {useQuery} from "@tanstack/react-query";
 import {fetchAPI} from "../utils/utils.jsx";
 import DitherImage from "../elements/DitherImage.jsx";
 import {useMediaQuery} from "@uidotdev/usehooks";
-import serialize from "../utils/serialize.jsx";
 import Banner from "../elements/Banner.jsx";
+import {LocationColorContext} from "../utils/LocationColorContext.jsx";
 
 const Search = () => {
 
-    // todo: update search to be cleaner for larger screens
-    // todo: update sentence, when there is no location set.
+    const { locationColor, handleLocationChange } = useContext(LocationColorContext);
+    let { location } = locationColor
+
 
     const [searchParams, setSearchParams] = useSearchParams()
     const [search, setSearch] = useState("");
     const [matches, setMatches] = useState([]);
     const [cuisine, setCuisine] = useState(null);
-    const [location, setLocation] = useState(null);
+    const [club, setClub] = useState(null);
 
     const nav = useNavigate();
     const isSmall = useMediaQuery("(max-width: 600px)");
@@ -27,7 +28,6 @@ const Search = () => {
     const {data: cuisinesData, isLoading: cuisinesLoading, error:cuisinesError} = useQuery(["cuisines"], ()=>fetchAPI("cuisine", "en"))
 
     // fetch all venues
-
     useEffect(() => {
         if (venuesData && venuesData.docs && cuisinesData && cuisinesData.docs) {
             const searchCuisine = searchParams.get("cuisine");
@@ -46,7 +46,7 @@ const Search = () => {
     if (venuesLoading || cuisinesLoading) {
         return (
             <div>
-                <Header landing={true} location={location} setLocation={setLocation} interact={true}/>
+                <Header landing={true} location={club} setLocation={setClub} interact={true}/>
                 <div>
                     <Banner content={search}/>
                 </div>
@@ -58,33 +58,25 @@ const Search = () => {
         return <p>Error loading data</p>;
     }
 
-
     //navigate to selected venue
     function navigateTo(route) {
         nav(`/venue/${route}`)
     }
 
-    function generatePrompt(location) {
-        if (!location) {
-            return ""
-        } else {
-            return `in ${location} and`
-        }
-    }
 
-    if (matches[0]) {
-        return (
-            <>
-                <Header landing={true} location={location} setLocation={setLocation} interact={true}/>
-                <div>
-                    <Banner content={search}/>
-                </div>
-                <section class={"home__container"}>
+    return (
+        <>
+            <Header landing={true} location={club} setLocation={setClub} interact={true}/>
+            <div>
+                <Banner content={search}/>
+            </div>
+            {matches[0] &&
+                <section className={"home__container"}>
                     <section style={{position: "relative"}}>
                         {isSmall && matches &&
                             matches.map((match, index) => {
                                 console.log(match)
-                                if (match._status == "published"){
+                                if (match._status == "published") {
                                     try {
                                         return (
                                             <div key={index} className={"category-list__box"} onClick={() => {
@@ -94,7 +86,7 @@ const Search = () => {
                                                 <h2 style={{textAlign: "center"}}>{match.venueName}</h2>
                                             </div>
                                         )
-                                    } catch(e) {
+                                    } catch (e) {
 
                                     }
                                 }
@@ -103,7 +95,7 @@ const Search = () => {
                         }
                         {!isSmall && matches &&
                             matches.map((match, index) => {
-                                if (match._status == "published"){
+                                if (match._status == "published") {
                                     return (
                                         <div className={"venue-list__container"}>
                                             {match && match.club && match.media.hero.sizes &&
@@ -112,7 +104,8 @@ const Search = () => {
                                             }
                                             <div>
                                                 <div style={{width: "90%"}}>
-                                                    <AutoResizeText text={match && match.venueName} padding={"0px 0px 20px 0px"}
+                                                    <AutoResizeText text={match && match.venueName}
+                                                                    padding={"0px 0px 20px 0px"}
                                                                     onClick={() => {
                                                                         navigateTo(match.url)
                                                                     }}/>
@@ -135,10 +128,9 @@ const Search = () => {
                         }
                     </section>
                 </section>
-
-            </>
-        )
-    }
+            }
+        </>
+    )
 }
 
 export default Search;
