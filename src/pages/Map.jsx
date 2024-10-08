@@ -154,14 +154,14 @@ const Map = ({}) => {
                         <div className={"map--venue_image"} onClick={() => {
                             nav(`/venue/${highlightedVenue.url}`)
                         }}>
-                            <DitherImage style={{justifyContent: "center", maxWidth: "99%"}}
+                            <DitherImage style={{justifyContent: "center"}}
                                          url={highlightedVenue.media.hero.sizes.tablet.url}/>
                             <h2 onClick={() => {
                                 nav(`/venue/${highlightedVenue.url}`)
                             }}>{highlightedVenue.venueName}</h2>
 
                         </div>
-                        <div className={"cuisines"} style={{padding: "0 15px"}}>
+                        <div className={"cuisines"} style={{padding: "0 10px"}}>
                             {highlightedVenue.cuisineUsed.map((c) => {
                                 console.log(c)
                                 return (

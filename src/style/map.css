@@ -42,12 +42,19 @@
         z-index: 10000000;
         padding: 5px;
         font-family: DM-sans;
+        font-weight: 500;
         color: var(--color-main);
     }
 
     .map--venue_image {
-        padding: 10px;
+        padding: 10px 10px 5px 10px;
         position: relative;
+
+        img {
+            max-width: 98%;
+            padding: 0;
+            margin: 0;
+        }
 
         h2{
             color: var(--color-main);
