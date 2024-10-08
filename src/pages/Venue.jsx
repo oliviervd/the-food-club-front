@@ -1,7 +1,6 @@
 import Header from "../elements/Header.jsx";
-import Footer from "../elements/Footer.jsx";
-import {useNavigate, useParams, useSearchParams} from "react-router-dom";
-import {useContext, useEffect, useState} from "react";
+import {useNavigate, useParams} from "react-router-dom";
+import {useEffect, useState} from "react";
 import {fetchAPI, convertHour} from "../utils/utils.jsx";
 import {useQuery} from "@tanstack/react-query";
 import AutoResizeText from "../elements/AutoResizeText.jsx";
@@ -12,8 +11,7 @@ import {useMediaQuery} from "@uidotdev/usehooks";
 const Venue = () => {
 
     const {venue: venueParam} = useParams();
-    const [searchParams, setSearchParams]= useSearchParams()
-    const {data: venues, isLoading, error} =    useQuery(["venues"], ()=> fetchAPI('venue', 'en'));
+    const {data: venues} =    useQuery(["venues"], ()=> fetchAPI('venue', 'en'));
     const [venue, setVenue] = useState(null);
     const nav = useNavigate()
     const isDesktop = useMediaQuery("(min-width: 1200px)");
@@ -57,7 +55,6 @@ const Venue = () => {
                                 <div style={{width: "100%", height: 'auto', position: "relative"}}>
                                     <AutoResizeText text={venue.venueName} padding={"10px 0 10px 0"}/>
                                 </div>
-
                             }
                             <div>
                                 {venue.address &&
@@ -143,6 +140,7 @@ const Venue = () => {
                             {venue.hours.length > 1 &&
                                 <section className={"venue-open"}>
                                     {venue.hours.map((day) => {
+                                        console.log(venue.hours)
                                         return(
                                             <div>
                                                 <p className={"day"}>{day.openDay}</p>
