@@ -130,7 +130,7 @@ const Venues = () => {
                                 </section>
                                 <section className={"venue-list__container-others"}>
                                     <h2 className={"header"}>other clubs</h2>
-                                    <section>
+                                    <section className={"venues-container"}>
                                         {shuffledVenues &&
                                             shuffledVenues.map((venue, index) => {
                                                 let v = venue.venue
