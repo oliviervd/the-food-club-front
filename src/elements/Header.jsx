@@ -1,16 +1,11 @@
 import AutoResizeText from "./AutoResizeText.jsx";
 import {useNavigate} from "react-router-dom";
-import {useContext, useState} from "react";
+import {useContext} from "react";
 import {useMediaQuery} from "@uidotdev/usehooks";
-import {LocationColorContext, LocationColorProvider} from "../utils/LocationColorContext.jsx";
+import {LocationColorContext} from "../utils/LocationColorContext.jsx";
 import logo from "../assets/img/logo-blue.png"
 
 const Header = ({ interact, landing, venueLocation, setTarget, greyOut=false, color, map , selectedTab, venue}) => {
-
-    // todo: add languages
-    // todo: add map button
-    // todo: make header logo "FOOD CLUB" (fold) when scrolling down
-    // todo: add animation when links are interacted with.
 
     // get context value
     const { locationColor, handleLocationChange } = useContext(LocationColorContext);
@@ -63,7 +58,7 @@ const Header = ({ interact, landing, venueLocation, setTarget, greyOut=false, co
                                     width: "100%",
                                     gap: "0px"
                                 }}>
-                                    <h2 className={"link"} onClick={() => nav("/categories/")}>CATEGORIES</h2>
+                                    <h2 className={"link"} onClick={() => nav("/")}>CATEGORIES</h2>
                                     <h2 className={"link"} onClick={() => nav("/map/")}>MAP</h2>
                                     <h2 className={"link"} onClick={() => nav("/about/")}>ABOUT</h2>
                                     <h2 className={"link"} onClick={()=>{handleLocationChange("gent")}}>@GENT</h2>
