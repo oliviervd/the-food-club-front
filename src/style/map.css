@@ -22,6 +22,25 @@
     border: 2px var(--color-secondary) solid;
     background-color: var(--color-main);
 
+    .tags {
+        display: flex;
+        flex-flow: row;
+        gap: 5px;
+        flex-wrap: wrap;
+        justify-content: center;
+        h2 {
+            border: 2px black solid;
+            padding: 0px 5px;
+            font-size: var(--font-s);
+        }
+
+        h2:hover {
+            background-color: var(--color-secondary);
+            color: var(--color-main);
+        }
+    }
+
+
 }
 
 .map--venue_container_desktop {

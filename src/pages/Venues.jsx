@@ -72,11 +72,6 @@ const Venues = () => {
                                     <h2 className={""}>{_category.categoryTitle}</h2>
                                 </div>
                             }
-                            {_category.categoryDescription &&
-                                <div style={{width: '100%', height: 'auto', marginBlock: "20px", marginTop: "0px"}}>
-                                    <p className={"subtitle"}>{serialize(_category.categoryDescription)}</p>
-                                </div>
-                            }
                         </section>
                         {isSmall &&
                             <section>
@@ -110,10 +105,59 @@ const Venues = () => {
                                 }
                             </section>
                         }
+                        {!isSmall &&
+                            <section className={"desktop"}>
+                                <section className={"venue-list__container-main"}>
+                                    <h2 className={"header"}>{location}</h2>
+                                    <section>
+                                        {shuffledVenues &&
+                                            shuffledVenues.map((venue, index) => {
+                                                let v = venue.venue
+                                                console.log(v)
+                                                if (v.club === location)
+                                                    return(
+                                                        <div className={"venue"}>
+                                                            <div className={"venue__image"}>
+                                                                <DitherImage url={v.media.hero.sizes.tablet.url}
+                                                                             link={`/venue/${v.url}`}/>
+                                                                <h2>{v.venueName}</h2>
+                                                            </div>
+                                                        </div>
+                                                    )
+                                            })
+                                        }
+                                    </section>
+                                </section>
+                                <section className={"venue-list__container-others"}>
+                                    <h2 className={"header"}>other clubs</h2>
+                                    <section>
+                                        {shuffledVenues &&
+                                            shuffledVenues.map((venue, index) => {
+                                                let v = venue.venue
+                                                console.log(v)
+                                                if (v.club !== location)
+                                                    return (
+                                                        <div className={"venue"}>
+                                                            <div className={"venue__image"}>
+                                                                <DitherImage url={v.media.hero.sizes.tablet.url}
+                                                                             link={`/venue/${v.url}`}/>
+                                                                <h2>{v.venueName}</h2>
+                                                                <div className={"image__club-tag"}>{v.club}</div>
+
+                                                            </div>
+                                                        </div>
+                                                    )
+                                            })
+                                        }
+                                    </section>
+                                </section>
+
+                            </section>
+                        }
                     </div>
                 }
-                </section>
-            </>
+            </section>
+        </>
     )
 }
 export default Venues;

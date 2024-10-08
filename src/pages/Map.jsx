@@ -146,7 +146,21 @@ const Map = ({}) => {
                     </MarkerClusterGroup>
                 </MapContainer>
                 <div className={"map--filter_container"}>
-
+                    <div className={"tags"} style={{padding: "10px 10px"}}>
+                        <h2>open now</h2>
+                        <h2>monday</h2>
+                        <h2>tuesday</h2>
+                        <h2>wednesday</h2>
+                        <h2>thursday</h2>
+                        <h2>friday</h2>
+                        <h2>saturday</h2>
+                        <h2>sunday</h2>
+                        <h2>closed</h2>
+                    </div>
+                    <div className={"tags"} style={{padding: "10px 10px"}}>
+                        <h2>reservations possible</h2>
+                        <h2>without reservations</h2>
+                    </div>
                 </div>
                 {!visible && highlightedVenue && highlightedVenue.media && !isSmall &&
                     <div className={"map--venue_container_desktop"}>

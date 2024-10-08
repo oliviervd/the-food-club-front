@@ -175,44 +175,102 @@
     }
 }
 
+.desktop {
+    width: 100%;
+    max-height: 100%;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 10px;
 
+    h2 {
+        font-size: var(--font-s);
+    }
 
+    .header {
+        padding: 5px;
+        margin: 5px;
+        background-color: var(--color-main);
+        color: var(--color-secondary);
+        justify-content: center;
+        text-align: center;
+    }
 
-@media (min-width: 800px) {
-    .venue-list__container {
-        display: grid;
-        grid-template-columns: 50% 50%;
-        height: 400px;
-        gap: 20px;
-        max-width: 95%;
+    .venue-list__container-main {
+        width: 100%;
+        height: auto;
 
-        img {
-            height: 350px;
-            width: 100%;
-            object-fit: cover;
-        }
+        section {
 
-        .text-main {
-            margin: 0;
-            margin-left: 20px;
-            height: 350px;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
 
-            p {
-                margin:0;
+            .venue {
+                min-width: 250px;
+                width: 31%;
+                margin: 5px;
 
-                span {
-                    overflow: hidden;
-                    text-overflow: ellipsis;
+                img {
+                    width: 100%;
+                    height: 200px;
+                    object-fit: cover;
                 }
 
+                .venue__image {
+                    position: relative;
+                    h2 {
+                        color: var(--color-main);
+                        font-size: 2rem;
+                        padding: 10px;
+                        justify-content: center;
+                        text-align: center;
+                        left: 50%;
+                        top: 50%;
+                        width: 80%;
+                        position: absolute;
+                        background-color: var(--color-secondary);
+                        transform: translateX(-50%) translateY(-50%);
+                    }
+                }
             }
         }
     }
 
-    .container__categories {
-        width: 80%;
-    }
+    .venue-list__container-others {
+        width: 100%;
+        height: auto;
 
+        .header {
+            background-color: var(--color-secondary);
+            color: var(--color-main);
+        }
+
+        .venue {
+            margin: 5px;
+            .venue__image {
+                position: relative;
+
+                img {
+                    width: 100%;
+                    height: 200px;
+                    object-fit: cover;
+                }
+
+                h2 {
+                    color: var(--color-main);
+                    font-size: 2rem;
+                    padding: 10px;
+                    justify-content: center;
+                    text-align: center;
+                    left: 50%;
+                    top: 50%;
+                    width: 80%;
+                    position: absolute;
+                    background-color: var(--color-main);
+                    color: var(--color-secondary);
+                    transform: translateX(-50%) translateY(-50%);
+                }
+            }
+        }
+    }
 }
