@@ -40,6 +40,7 @@ const Venues = () => {
         getCategory();
     },[categoryParam])
 
+
     const {data: list} = useQuery(["lists"], ()=> fetchAPI('lists','en'))
     useEffect(() => {
         if(list) {
@@ -56,6 +57,7 @@ const Venues = () => {
     }
 
     const shuffledVenues = _category && _category.venues ? shuffleArray([..._category.venues.venues]) : [];
+    console.log(_category)
 
     return(
         <>
@@ -110,6 +112,13 @@ const Venues = () => {
                                 <section className={"venue-list__container-main"}>
                                     <h2 className={"header"}>{location}</h2>
                                     <section>
+                                        <div className={"venue"}>
+                                            <div className={"description"}>
+                                                <h2>
+                                                    {serialize(_category.categoryDescription)}
+                                                </h2>
+                                            </div>
+                                        </div>
                                         {shuffledVenues &&
                                             shuffledVenues.map((venue, index) => {
                                                 let v = venue.venue
