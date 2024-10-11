@@ -180,7 +180,7 @@
     max-height: 100%;
     display: grid;
     grid-template-columns: 2fr 1fr;
-    gap: 10px;
+    gap: 40px;
 
     h2 {
         font-size: var(--font-s);
@@ -197,7 +197,7 @@
 
     .venue-list__container-main {
         min-width: 100%;
-        height: auto;
+        height: 100vh;
 
         section {
 
@@ -265,7 +265,6 @@
         width: 100%;
         height: auto;
 
-
         .header {
             background-color: var(--color-secondary);
             color: var(--color-main);
@@ -277,7 +276,7 @@
             flex-wrap: wrap;
             justify-content: space-between;
             .venue {
-                width: 47%;
+                width: 100%;
                 margin: 5px;
                 .venue__image {
                     position: relative;
@@ -305,7 +304,5 @@
                 }
             }
         }
-
-
     }
 }

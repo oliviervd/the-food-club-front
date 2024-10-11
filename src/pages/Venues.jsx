@@ -8,6 +8,9 @@ import {useMediaQuery} from "@uidotdev/usehooks";
 import serialize from "../utils/serialize.jsx";
 import Banner from "../elements/Banner.jsx";
 import {LocationColorContext} from "../utils/LocationColorContext.jsx";
+import Map from "./Map.jsx";
+import {MapContainer, TileLayer} from "react-leaflet";
+import MapSmall from "../elements/mapSmall.jsx";
 
 // todo: map instead of clubs
 // todo: banner about home ; to footer
@@ -44,6 +47,8 @@ const Venues = () => {
         }
         getCategory();
     },[categoryParam])
+
+
 
 
     const {data: list} = useQuery(["lists"], ()=> fetchAPI('lists','en'))
@@ -138,6 +143,10 @@ const Venues = () => {
                                     </section>
                                 </section>
                                 <section className={"venue-list__container-others"}>
+                                   <MapSmall venues={shuffledVenues}/>
+                                </section>
+                                {/*
+                                <section className={"venue-list__container-others"}>
                                     <h2 className={"header"}>other clubs</h2>
                                     <section className={"venues-container"}>
                                         {shuffledVenues &&
@@ -160,6 +169,7 @@ const Venues = () => {
                                         }
                                     </section>
                                 </section>
+                                */}
 
                             </section>
                         }
