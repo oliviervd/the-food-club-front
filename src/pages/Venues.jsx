@@ -9,6 +9,11 @@ import serialize from "../utils/serialize.jsx";
 import Banner from "../elements/Banner.jsx";
 import {LocationColorContext} from "../utils/LocationColorContext.jsx";
 
+// todo: map instead of clubs
+// todo: banner about home ; to footer
+// todo: three cities always visible and go to hoe.
+// todo: footer
+
 // todo: add hover effect
 // todo: highlight locations (clubs) that are relevant and grey out others.
 // todo: make locations selectable to filter.
@@ -62,19 +67,12 @@ const Venues = () => {
     return(
         <>
             <Header landing={true} interact={true} location={club} setLocation={setClub}/>
-            {!isSmall && _category &&
+            {isSmall && _category &&
                 <Banner content={_category.categoryTitle}></Banner>
             }
             <section className={"home__container"}>
                 {_category &&
                     <div>
-                        <section className={"category-meta"}>
-                            {isSmall &&
-                                <div>
-                                    <h2 className={""}>{_category.categoryTitle}</h2>
-                                </div>
-                            }
-                        </section>
                         {isSmall &&
                             <section>
                                 {shuffledVenues &&
@@ -114,9 +112,11 @@ const Venues = () => {
                                     <section>
                                         <div className={"venue"}>
                                             <div className={"description"}>
-                                                <h2>
-                                                    {serialize(_category.categoryDescription)}
-                                                </h2>
+                                                {_category.categoryDescription &&
+                                                    <h2>
+                                                        {serialize(_category.categoryDescription)}
+                                                    </h2>
+                                                }
                                             </div>
                                         </div>
                                         {shuffledVenues &&
