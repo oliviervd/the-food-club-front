@@ -65,7 +65,7 @@ const MapSmall = ({venues}) => {
     };
 
     return (
-        <section className={"map--ui_container-small"} style={{ overflow: "hidden", maxWidth: "100vw", maxHeight: "100vh", position: "relative" }} id={"mapSmallContainer"}>
+        <section className={"map--ui_container-small"} style={{ overflow: "hidden", maxWidth: "100vw", maxHeight: "100vh", position: "relative"}} id={"mapSmallContainer"}>
             <MapContainer
                 className={"map--ui"}
                 center={mapCenter}

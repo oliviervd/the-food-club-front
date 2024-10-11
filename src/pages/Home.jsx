@@ -63,7 +63,6 @@ const Home = () => {
     return(
         <div>
             <Header selectedTab={"lists"} landing={true} interact={true} setLocation={setLocation} location={location} setTarget={setTarget} venue={false}></Header>
-
             {isSmall && categoryList &&
                 <div>
                    {/* <Marquee className={"banner"} speed={30} pauseOnHover={false} gradient={false} autoFill={true}>

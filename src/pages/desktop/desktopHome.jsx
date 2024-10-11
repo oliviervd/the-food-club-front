@@ -27,25 +27,28 @@ const DesktopHome = ({categories}) => {
                 <h3>#1 Don't talk about foodclub - but psssst…. please spread the word! — #2 The foodclub is a curated space focused on quality, featuring only restaurants we've personally visited. — #3 The foodclub is, and will always be, a positive space celebrating local culinary excellence. There is no place for negativity. —</h3>
             </Marquee>
 */}
-            <Marquee className={"pill-banner"} direction={"right"}>
-                {cuisines && cuisines.map((cuisine, index)=>{
-                    if (cuisine.active) {
-                        return(
-                            <h3 onClick={() => nav(`/venues/?cuisine=${cuisine.name}`)}>{cuisine.name}</h3>
-                        )
-                    }
-                })}
-            </Marquee>
+            <div style={{marginTop: "15px"}}>
+                <Marquee className={"pill-banner"} direction={"right"}>
+                    {cuisines && cuisines.map((cuisine, index)=>{
+                        if (cuisine.active) {
+                            return(
+                                <h3 onClick={() => nav(`/venues/?cuisine=${cuisine.name}`)}>{cuisine.name}</h3>
+                            )
+                        }
+                    })}
+                </Marquee>
 
-            <Marquee className={"pill-banner"} direction={"left"}>
-                {cuisines && cuisines.map((cuisine, index)=>{
-                    if (cuisine.active) {
-                        return(
-                            <h3 onClick={() => nav(`/venues/?cuisine=${cuisine.name}`)}>{cuisine.name}</h3>
-                        )
-                    }
-                })}
-            </Marquee>
+                <Marquee className={"pill-banner"} direction={"left"}>
+                    {cuisines && cuisines.map((cuisine, index)=>{
+                        if (cuisine.active) {
+                            return(
+                                <h3 onClick={() => nav(`/venues/?cuisine=${cuisine.name}`)}>{cuisine.name}</h3>
+                            )
+                        }
+                    })}
+                </Marquee>
+            </div>
+
 
 
             <div className={"home-grid"}>

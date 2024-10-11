@@ -188,7 +188,7 @@
 
     .header {
         padding: 5px;
-        margin: 5px;
+        margin: 20px 5px;
         background-color: var(--color-main);
         color: var(--color-secondary);
         justify-content: center;
@@ -262,8 +262,8 @@
     }
 
     .venue-list__container-others {
-        width: 100%;
-        height: auto;
+        margin: 20px 10px;
+        max-height: 80vh;
 
         .header {
             background-color: var(--color-secondary);

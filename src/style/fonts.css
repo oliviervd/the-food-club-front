@@ -132,17 +132,17 @@ ul {
         font-size: var(--font-m);
         font-weight: 300;
         font-family: DM-sans;
-        background-color: var(--color-main);
-        color: var(--color-secondary);
-        border: 2px solid var(--color-main);
+        background-color: var(--color-secondary);
+        color: var(--color-main);
+        border: 2px solid var(--color-secondary);
         margin: 5px 10px;
         padding: 0 10px ;
         text-transform: lowercase;
     }
 
     h3:hover {
-        background-color: var(--color-secondary);
-        color: var(--color-main);
+        background-color: var(--color-main);
+        color: var(--color-secondary);
     }
 }
 
