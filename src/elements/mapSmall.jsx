@@ -70,6 +70,7 @@ const MapSmall = ({venues}) => {
                 className={"map--ui"}
                 center={mapCenter}
                 zoom={zoom}
+                zoomControl={false}
             >
                 <ChangeView center={mapCenter} zoom={zoom}/>
                 <TileLayer
