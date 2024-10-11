@@ -49,8 +49,6 @@ const DesktopHome = ({categories}) => {
                 </Marquee>
             </div>
 
-
-
             <div className={"home-grid"}>
                 {categories && categories.map((cat, index) => {
                     const _cat = cat.item.value;
@@ -58,7 +56,7 @@ const DesktopHome = ({categories}) => {
                         <div key={index} className={"category-list__box"} onClick={() => {
                             navigateTo(_cat.url)
                         }}>
-                            <DitherImage url={_cat.media.hero.sizes.tablet.url}/>
+                            <DitherImage url={_cat.media.hero.sizes.tablet.url} dim={true}/>
                             <h2>{_cat.categoryTitle}</h2>
                             <p>{_cat.categorySubTitles}</p>
                         </div>

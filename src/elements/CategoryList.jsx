@@ -17,7 +17,7 @@ const CategoryList = ({data, home}) => {
                     if (_cat.media.hero) {
                         return(
                             <div key={index} className={"category-list__box"} onClick={()=>{navigateTo(_cat.url)}}>
-                                <DitherImage url={_cat.media.hero.sizes.tablet.url}/>
+                                <DitherImage url={_cat.media.hero.sizes.tablet.url} dim={true}/>
                                 <h2>{_cat.categoryTitle}</h2>
                                 <p>{_cat.categorySubTitles}</p>
                             </div>

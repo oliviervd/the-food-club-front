@@ -180,7 +180,7 @@
     max-height: 100%;
     display: grid;
     grid-template-columns: 2fr 1fr;
-    gap: 40px;
+    gap: 10px;
 
     h2 {
         font-size: var(--font-s);
@@ -262,7 +262,7 @@
     }
 
     .venue-list__container-others {
-        margin: 20px 10px;
+        margin: 20px 5px;
         max-height: 80vh;
 
         .header {
