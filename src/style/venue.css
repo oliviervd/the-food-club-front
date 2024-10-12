@@ -1,5 +1,5 @@
 .text-main {
-    font-size: 1.1rem;
+    font-size: var(--font-m);
 }
 
 .cuisines{
@@ -11,6 +11,7 @@
     h2 {
         border: 2px black solid;
         padding: 0px 5px;
+        font-size: var(--font-m);
     }
 
     h2:hover {
@@ -18,8 +19,6 @@
         color: var(--color-main);
     }
 }
-
-
 
 .venue-tip__container{
     display: grid;
@@ -44,36 +43,29 @@
     margin: 20px 0px;
     padding: 10px 10px;
     height: 100vh;
+}
+
+.container-big_desktop {
 
     div {
         background-color: pink;
     }
-}
 
-.container-big_desktop {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
 
     .text-main {
 
-        margin: 20px 60px 0 10px ;
-
         p {
-            font-size: var(--font-size-desktop);
-
+            font-size: var(--font-m);
         }
     }
 }
 
 @media (max-width: 800px) {
-    .grid {
-        display: grid;
-        grid-template-columns: 50% 50%;
-    }
-
     .container-big {
-        padding: 0 20px;
+        padding-top: 20px
     }
 
     .text-main {
@@ -83,7 +75,7 @@
         p {
             margin: 0;
             text-align: left;
-            font-size: 1rem;
+            font-size: var(--font-m);
         }
     }
 }
@@ -141,4 +133,9 @@
             font-weight: bold;
         }
     }
+}
+
+.venue__map {
+    border: 2px solid var(--color-secondary);
+    height: 30%
 }

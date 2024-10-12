@@ -7,6 +7,7 @@ import AutoResizeText from "../elements/AutoResizeText.jsx";
 import DitherImage from "../elements/DitherImage.jsx";
 import serialize from "../utils/serialize.jsx";
 import {useMediaQuery} from "@uidotdev/usehooks";
+import MapSmall from "../elements/mapSmall.jsx";
 
 const Venue = () => {
 
@@ -173,6 +174,15 @@ const Venue = () => {
                         <div style={{width: "100%", height: 'auto', position: "relative", margin: "none"}}>
                             <AutoResizeText text={venue.venueName} padding={"0 0 0 0"}/>
                         </div>
+                        <div>
+                            {venue.address &&
+                                <div>
+                                    <h2 className={"address"}>
+                                        {venue.address.street + " " + venue.address.houseNumber + ", " + venue.address.postalCode + " " + venue.address.city}
+                                    </h2>
+                                </div>
+                            }
+                        </div>
                         <p className={"text-main"}>
                             {serialize(venue.reviews.review)}
                         </p>
@@ -181,14 +191,9 @@ const Venue = () => {
                     <div>
                         <DitherImage style={{justifyContent: "center", maxWidth: "99%"}}
                                      url={venue.media.hero.sizes.tablet.url}/>
-                        <div>
-                            {venue.address &&
-                                    <div>
-                                        <h2 className={"address"}>
-                                            {venue.address.street + " " + venue.address.houseNumber + ", " + venue.address.postalCode + " " + venue.address.city}
-                                        </h2>
-                                    </div>
-                            }
+
+                        <div className={"venue__map"}>
+                            <MapSmall venues={venue}/>
                         </div>
 
                     </div>

@@ -80,7 +80,7 @@ const MapSmall = ({venues}) => {
                     chunkedLoading={true}
                     iconCreateFunction={createCustomClusterIcon}
                 >
-                    {venues.map((venue) => {
+                    {venues.map && venues.map((venue) => {
                         const color = getColorForClub(venue.venue.club);
 
                         console.log(venue.venue.address)
@@ -90,6 +90,14 @@ const MapSmall = ({venues}) => {
                                 icon={createCustomIcon(color)}
                             />
                         )})}
+                    {!venues[1] &&
+                            <div>
+                                <Marker
+                                    position={[venues.address.longitude, venues.address.latitude]}
+                                    icon={createCustomIcon(getColorForClub(venues.club))}
+                                />
+                            </div>
+                    }
                 </MarkerClusterGroup>
 
             </MapContainer>
