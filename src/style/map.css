@@ -188,7 +188,7 @@
     font-size: var(--font-s);
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1300px) {
     .map-tip__container {
         right: 20px;
         width: auto;
@@ -197,9 +197,7 @@
             font-size: var(--font-s);
         }
     }
-}
 
-@media (max-width: 1200px) {
     .map--filter_container {
         display: none;
     }

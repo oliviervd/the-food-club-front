@@ -45,7 +45,7 @@ const Venue = () => {
     return (
         <>
             <Header landing={true} setLocation={setVenueLocation} venueLocation={venueLocation} interact={false} greyOut={true} venue={true}/>
-            {venue &&
+            {venue && !isDesktop &&
                 <section className={"venue__container"}>
                     <div className={"grid"}>
                         <div>
@@ -164,6 +164,33 @@ const Venue = () => {
                                 </section>
                             }
                         </div>
+                    </div>
+                </section>
+            }
+            {venue && isDesktop &&
+                <section className={"venue__container container-big_desktop"}>
+                    <div>
+                        <div style={{width: "100%", height: 'auto', position: "relative", margin: "none"}}>
+                            <AutoResizeText text={venue.venueName} padding={"0 0 0 0"}/>
+                        </div>
+                        <p className={"text-main"}>
+                            {serialize(venue.reviews.review)}
+                        </p>
+
+                    </div>
+                    <div>
+                        <DitherImage style={{justifyContent: "center", maxWidth: "99%"}}
+                                     url={venue.media.hero.sizes.tablet.url}/>
+                        <div>
+                            {venue.address &&
+                                    <div>
+                                        <h2 className={"address"}>
+                                            {venue.address.street + " " + venue.address.houseNumber + ", " + venue.address.postalCode + " " + venue.address.city}
+                                        </h2>
+                                    </div>
+                            }
+                        </div>
+
                     </div>
                 </section>
             }

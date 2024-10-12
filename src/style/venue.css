@@ -41,10 +41,32 @@
 }
 
 .venue__container {
+    margin: 20px 0px;
     padding: 10px 10px;
+    height: 100vh;
+
+    div {
+        background-color: pink;
+    }
 }
 
-@media (min-width: 1200px) {
+.container-big_desktop {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+
+    .text-main {
+
+        margin: 20px 60px 0 10px ;
+
+        p {
+            font-size: var(--font-size-desktop);
+
+        }
+    }
+}
+
+@media (max-width: 800px) {
     .grid {
         display: grid;
         grid-template-columns: 50% 50%;

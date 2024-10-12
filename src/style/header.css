@@ -77,12 +77,3 @@ header .flex-buttons > h2 {
         font-weight: 100;
     }
 }
-
-@media (min-width: 1700px) {
-    header{
-    }
-
-    header > h1 {
-        text-align: center;
-    }
-}

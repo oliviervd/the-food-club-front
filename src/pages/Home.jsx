@@ -79,6 +79,7 @@ const Home = () => {
                                     you.
                                     From healthy snacks to absurdly comforting food, the order is yours.</h2>
                             </section>
+
                             <CategoryList data={categoryList}/>
                             <div className={`fixed-wrapper ${classNames}`}>
                                 <LuckyButton nav={nav}/>
