@@ -47,9 +47,6 @@
 
 .container-big_desktop {
 
-    div {
-        background-color: pink;
-    }
 
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -61,6 +58,34 @@
             font-size: var(--font-m);
         }
     }
+
+    .venue-tip__container{
+        display: grid;
+        grid-template-columns: 10% 90%;
+        max-width: 99%;
+        border: 2px black dashed;
+        padding: 10px;
+        margin: 10px 0px;
+        background-color: var(--color-main);
+
+        p {
+            margin-block: 0;
+        }
+    }
+}
+
+.image-hero {
+    position: relative;
+    max-height: 30vh;
+    overflow: hidden;
+}
+
+.image-hero .dither-image {
+    justify-content: center;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    position: absolute;
 }
 
 @media (max-width: 800px) {

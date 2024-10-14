@@ -97,31 +97,9 @@ const Search = () => {
                             matches.map((match, index) => {
                                 if (match._status == "published") {
                                     return (
-                                        <div className={"venue-list__container"}>
-                                            {match && match.club && match.media.hero.sizes &&
-                                                <DitherImage url={match.media.hero.sizes.tablet.url}
-                                                             link={`/venue/${match.url}`}/>
-                                            }
-                                            <div>
-                                                <div style={{width: "90%"}}>
-                                                    <AutoResizeText text={match && match.venueName}
-                                                                    padding={"0px 0px 20px 0px"}
-                                                                    onClick={() => {
-                                                                        navigateTo(match.url)
-                                                                    }}/>
-                                                </div>
-                                                <div className={"cuisines"}>
-                                                    {match && match.cuisineUsed.map((cuisine) => {
-                                                        return (
-                                                            <a style={{color: "black", textDecoration: "none"}}><h2
-                                                                className={"link"}
-                                                                onClick={() => nav(`/venues/?cuisine=${cuisine.name}`)}>{cuisine.name}</h2>
-                                                            </a>
-                                                        )
-                                                    })}
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <section>
+
+                                        </section>
                                     )
                                 }
                             })

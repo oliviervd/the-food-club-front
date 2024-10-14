@@ -142,6 +142,7 @@
 .map-venue-image{
     margin: 0 15px;
     position: relative;
+    max-height: 25vh;
 
     h2{
         color: var(--color-main);

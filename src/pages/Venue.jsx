@@ -50,8 +50,11 @@ const Venue = () => {
                 <section className={"venue__container"}>
                     <div className={"grid"}>
                         <div>
-                            <DitherImage style={{justifyContent: "center", maxWidth: "99%"}}
-                                         url={venue.media.hero.sizes.tablet.url}/>
+                            <div className={"image-hero"}>
+                                <DitherImage style={{justifyContent: "center", maxWidth: "99%"}}
+                                             url={venue.media.hero.sizes.tablet.url}/>
+                            </div>
+
                             {!isDesktop &&
                                 <div style={{width: "100%", height: 'auto', position: "relative"}}>
                                     <AutoResizeText text={venue.venueName} padding={"10px 0 10px 0"}/>
@@ -183,18 +186,58 @@ const Venue = () => {
                                 </div>
                             }
                         </div>
+                        <div className={"cuisines"}>
+                            {venue.cuisineUsed.map((cuisine) => {
+                                return (
+                                    <a style={{color: "black", textDecoration: "none"}}><h2 className={"link"}
+                                                                                            onClick={() => navigateTo(`/venues/?cuisine=${cuisine.name}`)}>{cuisine.name}</h2>
+                                    </a>
+                                )
+                            })}
+                        </div>
                         <p className={"text-main"}>
                             {serialize(venue.reviews.review)}
                         </p>
+
+                        {venue.foodClubOrder &&
+                            <div className={"venue-tip__container"}>
+                                <div className={"text-main"}>☞</div>
+                                <p className={"text-main"}>{serialize(venue.foodClubOrder)}</p>
+                            </div>
+                        }
+
+                        {venue.hours.length > 1 &&
+                            <section className={"venue-open"}>
+                                {venue.hours.map((day) => {
+                                    console.log(venue.hours)
+                                    return (
+                                        <div>
+                                            <p className={"day"}>{day.openDay}</p>
+                                            <div>
+                                                <p>{convertHour(day.openFrom)}</p>
+                                                <p>-</p>
+                                                <p>{convertHour(day.openTill)}*</p>
+                                            </div>
+
+                                        </div>
+                                    )
+                                })}
+                                <p style={{marginBottom: "0px", marginTop: "5px"}}>
+                                    * kitchen hours might differ.
+                                </p>
+                            </section>
+                        }
+                        {venue.otherOpeningHours &&
+                            <section className={"venue-open"}>
+                                {serialize(venue.otherOpeningHours)}
+                            </section>
+                        }
 
                     </div>
                     <div>
                         <DitherImage style={{justifyContent: "center", maxWidth: "99%"}}
                                      url={venue.media.hero.sizes.tablet.url}/>
 
-                        <div className={"venue__map"}>
-                            <MapSmall venues={venue}/>
-                        </div>
 
                     </div>
                 </section>
