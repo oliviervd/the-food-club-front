@@ -199,47 +199,47 @@ const Venue = () => {
                             {serialize(venue.reviews.review)}
                         </p>
 
-                        {venue.foodClubOrder &&
-                            <div className={"venue-tip__container"}>
-                                <div className={"text-main"}>☞</div>
-                                <p className={"text-main"}>{serialize(venue.foodClubOrder)}</p>
-                            </div>
-                        }
+                        <section style={{display: "grid", gridTemplateColumns: "1fr 1fr", gridGap: "20px", marginBottom: "20px" }}>
+                            {venue.foodClubOrder &&
+                                <div className={"venue-tip__container"}>
+                                    <div className={"text-main"}>☞</div>
+                                    <p className={"text-main"}>{serialize(venue.foodClubOrder)}</p>
+                                </div>
+                            }
 
-                        {venue.hours.length > 1 &&
-                            <section className={"venue-open"}>
-                                {venue.hours.map((day) => {
-                                    console.log(venue.hours)
-                                    return (
-                                        <div>
-                                            <p className={"day"}>{day.openDay}</p>
+                            {venue.hours.length > 1 &&
+                                <section className={"venue-open"}>
+                                    {venue.hours.map((day) => {
+                                        console.log(venue.hours)
+                                        return (
                                             <div>
-                                                <p>{convertHour(day.openFrom)}</p>
-                                                <p>-</p>
-                                                <p>{convertHour(day.openTill)}*</p>
-                                            </div>
+                                                <p className={"day"}>{day.openDay}</p>
+                                                <div>
+                                                    <p>{convertHour(day.openFrom)}</p>
+                                                    <p>-</p>
+                                                    <p>{convertHour(day.openTill)}*</p>
+                                                </div>
 
-                                        </div>
-                                    )
-                                })}
-                                <p style={{marginBottom: "0px", marginTop: "5px"}}>
-                                    * kitchen hours might differ.
-                                </p>
-                            </section>
-                        }
-                        {venue.otherOpeningHours &&
-                            <section className={"venue-open"}>
-                                {serialize(venue.otherOpeningHours)}
-                            </section>
-                        }
+                                            </div>
+                                        )
+                                    })}
+                                    <p style={{marginBottom: "0px", marginTop: "5px"}}>
+                                        * kitchen hours might differ.
+                                    </p>
+                                </section>
+                            }
+                            {venue.otherOpeningHours &&
+                                <section className={"venue-open"}>
+                                    {serialize(venue.otherOpeningHours)}
+                                </section>
+                            }
+                        </section>
+
+
 
                     </div>
-                    <div>
                         <DitherImage style={{justifyContent: "center", maxWidth: "99%"}}
                                      url={venue.media.hero.sizes.tablet.url}/>
-
-
-                    </div>
                 </section>
             }
         </>
