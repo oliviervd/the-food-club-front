@@ -104,9 +104,9 @@
         margin-top: 0;
         text-align: left;
 
-        .venue-tip__container . text-main {
+        .venue-tip__container .text-main {
             p {
-                margin-bottom: 0;
+                margin-bottom: 0px;
             }
         }
 
