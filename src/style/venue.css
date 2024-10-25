@@ -111,6 +111,14 @@
     }
 }
 
+@media (max-width: 500px) {
+    .text-main {
+        p {
+            font-size: var(--font-s);
+        }
+    }
+}
+
 @media (min-width: 1700px) {
     .venue__container {
         padding: 10px 10vw;
