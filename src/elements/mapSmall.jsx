@@ -80,17 +80,18 @@ const MapSmall = ({venues}) => {
                     chunkedLoading={true}
                     iconCreateFunction={createCustomClusterIcon}
                 >
-                    {venues.map && venues.map((venue) => {
-                        const color = getColorForClub(venue.venue.club);
-
-                        console.log(venue.venue.address)
-                        return (
-                            <Marker
-                                position={[venue.venue.address.longitude, venue.venue.address.latitude]}
-                                icon={createCustomIcon(color)}
-                            />
-                        )})}
-                    {!venues[1] &&
+                    {venues && venues.map && venues.map((venue) => {
+                        if (venue.club) {
+                            const color = getColorForClub(venue.club);
+                            return (
+                                <Marker
+                                    position={[venue.address.longitude, venue.address.latitude]}
+                                    icon={createCustomIcon(color)}
+                                />
+                            )
+                        }
+                    })}
+                    {venues && venues.club && !venues[1] &&
                             <div>
                                 <Marker
                                     position={[venues.address.longitude, venues.address.latitude]}
