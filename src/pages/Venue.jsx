@@ -11,41 +11,37 @@ import MapSmall from "../elements/mapSmall.jsx";
 
 const Venue = () => {
 
-    const {venue: venueParam} = useParams();
-    const {data: venues} =    useQuery(["venues"], ()=> fetchAPI('venue', 'en'));
-    const [venue, setVenue] = useState(null);
-    const nav = useNavigate()
-    const isDesktop = useMediaQuery("(min-width: 1200px)");
-
-    const [venueLocation, setVenueLocation] = useState(null);
-
     // todo: add map (refer to)
     // todo: add status (open now / closed)
     // todo: add section with extra info; telephone, website, socials)
 
-    function navigateTo(route) {
-        nav(route)
-    }
+    const { venue: venueParam } = useParams();
+    const nav = useNavigate();
+    const isDesktop = useMediaQuery("(min-width: 1200px)");
 
-    useEffect(() => {
-        const getVenue = async () => {
-            const venues = await fetchAPI("venue", "en");
-            if (venues) {
-                const res = venues.docs.find(venue => venue.url === venueParam);
-                setVenue(res)
-                try {
-                    setVenueLocation(res.club)
-                } catch (e) {
-                    console.error(e)
-                }
-            }
-        }
-        getVenue()
-    }, [venueParam]);
+    // Fetch venues using React Query
+    const { data: venues, isLoading, error } = useQuery(["venues"], () => fetchAPI("venue", "en"), {
+        staleTime: 3600000, // Cache venue data for 1 hour
+        refetchOnWindowFocus: false,
+    });
+
+    // Derive the current venue based on the parameter
+    const venue = venues?.docs.find((v) => v.url === venueParam) || null;
+
+    // Set the location of the venue (optional)
+    const venueLocation = venue?.club || null;
+
+    // Navigation Function
+    const navigateTo = (route) => {
+        nav(route);
+    };
+
+    if (isLoading) return <p>Loading...</p>;
+    if (error) return <p>Error loading venue data. Please try again.</p>;
 
     return (
         <>
-            <Header landing={true} setLocation={setVenueLocation} venueLocation={venueLocation} interact={false} greyOut={true} venue={true}/>
+            <Header landing={true} setLocation={null} venueLocation={venueLocation} interact={false} greyOut={true} venue={true}/>
             {venue && !isDesktop &&
                 <section className={"venue__container"}>
                     <div className={"grid"}>

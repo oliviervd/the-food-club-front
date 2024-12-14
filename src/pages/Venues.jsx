@@ -30,33 +30,14 @@ const Venues = () => {
     const nav = useNavigate();
     const isSmall = useMediaQuery("(max-width: 600px)");
 
-    const [_category, _setCategory] = useState(null);
-    const [categoryList, setCategoryList] = useState([]);
     const [club, setClub] = useState(null);
 
     const { category: categoryParam } = useParams();
     const { data: categories, isLoading, error } = useQuery(['categories', categoryParam], () => fetchAPI('categories', 'en'));
 
-    useEffect(()=>{
-        const getCategory = async () => {
-            const categories = await fetchAPI("categories", "en");
-            if (categories) {
-                const result = categories.docs.find(category => category.url === categoryParam)
-                _setCategory(result)
-            }
-        }
-        getCategory();
-    },[categoryParam])
+    const _category = categories?.docs.find((category) => category.url === categoryParam) || null
 
-
-
-
-    const {data: list} = useQuery(["lists"], ()=> fetchAPI('lists','en'))
-    useEffect(() => {
-        if(list) {
-            setCategoryList(list);
-        }
-    }, [list]);
+    const { data: categoryList } = useQuery(["lists"], () => fetchAPI("lists", "en"));
 
     if (isLoading) return <div></div>;
     if (error) return <div>Error: {error.message}</div>;
