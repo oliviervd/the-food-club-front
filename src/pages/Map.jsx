@@ -3,13 +3,11 @@ import {MapContainer, TileLayer, useMap, Marker, Popup} from "react-leaflet";
 import {divIcon, Icon} from "leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import {useContext, useState, useEffect} from "react";
+import {useNavigate} from "react-router-dom";
 import {venueStatus, fetchAPI, getCSSVariableValue} from "../utils/utils.jsx";
 import {LocationColorContext} from "../utils/LocationColorContext.jsx";
 import Banner from "../elements/Banner.jsx";
-import DitherImage from "../elements/DitherImage.jsx";
-import {useNavigate} from "react-router-dom";
-import serialize from "../utils/serialize.jsx";
-import {useMediaQuery} from "@uidotdev/usehooks";
+
 
 // todo add container that shows preview of the selected item
 // todo add icons to zoom in / zoom out / show my location.
@@ -30,12 +28,10 @@ const Map = ({}) => {
     const [target, setTarget] = useState(null);
     const [location, setLocation] = useState(null);
     const [visible, setVisible] = useState(true);
-    const [highlightedVenue, setHighlightedVenue] = useState(null);
+
     const { locationColor} = useContext(LocationColorContext);
-    const isSmall = useMediaQuery("(max-width: 600px)");
 
-
-    console.log(highlightedVenue)
+    //console.log(highlightedVenue)
 
     let [zoom, setZoom] = useState(12.5) // set zoom of map
     const [mapCenter, setMapCenter] = useState([51.0544, 3.7256]); // Initial coordinates
@@ -97,11 +93,6 @@ const Map = ({}) => {
         }
     };
 
-    const highlightVenue = (venue) => {
-        setVisible(false)
-        setHighlightedVenue(venue)
-    }
-
     return(
         <div className={"map--ui_container"}
              style={{ overflow: "hidden", maxWidth: "100vw", maxHeight: "100vh", position: "relative" }}>
@@ -123,24 +114,20 @@ const Map = ({}) => {
                     >
                         {/* plot markers*/}
                         {venues && venues.map((venue) => {
-                            try {
-                                const color = getColorForClub(venue.club);
-                                if (venue.club && venue.address.longitude && venue.address.latitude) {
-                                    return (
-                                        <Marker
-                                            position={[venue.address.longitude, venue.address.latitude]}
-                                            icon={createCustomIcon(color)}
-                                            eventHandlers={{
-                                                click: () => {
-                                                    highlightVenue(venue);
-                                                },
-                                            }}
-                                        />
-                                    )
-                                }
-                            } catch (e) {
-                                // because they f****ed it up.
-                                console.log("MOTHERFUCKERS.")
+                            const color = getColorForClub(venue.club);
+                            if (venue.address.longitude && venue.address.latitude) {
+                                return (
+                                    <Marker
+                                        position={[venue.address.longitude, venue.address.latitude]}
+                                        icon={createCustomIcon(color)}
+                                        eventHandlers={{
+                                            click: () => {
+                                                setVisible(!visible);
+                                            },
+                                        }}
+                                    />
+
+                                )
                             }
                         })}
                     </MarkerClusterGroup>
@@ -162,70 +149,11 @@ const Map = ({}) => {
                         <h2>without reservations</h2>
                     </div>
                 </div>
-                {!visible && highlightedVenue && highlightedVenue.media && !isSmall &&
-                    <div className={"map--venue_container_desktop"}>
-                        <div className={"close"} onClick={() => setVisible(true)}>CLOSE</div>
-                        <div className={"map--venue_image"} onClick={() => {
-                            nav(`/venue/${highlightedVenue.url}`)
-                        }}>
-                            <DitherImage style={{justifyContent: "center"}}
-                                         url={highlightedVenue.media.hero.sizes.tablet.url}/>
-                            <h2 onClick={() => {
-                                nav(`/venue/${highlightedVenue.url}`)
-                            }}>{highlightedVenue.venueName}</h2>
-
-                        </div>
-                        <div className={"cuisines"} style={{padding: "0 10px"}}>
-                            {highlightedVenue.cuisineUsed.map((c) => {
-                                console.log(c)
-                                return (
-                                    <h2 onClick={() => {
-                                        nav(`/venues/?cuisine=${c.name}`)
-                                    }}>{c.name}</h2>
-                                )
-                            })
-                            }
-                        </div>
+                <div className={`map-venue-container ${classNames}`}>
+                    <div onClick={()=>{setVisible(!visible)}}>
+                        <Banner small={true} content={"↧ close ↧"}/>
                     </div>
-                }
-                {isSmall &&
-                    <div className={`map-venue-container ${classNames}`}>
-                        <div onClick={() => {
-                            setVisible(true)
-                        }}>
-                            <Banner small={true} content={"↧ close ↧"}/>
-                            <section style={{overflowY: "scroll"}}>
-                                {highlightedVenue && highlightedVenue.media &&
-                                    <section>
-                                        <div className={"map-venue-image"} onClick={() => {
-                                            nav(`/venue/${highlightedVenue.url}`)
-                                        }}>
-                                            <DitherImage style={{justifyContent: "center", maxWidth: "99%"}}
-                                                         url={highlightedVenue.media.hero.sizes.tablet.url}/>
-                                            <h2 onClick={() => {
-                                                nav(`/venue/${highlightedVenue.url}`)
-                                            }}>{highlightedVenue.venueName}</h2>
-                                            <div className={"venue-open"}>
-                                                {venueStatus(highlightedVenue)}
-                                            </div>
-                                        </div>
-                                        <div className={"cuisines"} style={{padding: "0 15px"}}>
-                                            {highlightedVenue.cuisineUsed.map((c) => {
-                                                console.log(c)
-                                                return (
-                                                    <h2 onClick={() => {
-                                                        nav(`/venues/?cuisine=${c.name}`)
-                                                    }}>{c.name}</h2>
-                                                )
-                                            })
-                                            }
-                                        </div>
-                                    </section>
-                                }
-                            </section>
-                        </div>
-                    </div>
-                }
+                </div>
             </div>
         </div>
     )
