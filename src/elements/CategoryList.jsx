@@ -1,11 +1,14 @@
-import React, { useMemo } from "react";
-import DitherImage from "./DitherImage.jsx";
-import { useNavigate } from "react-router-dom";
+import React, { useMemo, useState, useEffect, useCallback } from "react";
+import DitherImage from "./DitherImage.jsx";import { useNavigate } from "react-router-dom";
+import Loading from "../pages/Loading.jsx";
 
 // TODO: Add hover effect on desktop (show text explaining the category)
 
 const CategoryList = ({ data, home }) => {
     const nav = useNavigate();
+
+    const [imagesLoaded, setImagesLoaded] = useState(false);
+    const [loadedImagesCount, setLoadedImagesCount] = useState(0);
 
     // Function to navigate to category
     const navigateTo = (route) => {
@@ -21,12 +24,35 @@ const CategoryList = ({ data, home }) => {
     }, [data]);
 
     // Early return for empty categories
-    if (!categories.length) {
-        return (
-            <section className="category-list__container">
-                <p></p>
-            </section>
-        );
+    const totalImages = useMemo(() => {
+        return categories.reduce((count, cat) => {
+            const _cat = cat.item.value;
+            return count + (_cat?.media?.hero?.sizes?.tablet?.url ? 1 : 0);
+        }, 0);
+    }, [categories]);
+
+    // Handler for image load events
+    const handleImageLoad = useCallback(() => {
+        setLoadedImagesCount((loadedCount) => {
+            const newCount = loadedCount + 1;
+
+            if (newCount === totalImages) {
+                setImagesLoaded(true); // All images have loaded
+            }
+
+            return newCount;
+        });
+    }, [totalImages]);
+
+    useEffect(() => {
+        // If there are no images to load, immediately hide loading.
+        if (totalImages === 0) {
+            setImagesLoaded(true);
+        }
+    }, [totalImages]);
+
+    if (!imagesLoaded) {
+        return <Loading/>
     }
 
     return (
@@ -45,7 +71,8 @@ const CategoryList = ({ data, home }) => {
                             className={"category-list__box"}
                             onClick={() => navigateTo(_cat.url)}
                         >
-                            <DitherImage url={mediaUrl} dim={true} />
+                            {/* Use the onLoad handler to detect when the image has loaded */}
+                            <DitherImage url={mediaUrl} dim={true} onLoad={handleImageLoad} />
                             <h2>{_cat.categoryTitle}</h2>
                             <p>{_cat.categorySubTitles}</p>
                         </div>
