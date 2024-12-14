@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {LocationColorProvider} from "./utils/LocationColorContext.jsx";
+import {Suspense, lazy} from "react";
 
 import Home from "./pages/Home.jsx";
 import Venues from "./pages/Venues.jsx";
@@ -31,6 +32,7 @@ export default function App() {
     defaultOptions: {
       queries: {
         staleTime: Infinity,
+        cacheTime: 86400000,
         refetchOnWindowFocus: false,
       }, // set caching time to 24hours.
     },
@@ -41,20 +43,25 @@ export default function App() {
     window.history.scrollRestoration = 'manual';
   }
 
+  //todo: make a more sexy loading div.
+
+
   return (
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
         <LocationColorProvider>
-          <Routes>
-            <Route path="/" element={<Navigate to="/en" replace />}/>
-            <Route path="/:lang" element={<Home />} />
-            <Route path="/categories/:category" element={<Venues />}/>
-            <Route path="/venue/:venue" element={<Venue />}/>
-            <Route path="/venues/" element={<Search />}/>
-            <Route path="/map/" element={<Map />}/>
-            <Route path="/about/" element={<About />}/>
-            <Route path="/categories" element={<Categories />}/>
-          </Routes>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Routes>
+              <Route path="/" element={<Navigate to="/en" replace />}/>
+              <Route path="/:lang" element={<Home />} />
+              <Route path="/categories/:category" element={<Venues />}/>
+              <Route path="/venue/:venue" element={<Venue />}/>
+              <Route path="/venues/" element={<Search />}/>
+              <Route path="/map/" element={<Map />}/>
+              <Route path="/about/" element={<About />}/>
+              <Route path="/categories" element={<Categories />}/>
+            </Routes>
+          </Suspense>
         </LocationColorProvider>
       </QueryClientProvider>
     </BrowserRouter>
