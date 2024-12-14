@@ -10,6 +10,7 @@ import Banner from "../elements/Banner.jsx";
 import { LocationColorContext } from "../utils/LocationColorContext.jsx";
 import MapSmall from "../elements/mapSmall.jsx";
 import { debounce } from "lodash";
+import Loading from "./Loading.jsx";
 
 const Venues = () => {
     const { locationColor } = useContext(LocationColorContext);
@@ -40,7 +41,7 @@ const Venues = () => {
         nav(`/venue/${route}`);
     }, 200);
 
-    if (isLoading) return <div></div>; // Maintain empty loading state as assumed in original code
+    if (isLoading) return <Loading/>; // Maintain empty loading state as assumed in original code
     if (error) return <div>Error: {error.message}</div>; // Maintain error state as in original code
 
     return (

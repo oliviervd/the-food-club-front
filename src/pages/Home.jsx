@@ -14,6 +14,7 @@ import LuckyButton from "../elements/luckyButton.jsx";
 
 import {useScrollPosition} from "../hooks/useScrollPosition.jsx";
 import Marquee from "react-fast-marquee";
+import Loading from "./Loading.jsx";
 
 // todo : improve loading speed
 // todo: add locales
@@ -56,7 +57,7 @@ const Home = () => {
         scrollTo(target)
     },[target])
 
-    if (isLoading) return <div></div>;
+    if (isLoading) return <Loading/>;
     if (error) return <div>Error: {error.message}</div>;
 
     // render component
