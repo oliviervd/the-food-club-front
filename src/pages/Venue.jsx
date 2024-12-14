@@ -8,6 +8,7 @@ import DitherImage from "../elements/DitherImage.jsx";
 import serialize from "../utils/serialize.jsx";
 import {useMediaQuery} from "@uidotdev/usehooks";
 import MapSmall from "../elements/mapSmall.jsx";
+import Loading from "./Loading.jsx";
 
 const Venue = () => {
 
@@ -36,7 +37,7 @@ const Venue = () => {
         nav(route);
     };
 
-    if (isLoading) return <p>Loading...</p>;
+    if (isLoading) return <Loading/>;
     if (error) return <p>Error loading venue data. Please try again.</p>;
 
     return (
