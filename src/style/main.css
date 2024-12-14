@@ -73,7 +73,15 @@ body {
     animation: slide-down 0.5s forwards;
 }
 
-.loading--container{
-    width: 100vw;
-    height: 100vh;
+.loading--container {
+    position: fixed; /* Fix it to the entire window */
+    top: 0;
+    left: 0;
+    width: 100vw; /* Full width of the viewport */
+    height: 100vh; /* Full height of the viewport */
+    background-color: white; /* Optional: Add background color */
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    z-index: 1000; /* Ensure it appears above other content if needed */
 }
