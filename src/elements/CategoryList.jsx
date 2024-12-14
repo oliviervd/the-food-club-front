@@ -24,7 +24,7 @@ const CategoryList = ({ data, home }) => {
     if (!categories.length) {
         return (
             <section className="category-list__container">
-                <p>No categories available.</p>
+                <p></p>
             </section>
         );
     }
