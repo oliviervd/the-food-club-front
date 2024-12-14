@@ -23,6 +23,7 @@ import "../src/style/about.css"
 import "leaflet/dist/leaflet.css";
 import "../src/style/map.css"
 import "../src/style/colors.css"
+import Loading from "./pages/Loading.jsx";
 
 //todo: add language provider (API Context)
 
@@ -50,7 +51,7 @@ export default function App() {
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
         <LocationColorProvider>
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<Loading/>}>
             <Routes>
               <Route path="/" element={<Navigate to="/en" replace />}/>
               <Route path="/:lang" element={<Home />} />
