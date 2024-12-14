@@ -29,7 +29,10 @@ import "../src/style/colors.css"
 export default function App() {
   const queryClient = new QueryClient({
     defaultOptions: {
-      queries: { staleTime: Infinity }, // set caching time to 24hours.
+      queries: {
+        staleTime: Infinity,
+        refetchOnWindowFocus: false,
+      }, // set caching time to 24hours.
     },
   });
 
