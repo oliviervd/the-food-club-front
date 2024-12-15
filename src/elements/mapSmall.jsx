@@ -81,7 +81,7 @@ const MapSmall = ({venues}) => {
                     iconCreateFunction={createCustomClusterIcon}
                 >
                     {venues && venues.map && venues.map((venue) => {
-                        console.log(venue)
+                        //console.log(venue)
                         if (venue.venue.club) {
                             const color = getColorForClub(venue.club);
                             return (
