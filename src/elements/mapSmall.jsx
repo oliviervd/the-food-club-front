@@ -81,11 +81,12 @@ const MapSmall = ({venues}) => {
                     iconCreateFunction={createCustomClusterIcon}
                 >
                     {venues && venues.map && venues.map((venue) => {
-                        if (venue.club) {
+                        console.log(venue)
+                        if (venue.venue.club) {
                             const color = getColorForClub(venue.club);
                             return (
                                 <Marker
-                                    position={[venue.address.longitude, venue.address.latitude]}
+                                    position={[venue.venue.address.longitude, venue.venue.address.latitude]}
                                     icon={createCustomIcon(color)}
                                 />
                             )
