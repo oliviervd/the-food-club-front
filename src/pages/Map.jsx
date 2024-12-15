@@ -8,10 +8,8 @@ import {venueStatus, fetchAPI, getCSSVariableValue} from "../utils/utils.jsx";
 import {LocationColorContext} from "../utils/LocationColorContext.jsx";
 import Banner from "../elements/Banner.jsx";
 import {Switch} from "@mui/material";
-import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
-import Chip from '@mui/material/Chip';
 
 // todo add container that shows preview of the selected item
 // todo add icons to zoom in / zoom out / show my location.
@@ -35,6 +33,7 @@ const Map = ({}) => {
 
     const [cuisines, setCuisines] = useState([]);
     const [selectedCuisine, setSelectedCuisine] = useState([]);
+    const [selectedDish, setSelectedDish] = useState([]);
 
 
     useEffect(() => {
@@ -105,8 +104,6 @@ const Map = ({}) => {
         }
         return matchesCuisine && isOpen;
     });
-
-    console.log(filteredVenues)
 
 
     // Add animation classes based on visibility state
@@ -191,13 +188,31 @@ const Map = ({}) => {
                     </div>
                 </div>
                 <div className={"map--filter_container"}>
-                    <p>looking for something specific?</p>
+                    <p>looking for a specific dish? 🍕🍱🍔</p>
                     {cuisines.length > 0 &&
                         <Autocomplete
                             freeSolo
                             disablePortal
                             multiple
-                            options={cuisines}
+                            options={cuisines.filter((cuisine) => cuisine.type === "dish")} // Filtra solo i tipi "dish"
+                            getOptionLabel={(option) => option.name}
+                            value={selectedDish}
+                            defaultValue={cuisines[0]}
+                            onChange={(event, newValue) => {
+                                setSelectedDish(newValue); // Update selected cuisine in state
+                                console.log("Selected cuisine:", newValue);
+                            }}
+                            sx={{width: 300}}
+                            renderInput={(params) => <TextField {...params}  />}
+                        />
+                    }
+                    <p>a cuisine in mind? 🇮🇹🇫🇷🇺🇸</p>
+                    {cuisines.length > 0 &&
+                        <Autocomplete
+                            freeSolo
+                            disablePortal
+                            multiple
+                            options={cuisines.filter((cuisine) => cuisine.type === "cuisine")} // Filtra solo i tipi "dish"
                             getOptionLabel={(option) => option.name}
                             value={selectedCuisine}
                             defaultValue={cuisines[0]}
@@ -205,13 +220,15 @@ const Map = ({}) => {
                                 setSelectedCuisine(newValue); // Update selected cuisine in state
                                 console.log("Selected cuisine:", newValue);
                             }}
-                            sx={{ width: 300 }}
+                            sx={{width: 300}}
                             renderInput={(params) => <TextField {...params}  />}
                         />
                     }
                 </div>
                 <div className={`map-venue-container ${classNames}`}>
-                    <div onClick={()=>{setVisible(!visible)}}>
+                    <div onClick={() => {
+                        setVisible(!visible)
+                    }}>
                         <Banner small={true} content={"↧ close ↧"}/>
                     </div>
                 </div>
