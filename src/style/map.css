@@ -37,11 +37,12 @@
 }
 
 .map--filter_container {
+    padding: 10px;
     position: absolute;
     z-index: 10000;
     width: 300px;
     top: 20px;
-    bottom: 20px;
+    height: auto;
     right: 20px;
     border: 2px var(--color-secondary) solid;
     background-color: var(--color-main);

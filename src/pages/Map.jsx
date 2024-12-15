@@ -8,7 +8,10 @@ import {venueStatus, fetchAPI, getCSSVariableValue} from "../utils/utils.jsx";
 import {LocationColorContext} from "../utils/LocationColorContext.jsx";
 import Banner from "../elements/Banner.jsx";
 import {Switch} from "@mui/material";
-
+import Stack from '@mui/material/Stack';
+import Autocomplete from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
+import Chip from '@mui/material/Chip';
 
 // todo add container that shows preview of the selected item
 // todo add icons to zoom in / zoom out / show my location.
@@ -24,6 +27,8 @@ const ChangeView = ({ center, zoom }) => {
 
 
 
+
+
 const Map = ({}) => {
 
     const [target, setTarget] = useState(null);
@@ -31,6 +36,21 @@ const Map = ({}) => {
     const [visible, setVisible] = useState(true);
     const [showOpenOnly, setShowOpenOnly] = useState(false); // Default: show all venues
     const { locationColor} = useContext(LocationColorContext);
+
+    const [cuisines, setCuisines] = useState([]);
+    const [selectedCuisine, setSelectedCuisine] = useState([]);
+
+
+
+    useEffect(() => {
+        const getCuisines = async() => {
+            const _cuisines = await fetchAPI("cuisine", "en")
+            setCuisines(_cuisines.docs);
+        }
+        getCuisines()
+    },[location])
+
+    console.log(cuisines)
 
     //console.log(highlightedVenue)
 
@@ -150,20 +170,24 @@ const Map = ({}) => {
                     </div>
                 </div>
                 <div className={"map--filter_container"}>
-                    <div className={"tags"} style={{padding: "10px 10px"}}>
-                        <h2>monday</h2>
-                        <h2>tuesday</h2>
-                        <h2>wednesday</h2>
-                        <h2>thursday</h2>
-                        <h2>friday</h2>
-                        <h2>saturday</h2>
-                        <h2>sunday</h2>
-                        <h2>closed</h2>
-                    </div>
-                    <div className={"tags"} style={{padding: "10px 10px"}}>
-                        <h2>reservations possible</h2>
-                        <h2>without reservations</h2>
-                    </div>
+                    <p>looking for something specific?</p>
+                    {cuisines.length > 0 &&
+                        <Autocomplete
+                            freeSolo
+                            disablePortal
+                            multiple
+                            options={cuisines}
+                            getOptionLabel={(option) => option.name}
+                            value={selectedCuisine}
+                            defaultValue={cuisines[0]}
+                            onChange={(event, newValue) => {
+                                setSelectedCuisine(newValue); // Update selected cuisine in state
+                                console.log("Selected cuisine:", newValue);
+                            }}
+                            sx={{ width: 300 }}
+                            renderInput={(params) => <TextField {...params}  />}
+                        />
+                    }
                 </div>
                 <div className={`map-venue-container ${classNames}`}>
                     <div onClick={()=>{setVisible(!visible)}}>

@@ -114,6 +114,7 @@ const Venues = () => {
                                                                 className={"venue__image"}
                                                                 onMouseEnter={() => setHighlightedVenue(v)} // Set highlight on hover
                                                                 onMouseLeave={() => setHighlightedVenue(null)} // Remove highlight on leave
+                                                                onClick={() => navigateTo(v.url)}
                                                             >
                                                                 <DitherImage
                                                                     url={v.media.hero.sizes.tablet.url}
