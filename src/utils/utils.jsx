@@ -1,7 +1,7 @@
 import { DateTime } from 'luxon';
 
 export function venueStatus(venue) {
-    let status = null
+    let status = null;
     let days = {
         "Mo": 1,
         "Tu": 2,
@@ -9,34 +9,49 @@ export function venueStatus(venue) {
         "Thu": 4,
         "Fr": 5,
         "Sat": 6,
-        "Sun": 7
-    }
+        "Sun": 0 // "Sun" corresponds to 0 (Sunday)
+    };
 
-    // fetch what time it is now.
-    const now = new Date(); // number
-    //console.log(now.getDay())
+    // Get the current day and time
+    const now = new Date();
+    const currentDay = now.getDay(); // 0 for Sunday, 1 for Monday, etc.
+    const currentTime = now.getHours() * 60 + now.getMinutes(); // Current time in minutes since midnight
 
-    // read opening hours of venue
-    let venueHours = venue.hours
+    // Read the opening hours of the venue
+    let venueHours = venue.hours;
 
     for (let i = 0; i < venueHours.length; i++) {
-        //console.log(venueHours[i].openDay)
-        if (venueHours[i].openDay = now.getDay()) {
-            //console.log("match")
-            status = "open today"
+        const _dayOpen = venueHours[i].openDay;
+        const dayOpen = days[_dayOpen];
+
+        // Check if today matches the venue's opening day
+        if (dayOpen === currentDay) {
+
+            // Get the opening and closing times (assumed in minutes since midnight)
+            const openingTime = parseTime(venueHours[i].openFrom); // Helper function
+            const closingTime = parseTime(venueHours[i].openTill); // Helper function
+
+            // Compare the current time to see if the venue is open
+            if (currentTime >= openingTime && currentTime <= closingTime) {
+                status = "open now";
+            } else if (currentTime < openingTime) {
+                status = "opens soon";
+            } else {
+                status = "closed today";
+            }
+            break; // Exit loop since today's status is determined
         }
     }
 
-    // compare
-
-    // if in range (is open)
-
-    // if open today, but not now (opens soon)
-
-    // if open tomorrow (opens tomorrow)
-    return status
+    // Return status or "closed today" by default
+    return status || "closed today";
 }
 
+// Helper function to parse "HH:mm" format into minutes since midnight
+function parseTime(timeString) {
+    const [hours, minutes] = timeString.split(":").map((t) => parseInt(t, 10));
+    return hours * 60 + minutes;
+}
 // handle location changes
 export function handleLocationChange(newLocation, setLocation, setBgColor) {
     const clubColors = {

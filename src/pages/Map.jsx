@@ -7,6 +7,7 @@ import {useNavigate} from "react-router-dom";
 import {venueStatus, fetchAPI, getCSSVariableValue} from "../utils/utils.jsx";
 import {LocationColorContext} from "../utils/LocationColorContext.jsx";
 import Banner from "../elements/Banner.jsx";
+import {Switch} from "@mui/material";
 
 
 // todo add container that shows preview of the selected item
@@ -28,7 +29,7 @@ const Map = ({}) => {
     const [target, setTarget] = useState(null);
     const [location, setLocation] = useState(null);
     const [visible, setVisible] = useState(true);
-
+    const [showOpenOnly, setShowOpenOnly] = useState(false); // Default: show all venues
     const { locationColor} = useContext(LocationColorContext);
 
     //console.log(highlightedVenue)
@@ -60,6 +61,12 @@ const Map = ({}) => {
     useEffect(() => {
         getVenues();
     },[])
+
+    // Filter venues based on the "open now" toggle
+    const filteredVenues = showOpenOnly
+        ? venues.filter((venue) => venueStatus(venue) !== "closed today") // Check status
+        : venues;
+
 
     // Add animation classes based on visibility state
     const classNames = visible ? "slide-up" : "slide-down";
@@ -113,7 +120,7 @@ const Map = ({}) => {
                         iconCreateFunction={createCustomClusterIcon}
                     >
                         {/* plot markers*/}
-                        {venues && venues.map((venue) => {
+                        {filteredVenues && filteredVenues.map((venue) => {
                             const color = getColorForClub(venue.club);
                             if (venue.address.longitude && venue.address.latitude) {
                                 return (
@@ -132,9 +139,18 @@ const Map = ({}) => {
                         })}
                     </MarkerClusterGroup>
                 </MapContainer>
+                <div className={"map--filter_left"}>
+                    <div className={"switch"}>
+                        <p>open today</p>
+                        <Switch
+                            checked={showOpenOnly}
+                            onChange={(e) => setShowOpenOnly(e.target.checked)}
+                            label="open today"
+                        />
+                    </div>
+                </div>
                 <div className={"map--filter_container"}>
                     <div className={"tags"} style={{padding: "10px 10px"}}>
-                        <h2>open now</h2>
                         <h2>monday</h2>
                         <h2>tuesday</h2>
                         <h2>wednesday</h2>

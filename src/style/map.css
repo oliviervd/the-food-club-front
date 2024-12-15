@@ -16,6 +16,26 @@
 .map--ui{
 }
 
+.map--filter_left {
+    position: absolute;
+    z-index: 10000;
+    width: 200px;
+    height: auto;
+    top: 20px;
+    left: 20px;
+    border-radius: 100px;
+    border: 2px var(--color-secondary) solid;
+    background-color: var(--color-main);
+}
+
+.switch {
+    display: flex;
+    flex-flow: row;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
 .map--filter_container {
     position: absolute;
     z-index: 10000;
