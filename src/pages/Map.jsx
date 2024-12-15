@@ -25,10 +25,6 @@ const ChangeView = ({ center, zoom }) => {
     return null;
 }
 
-
-
-
-
 const Map = ({}) => {
 
     const [target, setTarget] = useState(null);
@@ -41,7 +37,6 @@ const Map = ({}) => {
     const [selectedCuisine, setSelectedCuisine] = useState([]);
 
 
-
     useEffect(() => {
         const getCuisines = async() => {
             const _cuisines = await fetchAPI("cuisine", "en")
@@ -50,7 +45,6 @@ const Map = ({}) => {
         getCuisines()
     },[location])
 
-    console.log(cuisines)
 
     //console.log(highlightedVenue)
 
@@ -82,10 +76,37 @@ const Map = ({}) => {
         getVenues();
     },[])
 
-    // Filter venues based on the "open now" toggle
-    const filteredVenues = showOpenOnly
-        ? venues.filter((venue) => venueStatus(venue) !== "closed today") // Check status
-        : venues;
+// Filter venues based on the "open now" toggle and cuisine
+    const filteredVenues = venues.filter((venue) => {
+        // Check if "showOpenOnly" is active and if the venue is open
+        console.log(venue)
+        const isOpen = showOpenOnly ? venueStatus(venue) !== "closed today" : true;
+
+        // Check if the venue matches the selected cuisine (if set)
+        let matchesCuisine = false
+
+
+        if (venue.cuisineUsed) {
+            for (let i = 0; i < venue.cuisineUsed.length; i++) {
+                // Controlla se "selectedCuisine" contiene un oggetto con il campo `name` corrispondente
+                matchesCuisine = selectedCuisine.length > 0
+                    ? selectedCuisine.some((cuisine) => cuisine.name === venue.cuisineUsed[i].name)
+                    : true;
+
+                console.log("Selected cuisines:", selectedCuisine);
+                console.log("Checking cuisine:", venue.cuisineUsed[i].name);
+                console.log("Matches cuisine:", matchesCuisine);
+
+                // Se trovi una corrispondenza, interrompi il ciclo
+                if (matchesCuisine) {
+                    break;
+                }
+            }
+        }
+        return matchesCuisine && isOpen;
+    });
+
+    console.log(filteredVenues)
 
 
     // Add animation classes based on visibility state
