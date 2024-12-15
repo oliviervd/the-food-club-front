@@ -256,6 +256,11 @@
                         background-color: var(--color-secondary);
                         transform: translateX(-50%) translateY(-50%);
                     }
+
+                    h2:hover {
+                        color: var(--color-secondary);
+                        background-color: var(--color-main);
+                    }
                 }
             }
         }

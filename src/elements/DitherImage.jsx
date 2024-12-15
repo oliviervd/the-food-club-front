@@ -5,8 +5,6 @@ import {useNavigate} from "react-router-dom";
 const DitherImage = ({ url, link, dim }) => {
     const [ditheredImage, setDitheredImage] = useState(null);
     const nav = useNavigate()
-    console.log(dim)
-    console.log(url)
 
     useEffect(() => {
         if (url) {

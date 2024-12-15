@@ -15,10 +15,10 @@ const ChangeView = ({ center, zoom }) => {
     return null;
 }
 
-const MapSmall = ({venues}) => {
+const MapSmall = ({venues, highlight}) => {
     // small map component to integrate in pages.
     const { locationColor} = useContext(LocationColorContext);
-    console.log(venues)
+    console.log(highlight)
 
     let [zoom, setZoom] = useState(12.5) // set zoom of map
     const colorToCoordinatesMap = {
@@ -52,18 +52,6 @@ const MapSmall = ({venues}) => {
         });
     };
 
-    // Function to get color based on club/location
-    const getColorForClub = (club) => {
-        switch (club) {
-            case "antwerp":
-                return getCSSVariableValue("--color-antwerp-main");
-            case "gent":
-                return getCSSVariableValue("--color-gent-main");
-            default:
-                return getCSSVariableValue("--color-brussels-main");
-        }
-    };
-
     return (
         <section className={"map--ui_container-small"} style={{ overflow: "hidden", maxWidth: "100vw", maxHeight: "100vh", position: "relative"}} id={"mapSmallContainer"}>
             <MapContainer
@@ -76,14 +64,16 @@ const MapSmall = ({venues}) => {
                 <TileLayer
                     url="https://api.mapbox.com/styles/v1/oliviervd-tfc/clllwhqvq009s01pea2rw8mpt/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoib2xpdmllcnZkLXRmYyIsImEiOiJjbGxqZWFjd3MweTBzM2psaWFiemlnZnZnIn0.fMu0iJpz82mNYQ5Rrrwi-w"
                 />
-                <MarkerClusterGroup
-                    chunkedLoading={true}
-                    iconCreateFunction={createCustomClusterIcon}
-                >
+
                     {venues && venues.map && venues.map((venue) => {
                         //console.log(venue)
                         if (venue.venue.club) {
-                            const color = getColorForClub(venue.club);
+
+                            const isHighlighted = highlight && highlight.url === venue.venue.url; // Check if this venue is the highlighted one
+                            const color = isHighlighted
+                                ? getCSSVariableValue("--color-secondary") // Use a different color for highlighted venues
+                                : getCSSVariableValue("--color-main");
+
                             return (
                                 <Marker
                                     position={[venue.venue.address.longitude, venue.venue.address.latitude]}
@@ -100,7 +90,7 @@ const MapSmall = ({venues}) => {
                                 />
                             </div>
                     }
-                </MarkerClusterGroup>
+
 
             </MapContainer>
         </section>

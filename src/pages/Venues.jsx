@@ -1,7 +1,7 @@
 import Header from "../elements/Header.jsx";
 import { useNavigate, useParams } from "react-router-dom";
 import { fetchAPI, shuffleArray, venueStatus } from "../utils/utils.jsx";
-import { useContext, useMemo } from "react";
+import {useContext, useMemo, useState} from "react";
 import { useQuery } from "@tanstack/react-query";
 import DitherImage from "../elements/DitherImage.jsx";
 import { useMediaQuery } from "@uidotdev/usehooks";
@@ -19,6 +19,7 @@ const Venues = () => {
     const nav = useNavigate();
     const isSmall = useMediaQuery("(max-width: 600px)"); // Mobile detection
     const { category: categoryParam } = useParams(); // Get category parameter from route
+    const [highlightedVenue, setHighlightedVenue] = useState(null);
 
     // Fetch categories using React Query
     const { data: categories, isLoading, error } = useQuery(['categories', categoryParam], () => fetchAPI('categories', 'en'));
@@ -109,7 +110,11 @@ const Venues = () => {
                                                 if (v.club === location) {
                                                     return (
                                                         <div key={index} className={"venue"}>
-                                                            <div className={"venue__image"}>
+                                                            <div
+                                                                className={"venue__image"}
+                                                                onMouseEnter={() => setHighlightedVenue(v)} // Set highlight on hover
+                                                                onMouseLeave={() => setHighlightedVenue(null)} // Remove highlight on leave
+                                                            >
                                                                 <DitherImage
                                                                     url={v.media.hero.sizes.tablet.url}
                                                                     link={`/venue/${v.url}`}
@@ -128,7 +133,7 @@ const Venues = () => {
                                 </section>
 
                                 <section className={"venue-list__container-others"}>
-                                    <MapSmall venues={shuffledVenues} />
+                                    <MapSmall venues={shuffledVenues} highlight={highlightedVenue} />
                                 </section>
                             </section>
                         )}
