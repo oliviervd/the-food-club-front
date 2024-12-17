@@ -171,7 +171,7 @@ const Map = ({}) => {
                                         icon={createCustomIcon(color)}
                                         eventHandlers={{
                                             click: () => {
-                                                setVisible(visible);
+                                                setVisible(true);
                                                 setTarget(venue);
                                             },
                                         }}
