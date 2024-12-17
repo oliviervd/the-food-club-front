@@ -10,9 +10,12 @@ import Banner from "../elements/Banner.jsx";
 import {Switch} from "@mui/material";
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
+import serialize from "../utils/serialize.jsx";
+import DitherImage from "../elements/DitherImage.jsx";
 
 // todo add container that shows preview of the selected item
 // todo add icons to zoom in / zoom out / show my location.
+
 
 // Custom hook to update the map center
 const ChangeView = ({ center, zoom }) => {
@@ -35,6 +38,8 @@ const Map = ({}) => {
     const [cuisines, setCuisines] = useState([]);
     const [selectedCuisine, setSelectedCuisine] = useState([]);
     const [selectedDish, setSelectedDish] = useState([]);
+
+    console.log(target)
 
 
     useEffect(() => {
@@ -166,7 +171,8 @@ const Map = ({}) => {
                                         icon={createCustomIcon(color)}
                                         eventHandlers={{
                                             click: () => {
-                                                setVisible(!visible);
+                                                setVisible(visible);
+                                                setTarget(venue);
                                             },
                                         }}
                                     />
@@ -232,13 +238,19 @@ const Map = ({}) => {
                         />
                     }
                 </div>
-                <div className={`map-venue-container ${classNames}`}>
-                    <div onClick={() => {
-                        setVisible(!visible)
-                    }}>
-                        <Banner small={true} content={"↧ close ↧"}/>
+                {visible && target &&
+                    <div
+                        onClick={() => setVisible(!visible)}
+                        className={"map--popup"}
+                    >
+                        <Banner content={target.venueName}/>
+                        {target.media && target.media.hero && target.media.hero.sizes &&
+                            <DitherImage style={{justifyContent: "center", maxWidth: "99%"}}
+                                         url={target.media.hero.sizes.tablet.url}/>
+                        }
+
                     </div>
-                </div>
+                }
             </div>
         </div>
     )

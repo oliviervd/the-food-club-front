@@ -48,7 +48,7 @@ const DitherImage = ({ url, link, dim }) => {
             {ditheredImage ? (
                 <img src={ditheredImage} alt="Dithered" onClick={()=>nav(link)}/>
             ) : (
-                 <div style={{width: "99%", height: "33vh", border: "2px solid black"}}></div>
+                 <div style={{width: "99%", height: "33vh"}}></div>
             )}
         </div>
     );

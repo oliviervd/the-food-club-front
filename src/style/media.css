@@ -1,8 +1,7 @@
 img {
-    max-width: 99%;
+    max-width: 100%;
     text-align: center;
     justify-content: center;
-    border: var(--color-secondary) 3px solid;
 }
 
 .logo-container {
