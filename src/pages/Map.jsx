@@ -29,6 +29,7 @@ const Map = ({}) => {
     const [location, setLocation] = useState(null);
     const [visible, setVisible] = useState(true);
     const [showOpenOnly, setShowOpenOnly] = useState(false); // Default: show all venues
+    const [hasTakeAway, setHasTakeAway] = useState(false); // default
     const { locationColor} = useContext(LocationColorContext);
 
     const [cuisines, setCuisines] = useState([]);
@@ -79,6 +80,7 @@ const Map = ({}) => {
     const filteredVenues = venues.filter((venue) => {
         // Check if the venue meets the "open now" criteria.
         const isOpen = showOpenOnly ? venueStatus(venue) !== "closed today" : true;
+        const takeAway = hasTakeAway ? venue["takeAway"] : true;
 
         // Check if the venue matches the selected cuisines.
         const matchesCuisine = venue.cuisineUsed
@@ -99,7 +101,7 @@ const Map = ({}) => {
             : false; // No dishes in the venue.
 
         // Return true only if both cuisine and dish matches (plus open status).
-        return isOpen && matchesCuisine && matchesDish;
+        return isOpen && matchesCuisine && matchesDish && takeAway;
     });
 
 
@@ -181,6 +183,14 @@ const Map = ({}) => {
                             checked={showOpenOnly}
                             onChange={(e) => setShowOpenOnly(e.target.checked)}
                             label="open today"
+                        />
+                    </div>
+                    <div className={"switch"}>
+                        <p>take-away</p>
+                        <Switch
+                            checked={hasTakeAway}
+                            onChange={(e) => setHasTakeAway(e.target.checked)}
+                            label="take-away"
                         />
                     </div>
                 </div>

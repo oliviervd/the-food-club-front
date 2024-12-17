@@ -23,9 +23,6 @@
     height: auto;
     top: 20px;
     left: 20px;
-    border-radius: 100px;
-    border: 2px var(--color-secondary) solid;
-    background-color: var(--color-main);
 }
 
 .switch {
@@ -34,6 +31,9 @@
     gap: 10px;
     justify-content: center;
     align-items: center;
+    margin-bottom: 10px;
+    border: 2px var(--color-secondary) solid;
+    background-color: var(--color-main);
 }
 
 .map--filter_container {
