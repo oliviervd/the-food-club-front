@@ -77,32 +77,29 @@ const Map = ({}) => {
 
 // Filter venues based on the "open now" toggle and cuisine
     const filteredVenues = venues.filter((venue) => {
-        // Check if "showOpenOnly" is active and if the venue is open
-        console.log(venue)
+        // Check if the venue meets the "open now" criteria.
         const isOpen = showOpenOnly ? venueStatus(venue) !== "closed today" : true;
 
-        // Check if the venue matches the selected cuisine (if set)
-        let matchesCuisine = false
+        // Check if the venue matches the selected cuisines.
+        const matchesCuisine = venue.cuisineUsed
+            ? selectedCuisine.length > 0
+                ? venue.cuisineUsed.some((cuisine) =>
+                    selectedCuisine.some((selected) => selected.name === cuisine.name)
+                )
+                : true // No cuisines selected, allow all venues.
+            : false; // No cuisines in the venue.
 
+        // Check if the venue matches the selected dishes.
+        const matchesDish = venue.cuisineUsed
+            ? selectedDish.length > 0
+                ? venue.cuisineUsed.some((dish) =>
+                    selectedDish.some((selected) => selected.name === dish.name)
+                )
+                : true // No dishes selected, allow all venues.
+            : false; // No dishes in the venue.
 
-        if (venue.cuisineUsed) {
-            for (let i = 0; i < venue.cuisineUsed.length; i++) {
-                // Controlla se "selectedCuisine" contiene un oggetto con il campo `name` corrispondente
-                matchesCuisine = selectedCuisine.length > 0
-                    ? selectedCuisine.some((cuisine) => cuisine.name === venue.cuisineUsed[i].name)
-                    : true;
-
-                console.log("Selected cuisines:", selectedCuisine);
-                console.log("Checking cuisine:", venue.cuisineUsed[i].name);
-                console.log("Matches cuisine:", matchesCuisine);
-
-                // Se trovi una corrispondenza, interrompi il ciclo
-                if (matchesCuisine) {
-                    break;
-                }
-            }
-        }
-        return matchesCuisine && isOpen;
+        // Return true only if both cuisine and dish matches (plus open status).
+        return isOpen && matchesCuisine && matchesDish;
     });
 
 
