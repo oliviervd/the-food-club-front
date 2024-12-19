@@ -3,9 +3,10 @@ import { floydSteinbergDither } from '../utils/dither';
 import {useNavigate} from "react-router-dom";
 
 const DitherImage = ({ url, link, dim }) => {
-    const [ditheredImage, setDitheredImage] = useState(null);
+    const [ditheredImage, setDitheredImage] = useState(true);
     const nav = useNavigate()
 
+    {/*
     useEffect(() => {
         if (url) {
             const dither = (url) => {
@@ -42,11 +43,12 @@ const DitherImage = ({ url, link, dim }) => {
             dither(url);
         }
     }, [url]);
+    */}
 
     return (
         <div>
             {ditheredImage ? (
-                <img src={ditheredImage} alt="Dithered" onClick={()=>nav(link)}/>
+                <img src={url} alt="Dithered" onClick={()=>nav(link)}/>
             ) : (
                  <div style={{width: "99%", height: "33vh"}}></div>
             )}
