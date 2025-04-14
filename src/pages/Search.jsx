@@ -8,6 +8,7 @@ import DitherImage from "../elements/DitherImage.jsx";
 import {useMediaQuery} from "@uidotdev/usehooks";
 import Banner from "../elements/Banner.jsx";
 import {LocationColorContext} from "../utils/LocationColorContext.jsx";
+import MapSmall from "../elements/mapSmall.jsx";
 
 const Search = () => {
 
@@ -94,15 +95,29 @@ const Search = () => {
                             })
                         }
                         {!isSmall && matches &&
-                            matches.map((match, index) => {
-                                if (match._status == "published") {
-                                    return (
-                                        <section>
+                            <section className={"desktop"}>
+                                <section className={"venue-list__container-main"}>
+                                    <section>
+                                        {matches.map((match, index) => {
+                                            if (match._status == "published") {
+                                                return (
+                                                    <div className={"venue"}>
+                                                        <div className={"venue__image"}>
+                                                            <DitherImage url={match.media.hero.sizes.tablet.url}
+                                                                         link={`/venue/${match.url}`}/>
+                                                            <h2>{match.venueName}</h2>
+                                                        </div>
+                                                    </div>
+                                                )
+                                            }
+                                        })}
+                                    </section>
+                                </section>
+                                <section className={"venue-list__container-others"}>
+                                    {<MapSmall venues={matches}/>}
+                                </section>
+                            </section>
 
-                                        </section>
-                                    )
-                                }
-                            })
                         }
                     </section>
                 </section>

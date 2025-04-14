@@ -5,9 +5,15 @@ import {Fragment} from "react";
 const serialize = (children) =>
     children.map((node, i) => {
         if (Text.isText(node)) {
+
+            // Check if the text is empty, indicating a line break
+            if (node.text === "") {
+                return <br key={i} />;
+            }
+
             let text = (
                 <span dangerouslySetInnerHTML={{ __html: escapeHTML(node.text) }} />
-        );
+             );
 
             if (node.bold) {
                 text = <strong key={i}>{text}</strong>;
