@@ -67,6 +67,7 @@
 
         p {
             font-size: var(--font-s);
+            text-align: justify;
         }
     }
 
@@ -112,12 +113,6 @@
     .text-main {
         margin-top: 0;
         text-align: left;
-
-        .venue-tip__container . text-main {
-            p {
-                margin-bottom: 0px;
-            }
-        }
 
         p {
             margin: 0;
