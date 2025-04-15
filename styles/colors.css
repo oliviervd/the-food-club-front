@@ -2,12 +2,16 @@
     --background-color: #f4f0ec;
     --color-main: #c9ff00;
     --color-secondary: #000eff;
+    --color-glass: #000eff55;
     --color-gent-main: #c9ff00;
     --color-gent-secondary: #000eff;
+    --color-gent-glass: #000eff55;
     --color-antwerp-main: #b5ffc2;
     --color-antwerp-secondary: #ff00ff;
+    --color-antwerp-glass:  #ff00ff55;
     --color-brussels-main: #fff59e;
     --color-brussels-secondary: #ff5733;
+    --color-brussels-glass: #ff573355;
     --color-highlight: #ff0000;
 }
 

@@ -4,16 +4,19 @@ const locationColors = {
     "gent": {
         "main": "#c9ff00",
         "secondary": "#000eff",
+        "glass": "#000eff55",
         "location": "gent"
     },
     "antwerp": {
         "main": "#b5ffc2",
         "secondary": "#ff00ff",
+        "glass": "#ff00ff55",
         'location': "antwerp"
     },
     "brussels": {
         "main": "#fff59e",
         "secondary": "#ff5733",
+        "glass": "#ff573355",
         'location': "brussels"
     }
 };
@@ -21,6 +24,7 @@ const locationColors = {
 const defaultLocationColors = {
     main: "#c9ff00",
     secondary: "#000eff",
+    glass: "#000eff55",
     location: "gent"
 }
 
@@ -36,6 +40,7 @@ export const LocationColorProvider = ({ children }) => {
             setLocationColor(newLocationColor);
             document.documentElement.style.setProperty('--color-main', newLocationColor.main);
             document.documentElement.style.setProperty('--color-secondary', newLocationColor.secondary);
+            document.documentElement.style.setProperty('--color-glass', newLocationColor.glass);
         }
     };
 
