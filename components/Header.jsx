@@ -93,20 +93,20 @@ const Header = ({ interact, landing, venueLocation, setTarget, greyOut=false, co
                 {isMobile &&
                     <div>
                         {!venue &&
-                        <nav className={"flex-buttons"}>
-                            <h2 className={`link ${location === "gent" ? "selected" : ""}${greyOut && location !== "gent" ? "greyed-out" : ""}`}
-                                onClick={interact ? () => {
-                                    handleLocationChange("gent");
-                            } : null}>gent</h2>
-                            <h2 className={`link ${location === "antwerp" ? "selected" : ""}${greyOut && location !== "antwerp" ? "greyed-out" : ""}`}
-                                onClick={interact ? () => {
-                                    handleLocationChange("antwerp");
-                                } : null}>antwerp</h2>
-                            <h2 className={`link ${location === "brussels" ? "selected" : ""}${greyOut && location !== "brussels" ? "greyed-out" : ""}`}
-                                onClick={interact ? () => {
-                                    handleLocationChange("brussels");
-                                } : null}>brussels</h2>
-                        </nav>
+                            <nav className={"flex-buttons"}>
+                                <h2 className={`link ${location === "gent" ? "selected" : ""}${greyOut && location !== "gent" ? "greyed-out" : ""}`}
+                                    onClick={interact ? () => {
+                                        handleLocationChange("gent");
+                                    } : null}>gent</h2>
+                                <h2 className={`link ${location === "antwerp" ? "selected" : ""}${greyOut && location !== "antwerp" ? "greyed-out" : ""}`}
+                                    onClick={interact ? () => {
+                                        handleLocationChange("antwerp");
+                                    } : null}>antwerp</h2>
+                                <h2 className={`link ${location === "brussels" ? "selected" : ""}${greyOut && location !== "brussels" ? "greyed-out" : ""}`}
+                                    onClick={interact ? () => {
+                                        handleLocationChange("brussels");
+                                    } : null}>brussels</h2>
+                            </nav>
                         }
                         {venue &&
                             <nav className={"flex-buttons"}>
@@ -114,10 +114,16 @@ const Header = ({ interact, landing, venueLocation, setTarget, greyOut=false, co
                             </nav>
                         }
                         <nav className={"flex-buttons"}>
-                            <h2 className={`link ${selectedTab === "lists" ? "selected" : "none"}`} style={{borderTop: "none"}}
-                                onClick={() => router("/")}>lists</h2>
-                            <h2 className={`link ${selectedTab === "map" ? "selected" : "none"}`} style={{borderTop: "none"}} onClick={() => nav("/map/")}>map</h2>
-
+                            <h2 className={`link ${selectedTab === "lists" ? "selected" : "none"}`} style={{borderTop: "none"}}>
+                                <Link href={"/"}>
+                                    lists
+                                </Link>
+                            </h2>
+                            <h2 className={`link ${selectedTab === "map" ? "selected" : "none"}`} style={{borderTop: "none"}}>
+                                <Link href={"/map"}>
+                                    map
+                                </Link>
+                            </h2>
                         </nav>
                     </div>
                 }
