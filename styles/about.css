@@ -1,25 +1,17 @@
 .about {
     width: 100vw;
+    justify-content: center;
 }
 
-.about h1 {
-    max-width: 100%;
-    margin: 20px 50px 20px 50px;
+.italic {
+    font-style: italic;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+p {
     text-align: center;
-    line-height: 1.9rem;
-}
-
-.about p {
-    margin: 20px 50px 20px 50px;
-    text-align: center;
-    line-height: 1.2rem;
-    width: 50vw;
-    margin: 0 auto;
-}
-
-@media (max-width: 800px) {
-    .about p {
-        width: 90vw;
-    }
 }
 
