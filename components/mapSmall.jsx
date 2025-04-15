@@ -1,3 +1,5 @@
+'use client'
+
 import {MapContainer, TileLayer, useMap, Marker} from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
 
@@ -66,17 +68,17 @@ const MapSmall = ({venues, highlight}) => {
                 />
 
                     {venues && venues.map && venues.map((venue) => {
-                        //console.log(venue)
-                        if (venue.venue.club) {
+                        console.log(venue)
+                        if (venue.club) {
 
-                            const isHighlighted = highlight && highlight.url === venue.venue.url; // Check if this venue is the highlighted one
+                            const isHighlighted = highlight && highlight.url === venue.url; // Check if this venue is the highlighted one
                             const color = isHighlighted
                                 ? getCSSVariableValue("--color-secondary") // Use a different color for highlighted venues
                                 : getCSSVariableValue("--color-main");
 
                             return (
                                 <Marker
-                                    position={[venue.venue.address.longitude, venue.venue.address.latitude]}
+                                    position={[venue.address.longitude, venue.address.latitude]}
                                     icon={createCustomIcon(color)}
                                 />
                             )

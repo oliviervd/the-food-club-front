@@ -1,9 +1,11 @@
 import AutoResizeText from "./AutoResizeText.jsx";
-import {useNavigate} from "react-router-dom";
-import {useContext} from "react";
-import {useMediaQuery} from "@uidotdev/usehooks";
+import { useRouter } from 'next/navigation';
+import {useContext, useEffect, useState} from "react";
 import {LocationColorContext} from "../utils/LocationColorContext.jsx";
-import logo from "../assets/img/logo-blue.png"
+import Image from 'next/image';
+import logo from '/public/assets/img/logo-blue.png';
+import Link from 'next/link';
+
 
 const Header = ({ interact, landing, venueLocation, setTarget, greyOut=false, color, map , selectedTab, venue}) => {
 
@@ -18,23 +20,33 @@ const Header = ({ interact, landing, venueLocation, setTarget, greyOut=false, co
     }
 
     // navigate back to home
-    const nav = useNavigate();
-    const isSmall = useMediaQuery("(max-width: 600px)");
+    const router = useRouter();
+
+    // media query
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkWidth = () => setIsMobile(window.innerWidth < 600);
+        checkWidth();
+        window.addEventListener("resize", checkWidth);
+        return () => window.removeEventListener("resize", checkWidth);
+    }, []);
 
     if (landing) {
         return(
             <header>
-                {!isSmall &&
+                {!isMobile &&
                     <div>
                         <div style={{display: 'grid', gridTemplateColumns: "30% 40% 30%"}}>
                             <div style={{display: 'flex', flexFlow: "row", height: '100%', justifyContent: 'center'}}>
                                 <h2 style={{margin: "auto"}}>welcome to the club</h2>
                             </div>
-                            <div className={"logo-container"} onClick={() => {
-                                nav("/")
-                            }}>
-                                <img className={"logo"} src={logo}/>
+                            <div className={"logo-container"}>
+                                <Link href="/">
+                                    <Image src={logo} alt="Food Club Logo" className="logo" />
+                                </Link>
                             </div>
+
                             <div style={{display: 'flex', flexFlow: "row", height: '100%', justifyContent: 'center'}}>
                                 <h2 style={{margin: "auto"}}>looking for something?</h2>
                                 <div className={"button-src"}>
@@ -58,9 +70,9 @@ const Header = ({ interact, landing, venueLocation, setTarget, greyOut=false, co
                                     width: "100%",
                                     gap: "0px"
                                 }}>
-                                    <h2 className={"link"} onClick={() => nav("/")}>CATEGORIES</h2>
-                                    <h2 className={"link"} onClick={() => nav("/map/")}>MAP</h2>
-                                    <h2 className={"link"} onClick={() => nav("/about/")}>ABOUT</h2>
+                                    <h2><Link className={"link"} href={"/"}>CATEGORIES</Link></h2>
+                                    <h2><Link className={"link"} href={"/map"}>MAP</Link></h2>
+                                    <h2><Link className={"link"} href={"/about"}>ABOUT</Link></h2>
                                     <h2 className={"link"} onClick={()=>{handleLocationChange("gent")}}>GENT</h2>
                                     <h2 className={"link"} onClick={()=>{handleLocationChange("brussels")}}>BRUSSELS</h2>
                                     <h2 className={"link"} onClick={()=>{handleLocationChange("antwerp")}}>ANTWERP</h2>
@@ -70,15 +82,15 @@ const Header = ({ interact, landing, venueLocation, setTarget, greyOut=false, co
                     </div>
                 }
 
-                {isSmall &&
-                    <div className={"logo-container"} onClick={() => {
-                        nav("/")
-                    }}>
-                        <img className={"logo"} src={logo}/>
+                {isMobile &&
+                    <div className={"logo-container"}>
+                        <Link href="/">
+                            <Image src={logo} alt="Food Club Logo" className="logo" />
+                        </Link>
                     </div>
                 }
 
-                {isSmall &&
+                {isMobile &&
                     <div>
                         {!venue &&
                         <nav className={"flex-buttons"}>
@@ -103,7 +115,7 @@ const Header = ({ interact, landing, venueLocation, setTarget, greyOut=false, co
                         }
                         <nav className={"flex-buttons"}>
                             <h2 className={`link ${selectedTab === "lists" ? "selected" : "none"}`} style={{borderTop: "none"}}
-                                onClick={() => nav("/")}>lists</h2>
+                                onClick={() => router("/")}>lists</h2>
                             <h2 className={`link ${selectedTab === "map" ? "selected" : "none"}`} style={{borderTop: "none"}} onClick={() => nav("/map/")}>map</h2>
 
                         </nav>
@@ -115,10 +127,10 @@ const Header = ({ interact, landing, venueLocation, setTarget, greyOut=false, co
     } else {
         return (
             <header>
-                {!isSmall &&
+                {!isMobile &&
                     <div style={{display: 'grid', gridTemplateColumns: "30% 70%"}}>
                         <div style={{width: '100%', height: 'auto'}} onClick={() => {
-                            nav("/")
+                            router("/")
                         }}>
                             <AutoResizeText text="FOOD CLUB" maxFontSize={600} minFontSize={10}/>
                         </div>
@@ -138,9 +150,9 @@ const Header = ({ interact, landing, venueLocation, setTarget, greyOut=false, co
                         </div>
                     </div>
                 }
-                {isSmall &&
+                {isMobile &&
                     <div style={{width: '100%', height: 'auto'}} onClick={() => {
-                        nav("/")
+                        router("/")
                     }}>
                         <AutoResizeText text="FOOD CLUB" maxFontSize={600} minFontSize={10}/>
                     </div>

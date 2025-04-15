@@ -1,10 +1,11 @@
 import {useEffect, useState} from "react";
-import { floydSteinbergDither } from '../utils/dither';
-import {useNavigate} from "react-router-dom";
+import { floydSteinbergDither } from '../utils/dither.js';
+import {useRouter} from "next/navigation";
+import Link from "next/link";
 
-const DitherImage = ({ url, link, dim }) => {
+const DitherImage = (props) => {
     const [ditheredImage, setDitheredImage] = useState(true);
-    const nav = useNavigate()
+    const router = useRouter();
 
     {/*
     useEffect(() => {
@@ -12,7 +13,7 @@ const DitherImage = ({ url, link, dim }) => {
             const dither = (url) => {
                 const img = new Image();
                 img.crossOrigin = 'Anonymous'; // Handle CORS issues if the image is from a different origin
-                img.src = url;
+                img.app = url;
                 img.onload = () => {
                     const canvas = document.createElement('canvas');
                     const ctx = canvas.getContext('2d');
@@ -48,9 +49,12 @@ const DitherImage = ({ url, link, dim }) => {
     return (
         <div>
             {ditheredImage ? (
-                <img src={url} alt="Dithered" onClick={()=>nav(link)}/>
+                    <img src={props.url} alt="Dithered"/>
+
             ) : (
-                 <div style={{width: "99%", height: "33vh"}}></div>
+
+                    <div style={{width: "99%", height: "33vh"}}></div>
+
             )}
         </div>
     );

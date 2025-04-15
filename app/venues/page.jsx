@@ -1,32 +1,48 @@
-import Header from "../elements/Header.jsx";
-import {useContext, useEffect, useState} from "react";
-import {useNavigate, useSearchParams} from "react-router-dom";
-import AutoResizeText from "../elements/AutoResizeText.jsx";
-import {useQuery} from "@tanstack/react-query";
-import {fetchAPI} from "../utils/utils.jsx";
-import DitherImage from "../elements/DitherImage.jsx";
-import {useMediaQuery} from "@uidotdev/usehooks";
-import Banner from "../elements/Banner.jsx";
-import {LocationColorContext} from "../utils/LocationColorContext.jsx";
-import MapSmall from "../elements/mapSmall.jsx";
+'use client'
 
-const Search = () => {
+// Use this in Page.jsx or wherever you use MapSmall
+import dynamic from 'next/dynamic'
+
+const MapSmall = dynamic(() => import('/components/mapSmall.jsx'), {
+    ssr: false
+});
+
+import Header from "../../components/Header.jsx";
+import {useContext, useEffect, useState} from "react";
+import {useSearchParams, useRouter} from "next/navigation";
+import {useQuery} from "@tanstack/react-query";
+import {fetchAPI} from "../../utils/utils.jsx";
+import DitherImage from "../../components/DitherImage.jsx";
+import Banner from "../../components/Banner.jsx";
+import {LocationColorContext} from "../../utils/LocationColorContext.jsx";
+import Link from "next/link";
+
+const Page = () => {
 
     const { locationColor, handleLocationChange } = useContext(LocationColorContext);
     let { location } = locationColor
 
 
-    const [searchParams, setSearchParams] = useSearchParams()
+    const searchParams = useSearchParams()
     const [search, setSearch] = useState("");
     const [matches, setMatches] = useState([]);
     const [cuisine, setCuisine] = useState(null);
     const [club, setClub] = useState(null);
 
-    const nav = useNavigate();
-    const isSmall = useMediaQuery("(max-width: 600px)");
+    const router = useRouter();
 
     const {data: venuesData, isLoading: venuesLoading, error:venuesError} =    useQuery(["venues"], ()=> fetchAPI('venue', 'en'));
     const {data: cuisinesData, isLoading: cuisinesLoading, error:cuisinesError} = useQuery(["cuisines"], ()=>fetchAPI("cuisine", "en"))
+
+    // media query
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkWidth = () => setIsMobile(window.innerWidth < 600);
+        checkWidth();
+        window.addEventListener("resize", checkWidth);
+        return () => window.removeEventListener("resize", checkWidth);
+    }, []);
 
     // fetch all venues
     useEffect(() => {
@@ -59,12 +75,6 @@ const Search = () => {
         return <p>Error loading data</p>;
     }
 
-    //navigate to selected venue
-    function navigateTo(route) {
-        nav(`/venue/${route}`)
-    }
-
-
     return (
         <>
             <Header landing={true} location={club} setLocation={setClub} interact={true}/>
@@ -74,17 +84,17 @@ const Search = () => {
             {matches[0] &&
                 <section className={"home__container"}>
                     <section style={{position: "relative"}}>
-                        {isSmall && matches &&
+                        {isMobile && matches &&
                             matches.map((match, index) => {
                                 console.log(match)
                                 if (match._status == "published") {
                                     try {
                                         return (
-                                            <div key={index} className={"category-list__box"} onClick={() => {
-                                                navigateTo(match.url)
-                                            }}>
-                                                <DitherImage url={match.media.hero.sizes.tablet.url}/>
-                                                <h2 style={{textAlign: "center"}}>{match.venueName}</h2>
+                                            <div key={index} className={"category-list__box"}>
+                                                <Link href={`/venue/${match.url}`}>
+                                                    <DitherImage url={match.media.hero.sizes.tablet.url}/>
+                                                    <h2 style={{textAlign: "center"}}>{match.venueName}</h2>
+                                                </Link>
                                             </div>
                                         )
                                     } catch (e) {
@@ -94,18 +104,20 @@ const Search = () => {
 
                             })
                         }
-                        {!isSmall && matches &&
+                        {!isMobile && matches &&
                             <section className={"desktop"}>
                                 <section className={"venue-list__container-main"}>
                                     <section>
                                         {matches.map((match, index) => {
                                             if (match._status == "published") {
+                                                console.log(match);
                                                 return (
                                                     <div className={"venue"}>
                                                         <div className={"venue__image"}>
-                                                            <DitherImage url={match.media.hero.sizes.tablet.url}
-                                                                         link={`/venue/${match.url}`}/>
-                                                            <h2>{match.venueName}</h2>
+                                                            <Link href={`/venue/${match.url}`}>
+                                                                <DitherImage url={match.media.hero.sizes.tablet.url}/>
+                                                                <h2 style={{textAlign: "center"}}>{match.venueName}</h2>
+                                                            </Link>
                                                         </div>
                                                     </div>
                                                 )
@@ -114,10 +126,9 @@ const Search = () => {
                                     </section>
                                 </section>
                                 <section className={"venue-list__container-others"}>
-                                    {<MapSmall venues={matches}/>}
+                                    <MapSmall venues={matches}/>
                                 </section>
                             </section>
-
                         }
                     </section>
                 </section>
@@ -126,4 +137,4 @@ const Search = () => {
     )
 }
 
-export default Search;
+export default Page;

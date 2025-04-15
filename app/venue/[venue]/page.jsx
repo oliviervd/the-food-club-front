@@ -1,24 +1,34 @@
-import Header from "../elements/Header.jsx";
-import {useNavigate, useParams} from "react-router-dom";
-import {useEffect, useState} from "react";
-import {fetchAPI, convertHour} from "../utils/utils.jsx";
-import {useQuery} from "@tanstack/react-query";
-import AutoResizeText from "../elements/AutoResizeText.jsx";
-import DitherImage from "../elements/DitherImage.jsx";
-import serialize from "../utils/serialize.jsx";
-import {useMediaQuery} from "@uidotdev/usehooks";
-import MapSmall from "../elements/mapSmall.jsx";
-import Loading from "./Loading.jsx";
+'use client'
 
-const Venue = () => {
+import Header from "../../../components/Header.jsx";
+import { useParams, useRouter } from 'next/navigation';
+import {fetchAPI, convertHour} from "../../../utils/utils.jsx";
+import {useQuery} from "@tanstack/react-query";
+import AutoResizeText from "../../../components/AutoResizeText.jsx";
+import DitherImage from "../../../components/DitherImage.jsx";
+import serialize from "../../../utils/serialize.jsx";
+import Loading from "../../Loading.jsx";
+import {useEffect, useState} from "react";
+import Link from "next/link";
+
+const Page = () => {
 
     // todo: add map (refer to)
     // todo: add status (open now / closed)
     // todo: add section with extra info; telephone, website, socials)
 
+    // media query
+    const [isDesktop, setIsDesktop] = useState(false);
+
+    useEffect(() => {
+        const checkWidth = () => setIsDesktop(window.innerWidth > 1200);
+        checkWidth();
+        window.addEventListener("resize", checkWidth);
+        return () => window.removeEventListener("resize", checkWidth);
+    }, []);
+
     const { venue: venueParam } = useParams();
-    const nav = useNavigate();
-    const isDesktop = useMediaQuery("(min-width: 1200px)");
+    const router = useRouter();
 
     // Fetch venues using React Query
     const { data: venues, isLoading, error } = useQuery(["venues"], () => fetchAPI("venue", "en"), {
@@ -32,13 +42,9 @@ const Venue = () => {
     // Set the location of the venue (optional)
     const venueLocation = venue?.club || null;
 
-    // Navigation Function
-    const navigateTo = (route) => {
-        nav(route);
-    };
-
     if (isLoading) return <Loading/>;
     if (error) return <p>Error loading venue data. Please try again.</p>;
+
 
     return (
         <>
@@ -69,8 +75,11 @@ const Venue = () => {
                             <div className={"cuisines"}>
                                 {venue.cuisineUsed.map((cuisine) => {
                                     return (
-                                        <a style={{color: "black", textDecoration: "none"}}><h2 className={"link"}
-                                                                                                onClick={() => navigateTo(`/venues/?cuisine=${cuisine.name}`)}>{cuisine.name}</h2>
+                                        <a style={{color: "black", textDecoration: "none"}}>
+                                            <h2 className={"link"}>
+                                                <Link href={`/venues/?cuisine=${cuisine.name}`}>{cuisine.name}
+                                                </Link>
+                                            </h2>
                                         </a>
                                     )
                                 })}
@@ -186,8 +195,12 @@ const Venue = () => {
                         <div className={"cuisines"}>
                             {venue.cuisineUsed.map((cuisine) => {
                                 return (
-                                    <a style={{color: "black", textDecoration: "none"}}><h2 className={"link"}
-                                                                                            onClick={() => navigateTo(`/venues/?cuisine=${cuisine.name}`)}>{cuisine.name}</h2>
+                                    <a style={{color: "black", textDecoration: "none"}}>
+                                        <h2 className={"link"}>
+                                            <Link href={ `/venues/?cuisine=${cuisine.name}`}>
+                                                {cuisine.name}
+                                            </Link>
+                                        </h2>
                                     </a>
                                 )
                             })}
@@ -243,4 +256,4 @@ const Venue = () => {
     )
 }
 
-export default Venue
+export default Page

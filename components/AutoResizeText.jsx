@@ -1,4 +1,4 @@
-// src/AutoResizeText.jsx
+// app/AutoResizeText.jsx
 import React, { useState, useEffect, useRef } from 'react';
 
 const AutoResizeText = ({ text, maxFontSize = 100, minFontSize = 10 , padding = "15px 0px"}) => {
