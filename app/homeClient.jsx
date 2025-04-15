@@ -13,7 +13,7 @@ import LuckyButton from "../components/luckyButton.jsx";
 import {useScrollPosition} from "../hooks/useScrollPosition.jsx";
 import Loading from "./Loading.jsx";
 import { useRouter } from 'next/navigation';
-import { useMediaQuery } from 'react-responsive';
+import {useIsMobile} from "../hooks/isMobile.jsx";
 
 // todo: add locales
 
@@ -25,7 +25,7 @@ const HomeClient = () => {
     const scrollPosition = useScrollPosition();
     const router = useRouter();
 
-    const isMobile = useMediaQuery({ maxWidth: 768 });
+    const isMobile = useIsMobile();
     const [visible, setVisible] = useState(false);
 
     useEffect(() => {
