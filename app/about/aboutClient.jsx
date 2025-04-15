@@ -9,24 +9,15 @@ const Page = ({}) => {
 
     const [about, setAbout] = useState([]);
 
-    useEffect(() => {
-        const getAbout = async() => {
-            const about = await fetchAPI("globals", "en");
-            setAbout(about.docs[0].texts)
-        }
-        getAbout();
-    }, []);
-
-    console.log(about[0])
+    //todo: layout ABOUT
 
     return(
         <div>
             <Header landing={true}/>
-            {about[0] &&
-                <div className={"about"}>
-                    {serialize(about[0].text)}
-                </div>
-            }
+            <div className={"about"}>
+                <p className={"italic bold"}>Rule #1 don’t talk about foodclub…</p>
+                <p className={"italic"}>but ok, rules are meant to be broken!</p>
+            </div>
         </div>
     )
 }
