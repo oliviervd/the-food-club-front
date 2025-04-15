@@ -13,9 +13,6 @@ import LuckyButton from "../components/luckyButton.jsx";
 import {useScrollPosition} from "../hooks/useScrollPosition.jsx";
 import Loading from "./Loading.jsx";
 import { useRouter } from 'next/navigation';
-import logo from "../public/assets/img/logo-blue.png";
-import Image from "next/image.js";
-
 
 // todo: add locales
 
@@ -73,12 +70,6 @@ const HomeClient = () => {
             <Header selectedTab={"lists"} landing={true} interact={true} setLocation={setLocation} location={location} setTarget={setTarget} venue={false}></Header>
             {isMobile && categoryList && categoryList.docs &&
                 <div>
-                    {/* <Marquee className={"banner"} speed={30} pauseOnHover={false} gradient={false} autoFill={true}>
-                        <h3>#1 Don't talk about foodclub - but psssst…. please spread the word! — #2 The foodclub is
-                            a curated space focused on quality, featuring only restaurants we've personally visited.
-                            — #3 The foodclub is, and will always be, a positive space celebrating local culinary
-                            excellence. There is no place for negativity. —</h3>
-                    </Marquee>*/}
                     <section className={"home__container"}>
                         <div>
                             <section style={{padding: "10px 0"}}>

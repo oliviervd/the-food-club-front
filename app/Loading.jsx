@@ -1,5 +1,6 @@
 import logo from "../public/assets/img/logo-blue.png";
 import Image from "next/image.js";
+import Marquee from "react-fast-marquee";
 
 const Loading = () => {
     return (
