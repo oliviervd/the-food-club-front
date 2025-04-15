@@ -68,7 +68,7 @@ const HomeClient = () => {
     return(
         <div>
             <Header selectedTab={"lists"} landing={true} interact={true} setLocation={setLocation} location={location} setTarget={setTarget} venue={false}></Header>
-            {isMobile && categoryList && categoryList.docs &&
+            {isMobile &&
                 <div>
                     <section className={"home__container"}>
                         <div>
