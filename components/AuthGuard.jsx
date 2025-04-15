@@ -8,7 +8,6 @@ const AuthGuard = ({ children }) => {
     const { authenticated, login } = useAuth();
     const [input, setInput] = useState('');
     const devPassword = process.env.NEXT_PUBLIC_FC_DEV_PASSWORD;
-    console.log(input, devPassword);
 
     const handleSubmit = (e) => {
         e.preventDefault();

@@ -21,31 +21,6 @@ import 'leaflet/dist/leaflet.css'
 import '/styles/map.css'
 import '/styles/colors.css'
 
-// SEO metadata as defined
-export const metadata = {
-    title: "Food Club - Home",
-    description: "#1 Don't talk about foodclub - but psssst…. please spread the word! — #2 The foodclub is a curated space focused on quality, featuring only restaurants we've personally visited.",
-    keywords: ['food club', 'gent', 'brussel', 'antwerpen'],
-    openGraph: {
-        title: "Food Club",
-        description: "#1 Don't talk about foodclub - but psssst…. please spread the word! — #2 The foodclub is a curated space focused on quality, featuring only restaurants we've personally visited.",
-        url: "https://www.thefoodclub.be",
-        type: "website",
-        images: [
-            {
-                url: "https://www.thefoodclub.be/assets/img/logo-blue.png",
-                alt: "logo of Food Club",
-            },
-        ],
-    },
-    twitter: {
-        card: 'summary_large_image',
-        title: 'Food Club',
-        description: '#1 Don’t talk about foodclub...',
-        images: ['https://www.thefoodclub.be/img/logo-blue.png'],
-    },
-};
-
 export default function RootLayout({ children }) {
     const [queryClient] = useState(() => new QueryClient({
         defaultOptions: {
@@ -62,19 +37,19 @@ export default function RootLayout({ children }) {
         <body>
 
         <Head>
-            <title>{metadata.title}</title>
-            <meta name="description" content={metadata.description} />
-            <meta name="keywords" content={metadata.keywords.join(', ')} />
-            <meta property="og:title" content={metadata.openGraph.title} />
-            <meta property="og:description" content={metadata.openGraph.description} />
-            <meta property="og:url" content={metadata.openGraph.url} />
-            <meta property="og:type" content={metadata.openGraph.type} />
-            <meta property="og:image" content={metadata.openGraph.images[0].url} />
-            <meta property="og:image:alt" content={metadata.openGraph.images[0].alt} />
-            <meta name="twitter:card" content={metadata.twitter.card} />
-            <meta name="twitter:title" content={metadata.twitter.title} />
-            <meta name="twitter:description" content={metadata.twitter.description} />
-            <meta name="twitter:image" content={metadata.twitter.images[0]} />
+            <title>Food Club</title>
+            <meta name="description" content="#1 Don't talk about foodclub - but psssst…. please spread the word! — #2 The foodclub is a curated space focused on quality, featuring only restaurants we've personally visited." />
+            <meta name="keywords" content="foodclub, gent, brussel, antwerpen" />
+            <meta property="og:title" content="Food Club" />
+            <meta property="og:description" content="#1 Don't talk about foodclub - but psssst…. please spread the word! — #2 The foodclub is a curated space focused on quality, featuring only restaurants we've personally visited." />
+            <meta property="og:url" content="https://www.thefoodclub.be" />
+            <meta property="og:type" content="website" />
+            <meta property="og:image" content="https://www.thefoodclub.be/assets/img/logo-blue.png" />
+            <meta property="og:image:alt" content="logo of Food Club" />
+            <meta name="twitter:card" content='summary_large_image' />
+            <meta name="twitter:title" content= 'Food Club' />
+            <meta name="twitter:description" content='#1 Don’t talk about foodclub...' />
+            <meta name="twitter:image" content='https://www.thefoodclub.be/img/logo-blue.png' />
         </Head>
 
         <QueryClientProvider client={queryClient}>
