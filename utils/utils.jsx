@@ -69,7 +69,7 @@ export function getCSSVariableValue(variableName){
     return getComputedStyle(document.documentElement).getPropertyValue(variableName).trim();
 }
 
-export async function surprise(club, nav, ) {
+export async function surprise(club) {
     console.log(`returning a random location in ${club}`)
     const venues = await fetchAPI("venue", "en");
     if (venues) {
@@ -84,7 +84,9 @@ export async function surprise(club, nav, ) {
         res = venues.docs;
         // pick random one
         const random = Math.floor(Math.random()*res.length)
-        nav(`/venue/${res[random].url}?surprise=true`)
+        let supriseUrl = `/venue/${res[random].url}?surprise=true`
+        console.log(supriseUrl)
+        return supriseUrl
     }
 
 }

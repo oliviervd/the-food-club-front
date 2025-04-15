@@ -1,11 +1,12 @@
 import {surprise} from "../utils/utils.jsx";
+import Link from "next/link";
 
-const LuckyButton = ({nav}) => {
+const LuckyButton = () => {
     return (
-        <div className={"surprise"} onClick={() => {
-            surprise("all", nav)
-        }}>
-            feeling lucky ☉ ‿ ⚆
+        <div className={"surprise"}>
+            <Link href={surprise("all")}>
+                feeling lucky ☉ ‿ ⚆
+            </Link>
         </div>
     )
 }
