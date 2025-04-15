@@ -220,7 +220,7 @@
 .map--popup {
     z-index: 100000;
     position: absolute;
-    top: 300px;
+    bottom: 40px;
     left: 20px;
     height: auto;
     width: 300px;
