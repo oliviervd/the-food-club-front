@@ -2,6 +2,7 @@ import React, { useMemo, useState, useEffect, useCallback } from "react";
 import {useRouter} from "next/navigation";
 import DitherImage from "./DitherImage.jsx";import { useNavigate } from "react-router-dom";
 import Loading from "../app/Loading.jsx";
+import Link from "next/link";
 
 // TODO: Add hover effect on desktop (show text explaining the category)
 

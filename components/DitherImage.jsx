@@ -48,14 +48,7 @@ const DitherImage = (props) => {
 
     return (
         <div>
-            {ditheredImage ? (
-                    <img src={props.url} alt="Dithered"/>
-
-            ) : (
-
-                    <div style={{width: "99%", height: "33vh"}}></div>
-
-            )}
+            <img src={props.url} alt="Dithered"/>
         </div>
     );
 };

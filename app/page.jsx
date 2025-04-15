@@ -12,7 +12,7 @@ export const metadata = {
         type: "website",
         images: [
             {
-                url: "/public/images/food-club.png",
+                url: "/public/img/logo-blue.png",
                 alt: "logo of Food Club"
             }
         ]
