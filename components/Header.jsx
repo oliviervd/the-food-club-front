@@ -5,7 +5,7 @@ import {LocationColorContext} from "../contexts/LocationColorContext.jsx";
 import Image from 'next/image';
 import logo from '/public/assets/img/logo-blue.png';
 import Link from 'next/link';
-
+import "../styles/header.css"
 
 const Header = ({ interact, landing, venueLocation, setTarget, greyOut=false, color, map , selectedTab, venue}) => {
 
