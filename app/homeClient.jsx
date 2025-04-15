@@ -71,7 +71,7 @@ const HomeClient = () => {
     return(
         <div>
             <Header selectedTab={"lists"} landing={true} interact={true} setLocation={setLocation} location={location} setTarget={setTarget} venue={false}></Header>
-            {isMobile && categoryList &&
+            {isMobile && categoryList && categoryList.docs &&
                 <div>
                     {/* <Marquee className={"banner"} speed={30} pauseOnHover={false} gradient={false} autoFill={true}>
                         <h3>#1 Don't talk about foodclub - but psssst…. please spread the word! — #2 The foodclub is
