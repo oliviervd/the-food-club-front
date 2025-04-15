@@ -2,8 +2,11 @@
 'use client'
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { LocationColorProvider } from '../utils/LocationColorContext'
+import { LocationColorProvider } from '../contexts/LocationColorContext.jsx'
 import { useState } from 'react'
+
+import { AuthProvider } from '../contexts/AuthContext';
+import AuthGuard from '../components/AuthGuard';
 
 import '/styles/fonts.css'
 import '/styles/media.css'
@@ -32,7 +35,11 @@ export default function RootLayout({ children }) {
         <body>
         <QueryClientProvider client={queryClient}>
             <LocationColorProvider>
-                {children}
+                <AuthProvider>
+                    <AuthGuard>
+                        {children}
+                    </AuthGuard>
+                </AuthProvider>
             </LocationColorProvider>
         </QueryClientProvider>
         </body>

@@ -7,7 +7,7 @@ import MarkerClusterGroup from "react-leaflet-cluster";
 import {useContext, useState, useEffect} from "react";
 import {useRouter} from "next/navigation";
 import {venueStatus, fetchAPI, getCSSVariableValue} from "/utils/utils.jsx";
-import {LocationColorContext} from "/utils/LocationColorContext.jsx";
+import {LocationColorContext} from "/contexts/LocationColorContext.jsx";
 import Banner from "/components/Banner.jsx";
 import {Switch} from "@mui/material";
 import Autocomplete from '@mui/material/Autocomplete';

@@ -1,7 +1,6 @@
 'use client'
 
 import Header from "../components/Header.jsx";
-import Footer from "../components/Footer.jsx";
 import "../styles/header.css"
 import "../styles/fonts.css"
 
@@ -14,9 +13,10 @@ import LuckyButton from "../components/luckyButton.jsx";
 import {useScrollPosition} from "../hooks/useScrollPosition.jsx";
 import Loading from "./Loading.jsx";
 import { useRouter } from 'next/navigation';
+import logo from "../public/assets/img/logo-blue.png";
+import Image from "next/image.js";
 
 
-// todo : improve loading speed
 // todo: add locales
 
 const HomeClient = () => {

@@ -1,7 +1,7 @@
 import AutoResizeText from "./AutoResizeText.jsx";
 import { useRouter } from 'next/navigation';
 import {useContext, useEffect, useState} from "react";
-import {LocationColorContext} from "../utils/LocationColorContext.jsx";
+import {LocationColorContext} from "../contexts/LocationColorContext.jsx";
 import Image from 'next/image';
 import logo from '/public/assets/img/logo-blue.png';
 import Link from 'next/link';

@@ -13,7 +13,7 @@ import serialize from "../../../utils/serialize.jsx";
 import Loading from "../../Loading.jsx";
 
 import { fetchAPI, shuffleArray, venueStatus } from "../../../utils/utils.jsx";
-import { LocationColorContext } from "../../../utils/LocationColorContext.jsx";
+import { LocationColorContext } from "../../../contexts/LocationColorContext.jsx";
 
 const MapSmall = dynamic(() => import("/components/mapSmall.jsx"), {
     ssr: false,

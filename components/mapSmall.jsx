@@ -4,7 +4,7 @@ import {MapContainer, TileLayer, useMap, Marker} from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
 
 import {useContext, useEffect, useState} from "react";
-import {LocationColorContext} from "../utils/LocationColorContext.jsx";
+import {LocationColorContext} from "../contexts/LocationColorContext.jsx";
 import {divIcon} from "leaflet";
 import {getCSSVariableValue} from "../utils/utils.jsx";
 
