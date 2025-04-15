@@ -13,27 +13,19 @@ import LuckyButton from "../components/luckyButton.jsx";
 import {useScrollPosition} from "../hooks/useScrollPosition.jsx";
 import Loading from "./Loading.jsx";
 import { useRouter } from 'next/navigation';
+import { useMediaQuery } from 'react-responsive';
 
 // todo: add locales
 
 const HomeClient = () => {
 
     // fetch data
-    const [categoryList, setCategoryList] = useState([]);
     const [target, setTarget] = useState(null);
     const [location, setLocation] = useState(null);
     const scrollPosition = useScrollPosition();
     const router = useRouter();
 
-    const [isMobile, setIsMobile] = useState(false);
-
-    useEffect(() => {
-        const checkWidth = () => setIsMobile(window.innerWidth < 600);
-        checkWidth();
-        window.addEventListener("resize", checkWidth);
-        return () => window.removeEventListener("resize", checkWidth);
-    }, []);
-
+    const isMobile = useMediaQuery({ maxWidth: 768 });
     const [visible, setVisible] = useState(false);
 
     useEffect(() => {
@@ -46,22 +38,16 @@ const HomeClient = () => {
 
     // Add animation classes based on visibility state
     const classNames = visible ? "slide-in" : "slide-out";
-
-    const {data: list, isLoading, error} = useQuery(["lists"], ()=> fetchAPI('lists','en'))
+    const { data: categoryList, isLoading, error } = useQuery(["lists"], () => fetchAPI("lists", "en"));
 
     useEffect(() => {
-        const getLists = async() => {
-            const cat = await fetchAPI("lists", "en");
-            setCategoryList(cat)
-        }
-        getLists();
-    }, []);
+        scrollTo(target);
+    }, [target]);
 
-    useEffect(()=>{
-        scrollTo(target)
-    },[target])
+    console.log(isLoading, isMobile)
+    console.log(categoryList)
 
-    if (isLoading) return <Loading/>;
+    //if (isLoading) return <Loading />;
     if (error) return <div>Error: {error.message}</div>;
 
     // render component
@@ -69,25 +55,19 @@ const HomeClient = () => {
         <div>
             <Header selectedTab={"lists"} landing={true} interact={true} setLocation={setLocation} location={location} setTarget={setTarget} venue={false}></Header>
             {isMobile &&
-                <div>
-                    <section className={"home__container"}>
-                        <div>
-                            <section style={{padding: "10px 0"}}>
-                                <h2 className={"subtitle"}> FOOD CLUB loves lists. That's why we created some specially
-                                    for
-                                    you.
-                                    From healthy snacks to absurdly comforting food, the order is yours.</h2>
-                            </section>
-
-                            <CategoryList data={categoryList}/>
-                            <div className={`fixed-wrapper ${classNames}`}>
-                                <LuckyButton nav={router}/>
-                            </div>
-
+                <section className={"home__container"}>
+                    <div>
+                        <section style={{padding: "10px 0"}}>
+                            <h2 className={"subtitle"}>
+                                FOOD CLUB loves lists. That's why we created some specially for you. From healthy snacks to absurdly comforting food, the order is yours.
+                            </h2>
+                        </section>
+                        <CategoryList data={categoryList} />
+                        <div className={`fixed-wrapper ${classNames}`}>
+                            <LuckyButton nav={router} />
                         </div>
-                    </section>
-                </div>
-
+                    </div>
+                </section>
             }
             {!isMobile && categoryList && categoryList.docs &&
                 <DesktopHome categories={categoryList.docs[0].items}/>

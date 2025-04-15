@@ -141,7 +141,6 @@ export function convertHour(input) {
 
     const formatter = new Intl.DateTimeFormat('en-US', options);
     const formattedTime = formatter.format(date);
-
     return formattedTime;
 }
 
