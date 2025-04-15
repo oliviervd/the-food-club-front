@@ -17,7 +17,7 @@ import Banner from "../../components/Banner.jsx";
 import {LocationColorContext} from "../../utils/LocationColorContext.jsx";
 import Link from "next/link";
 
-const Page = () => {
+const VenuesClient = () => {
 
     const { locationColor, handleLocationChange } = useContext(LocationColorContext);
     let { location } = locationColor
@@ -137,4 +137,4 @@ const Page = () => {
     )
 }
 
-export default Page;
+export default VenuesClient;

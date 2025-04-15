@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import VenuesClient from './VenuesClient';
+import VenuesClient from './venuesClient.jsx';
 
 export default function VenuesPage() {
     return (
