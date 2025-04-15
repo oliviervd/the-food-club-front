@@ -1,34 +1,44 @@
-import Header from "../elements/Header.jsx";
-import Footer from "../elements/Footer.jsx";
-import "../style/header.css"
-import "../style/fonts.css"
+'use client'
 
-import CategoryList from "../elements/CategoryList.jsx";
-import DesktopHome from "./desktop/desktopHome.jsx";
+import Header from "../components/Header.jsx";
+import Footer from "../components/Footer.jsx";
+import "../styles/header.css"
+import "../styles/fonts.css"
+
+import CategoryList from "../components/CategoryList.jsx";
+import DesktopHome from "./pages/desktop/desktopHome.jsx";
 import {fetchAPI, scrollTo} from "../utils/utils.jsx";
 import {useQuery} from "@tanstack/react-query";
 import {useEffect, useState} from "react";
 import {useMediaQuery} from "@uidotdev/usehooks";
-import {useNavigate} from "react-router-dom";
-import LuckyButton from "../elements/luckyButton.jsx";
+import LuckyButton from "../components/luckyButton.jsx";
 
 import {useScrollPosition} from "../hooks/useScrollPosition.jsx";
 import Marquee from "react-fast-marquee";
 import Loading from "./Loading.jsx";
+import { useRouter } from 'next/navigation';
+
 
 // todo : improve loading speed
 // todo: add locales
 
-const Home = () => {
+const HomeClient = () => {
 
     // fetch data
     const [categoryList, setCategoryList] = useState([]);
-    const nav = useNavigate();
     const [target, setTarget] = useState(null);
     const [location, setLocation] = useState(null);
-    const isSmall = useMediaQuery("(max-width: 600px)");
-    const isBig = useMediaQuery("(min-width: 1400px)");
     const scrollPosition = useScrollPosition();
+    const router = useRouter();
+
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkWidth = () => setIsMobile(window.innerWidth < 600);
+        checkWidth();
+        window.addEventListener("resize", checkWidth);
+        return () => window.removeEventListener("resize", checkWidth);
+    }, []);
 
     const [visible, setVisible] = useState(false);
 
@@ -64,9 +74,9 @@ const Home = () => {
     return(
         <div>
             <Header selectedTab={"lists"} landing={true} interact={true} setLocation={setLocation} location={location} setTarget={setTarget} venue={false}></Header>
-            {isSmall && categoryList &&
+            {isMobile && categoryList &&
                 <div>
-                   {/* <Marquee className={"banner"} speed={30} pauseOnHover={false} gradient={false} autoFill={true}>
+                    {/* <Marquee className={"banner"} speed={30} pauseOnHover={false} gradient={false} autoFill={true}>
                         <h3>#1 Don't talk about foodclub - but psssst…. please spread the word! — #2 The foodclub is
                             a curated space focused on quality, featuring only restaurants we've personally visited.
                             — #3 The foodclub is, and will always be, a positive space celebrating local culinary
@@ -83,7 +93,7 @@ const Home = () => {
 
                             <CategoryList data={categoryList}/>
                             <div className={`fixed-wrapper ${classNames}`}>
-                                <LuckyButton nav={nav}/>
+                                <LuckyButton nav={router}/>
                             </div>
 
                         </div>
@@ -91,11 +101,11 @@ const Home = () => {
                 </div>
 
             }
-            {!isSmall && categoryList && categoryList.docs &&
+            {!isMobile && categoryList && categoryList.docs &&
                 <DesktopHome categories={categoryList.docs[0].items}/>
             }
-            <Footer position={isSmall}/>
+            <Footer position={isMobile}/>
         </div>
     )
 }
-export default Home;
+export default HomeClient;

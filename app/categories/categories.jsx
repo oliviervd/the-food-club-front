@@ -1,8 +1,8 @@
-import Header from "../elements/Header.jsx";
+import Header from "../../components/Header.jsx";
 import {useEffect, useState} from "react";
-import {fetchAPI} from "../utils/utils.jsx";
-import DitherImage from "../elements/DitherImage.jsx";
-import Serialize from "../utils/serialize.jsx";
+import {fetchAPI} from "../../utils/utils.jsx";
+import DitherImage from "../../components/DitherImage.jsx";
+import Serialize from "../../utils/serialize.jsx";
 
 const Categories = ({}) => {
 

@@ -197,7 +197,6 @@
 
     .venue-list__container-main {
         min-width: 100%;
-        height: 100vh;
 
         section {
 
@@ -267,8 +266,8 @@
     }
 
     .venue-list__container-others {
-        margin: 20px 5px;
-        max-height: 80vh;
+        margin: 5px 5px;
+        height: 50vh;
 
         .header {
             background-color: var(--color-secondary);

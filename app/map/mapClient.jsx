@@ -1,20 +1,22 @@
-import Header from "../elements/Header.jsx";
+'use client'
+
+import Header from "/components/Header.jsx"
 import {MapContainer, TileLayer, useMap, Marker, Popup} from "react-leaflet";
 import {divIcon, Icon} from "leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import {useContext, useState, useEffect} from "react";
-import {useNavigate} from "react-router-dom";
-import {venueStatus, fetchAPI, getCSSVariableValue} from "../utils/utils.jsx";
-import {LocationColorContext} from "../utils/LocationColorContext.jsx";
-import Banner from "../elements/Banner.jsx";
+import {useRouter} from "next/navigation";
+import {venueStatus, fetchAPI, getCSSVariableValue} from "/utils/utils.jsx";
+import {LocationColorContext} from "/utils/LocationColorContext.jsx";
+import Banner from "/components/Banner.jsx";
 import {Switch} from "@mui/material";
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
-import serialize from "../utils/serialize.jsx";
-import DitherImage from "../elements/DitherImage.jsx";
+import DitherImage from "/components/DitherImage.jsx";
 
 // todo add container that shows preview of the selected item
 // todo add icons to zoom in / zoom out / show my location.
+// todo: add header as absolute element over map container (so you can also hide it if you want)
 
 
 // Custom hook to update the map center
@@ -55,7 +57,7 @@ const Map = ({}) => {
 
     let [zoom, setZoom] = useState(12.5) // set zoom of map
     const [mapCenter, setMapCenter] = useState([51.0544, 3.7256]); // Initial coordinates
-    const nav = useNavigate();
+    const nav = useRouter();
 
     const colorToCoordinatesMap = {
         'gent': [51.0544, 3.7256],
@@ -146,7 +148,7 @@ const Map = ({}) => {
         <div className={"map--ui_container"}
              style={{ overflow: "hidden", maxWidth: "100vw", maxHeight: "100vh", position: "relative" }}>
             <Header selectedTab={"map"} landing={true} interact={true} setLocation={setLocation} location={location} setTarget={setTarget} map={true}/>
-            <div style={{height: '80%', width: '100%', position: 'relative'}}>
+            <div style={{height: '90%', width: '100%', position: 'relative'}}>
                 <MapContainer
                     className={"map--ui"}
                     center={mapCenter}
@@ -167,6 +169,7 @@ const Map = ({}) => {
                             if (venue.address.longitude && venue.address.latitude) {
                                 return (
                                     <Marker
+                                        key={venue.id}
                                         position={[venue.address.longitude, venue.address.latitude]}
                                         icon={createCustomIcon(color)}
                                         eventHandlers={{
@@ -256,4 +259,3 @@ const Map = ({}) => {
     )
 }
 export default Map
-

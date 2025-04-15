@@ -1,9 +1,11 @@
-import Header from "../elements/Header.jsx";
-import {useEffect, useState} from "react";
-import {fetchAPI} from "../utils/utils.jsx";
-import serialize from "../utils/serialize.jsx";
+'use client'
 
-const About = ({}) => {
+import Header from "../../components/Header.jsx";
+import {useEffect, useState} from "react";
+import {fetchAPI} from "../../utils/utils.jsx";
+import serialize from "../../utils/serialize.jsx";
+
+const Page = ({}) => {
 
     const [about, setAbout] = useState([]);
 
@@ -28,4 +30,4 @@ const About = ({}) => {
         </div>
     )
 }
-export default About;
+export default Page;

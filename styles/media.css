@@ -13,6 +13,7 @@ img {
 .logo {
     border: none;
     width: 50%;
+    height: auto;
 }
 
 .image__club-tag {

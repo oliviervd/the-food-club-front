@@ -1,19 +1,16 @@
 import React, { useMemo, useState, useEffect, useCallback } from "react";
+import {useRouter} from "next/navigation";
 import DitherImage from "./DitherImage.jsx";import { useNavigate } from "react-router-dom";
-import Loading from "../pages/Loading.jsx";
+import Loading from "../app/Loading.jsx";
 
 // TODO: Add hover effect on desktop (show text explaining the category)
 
 const CategoryList = ({ data, home }) => {
-    const nav = useNavigate();
+    const router = useRouter();
 
     const [imagesLoaded, setImagesLoaded] = useState(false);
     const [loadedImagesCount, setLoadedImagesCount] = useState(0);
 
-    // Function to navigate to category
-    const navigateTo = (route) => {
-        nav(`/categories/${route}`);
-    };
 
     // Memoize categories derived from data
     const categories = useMemo(() => {
@@ -69,12 +66,13 @@ const CategoryList = ({ data, home }) => {
                         <div
                             key={_cat.id || _cat.url} // Use id/url for unique keys if available
                             className={"category-list__box"}
-                            onClick={() => navigateTo(_cat.url)}
                         >
-                            {/* Use the onLoad handler to detect when the image has loaded */}
-                            <DitherImage url={mediaUrl} dim={true} onLoad={handleImageLoad} />
-                            <h2>{_cat.categoryTitle}</h2>
-                            <p>{_cat.categorySubTitles}</p>
+                            <Link href={`/categories/${_cat.url}`}>
+                                {/* Use the onLoad handler to detect when the image has loaded */}
+                                <DitherImage url={mediaUrl} dim={true} onLoad={handleImageLoad} />
+                                <h2>{_cat.categoryTitle}</h2>
+                                <p>{_cat.categorySubTitles}</p>
+                            </Link>
                         </div>
                     );
                 })}

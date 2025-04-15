@@ -194,7 +194,7 @@
 .leaflet-container {
     position: absolute;
     width: 100%;
-    height: 83vh;
+    height: 100%;
 }
 
 .cluster-icon {
