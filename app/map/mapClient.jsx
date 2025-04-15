@@ -13,6 +13,7 @@ import {Switch} from "@mui/material";
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import DitherImage from "/components/DitherImage.jsx";
+import Link from "next/link.js";
 
 // todo add container that shows preview of the selected item
 // todo add icons to zoom in / zoom out / show my location.
@@ -144,6 +145,8 @@ const Map = ({}) => {
         }
     };
 
+    console.log(target)
+
     return(
         <div className={"map--ui_container"}
              style={{ overflow: "hidden", maxWidth: "100vw", maxHeight: "100vh", position: "relative" }}>
@@ -166,7 +169,8 @@ const Map = ({}) => {
                         {/* plot markers*/}
                         {filteredVenues && filteredVenues.map((venue) => {
                             const color = getColorForClub(venue.club);
-                            if (venue.address.longitude && venue.address.latitude) {
+                            console.log(venue);
+                            if (venue.address.longitude && venue.address.latitude && venue["_status"] === "published") {
                                 return (
                                     <Marker
                                         key={venue.id}
@@ -246,11 +250,24 @@ const Map = ({}) => {
                         onClick={() => setVisible(!visible)}
                         className={"map--popup"}
                     >
-                        <Banner content={target.venueName}/>
-                        {target.media && target.media.hero && target.media.hero.sizes &&
-                            <DitherImage style={{justifyContent: "center", maxWidth: "99%"}}
-                                         url={target.media.hero.sizes.tablet.url}/>
-                        }
+                        {/*<Banner content={target.venueName}/>*/}
+
+                        <div className={"category-list__box"}>
+                            <Link href={`/venue/${target.url}`}>
+                                <DitherImage url={target.media.hero.sizes.tablet.url}/>
+                                <h2 style={{textAlign: "center"}}>{target.venueName}</h2>
+                            </Link>
+                        </div>
+
+                        <div className={"pill-container"}>
+                            {target.cuisineUsed.map((cuisine) => {
+                                return (
+                                    <p className={"pill"}>{cuisine.name}</p>
+                                )
+                            })}
+                        </div>
+
+
 
                     </div>
                 }
