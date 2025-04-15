@@ -11,7 +11,7 @@ export const metadata = {
         type: "website",
         images: [
             {
-                url: "https://www.thefoodclub.be/img/logo-blue.png",
+                url: "https://www.thefoodclub.be/assets/img/logo-blue.png",
                 alt: "logo of Food Club",
             },
         ],
