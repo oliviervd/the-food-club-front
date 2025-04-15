@@ -101,7 +101,6 @@ const HomeClient = () => {
             {!isMobile && categoryList && categoryList.docs &&
                 <DesktopHome categories={categoryList.docs[0].items}/>
             }
-            <Footer position={isMobile}/>
         </div>
     )
 }
