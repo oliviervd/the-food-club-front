@@ -10,11 +10,8 @@ import DesktopHome from "./pages/desktop/desktopHome.jsx";
 import {fetchAPI, scrollTo} from "../utils/utils.jsx";
 import {useQuery} from "@tanstack/react-query";
 import {useEffect, useState} from "react";
-import {useMediaQuery} from "@uidotdev/usehooks";
 import LuckyButton from "../components/luckyButton.jsx";
-
 import {useScrollPosition} from "../hooks/useScrollPosition.jsx";
-import Marquee from "react-fast-marquee";
 import Loading from "./Loading.jsx";
 import { useRouter } from 'next/navigation';
 
