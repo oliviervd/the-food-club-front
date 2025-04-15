@@ -11,7 +11,7 @@ export const metadata = {
         type: "website",
         images: [
             {
-                url: "/public/img/logo-blue.png",
+                url: "/img/logo-blue.png",
                 alt: "logo of Food Club"
             }
         ]
