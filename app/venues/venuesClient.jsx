@@ -14,7 +14,7 @@ import {useQuery} from "@tanstack/react-query";
 import {fetchAPI} from "../../utils/utils.jsx";
 import DitherImage from "../../components/DitherImage.jsx";
 import Banner from "../../components/Banner.jsx";
-import {LocationColorContext} from "../../utils/LocationColorContext.jsx";
+import {LocationColorContext} from "../../contexts/LocationColorContext.jsx";
 import Link from "next/link";
 
 const VenuesClient = () => {
