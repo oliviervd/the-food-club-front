@@ -1,5 +1,4 @@
 import HomeClient from './homeClient.jsx';
-import { Metadata } from "next";
 
 export const metadata = {
     title: "Food Club - Home",
