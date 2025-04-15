@@ -64,7 +64,7 @@ const HomeClient = () => {
                         </section>
                         <CategoryList data={categoryList} />
                         <div className={`fixed-wrapper ${classNames}`}>
-                            <LuckyButton nav={router} />
+                            {/*<LuckyButton nav={router} />*/}
                         </div>
                     </div>
                 </section>
