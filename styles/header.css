@@ -27,11 +27,20 @@ header > h1 {
     > h2:hover {
         color: var(--color-main);
         background-color: var(--color-secondary);
+
+        a {
+            color: var(--color-main);
+        }
     }
 }
 
 header h2 {
     font-size: var(--font-s);
+
+    a {
+        color: var(--color-secondary);
+    }
+
 }
 
 header .flex-buttons > h2 {

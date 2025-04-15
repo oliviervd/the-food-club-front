@@ -10,3 +10,11 @@
     --color-brussels-secondary: #ff5733;
     --color-highlight: #ff0000;
 }
+
+a {
+    color: var(--color-main);
+}
+
+a:hover {
+    color: var(--color-secondary);
+}

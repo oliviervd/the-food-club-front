@@ -14,9 +14,18 @@
         font-size: var(--font-m);
     }
 
+    a {
+        color: var(--color-secondary);
+        text-decoration: none;
+    }
+
     h2:hover {
         background-color: var(--color-secondary);
         color: var(--color-main);
+
+        a {
+            color: var(--color-main);
+        }
     }
 }
 

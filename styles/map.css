@@ -59,10 +59,17 @@
             font-size: var(--font-s);
         }
 
+        a {
+            color: var(--color-main);
+
+        }
+
         h2:hover {
             background-color: var(--color-secondary);
             color: var(--color-main);
         }
+
+
     }
 
 
