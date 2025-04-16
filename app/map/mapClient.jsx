@@ -14,6 +14,8 @@ import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import DitherImage from "/components/DitherImage.jsx";
 import Link from "next/link.js";
+import Image from "next/image.js";
+import logo from "../../public/assets/img/logo-blue.png";
 
 // todo add container that shows preview of the selected item
 // todo add icons to zoom in / zoom out / show my location.
@@ -150,8 +152,15 @@ const Map = ({}) => {
     return(
         <div className={"map--ui_container"}
              style={{ overflow: "hidden", maxWidth: "100vw", maxHeight: "100vh", position: "relative" }}>
-            <Header selectedTab={"map"} landing={true} interact={true} setLocation={setLocation} location={location} setTarget={setTarget} map={true}/>
-            <div style={{height: '90%', width: '100%', position: 'relative'}}>
+            <div className="map--ui_header">
+                <div className={"logo-container"}>
+                    <Link href="/">
+                        <Image src={logo} alt="Food Club Logo" className="logo" />
+                    </Link>
+                </div>
+            </div>
+            {/*<Header style={{position: "fixed"}} selectedTab={"map"} landing={true} interact={true} setLocation={setLocation} location={location} setTarget={setTarget} map={true}/>*/}
+            <div style={{height: '100%', width: '100%', position: 'relative'}}>
                 <MapContainer
                     className={"map--ui"}
                     center={mapCenter}
