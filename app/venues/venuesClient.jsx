@@ -16,6 +16,7 @@ import DitherImage from "../../components/DitherImage.jsx";
 import Banner from "../../components/Banner.jsx";
 import {LocationColorContext} from "../../contexts/LocationColorContext.jsx";
 import Link from "next/link";
+import serialize from "../../utils/serialize.jsx";
 
 const VenuesClient = () => {
 
@@ -75,6 +76,8 @@ const VenuesClient = () => {
         return <p>Error loading data</p>;
     }
 
+    console.log(cuisine)
+
     return (
         <>
             <Header landing={true} location={club} setLocation={setClub} interact={true}/>
@@ -86,7 +89,6 @@ const VenuesClient = () => {
                     <section style={{position: "relative"}}>
                         {isMobile && matches &&
                             matches.map((match, index) => {
-                                console.log(match)
                                 if (match._status == "published") {
                                     try {
                                         return (
@@ -108,9 +110,13 @@ const VenuesClient = () => {
                             <section className={"desktop"}>
                                 <section className={"venue-list__container-main"}>
                                     <section>
+                                        {cuisine && cuisine.description &&
+                                            <div className={"venue info-box"}>
+                                                <p>{serialize(cuisine.description)}</p>
+                                            </div>
+                                        }
                                         {matches.map((match, index) => {
                                             if (match._status == "published") {
-                                                console.log(match);
                                                 return (
                                                     <div className={"venue"}>
                                                         <div className={"venue__image"}>

@@ -206,6 +206,19 @@
             gap: 1%;
             justify-content: flex-start;
 
+            .info-box{
+                background: var(--color-main);
+                height: 200px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                >p {
+                    margin: 10px;
+                }
+
+            }
+
             .venue {
                 min-width: 250px;
                 width: 31.5%;
