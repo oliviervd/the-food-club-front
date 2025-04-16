@@ -158,11 +158,11 @@ const Map = ({}) => {
                         <Image src={logo} alt="Food Club Logo" className="logo" />
                     </Link>
                 </div>
-                    <div className={"pill-container"}>
-                        <div className={"pill"} onClick={()=>{handleLocationChange("gent")}}>GENT</div>
-                        <div className={"pill"} onClick={()=>{handleLocationChange("antwerp")}}>ANTWERP</div>
-                        <div className={"pill"} onClick={()=>{handleLocationChange("brussels")}}>BRUSSELS</div>
-                    </div>
+                <div className={"pill-container"}>
+                    <div className={"pill"} onClick={()=>{handleLocationChange("gent")}}>GENT</div>
+                    <div className={"pill"} onClick={()=>{handleLocationChange("antwerp")}}>ANTWERP</div>
+                    <div className={"pill"} onClick={()=>{handleLocationChange("brussels")}}>BRUSSELS</div>
+                </div>
             </div>
             {/*<Header style={{position: "fixed"}} selectedTab={"map"} landing={true} interact={true} setLocation={setLocation} location={location} setTarget={setTarget} map={true}/>*/}
             <div style={{height: '100%', width: '100%', position: 'relative'}}>

@@ -58,6 +58,12 @@
         }
     }
 
+    @media (max-width: 800px) {
+        .pill-container {
+            display: none;
+        }
+    }
+
 }
 
 
