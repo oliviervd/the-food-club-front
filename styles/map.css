@@ -361,11 +361,10 @@
 
     .city-popup {
         position: fixed;
-        top: 120px;
+        top: 50px;
         left: 0;
         right: 0;
         bottom:auto;
-        background-color: var(--color-glass);
     }
 
     .banner-pill {
@@ -374,6 +373,8 @@
     }
 
     .city-popup-inner {
+        position: fixed;
+        top: 110px;
         display: grid;
         grid-template-rows: 1fr 1fr 1fr;
         width: 100vw;
@@ -384,6 +385,7 @@
         }
 
         h2,
+
         .popup-pill {
             text-align: center;
             width: 100%;
@@ -395,7 +397,7 @@
             justify-content: center;
             align-items: center;
             font-size: var(--font-xxl);
-            border: 2px solid var(--color-main);
+            border: 2px solid var(--color-secondary);
             background-color: var(--color-glass);
             min-width: 150px;
             height: 100%;

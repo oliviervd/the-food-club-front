@@ -20,7 +20,7 @@ const CityDropdown = ({ cities = [], defaultCity = "", onChange }) => {
 
     return (
         <>
-            <div onClick={() => setOpen(true)}>
+            <div className={"city-popup"} onClick={() => setOpen(true)}>
                 <Banner content={`I'm sick of ${selectedCity}, let's swap city!`}/>
             </div>
 
@@ -36,8 +36,11 @@ const CityDropdown = ({ cities = [], defaultCity = "", onChange }) => {
                             </div>
                         ))}
 
+
                     </div>
+
                 </div>
+
             )}
         </>
     );
