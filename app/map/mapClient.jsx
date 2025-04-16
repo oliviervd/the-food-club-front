@@ -16,6 +16,7 @@ import DitherImage from "/components/DitherImage.jsx";
 import Link from "next/link.js";
 import Image from "next/image.js";
 import logo from "../../public/assets/img/logo-blue.png";
+import CityDropdown from "../../components/Dropdown.jsx";
 
 // todo add container that shows preview of the selected item
 // todo add icons to zoom in / zoom out / show my location.
@@ -147,7 +148,10 @@ const Map = ({}) => {
         }
     };
 
-    console.log(location)
+    const handleCityChange = (city) => {
+        console.log(`change to: ${city}`);
+        handleLocationChange(city)
+    }
 
     return(
         <div className={"map--ui_container"}
@@ -163,6 +167,12 @@ const Map = ({}) => {
                     <div className={"pill"} onClick={()=>{handleLocationChange("antwerp")}}>ANTWERP</div>
                     <div className={"pill"} onClick={()=>{handleLocationChange("brussels")}}>BRUSSELS</div>
                 </div>
+                <CityDropdown
+                    cities={["gent", "antwerp", "brussels"]}
+                    defaultCity={"gent"}
+                    onChange={handleCityChange}
+                />
+
             </div>
             {/*<Header style={{position: "fixed"}} selectedTab={"map"} landing={true} interact={true} setLocation={setLocation} location={location} setTarget={setTarget} map={true}/>*/}
             <div style={{height: '100%', width: '100%', position: 'relative'}}>
@@ -264,7 +274,6 @@ const Map = ({}) => {
                         className={"map--popup"}
                     >
                         {/*<Banner content={target.venueName}/>*/}
-
 
                         <div className={"category-list__box"}>
                             <div className={"category-list__box-close"}>
