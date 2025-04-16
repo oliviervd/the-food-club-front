@@ -14,6 +14,8 @@ import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import DitherImage from "/components/DitherImage.jsx";
 import Link from "next/link.js";
+import Image from "next/image.js";
+import logo from "../../public/assets/img/logo-blue.png";
 
 // todo add container that shows preview of the selected item
 // todo add icons to zoom in / zoom out / show my location.
@@ -36,13 +38,12 @@ const Map = ({}) => {
     const [visible, setVisible] = useState(true);
     const [showOpenOnly, setShowOpenOnly] = useState(false); // Default: show all venues
     const [hasTakeAway, setHasTakeAway] = useState(false); // default
-    const { locationColor} = useContext(LocationColorContext);
+    const { locationColor, handleLocationChange } = useContext(LocationColorContext);
+
 
     const [cuisines, setCuisines] = useState([]);
     const [selectedCuisine, setSelectedCuisine] = useState([]);
     const [selectedDish, setSelectedDish] = useState([]);
-
-    console.log(target)
 
 
     useEffect(() => {
@@ -133,6 +134,7 @@ const Map = ({}) => {
         })
     }
 
+
     // Function to get color based on club/location
     const getColorForClub = (club) => {
         switch (club) {
@@ -145,13 +147,25 @@ const Map = ({}) => {
         }
     };
 
-    console.log(target)
+    console.log(location)
 
     return(
         <div className={"map--ui_container"}
              style={{ overflow: "hidden", maxWidth: "100vw", maxHeight: "100vh", position: "relative" }}>
-            <Header selectedTab={"map"} landing={true} interact={true} setLocation={setLocation} location={location} setTarget={setTarget} map={true}/>
-            <div style={{height: '90%', width: '100%', position: 'relative'}}>
+            <div className="map--ui_header">
+                <div className={"logo-container"}>
+                    <Link href="/">
+                        <Image src={logo} alt="Food Club Logo" className="logo" />
+                    </Link>
+                </div>
+                    <div className={"pill-container"}>
+                        <div className={"pill"} onClick={()=>{handleLocationChange("gent")}}>GENT</div>
+                        <div className={"pill"} onClick={()=>{handleLocationChange("antwerp")}}>ANTWERP</div>
+                        <div className={"pill"} onClick={()=>{handleLocationChange("brussels")}}>BRUSSELS</div>
+                    </div>
+            </div>
+            {/*<Header style={{position: "fixed"}} selectedTab={"map"} landing={true} interact={true} setLocation={setLocation} location={location} setTarget={setTarget} map={true}/>*/}
+            <div style={{height: '100%', width: '100%', position: 'relative'}}>
                 <MapContainer
                     className={"map--ui"}
                     center={mapCenter}
@@ -169,7 +183,6 @@ const Map = ({}) => {
                         {/* plot markers*/}
                         {filteredVenues && filteredVenues.map((venue) => {
                             const color = getColorForClub(venue.club);
-                            console.log(venue);
                             if (venue.address.longitude && venue.address.latitude && venue["_status"] === "published") {
                                 return (
                                     <Marker
@@ -252,7 +265,11 @@ const Map = ({}) => {
                     >
                         {/*<Banner content={target.venueName}/>*/}
 
+
                         <div className={"category-list__box"}>
+                            <div className={"category-list__box-close"}>
+                                <p className="rotated-close">close</p>
+                            </div>
                             <Link href={`/venue/${target.url}`}>
                                 <DitherImage url={target.media.hero.sizes.tablet.url}/>
                                 <h2 style={{textAlign: "center"}}>{target.venueName}</h2>
