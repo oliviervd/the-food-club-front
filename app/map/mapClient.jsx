@@ -171,6 +171,7 @@ const Map = ({}) => {
                     cities={["gent", "antwerp", "brussels"]}
                     defaultCity={"gent"}
                     onChange={handleCityChange}
+                    setVisible={setVisible}
                 />
 
             </div>
