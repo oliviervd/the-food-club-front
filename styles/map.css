@@ -334,7 +334,7 @@
 
 }
 
-.city-dropdown {
+.city-popup {
     display: none;
 }
 
@@ -360,6 +360,7 @@
     }
 
     .city-popup {
+        display: block;
         position: fixed;
         top: 50px;
         left: 0;
@@ -378,7 +379,7 @@
         display: grid;
         grid-template-rows: 1fr 1fr 1fr;
         width: 100vw;
-        height: 50vh;
+        height: 45vh;
 
         * {
             box-sizing: border-box;
@@ -396,7 +397,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: var(--font-xxl);
+            font-size: var(--font-xl);
             border: 2px solid var(--color-secondary);
             background-color: var(--color-glass);
             min-width: 150px;
