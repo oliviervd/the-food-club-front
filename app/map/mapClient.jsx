@@ -38,13 +38,12 @@ const Map = ({}) => {
     const [visible, setVisible] = useState(true);
     const [showOpenOnly, setShowOpenOnly] = useState(false); // Default: show all venues
     const [hasTakeAway, setHasTakeAway] = useState(false); // default
-    const { locationColor} = useContext(LocationColorContext);
+    const { locationColor, handleLocationChange } = useContext(LocationColorContext);
+
 
     const [cuisines, setCuisines] = useState([]);
     const [selectedCuisine, setSelectedCuisine] = useState([]);
     const [selectedDish, setSelectedDish] = useState([]);
-
-    console.log(target)
 
 
     useEffect(() => {
@@ -135,6 +134,7 @@ const Map = ({}) => {
         })
     }
 
+
     // Function to get color based on club/location
     const getColorForClub = (club) => {
         switch (club) {
@@ -147,7 +147,7 @@ const Map = ({}) => {
         }
     };
 
-    console.log(target)
+    console.log(location)
 
     return(
         <div className={"map--ui_container"}
@@ -158,6 +158,11 @@ const Map = ({}) => {
                         <Image src={logo} alt="Food Club Logo" className="logo" />
                     </Link>
                 </div>
+                    <div className={"pill-container"}>
+                        <div className={"pill"} onClick={()=>{handleLocationChange("gent")}}>GENT</div>
+                        <div className={"pill"} onClick={()=>{handleLocationChange("antwerp")}}>ANTWERP</div>
+                        <div className={"pill"} onClick={()=>{handleLocationChange("brussels")}}>BRUSSELS</div>
+                    </div>
             </div>
             {/*<Header style={{position: "fixed"}} selectedTab={"map"} landing={true} interact={true} setLocation={setLocation} location={location} setTarget={setTarget} map={true}/>*/}
             <div style={{height: '100%', width: '100%', position: 'relative'}}>
@@ -178,7 +183,6 @@ const Map = ({}) => {
                         {/* plot markers*/}
                         {filteredVenues && filteredVenues.map((venue) => {
                             const color = getColorForClub(venue.club);
-                            console.log(venue);
                             if (venue.address.longitude && venue.address.latitude && venue["_status"] === "published") {
                                 return (
                                     <Marker
@@ -261,7 +265,11 @@ const Map = ({}) => {
                     >
                         {/*<Banner content={target.venueName}/>*/}
 
+
                         <div className={"category-list__box"}>
+                            <div className={"category-list__box-close"}>
+                                <p className="rotated-close">close</p>
+                            </div>
                             <Link href={`/venue/${target.url}`}>
                                 <DitherImage url={target.media.hero.sizes.tablet.url}/>
                                 <h2 style={{textAlign: "center"}}>{target.venueName}</h2>
