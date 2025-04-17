@@ -76,8 +76,6 @@ const VenuesClient = () => {
         return <p>Error loading data</p>;
     }
 
-    console.log(cuisine)
-
     return (
         <>
             <Header landing={true} location={club} setLocation={setClub} interact={true}/>
