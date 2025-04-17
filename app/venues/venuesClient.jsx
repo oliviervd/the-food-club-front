@@ -20,7 +20,7 @@ import serialize from "../../utils/serialize.jsx";
 
 const VenuesClient = () => {
 
-    const { locationColor, handleLocationChange } = useContext(LocationColorContext);
+    const { locationColor } = useContext(LocationColorContext);
     let { location } = locationColor
 
 
@@ -29,8 +29,6 @@ const VenuesClient = () => {
     const [matches, setMatches] = useState([]);
     const [cuisine, setCuisine] = useState(null);
     const [club, setClub] = useState(null);
-
-    const router = useRouter();
 
     const {data: venuesData, isLoading: venuesLoading, error:venuesError} =    useQuery(["venues"], ()=> fetchAPI('venue', 'en'));
     const {data: cuisinesData, isLoading: cuisinesLoading, error:cuisinesError} = useQuery(["cuisines"], ()=>fetchAPI("cuisine", "en"))
@@ -128,7 +126,7 @@ const VenuesClient = () => {
                                                 <p>{serialize(cuisine.description)}</p>
                                             </div>
                                         }
-                                        {matches.map((match, index) => {
+                                        {matches.map((match) => {
                                             if (match._status == "published") {
                                                 return (
                                                     <div className={"venue"}>
