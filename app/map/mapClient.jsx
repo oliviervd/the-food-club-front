@@ -237,8 +237,7 @@ const Map = ({}) => {
                         🌐
                     </p>
                 </div>
-                {showLocation && (
-                    <div className="location-container">
+                    <div className={showLocation ? "location-container": "location-container hidden"}>
                         <p
                             className={`location--pill ${locationColor.location === "gent" ? "selected" : ""}`}
                             onClick={() => handleCityChange("gent")}
@@ -258,7 +257,6 @@ const Map = ({}) => {
                             brussels
                         </p>
                     </div>
-                )}
                 <div className={openFilters ? "map--filter_left" : "map--filter_left hidden"}>
                     <div className={"switch"}>
                         <p>open today</p>

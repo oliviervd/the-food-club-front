@@ -130,13 +130,18 @@
     width: 100vw;
     bottom: 150px;
 
+    /* Transition & transform for animation */
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    transform: translateX(0);
+    opacity: 1;
+
 
     .location--pill {
         display: flex;
         justify-content: center;
         align-items: center;
         text-align: center;
-        width: 100px;
+        width: 20vw;
         margin: 10px auto;
         padding: 20px;
         background-color: var(--color-main);
@@ -148,6 +153,12 @@
         background-color: var(--color-secondary);
         color: var(--color-main);
     }
+}
+
+.location-container.hidden {
+    transform: translateX(-120%);
+    opacity: 0;
+    pointer-events: none;
 }
 
 .map--filter_left {
