@@ -23,7 +23,6 @@ const Categories = ({}) => {
             <Header landing={true}/>
             <section>
                 {categoryList.map(category => {
-                    console.log(category.item.value.venues.venues.length);
                     if (category.item.value.media.hero.sizes.tablet.url) {
                         return(
                             <section className={"container__categories"}>
