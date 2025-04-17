@@ -16,7 +16,6 @@ import DitherImage from "/components/DitherImage.jsx";
 import Link from "next/link.js";
 import Image from "next/image.js";
 import logo from "../../public/assets/img/logo-blue.png";
-import CityDropdown from "../../components/Dropdown.jsx";
 import {useIsMobile} from "../../hooks/isMobile.jsx";
 
 // todo add container that shows preview of the selected item
@@ -40,6 +39,7 @@ const Map = ({}) => {
     const [visible, setVisible] = useState(true);
     const [openFilters, setOpenFilters] = useState(true);
     const [showOpenOnly, setShowOpenOnly] = useState(false); // Default: show all venues
+    const [showLocation, setShowLocation] = useState(false); // show the menu to switch location on mobile
     const [hasTakeAway, setHasTakeAway] = useState(false); // default
     const { locationColor, handleLocationChange } = useContext(LocationColorContext);
     const isMobile = useIsMobile();
@@ -159,11 +159,20 @@ const Map = ({}) => {
     const handleFilters = () => {
         // functions that handles the filter button
         setOpenFilters(!openFilters); // open filters
+        setShowLocation(false);
         // if mobile --> hide detailpane of venue.
         if (isMobile) {
             setVisible(false)
         }
     }
+
+    const handleOpenLocation = () => {
+        setOpenFilters(false);
+        setVisible(false);
+        setShowLocation(!showLocation);
+    }
+
+    console.log(locationColor.location)
 
     return(
         <div className={"map--ui_container"}
@@ -179,13 +188,6 @@ const Map = ({}) => {
                     <div className={"pill"} onClick={()=>{handleLocationChange("antwerp")}}>ANTWERP</div>
                     <div className={"pill"} onClick={()=>{handleLocationChange("brussels")}}>BRUSSELS</div>
                 </div>
-                <CityDropdown
-                    cities={["gent", "antwerp", "brussels"]}
-                    defaultCity={"gent"}
-                    onChange={handleCityChange}
-                    setVisible={setVisible}
-                />
-
             </div>
             {/*<Header style={{position: "fixed"}} selectedTab={"map"} landing={true} interact={true} setLocation={setLocation} location={location} setTarget={setTarget} map={true}/>*/}
             <div style={{height: '100%', width: '100%', position: 'relative'}}>
@@ -230,6 +232,33 @@ const Map = ({}) => {
                         &#8633;
                     </p>
                 </div>
+                <div className={"open-location-button"} onClick={()=>handleOpenLocation()}>
+                    <p>
+                        🌐
+                    </p>
+                </div>
+                {showLocation && (
+                    <div className="location-container">
+                        <p
+                            className={`location--pill ${locationColor.location === "gent" ? "selected" : ""}`}
+                            onClick={() => handleCityChange("gent")}
+                        >
+                            gent
+                        </p>
+                        <p
+                            className={`location--pill ${locationColor.location === "antwerp" ? "selected" : ""}`}
+                            onClick={() => handleCityChange("antwerp")}
+                        >
+                            antwerp
+                        </p>
+                        <p
+                            className={`location--pill ${locationColor.location === "brussels" ? "selected" : ""}`}
+                            onClick={() => handleCityChange("brussels")}
+                        >
+                            brussels
+                        </p>
+                    </div>
+                )}
                 <div className={openFilters ? "map--filter_left" : "map--filter_left hidden"}>
                     <div className={"switch"}>
                         <p>open today</p>

@@ -95,6 +95,61 @@
     }
 }
 
+.open-location-button {
+    z-index: 100000000000000000;
+    position: absolute;
+    right: 30px;
+    bottom: 80px;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-main);
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.open-location-button-button p {
+    margin: 0;
+    font-size: 20px;
+    user-select: none;
+}
+
+.open-location-button:hover {
+    background-color: black;
+}
+
+.location-container {
+    z-index: 100000000000000000;
+    position: absolute;
+    display: flex;
+    justify-content:space-between;
+    flex-direction: row;
+    width: 100vw;
+    bottom: 150px;
+
+
+    .location--pill {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        width: 100px;
+        margin: 10px auto;
+        padding: 20px;
+        background-color: var(--color-main);
+        color: var(--color-secondary);
+        border: 2px solid var(--color-secondary);
+    }
+
+    .location--pill.selected {
+        background-color: var(--color-secondary);
+        color: var(--color-main);
+    }
+}
+
 .map--filter_left {
     position: absolute;
     display: flex;
