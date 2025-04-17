@@ -104,6 +104,11 @@ const Page = () => {
                                             if (v.club === location) {
                                                 return (
                                                     <div key={index} className="venue">
+                                                        {v.new &&
+                                                            <div className={"new"}>
+                                                                <p>NEW</p>
+                                                            </div>
+                                                        }
                                                         <div
                                                             className="venue__image"
                                                             onMouseEnter={() => setHighlightedVenue(v)}
