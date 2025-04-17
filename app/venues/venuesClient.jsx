@@ -84,6 +84,21 @@ const VenuesClient = () => {
             <div>
                 <Banner content={search}/>
             </div>
+            {/* NO MATCHES */}
+            {matches.length === 0 &&
+            <section className={"home__container"}>
+                <section className={"desktop"} style={{position: "relative"}}>
+                    <section className={"venue-list__container-main"}>
+                        <section>
+                            <div className={"venue info-box"}>
+                                <p>{`At this point in time there are no ${search} spots matching in ${location} ☔︎︎. Please come back later, or subscribe to our newsletter to get updated.` }</p>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            }
+            {/* MATCHES */}
             {matches[0] &&
                 <section className={"home__container"}>
                     <section style={{position: "relative"}}>
