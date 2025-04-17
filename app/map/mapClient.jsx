@@ -289,7 +289,7 @@ const Map = ({}) => {
                         <div className={"pill-container"}>
                             {target.cuisineUsed.map((cuisine) => {
                                 return (
-                                    <p className={"pill"}>{cuisine.name}</p>
+                                    <p className={"pill"}><Link href={`/venues?cuisine=${cuisine.name}`}>{cuisine.name}</Link></p>
                                 )
                             })}
                         </div>
