@@ -99,6 +99,7 @@
 
 .open-filter-button:hover {
     background-color: black;
+    transform: scale(1.1);
     p {
         color: var(--color-main);
     }
@@ -128,6 +129,7 @@
 
 .open-location-button:hover {
     background-color: black;
+    transform: scale(1.1);
 }
 
 .location-container {

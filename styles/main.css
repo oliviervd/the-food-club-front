@@ -100,3 +100,24 @@ body {
     align-items: center; /* Center vertically */
     z-index: 1000; /* Ensure it appears above other content if needed */
 }
+
+.scroll-to-top-button {
+    z-index: 100000000000000000;
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-main);
+    border: 2px solid var(--color-secondary);
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.scroll-to-top-button:hover {
+    transform: scale(1.1);
+}

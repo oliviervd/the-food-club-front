@@ -14,6 +14,7 @@ import {useScrollPosition} from "../hooks/useScrollPosition.jsx";
 import Loading from "./Loading.jsx";
 import { useRouter } from 'next/navigation';
 import {useIsMobile} from "../hooks/isMobile.jsx";
+import ScrollToTop from "../components/scrollToTop.jsx";
 
 // todo: add locales
 
@@ -53,6 +54,7 @@ const HomeClient = () => {
     // render component
     return(
         <div>
+            <ScrollToTop/>
             <Header selectedTab={"lists"} landing={true} interact={true} setLocation={setLocation} location={location} setTarget={setTarget} venue={false}></Header>
             {isMobile &&
                 <section className={"home__container"}>
