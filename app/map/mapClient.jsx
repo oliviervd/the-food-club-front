@@ -167,8 +167,8 @@ const Map = ({}) => {
     }
 
     const handleOpenLocation = () => {
-        setOpenFilters(false);
         setVisible(false);
+        setOpenFilters(false);
         setShowLocation(!showLocation);
     }
 
@@ -232,11 +232,14 @@ const Map = ({}) => {
                         &#8633;
                     </p>
                 </div>
-                <div className={"open-location-button"} onClick={()=>handleOpenLocation()}>
-                    <p>
-                        🌐
-                    </p>
-                </div>
+                {isMobile &&
+                    <div className={"open-location-button"} onClick={()=>handleOpenLocation()}>
+                        <p>
+                            🌐
+                        </p>
+                    </div>
+                }
+                {!visible &&
                     <div className={showLocation ? "location-container": "location-container hidden"}>
                         <p
                             className={`location--pill ${locationColor.location === "gent" ? "selected" : ""}`}
@@ -257,6 +260,7 @@ const Map = ({}) => {
                             brussels
                         </p>
                     </div>
+                }
                 <div className={openFilters ? "map--filter_left" : "map--filter_left hidden"}>
                     <div className={"switch"}>
                         <p>open today</p>
@@ -313,6 +317,11 @@ const Map = ({}) => {
                         />
                     }
                 </div>
+                {isMobile &&
+                    <div className={openFilters ? "map--filter_submit": "map--filter_submit hidden"} onClick={()=>handleFilters()}>
+                        <p> set filters </p>
+                    </div>
+                }
                 {visible && target &&
                     <div
                         onClick={() => setVisible(!visible)}

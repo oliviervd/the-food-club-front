@@ -484,6 +484,33 @@
 
 }
 
+.map--filter_submit {
+    z-index: 1000000000000000;
+    position: absolute;
+    background-color: var(--color-main);
+    color: black;
+    top: 435px;
+    left: 20px;
+    width: 320px;
+    border: 2px var(--color-secondary) solid;
+
+    /* Transition & transform for animation */
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.map--filter_submit.hidden {
+    transform: translateX(-120%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.map--filter_submit:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-main);
+}
+
 @media (max-width: 800px) {
     .map--filter_left {
 
