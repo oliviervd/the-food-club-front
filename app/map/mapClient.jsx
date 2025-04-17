@@ -47,6 +47,16 @@ const Map = ({}) => {
     const [selectedCuisine, setSelectedCuisine] = useState([]);
     const [selectedDish, setSelectedDish] = useState([]);
 
+    // NO TRANSITIONS ON LOAD.
+    useEffect(() => {
+        const root = document.querySelector('body'); // or your app container
+        root.classList.add('no-transition');
+
+        setTimeout(() => {
+            root.classList.remove('no-transition');
+        }, 100); // remove after 100ms or next tick
+    }, []);
+
     useEffect(()=>{
         // set filters closed by default on mobile device.
         if (isMobile) {
