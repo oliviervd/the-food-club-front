@@ -46,15 +46,26 @@ const Map = ({}) => {
     const [cuisines, setCuisines] = useState([]);
     const [selectedCuisine, setSelectedCuisine] = useState([]);
     const [selectedDish, setSelectedDish] = useState([]);
+    const [initialFiltersAnimated, setInitialFiltersAnimated] = useState(false);
 
 
-   // add time to mount.
+
+    // add time to mount. - ANIMATIONS
     const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {
         const timeout = setTimeout(() => setIsMounted(true), 50); // short delay to let styles apply
         return () => clearTimeout(timeout);
     }, []);
+
+    useEffect(() => {
+        if (!isMobile) {
+            const timeout = setTimeout(() => {
+                setInitialFiltersAnimated(true); // will trigger slide-in once
+            }, 800);
+            return () => clearTimeout(timeout);
+        }
+    }, [isMobile]);
 
     useEffect(()=>{
         // set filters closed by default on mobile device.
@@ -275,7 +286,7 @@ const Map = ({}) => {
                     </div>
                 }
                 {isMounted &&
-                    <div className={openFilters ? "map--filter_left" : "map--filter_left hidden"}>
+                    <div className={`map--filter_left ${!openFilters ? 'hidden' : ''} ${initialFiltersAnimated ? '' : 'hidden'}`}>
                         <div className={"switch"}>
                             <p>open today</p>
                             <Switch
@@ -295,7 +306,7 @@ const Map = ({}) => {
                     </div>
                 }
                 {isMounted &&
-                    <div className={openFilters ? "map--filter_container": "map--filter_container hidden"}>
+                    <div className={`map--filter_container ${!openFilters ? 'hidden' : ''} ${initialFiltersAnimated ? '' : 'hidden'}`}>
                         <p>looking for a specific dish? 🍕🍱🍔</p>
                         {cuisines.length > 0 &&
                             <Autocomplete
