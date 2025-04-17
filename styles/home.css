@@ -1,25 +1,33 @@
 .home__container {
     padding: 0 10px;
-    .surprise{
+    .surprise > button{
         position: fixed;
-        bottom: 10px;
-        left: 15px;
-        right: 15px;
+        bottom: 20px;
+        left: 75px;
+        right: 75px;
         z-index: 1000;
         text-align: center;
         margin: 0 auto;
         font-size: 2rem;
         font-weight: 500;
         padding: 10px 0;
-        color: var(--color--secondary);
+        color: var(--color-secondary);
         border: 2px solid var(--color-secondary);
         background-color: var(--color-main);
+
+        a {
+            color: var(--color-secondary);
+        }
     }
 
-    .surprise:hover {
+    .surprise > button:hover {
         color: var(--color-main);
         border: 2px solid var(--color-main);
         background-color: var(--color-secondary);
+
+        a{
+            color: var(--color-main);
+        }
     }
 }
 

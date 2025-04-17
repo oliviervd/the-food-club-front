@@ -40,13 +40,12 @@ const HomeClient = () => {
     // Add animation classes based on visibility state
     const classNames = visible ? "slide-in" : "slide-out";
     const { data: categoryList, isLoading, error } = useQuery(["lists"], () => fetchAPI("lists", "en"));
+    const {data: venuesData, isLoading: venuesLoading, error:venuesError} =    useQuery(["venues"], ()=> fetchAPI('venue', 'en'));
 
     useEffect(() => {
         scrollTo(target);
     }, [target]);
 
-    console.log(isLoading, isMobile)
-    console.log(categoryList)
 
     //if (isLoading) return <Loading />;
     if (error) return <div>Error: {error.message}</div>;
@@ -66,7 +65,9 @@ const HomeClient = () => {
                         </section>
                         <CategoryList data={categoryList} />
                         <div className={`fixed-wrapper ${classNames}`}>
-                            {/*<LuckyButton nav={router} />*/}
+                            {!venuesLoading &&
+                                <LuckyButton venues={venuesData}/>
+                            }
                         </div>
                     </div>
                 </section>

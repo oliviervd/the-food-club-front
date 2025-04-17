@@ -1,16 +1,27 @@
-import {surprise} from "../utils/utils.jsx";
-import Link from "next/link";
+"use client";
 
-const LuckyButton = () => {
+import { useRouter } from "next/navigation";
+import { surprise } from "../utils/utils.jsx";
+
+const LuckyButton = ({ venues }) => {
+    const router = useRouter();
+
+    const handleClick = async () => {
+        const url = surprise(venues);
+        if (url) {
+            router.push(url);
+        } else {
+            console.warn("No venue found.");
+        }
+    };
+
     return (
         <div className={"surprise"}>
-            <Link href={surprise("all")}>
+            <button onClick={handleClick}>
                 feeling lucky ☉ ‿ ⚆
-            </Link>
+            </button>
         </div>
-    )
-}
+    );
+};
 
 export default LuckyButton;
-
-

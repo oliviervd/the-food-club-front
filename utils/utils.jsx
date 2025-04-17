@@ -69,26 +69,15 @@ export function getCSSVariableValue(variableName){
     return getComputedStyle(document.documentElement).getPropertyValue(variableName).trim();
 }
 
-export async function surprise(club) {
-    console.log(`returning a random location in ${club}`)
-    const venues = await fetchAPI("venue", "en");
-    if (venues) {
+export function surprise(venueData) {
+    if (!venueData || !Array.isArray(venueData.docs)) return null;
 
-        let res = [];
+    const publishedVenues = venueData.docs.filter(v => v["_status"] === "published");
+    if (publishedVenues.length === 0) return null;
 
-        if (club !== "all") {
-            // fetch all venues in this location
-            res = venues.docs.filter(venue => venue.club == club)
-        }
-
-        res = venues.docs;
-        // pick random one
-        const random = Math.floor(Math.random()*res.length)
-        let supriseUrl = `/venue/${res[random].url}?surprise=true`
-        console.log(supriseUrl)
-        return supriseUrl
-    }
-
+    const random = Math.floor(Math.random() * publishedVenues.length);
+    //console.log(`/venue/${publishedVenues[random].url}?surprise=true`);
+    return `/venue/${publishedVenues[random].url}?surprise=true`;
 }
 
 export function shuffleArray(array){
