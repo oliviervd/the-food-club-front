@@ -20,7 +20,7 @@ import serialize from "../../utils/serialize.jsx";
 
 const VenuesClient = () => {
 
-    const { locationColor, handleLocationChange } = useContext(LocationColorContext);
+    const { locationColor } = useContext(LocationColorContext);
     let { location } = locationColor
 
 
@@ -29,8 +29,6 @@ const VenuesClient = () => {
     const [matches, setMatches] = useState([]);
     const [cuisine, setCuisine] = useState(null);
     const [club, setClub] = useState(null);
-
-    const router = useRouter();
 
     const {data: venuesData, isLoading: venuesLoading, error:venuesError} =    useQuery(["venues"], ()=> fetchAPI('venue', 'en'));
     const {data: cuisinesData, isLoading: cuisinesLoading, error:cuisinesError} = useQuery(["cuisines"], ()=>fetchAPI("cuisine", "en"))
@@ -76,14 +74,27 @@ const VenuesClient = () => {
         return <p>Error loading data</p>;
     }
 
-    console.log(cuisine)
-
     return (
         <>
             <Header landing={true} location={club} setLocation={setClub} interact={true}/>
             <div>
                 <Banner content={search}/>
             </div>
+            {/* NO MATCHES */}
+            {matches.length === 0 &&
+            <section className={"home__container"}>
+                <section className={"desktop"} style={{position: "relative"}}>
+                    <section className={"venue-list__container-main"}>
+                        <section>
+                            <div className={"venue info-box"}>
+                                <p>{`At this point in time there are no ${search} spots matching in ${location} ☔︎︎. Please come back later, or subscribe to our newsletter to get updated.` }</p>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            }
+            {/* MATCHES */}
             {matches[0] &&
                 <section className={"home__container"}>
                     <section style={{position: "relative"}}>
@@ -115,7 +126,7 @@ const VenuesClient = () => {
                                                 <p>{serialize(cuisine.description)}</p>
                                             </div>
                                         }
-                                        {matches.map((match, index) => {
+                                        {matches.map((match) => {
                                             if (match._status == "published") {
                                                 return (
                                                     <div className={"venue"}>
