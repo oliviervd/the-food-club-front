@@ -52,7 +52,7 @@ const Map = ({}) => {
         if (isMobile) {
             setOpenFilters(false);
         }
-    })
+    }, [isMobile]);
 
     useEffect(() => {
         const getCuisines = async() => {
