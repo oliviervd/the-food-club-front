@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import {fetchAPI} from "../../utils/utils.jsx";
 import DitherImage from "../../components/DitherImage.jsx";
 import Serialize from "../../utils/serialize.jsx";
+import ScrollToTop from "../../components/scrollToTop.jsx";
 
 const Categories = ({}) => {
 
@@ -21,6 +22,7 @@ const Categories = ({}) => {
     return (
         <div>
             <Header landing={true}/>
+            <ScrollToTop/>
             <section>
                 {categoryList.map(category => {
                     if (category.item.value.media.hero.sizes.tablet.url) {

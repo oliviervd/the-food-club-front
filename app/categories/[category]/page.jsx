@@ -14,6 +14,7 @@ import Loading from "../../Loading.jsx";
 
 import { fetchAPI, shuffleArray, venueStatus } from "../../../utils/utils.jsx";
 import { LocationColorContext } from "../../../contexts/LocationColorContext.jsx";
+import ScrollToTop from "../../../components/scrollToTop.jsx";
 
 const MapSmall = dynamic(() => import("/components/mapSmall.jsx"), {
     ssr: false,
@@ -59,6 +60,7 @@ const Page = () => {
     return (
         <>
             <Header landing interact location={location} setLocation={() => {}} />
+            <ScrollToTop/>
             {isMobile && _category && <Banner content={_category.categoryTitle} />}
 
             <section className="home__container">

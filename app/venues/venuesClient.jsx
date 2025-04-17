@@ -2,6 +2,8 @@
 
 // Use this in Page.jsx or wherever you use MapSmall
 import dynamic from 'next/dynamic'
+import ScrollToTop from "../../components/scrollToTop.jsx";
+
 
 const MapSmall = dynamic(() => import('/components/mapSmall.jsx'), {
     ssr: false
@@ -77,6 +79,7 @@ const VenuesClient = () => {
     return (
         <>
             <Header landing={true} location={club} setLocation={setClub} interact={true}/>
+            <ScrollToTop/>
             <div>
                 <Banner content={search}/>
             </div>
