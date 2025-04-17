@@ -66,6 +66,89 @@
 
 }
 
+.open-filter-button {
+    z-index: 100000000000000000;
+    position: absolute;
+    right: 30px;
+    bottom: 30px;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-main);
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.open-filter-button p {
+    margin: 0;
+    font-size: 20px;
+    user-select: none;
+}
+
+.open-filter-button:hover {
+    background-color: black;
+    p {
+        color: var(--color-main);
+    }
+}
+
+.open-location-button {
+    z-index: 100000000000000000;
+    position: absolute;
+    right: 30px;
+    bottom: 80px;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-main);
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.open-location-button-button p {
+    margin: 0;
+    font-size: 20px;
+    user-select: none;
+}
+
+.open-location-button:hover {
+    background-color: black;
+}
+
+.location-container {
+    z-index: 100000000000000000;
+    position: absolute;
+    display: flex;
+    justify-content:space-between;
+    flex-direction: row;
+    width: 100vw;
+    bottom: 150px;
+
+
+    .location--pill {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        width: 100px;
+        margin: 10px auto;
+        padding: 20px;
+        background-color: var(--color-main);
+        color: var(--color-secondary);
+        border: 2px solid var(--color-secondary);
+    }
+
+    .location--pill.selected {
+        background-color: var(--color-secondary);
+        color: var(--color-main);
+    }
+}
 
 .map--filter_left {
     position: absolute;
@@ -77,6 +160,17 @@
     height: auto;
     top: 70px;
     left: 20px;
+    /* Transition & transform for animation */
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    transform: translateX(0);
+    opacity: 1;
+
+}
+
+.map--filter_left.hidden {
+    transform: translateX(-120%);
+    opacity: 0;
+    pointer-events: none;
 }
 
 .switch {
@@ -105,6 +199,11 @@
     border: 2px var(--color-secondary) solid;
     background-color: var(--color-main);
 
+    /* Transition & transform for animation */
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    transform: translateX(0);
+    opacity: 1;
+
     .tags {
         display: flex;
         flex-flow: row;
@@ -131,6 +230,12 @@
     }
 
 
+}
+
+.map--filter_container.hidden {
+    transform: translateX(-120%);
+    opacity: 0;
+    pointer-events: none;
 }
 
 .map--venue_container_desktop {
@@ -288,28 +393,38 @@
         position: relative;
 
         .category-list__box-close {
+            z-index: 100000000000000000;
             position: absolute;
-            left: 330px;
-            height: 200px;
-            width: 30px;
-            background-color: var(--color-glass);
+            right: 10px;
+            top: 10px;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--color-main);
+            border-radius: 50%;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
         }
 
+        .category-list__box-close p {
+            transform: translateY(-2px);
+            font-family: DM-sans;
+            color: black;
+            margin: 0;
+            font-size: 20px;
+            user-select: none;
+        }
+
+
         .category-list__box-close:hover {
-            background-color: var(--color-main);
-            .rotated-close {
-                color: var(--color-secondary);
+            background-color: black;
+            p {
+                color: var(--color-main);
             }
         }
 
-        .rotated-close {
-            transform: rotate(90deg) translateY(-50%) translateX(-50%);
-            transform-origin: left center;
-            font-size: 14px;
-            font-weight: bold;
-            color: var(--color-secondary);
-            width: 200px;
-        }
     }
 
     .pill-container {
@@ -360,11 +475,15 @@
 
 @media (max-width: 800px) {
     .map--filter_left {
+
+    }
+
+    .map--popup.hidden-mobile {
         display: none;
     }
 
     .map--filter_container {
-        display: none;
+
     }
 
     .city-popup {
