@@ -20,7 +20,6 @@ const ChangeView = ({ center, zoom }) => {
 const MapSmall = ({venues, highlight}) => {
     // small map component to integrate in pages.
     const { locationColor} = useContext(LocationColorContext);
-    console.log(highlight)
 
     let [zoom, setZoom] = useState(12.5) // set zoom of map
     const colorToCoordinatesMap = {
@@ -38,20 +37,32 @@ const MapSmall = ({venues, highlight}) => {
         setZoom(12.5)
     }, [locationColor]);
 
-    const createCustomClusterIcon = (cluster) => {
-        return new divIcon({
-            html: `<div class="cluster-icon">${cluster.getChildCount()}</div>`,
-            className: '',
-        })
-    }
-
     const createCustomIcon = (color) => {
+        // create icon to put on the map.
         return L.divIcon({
             className: "custom-marker-icon",
             html: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="${color}" stroke="black" stroke-width="1.5"><circle cx="12" cy="12" r="10"/></svg>`,
             iconSize: [24, 24],
             iconAnchor: [12, 12]
         });
+    };
+
+    const renderMarker = (venue, isClubLevel = false) => {
+        const ref = isClubLevel ? venue : venue.venue;
+        const isHighlighted = highlight?.url === ref.url;
+        const color = isHighlighted
+            ? getCSSVariableValue("--color-secondary")
+            : getCSSVariableValue("--color-main");
+
+        if (!ref?.address) return null;
+
+        return (
+            <Marker
+                key={ref.url}
+                position={[ref.address.longitude, ref.address.latitude]}
+                icon={createCustomIcon(color)}
+            />
+        );
     };
 
     return (
@@ -67,32 +78,27 @@ const MapSmall = ({venues, highlight}) => {
                     url="https://api.mapbox.com/styles/v1/oliviervd-tfc/clllwhqvq009s01pea2rw8mpt/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoib2xpdmllcnZkLXRmYyIsImEiOiJjbGxqZWFjd3MweTBzM2psaWFiemlnZnZnIn0.fMu0iJpz82mNYQ5Rrrwi-w"
                 />
 
-                    {venues && venues.map && venues.map((venue) => {
-                        console.log(venue)
-                        if (venue.club) {
-
-                            const isHighlighted = highlight && highlight.url === venue.url; // Check if this venue is the highlighted one
-                            const color = isHighlighted
-                                ? getCSSVariableValue("--color-secondary") // Use a different color for highlighted venues
-                                : getCSSVariableValue("--color-main");
-
-                            return (
-                                <Marker
-                                    position={[venue.address.longitude, venue.address.latitude]}
-                                    icon={createCustomIcon(color)}
-                                />
-                            )
-                        }
-                    })}
-                    {venues && venues.club && !venues[1] &&
-                            <div>
-                                <Marker
-                                    position={[venues.address.longitude, venues.address.latitude]}
-                                    icon={createCustomIcon(getColorForClub(venues.club))}
-                                />
-                            </div>
+                <MarkerClusterGroup
+                    chunkedLoading
+                    iconCreateFunction={(cluster) =>
+                        divIcon({
+                            html: `<div class="cluster-icon">${cluster.getChildCount()}</div>`,
+                            className: '',
+                        })
                     }
+                >
+                    {Array.isArray(venues) && venues.map((venue) =>
+                        venue.venue?.club ? renderMarker(venue) :
+                            venue.club ? renderMarker(venue, true) : null
+                    )}
+                </MarkerClusterGroup>
 
+                {!Array.isArray(venues) && venues?.club && venues?.address && (
+                    <Marker
+                        position={[venues.address.longitude, venues.address.latitude]}
+                        icon={createCustomIcon(getCSSVariableValue("--color-main"))}
+                    />
+                )}
 
             </MapContainer>
         </section>
