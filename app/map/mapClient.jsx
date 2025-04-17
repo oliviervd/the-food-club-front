@@ -47,14 +47,13 @@ const Map = ({}) => {
     const [selectedCuisine, setSelectedCuisine] = useState([]);
     const [selectedDish, setSelectedDish] = useState([]);
 
-    // NO TRANSITIONS ON LOAD.
-    useEffect(() => {
-        const root = document.querySelector('body'); // or your app container
-        root.classList.add('no-transition');
 
-        setTimeout(() => {
-            root.classList.remove('no-transition');
-        }, 100); // remove after 100ms or next tick
+   // add time to mount.
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+        const timeout = setTimeout(() => setIsMounted(true), 50); // short delay to let styles apply
+        return () => clearTimeout(timeout);
     }, []);
 
     useEffect(()=>{
@@ -275,63 +274,68 @@ const Map = ({}) => {
                         </p>
                     </div>
                 }
-                <div className={openFilters ? "map--filter_left" : "map--filter_left hidden"}>
-                    <div className={"switch"}>
-                        <p>open today</p>
-                        <Switch
-                            checked={showOpenOnly}
-                            onChange={(e) => setShowOpenOnly(e.target.checked)}
-                            label="open today"
-                        />
+                {isMounted &&
+                    <div className={openFilters ? "map--filter_left" : "map--filter_left hidden"}>
+                        <div className={"switch"}>
+                            <p>open today</p>
+                            <Switch
+                                checked={showOpenOnly}
+                                onChange={(e) => setShowOpenOnly(e.target.checked)}
+                                label="open today"
+                            />
+                        </div>
+                        <div className={"switch"}>
+                            <p>take-away</p>
+                            <Switch
+                                checked={hasTakeAway}
+                                onChange={(e) => setHasTakeAway(e.target.checked)}
+                                label="take-away"
+                            />
+                        </div>
                     </div>
-                    <div className={"switch"}>
-                        <p>take-away</p>
-                        <Switch
-                            checked={hasTakeAway}
-                            onChange={(e) => setHasTakeAway(e.target.checked)}
-                            label="take-away"
-                        />
+                }
+                {isMounted &&
+                    <div className={openFilters ? "map--filter_container": "map--filter_container hidden"}>
+                        <p>looking for a specific dish? 🍕🍱🍔</p>
+                        {cuisines.length > 0 &&
+                            <Autocomplete
+                                freeSolo
+                                disablePortal
+                                multiple
+                                options={cuisines.filter((cuisine) => cuisine.type === "dish")} // Filtra solo i tipi "dish"
+                                getOptionLabel={(option) => option.name}
+                                value={selectedDish}
+                                defaultValue={cuisines[0]}
+                                onChange={(event, newValue) => {
+                                    setSelectedDish(newValue); // Update selected cuisine in state
+                                    console.log("Selected cuisine:", newValue);
+                                }}
+                                sx={{width: 300}}
+                                renderInput={(params) => <TextField {...params}  />}
+                            />
+                        }
+                        <p>a cuisine in mind? 🇮🇹🇫🇷🇺🇸</p>
+                        {cuisines.length > 0 &&
+                            <Autocomplete
+                                freeSolo
+                                disablePortal
+                                multiple
+                                options={cuisines.filter((cuisine) => cuisine.type === "cuisine")} // Filtra solo i tipi "dish"
+                                getOptionLabel={(option) => option.name}
+                                value={selectedCuisine}
+                                defaultValue={cuisines[0]}
+                                onChange={(event, newValue) => {
+                                    setSelectedCuisine(newValue); // Update selected cuisine in state
+                                    console.log("Selected cuisine:", newValue);
+                                }}
+                                sx={{width: 300}}
+                                renderInput={(params) => <TextField {...params}  />}
+                            />
+                        }
                     </div>
-                </div>
-                <div className={openFilters ? "map--filter_container": "map--filter_container hidden"}>
-                    <p>looking for a specific dish? 🍕🍱🍔</p>
-                    {cuisines.length > 0 &&
-                        <Autocomplete
-                            freeSolo
-                            disablePortal
-                            multiple
-                            options={cuisines.filter((cuisine) => cuisine.type === "dish")} // Filtra solo i tipi "dish"
-                            getOptionLabel={(option) => option.name}
-                            value={selectedDish}
-                            defaultValue={cuisines[0]}
-                            onChange={(event, newValue) => {
-                                setSelectedDish(newValue); // Update selected cuisine in state
-                                console.log("Selected cuisine:", newValue);
-                            }}
-                            sx={{width: 300}}
-                            renderInput={(params) => <TextField {...params}  />}
-                        />
-                    }
-                    <p>a cuisine in mind? 🇮🇹🇫🇷🇺🇸</p>
-                    {cuisines.length > 0 &&
-                        <Autocomplete
-                            freeSolo
-                            disablePortal
-                            multiple
-                            options={cuisines.filter((cuisine) => cuisine.type === "cuisine")} // Filtra solo i tipi "dish"
-                            getOptionLabel={(option) => option.name}
-                            value={selectedCuisine}
-                            defaultValue={cuisines[0]}
-                            onChange={(event, newValue) => {
-                                setSelectedCuisine(newValue); // Update selected cuisine in state
-                                console.log("Selected cuisine:", newValue);
-                            }}
-                            sx={{width: 300}}
-                            renderInput={(params) => <TextField {...params}  />}
-                        />
-                    }
-                </div>
-                {isMobile &&
+                }
+
+                {isMobile && isMounted &&
                     <div className={openFilters ? "map--filter_submit": "map--filter_submit hidden"} onClick={()=>handleFilters()}>
                         <p> set filters </p>
                     </div>
