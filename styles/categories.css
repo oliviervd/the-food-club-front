@@ -289,7 +289,7 @@
                         top: 50%;
                         width: 80%;
                         position: absolute;
-                        background-color: var(--color-glass);
+                        /*background-color: var(--color-glass);*/
                         transform: translateX(-50%) translateY(-50%);
                     }
 
