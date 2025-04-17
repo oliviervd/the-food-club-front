@@ -73,7 +73,9 @@ const Page = () => {
                                         return (
                                             <div key={index} className="category-list__box" onClick={() => navigateTo(v.url)}>
                                                 <div>
-                                                    <div className="image__club-tag">{v.club}</div>
+                                                    {v.new &&
+                                                        <div className="image__club-tag">NEW</div>
+                                                    }
                                                     <DitherImage url={v.media.hero.sizes.tablet.url} link={`/venue/${v.url}`} />
                                                     {venueStatus(v) && <div className="venue-open">{venueStatus(v)}</div>}
                                                 </div>
