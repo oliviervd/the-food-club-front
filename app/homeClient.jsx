@@ -43,11 +43,16 @@ const HomeClient = () => {
     const {data: venuesData, isLoading: venuesLoading, error:venuesError} =    useQuery(["venues"], ()=> fetchAPI('venue', 'en'));
 
     useEffect(() => {
+        console.log("venuesData:", venuesData);
+        console.log("categoryList:", categoryList);
+    }, [venuesData, categoryList]);
+
+    useEffect(() => {
         scrollTo(target);
     }, [target]);
 
 
-    //if (isLoading) return <Loading />;
+    //if (isLoading || venuesLoading) return <Loading />;
     if (error) return <div>Error: {error.message}</div>;
 
     // render component

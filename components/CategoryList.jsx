@@ -13,6 +13,14 @@ const CategoryList = ({ data, home }) => {
     const [loadedImagesCount, setLoadedImagesCount] = useState(0);
 
 
+    useEffect(() => {
+        const fallbackTimeout = setTimeout(() => {
+            setImagesLoaded(true);
+        }, 10); // fallback after 4s
+
+        return () => clearTimeout(fallbackTimeout);
+    }, []);
+
     // Memoize categories derived from data
     const categories = useMemo(() => {
         if (data?.docs && data.docs.length > 0) {
@@ -33,11 +41,10 @@ const CategoryList = ({ data, home }) => {
     const handleImageLoad = useCallback(() => {
         setLoadedImagesCount((loadedCount) => {
             const newCount = loadedCount + 1;
-
+            console.log("Image loaded:", newCount, "/", totalImages);
             if (newCount === totalImages) {
-                setImagesLoaded(true); // All images have loaded
+                setImagesLoaded(true);
             }
-
             return newCount;
         });
     }, [totalImages]);

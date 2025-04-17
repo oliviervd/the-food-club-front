@@ -12,12 +12,12 @@ const Header = ({ interact, landing, venueLocation, setTarget, greyOut=false, co
     // get context value
     const { locationColor, handleLocationChange } = useContext(LocationColorContext);
     let { location } = locationColor
-    if (venueLocation) {
-        location = venueLocation;
-        handleLocationChange(venueLocation);
-    } else {
-        const { location } = locationColor
-    }
+
+    useEffect(() => {
+        if (venueLocation) {
+            handleLocationChange(venueLocation);
+        }
+    }, [venueLocation]);
 
     // navigate back to home
     const router = useRouter();
@@ -136,7 +136,7 @@ const Header = ({ interact, landing, venueLocation, setTarget, greyOut=false, co
                 {!isMobile &&
                     <div style={{display: 'grid', gridTemplateColumns: "30% 70%"}}>
                         <div style={{width: '100%', height: 'auto'}} onClick={() => {
-                            router("/")
+                            router.push("/")
                         }}>
                             <AutoResizeText text="FOOD CLUB" maxFontSize={600} minFontSize={10}/>
                         </div>
@@ -158,7 +158,7 @@ const Header = ({ interact, landing, venueLocation, setTarget, greyOut=false, co
                 }
                 {isMobile &&
                     <div style={{width: '100%', height: 'auto'}} onClick={() => {
-                        router("/")
+                        router.push("/")
                     }}>
                         <AutoResizeText text="FOOD CLUB" maxFontSize={600} minFontSize={10}/>
                     </div>
