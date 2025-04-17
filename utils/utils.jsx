@@ -2,48 +2,55 @@ import { DateTime } from 'luxon';
 
 export function venueStatus(venue) {
     let status = null;
-    let days = {
+    const days = {
         "Mo": 1,
         "Tu": 2,
         "Wed": 3,
         "Thu": 4,
         "Fr": 5,
         "Sat": 6,
-        "Sun": 0 // "Sun" corresponds to 0 (Sunday)
+        "Sun": 0
     };
 
-    // Get the current day and time
     const now = new Date();
-    const currentDay = now.getDay(); // 0 for Sunday, 1 for Monday, etc.
-    const currentTime = now.getHours() * 60 + now.getMinutes(); // Current time in minutes since midnight
+    const currentDay = now.getDay();
+    const currentTime = now.getHours() * 60 + now.getMinutes();
 
-    // Read the opening hours of the venue
-    let venueHours = venue.hours;
+    const venueHours = venue.hours;
 
     for (let i = 0; i < venueHours.length; i++) {
         const _dayOpen = venueHours[i].openDay;
         const dayOpen = days[_dayOpen];
 
-        // Check if today matches the venue's opening day
         if (dayOpen === currentDay) {
+            const openingTime = parseTime(venueHours[i].openFrom);
+            const closingTime = parseTime(venueHours[i].openTill);
 
-            // Get the opening and closing times (assumed in minutes since midnight)
-            const openingTime = parseTime(venueHours[i].openFrom); // Helper function
-            const closingTime = parseTime(venueHours[i].openTill); // Helper function
+            const isOvernight = closingTime < openingTime;
 
-            // Compare the current time to see if the venue is open
-            if (currentTime >= openingTime && currentTime <= closingTime) {
-                status = "open now";
-            } else if (currentTime < openingTime) {
-                status = "opens soon";
+            if (isOvernight) {
+                // Open now if after opening OR before closing
+                if (currentTime >= openingTime || currentTime <= closingTime) {
+                    status = "open now";
+                } else if (currentTime < openingTime) {
+                    status = "opens soon";
+                } else {
+                    status = "closed today";
+                }
             } else {
-                status = "closed today";
+                if (currentTime >= openingTime && currentTime <= closingTime) {
+                    status = "open now";
+                } else if (currentTime < openingTime) {
+                    status = "opens soon";
+                } else {
+                    status = "closed today";
+                }
             }
-            break; // Exit loop since today's status is determined
+
+            break;
         }
     }
 
-    // Return status or "closed today" by default
     return status || "closed today";
 }
 
