@@ -43,12 +43,16 @@ const Map = ({}) => {
     const [hasTakeAway, setHasTakeAway] = useState(false); // default
     const { locationColor, handleLocationChange } = useContext(LocationColorContext);
     const isMobile = useIsMobile();
-
-
     const [cuisines, setCuisines] = useState([]);
     const [selectedCuisine, setSelectedCuisine] = useState([]);
     const [selectedDish, setSelectedDish] = useState([]);
 
+    useEffect(()=>{
+        // set filters closed by default on mobile device.
+        if (isMobile) {
+            setOpenFilters(false);
+        }
+    })
 
     useEffect(() => {
         const getCuisines = async() => {
