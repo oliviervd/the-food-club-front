@@ -69,6 +69,10 @@ h2 {
 .link {
     position: relative;
     overflow: hidden;
+
+    a {
+        text-decoration: none;
+    }
 }
 
 
@@ -80,6 +84,11 @@ h2 {
 .link.selected {
     background-color: var(--color-secondary);
     color: var(--color-main);
+
+    a {
+        color: var(--color-main);
+        text-decoration: none;
+    }
 }
 
 .link.greyed-out {
