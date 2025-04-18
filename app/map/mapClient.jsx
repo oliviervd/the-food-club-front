@@ -59,12 +59,10 @@ const Map = ({}) => {
     }, []);
 
     useEffect(() => {
-        if (!isMobile) {
-            const timeout = setTimeout(() => {
-                setInitialFiltersAnimated(true); // will trigger slide-in once
-            }, 800);
-            return () => clearTimeout(timeout);
-        }
+        const timeout = setTimeout(() => {
+            setInitialFiltersAnimated(true);
+        }, isMobile ? 200 : 800); // shorter timeout for mobile, if needed
+        return () => clearTimeout(timeout);
     }, [isMobile]);
 
     useEffect(()=>{
