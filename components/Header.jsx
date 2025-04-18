@@ -114,15 +114,12 @@ const Header = ({ interact, landing, venueLocation, setTarget, greyOut=false, co
                             </nav>
                         }
                         <nav className={"flex-buttons"}>
-                            <h2 className={`link ${selectedTab === "lists" ? "selected" : "none"}`} style={{borderTop: "none"}}>
-                                <Link href={"/"}>
+
+                            <h2 className={`link ${selectedTab === "lists" ? "selected" : "none"}`} style={{borderTop: "none"}} onClick={() => {router.push('/')}}>
                                     lists
-                                </Link>
                             </h2>
-                            <h2 className={`link ${selectedTab === "map" ? "selected" : "none"}`} style={{borderTop: "none"}}>
-                                <Link href={"/map"}>
+                            <h2 className={`link ${selectedTab === "map" ? "selected" : "none"}`} style={{borderTop: "none"}} onClick={() => {router.push('/map')}}>
                                     map
-                                </Link>
                             </h2>
                         </nav>
                     </div>

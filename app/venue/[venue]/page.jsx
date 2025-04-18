@@ -195,13 +195,13 @@ const Page = () => {
                         <div className={"cuisines"}>
                             {venue.cuisineUsed.map((cuisine) => {
                                 return (
-                                    <a style={{color: "black", textDecoration: "none"}}>
+                                    <div style={{color: "black", textDecoration: "none"}}>
                                         <h2 className={"link"}>
                                             <Link href={ `/venues/?cuisine=${cuisine.name}`}>
                                                 {cuisine.name}
                                             </Link>
                                         </h2>
-                                    </a>
+                                    </div>
                                 )
                             })}
                         </div>
