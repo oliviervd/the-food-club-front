@@ -202,6 +202,7 @@
     justify-content: center;
     align-items: center;
     margin-bottom: 10px;
+    box-sizing: border-box;
     border: 2px var(--color-secondary) solid;
     background-color: var(--color-main);
 
@@ -215,9 +216,11 @@
     position: absolute;
     z-index: 10000;
     width: 300px;
-    top: 170px;
+    top: 210px;
     height: auto;
     left: 20px;
+    box-sizing: border-box;
+    width: 330px;
     border: 2px var(--color-secondary) solid;
     background-color: var(--color-main);
 
@@ -253,6 +256,36 @@
 
 
 }
+
+.map--filter_container.open-on-day {
+    position: absolute;
+    top: 150px;
+    display: flex;
+    flex-flow: row;
+    background-color: transparent;
+    justify-content: space-between;
+    border: none;
+    gap: 10px;
+    padding: 0;
+    width: 330px;
+
+    p {
+        flex: 1;
+        background-color: var(--color-main);
+        border: 2px solid var(--color-secondary);
+    }
+
+    p:hover {
+        background-color: var(--color-secondary);
+        color: var(--color-main);
+    }
+
+    .selected-day {
+        background-color: var(--color-secondary);
+        color: var(--color-main);
+    }
+}
+
 
 .map--filter_container.hidden {
     transform: translateX(-120%);
@@ -439,15 +472,12 @@
             user-select: none;
         }
 
-
         .category-list__box-close:hover {
             background-color: black;
             p {
                 color: var(--color-main);
             }
         }
-
-
 
     }
 
@@ -502,9 +532,10 @@
     position: absolute;
     background-color: var(--color-main);
     color: black;
-    top: 435px;
+    top: 470px;
     left: 20px;
-    width: 320px;
+    width: 330px;
+    box-sizing: border-box;
     border: 2px var(--color-secondary) solid;
 
     /* Transition & transform for animation */
@@ -525,16 +556,9 @@
 }
 
 @media (max-width: 800px) {
-    .map--filter_left {
-
-    }
 
     .map--popup.hidden-mobile {
         display: none;
-    }
-
-    .map--filter_container {
-
     }
 
     .city-popup {
