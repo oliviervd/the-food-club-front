@@ -38,12 +38,11 @@
     padding-bottom: 5px;
 
     img {
-        width: 99%;
+        /*width: 99%;*/
         justify-content: center;
         background-size: cover; /* Ensures the image covers the container */
         background-position: center; /* Centers the image */
         background-repeat: no-repeat; /* Prevents the image from repeating */
-        border: black 3px solid;
     }
 
     .venue-open{
@@ -278,6 +277,11 @@
                 }
 
                 .venue__image {
+
+                    .image-container {
+                        height: auto;
+                    }
+
                     position: relative;
                     h2 {
                         color: var(--color-main);
