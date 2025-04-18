@@ -47,7 +47,7 @@ const DitherImage = (props) => {
     */}
 
     return (
-        <div>
+        <div className="image-container">
             <img src={props.url} alt="Dithered"/>
         </div>
     );
