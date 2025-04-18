@@ -112,14 +112,15 @@ const Map = ({}) => {
         getVenues();
     },[])
 
-    const toggleDay = (day) => {
-        // function to toggle days.
-        setSelectedDays((prevDays) =>
-            prevDays.includes(day)
-                ? prevDays.filter((d) => d !== day)
-                : [...prevDays, day]
-        );
-    };
+    const toggleDay = useCallback((day) => {
+        setSelectedDays((prevSelected) => {
+            if (prevSelected.includes(day)) {
+                return prevSelected.filter((d) => d !== day);
+            } else {
+                return [...prevSelected, day];
+            }
+        });
+    }, []);
 
 // Filter venues based on the "open now" toggle and cuisine
     const filteredVenues = venues.filter((venue) => {
