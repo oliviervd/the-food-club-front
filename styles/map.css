@@ -498,7 +498,7 @@
 }
 
 .map--filter_submit {
-    z-index: 1000000000000000;
+    z-index: 9999;
     position: absolute;
     background-color: var(--color-main);
     color: black;
