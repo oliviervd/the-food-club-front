@@ -39,6 +39,7 @@ const Map = ({}) => {
     const [visible, setVisible] = useState(true);
     const [openFilters, setOpenFilters] = useState(true);
     const [showOpenOnly, setShowOpenOnly] = useState(false); // Default: show all venues
+    const [selectedDays, setSelectedDays] = useState([]); // set and store days for filter per day
     const [showLocation, setShowLocation] = useState(false); // show the menu to switch location on mobile
     const [hasTakeAway, setHasTakeAway] = useState(false); // default
     const { locationColor, handleLocationChange } = useContext(LocationColorContext);
@@ -111,34 +112,42 @@ const Map = ({}) => {
         getVenues();
     },[])
 
+    const toggleDay = (day) => {
+        // function to toggle days.
+        setSelectedDays((prevDays) =>
+            prevDays.includes(day)
+                ? prevDays.filter((d) => d !== day)
+                : [...prevDays, day]
+        );
+    };
+
 // Filter venues based on the "open now" toggle and cuisine
     const filteredVenues = venues.filter((venue) => {
-        // Check if the venue meets the "open now" criteria.
         const isOpen = showOpenOnly ? venueStatus(venue) !== "closed today" : true;
         const takeAway = hasTakeAway ? venue["takeAway"] : true;
 
-        // Check if the venue matches the selected cuisines.
         const matchesCuisine = venue.cuisineUsed
             ? selectedCuisine.length > 0
                 ? venue.cuisineUsed.some((cuisine) =>
                     selectedCuisine.some((selected) => selected.name === cuisine.name)
                 )
-                : true // No cuisines selected, allow all venues.
-            : false; // No cuisines in the venue.
+                : true
+            : false;
 
-        // Check if the venue matches the selected dishes.
         const matchesDish = venue.cuisineUsed
             ? selectedDish.length > 0
                 ? venue.cuisineUsed.some((dish) =>
                     selectedDish.some((selected) => selected.name === dish.name)
                 )
-                : true // No dishes selected, allow all venues.
-            : false; // No dishes in the venue.
+                : true
+            : false;
 
-        // Return true only if both cuisine and dish matches (plus open status).
-        return isOpen && matchesCuisine && matchesDish && takeAway;
+        const openOnSelectedDays = selectedDays.length > 0
+            ? selectedDays.some((day) => venue.hours.some((hour) => hour.openDay === day))
+            : true;
+
+        return isOpen && matchesCuisine && matchesDish && takeAway && openOnSelectedDays;
     });
-
 
     // Add animation classes based on visibility state
     const classNames = visible ? "slide-up" : "slide-down";
@@ -303,6 +312,21 @@ const Map = ({}) => {
                         </div>
                     </div>
                 }
+
+                {isMounted &&
+                    <div className={`map--filter_container open-on-day ${!openFilters ? 'hidden' : ''} ${initialFiltersAnimated ? '' : 'hidden'}`}>
+                        {["Mo", "Tu", "Wed", "Thu", "Fr", "Sat", "Sun"].map((day) => (
+                            <p
+                                key={day}
+                                onClick={() => toggleDay(day)}
+                                className={selectedDays.includes(day) ? "selected-day" : ""}
+                            >
+                                {day.toLowerCase()}
+                            </p>
+                        ))}
+                    </div>
+                }
+
                 {isMounted &&
                     <div className={`map--filter_container ${!openFilters ? 'hidden' : ''} ${initialFiltersAnimated ? '' : 'hidden'}`}>
                         <p>looking for a specific dish? 🍕🍱🍔</p>
