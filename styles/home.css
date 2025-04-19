@@ -65,3 +65,48 @@
         width: 45vw
     }
 }
+
+.cookie-popup {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--color-main);
+    color: var(--color-secondary);
+    padding: 10px;
+    text-align: center;
+    width: 350px;
+    border: 2px solid var(--color-secondary);
+}
+
+.cookie-popup-buttons{
+    display: flex;
+    flex-flow: row;
+    justify-content: space-evenly;
+    gap: 10px;
+
+    p {
+        border: 2px solid var(--color-secondary);
+        padding: 5px;
+        margin: 0;
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+        font-size: var(--font-s);
+    }
+
+    @media (hover: hover) {
+        p:hover {
+            background-color: var(--color-secondary);
+            color: var(--color-main);
+        }
+    }
+
+}
+
+@media (max-width: 600px) {
+    .cookie-popup {
+        z-index: 10000000000000000000000000000;
+        width: auto;
+        left: 20px;
+    }
+}

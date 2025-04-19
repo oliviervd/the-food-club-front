@@ -3,6 +3,7 @@
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { LocationColorProvider } from '../contexts/LocationColorContext.jsx';
+import {CookieProvider} from "../contexts/CookieContext.jsx";
 import { AuthProvider } from '../contexts/AuthContext';
 import AuthGuard from '../components/AuthGuard';
 import { useState } from 'react';
@@ -34,7 +35,9 @@ export default function ClientLayout({ children }) {
             <LocationColorProvider>
                 <AuthProvider>
                     <AuthGuard>
-                        {children}
+                        <CookieProvider>
+                            {children}
+                        </CookieProvider>
                     </AuthGuard>
                 </AuthProvider>
             </LocationColorProvider>
