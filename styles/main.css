@@ -102,7 +102,7 @@ body {
 }
 
 .scroll-to-top-button {
-    z-index: 100000000000000000;
+    z-index: 99999;
     position: fixed;
     right: 30px;
     bottom: 30px;
