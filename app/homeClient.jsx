@@ -15,6 +15,7 @@ import Loading from "./Loading.jsx";
 import { useRouter } from 'next/navigation';
 import {useIsMobile} from "../hooks/isMobile.jsx";
 import ScrollToTop from "../components/scrollToTop.jsx";
+import CookiePopUp from "../components/Cookie-Pop-Up.jsx";
 
 // todo: add locales
 
@@ -80,6 +81,7 @@ const HomeClient = () => {
             {!isMobile && categoryList && categoryList.docs &&
                 <DesktopHome categories={categoryList.docs[0].items}/>
             }
+            <CookiePopUp/>
         </div>
     )
 }
