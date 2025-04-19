@@ -76,6 +76,8 @@
     text-align: center;
     width: 350px;
     border: 2px solid var(--color-secondary);
+    z-index: 1000000000000000000000000000000000000000000000000;
+
 }
 
 .cookie-popup-buttons{
@@ -83,6 +85,7 @@
     flex-flow: row;
     justify-content: space-evenly;
     gap: 10px;
+    z-index: 1000000000000000000000000000000000000000000000000;
 
     p {
         border: 2px solid var(--color-secondary);
@@ -105,7 +108,7 @@
 
 @media (max-width: 600px) {
     .cookie-popup {
-        z-index: 10000000000000000000000000000;
+        z-index: 1000000000000000000000000000000000000000000000000;
         width: auto;
         left: 20px;
     }
