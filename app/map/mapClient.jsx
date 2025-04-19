@@ -4,7 +4,7 @@ import Header from "/components/Header.jsx"
 import {MapContainer, TileLayer, useMap, Marker, Popup} from "react-leaflet";
 import {divIcon, Icon} from "leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
-import {useContext, useState, useEffect} from "react";
+import {useContext, useState, useEffect, useCallback} from "react";
 import {useRouter} from "next/navigation";
 import {venueStatus, fetchAPI, getCSSVariableValue} from "/utils/utils.jsx";
 import {LocationColorContext} from "/contexts/LocationColorContext.jsx";

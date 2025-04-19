@@ -246,9 +246,11 @@
 
         }
 
-        h2:hover {
-            background-color: var(--color-secondary);
-            color: var(--color-main);
+        @media (hover:hover) {
+            h2:hover {
+                background-color: var(--color-secondary);
+                color: var(--color-main);
+            }
         }
 
 
@@ -275,9 +277,11 @@
         border: 2px solid var(--color-secondary);
     }
 
-    p:hover {
-        background-color: var(--color-secondary);
-        color: var(--color-main);
+    @media (hover:hover) {
+        p:hover {
+            background-color: var(--color-secondary);
+            color: var(--color-main);
+        }
     }
 
     .selected-day {
