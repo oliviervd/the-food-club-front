@@ -95,12 +95,17 @@
         justify-content: center;
         text-align: center;
         font-size: var(--font-s);
+        z-index: 1000000000000000000000000000000000000000000000000;
+
     }
+
 
     @media (hover: hover) {
         p:hover {
             background-color: var(--color-secondary);
             color: var(--color-main);
+            z-index: 1000000000000000000000000000000000000000000000000;
+
         }
     }
 
