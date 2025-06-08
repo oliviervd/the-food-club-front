@@ -7,7 +7,7 @@ const CookieContext = createContext();
 
 // create a provider component
 export const CookieProvider = ({children}) => {
-   const [cookieAccepted, setCookieAccepted] = useState(null);
+   const [cookieAccepted, setCookieAccepted] = useState(true);
 
    useEffect(() => {
        const savedPrefernce = localStorage.getItem('cookieAccepted');
