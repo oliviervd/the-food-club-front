@@ -66,7 +66,7 @@ const HomeClient = () => {
                     <div>
                         <section style={{padding: "10px 0"}}>
                             <h2 className={"subtitle"}>
-                                FOOD CLUB loves lists. That's why we created some specially for you. From healthy snacks to absurdly comforting food, the order is yours.
+                                FOOD CLUB loves lists. We've crafted these bad boys just for you! From healthy snacks to absurdly comforting food, the order is yours.
                             </h2>
                         </section>
                         <CategoryList data={categoryList} />

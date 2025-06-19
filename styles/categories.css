@@ -32,10 +32,16 @@
     border-bottom: black solid 2px;
 }
 
+.special {
+    background: var(--color-secondary);
+    height: 290px;
+    border: var(--color-main) 3px solid;
+}
 
 .category-list__box{
     position: relative;
     padding-bottom: 5px;
+
 
     img {
         /*width: 99%;*/

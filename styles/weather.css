@@ -1,0 +1,10 @@
+.weather{
+    background: yellow;
+    border: black 2px solid;
+    z-index: 10000000;
+    margin: 0 10px;
+
+    p {
+        padding: 0 20px;
+    }
+}

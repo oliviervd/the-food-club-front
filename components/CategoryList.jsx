@@ -3,6 +3,7 @@ import {useRouter} from "next/navigation";
 import DitherImage from "./DitherImage.jsx";import { useNavigate } from "react-router-dom";
 import Loading from "../app/Loading.jsx";
 import Link from "next/link";
+import BroadCastForYou from "./BroadCastForYou.js";
 
 // TODO: Add hover effect on desktop (show text explaining the category)
 
@@ -62,6 +63,9 @@ const CategoryList = ({ data, home }) => {
 
     return (
         <section className="category-list__container">
+            <div className={"category-list__box special"}>
+                <BroadCastForYou/>
+            </div>
             {!home &&
                 categories.map((cat) => {
                     const _cat = cat.item.value;

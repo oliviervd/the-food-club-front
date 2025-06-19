@@ -4,6 +4,7 @@ import {fetchAPI} from "../../utils/utils.jsx";
 import DitherImage from "../../components/DitherImage.jsx";
 import Serialize from "../../utils/serialize.jsx";
 import ScrollToTop from "../../components/scrollToTop.jsx";
+import BroadCastForYou from "../../components/BroadCastForYou.js";
 
 const Categories = ({}) => {
 
@@ -24,10 +25,12 @@ const Categories = ({}) => {
             <Header landing={true}/>
             <ScrollToTop/>
             <section>
+                <section className={"container__categories"}>
+
                 {categoryList.map(category => {
                     if (category.item.value.media.hero.sizes.tablet.url) {
                         return(
-                            <section className={"container__categories"}>
+                            <div>
                                 <div className={"category-list__box"}>
                                     <DitherImage url={category.item.value.media.hero.sizes.mobileFriendly.url}/>
                                     <div className={"counter"}>
@@ -46,10 +49,14 @@ const Categories = ({}) => {
 
                                     }
                                 </div>
-                            </section>
+                            </div>
+
+
+
                         )
                     }
                 })}
+                </section>
             </section>
         </div>
     )
