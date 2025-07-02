@@ -50,7 +50,6 @@ const useWeather = (city: string) => {
     }, [city]);
 
     const isSunny = weather && !('message' in weather) && weather.clouds < 25 && weather.description.toLowerCase().includes('clear');
-    console.log(weather)
     return { weather, loading, error, isSunny };
 }
 

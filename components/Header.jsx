@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation';
 import {useContext, useEffect, useState} from "react";
 import {LocationColorContext} from "../contexts/LocationColorContext.jsx";
 import Image from 'next/image';
-import logo from '/public/assets/img/logo-blue.png';
+const logo = '/assets/img/logo-blue.png';
 import Link from 'next/link';
 import "../styles/header.css"
 
@@ -43,7 +43,17 @@ const Header = ({ interact, landing, venueLocation, setTarget, greyOut=false, co
                             </div>
                             <div className={"logo-container"}>
                                 <Link href="/">
-                                    <Image src={logo} alt="Food Club Logo" className="logo" />
+                                    <Image
+                                        src={logo}
+                                        alt="Food Club Logo"
+                                        className="logo"
+                                        width={200}
+                                        height={100}
+                                        style={{
+                                            width: '50%',
+                                            height: 'auto',
+                                        }}
+                                    />
                                 </Link>
                             </div>
 
@@ -85,7 +95,17 @@ const Header = ({ interact, landing, venueLocation, setTarget, greyOut=false, co
                 {isMobile &&
                     <div className={"logo-container"}>
                         <Link href="/">
-                            <Image src={logo} alt="Food Club Logo" className="logo" />
+                            <Image
+                                src={logo}
+                                alt="Food Club Logo"
+                                className="logo"
+                                width={200}
+                                height={100}
+                                style={{
+                                    width: '50%',
+                                    height: 'auto',
+                                }}
+                            />
                         </Link>
                     </div>
                 }
@@ -116,10 +136,10 @@ const Header = ({ interact, landing, venueLocation, setTarget, greyOut=false, co
                         <nav className={"flex-buttons"}>
 
                             <h2 className={`link ${selectedTab === "lists" ? "selected" : "none"}`} style={{borderTop: "none"}} onClick={() => {router.push('/')}}>
-                                    lists
+                                lists
                             </h2>
                             <h2 className={`link ${selectedTab === "map" ? "selected" : "none"}`} style={{borderTop: "none"}} onClick={() => {router.push('/map')}}>
-                                    map
+                                map
                             </h2>
                         </nav>
                     </div>

@@ -1,65 +1,77 @@
-import escapeHTML from "escape-html";
-import {Text} from "slate";
-import {Fragment} from "react";
+import escapeHTML from 'escape-html';
+import { Fragment } from 'react';
 
-const serialize = (children) =>
-    children.map((node, i) => {
-        if (Text.isText(node)) {
+const serialize = (content) => {
+  if (!content) return null;
+  
+  if (content.root) {
+    return content.root.children.map((node, i) => serializeNode(node, i));
+  }
+  
+  if (Array.isArray(content)) {
+    return content.map((node, i) => serializeNode(node, i));
+  }
+  
+  return null;
+};
 
-            // Check if the text is empty, indicating a line break
-            if (node.text === "") {
-                return <br key={i} />;
-            }
+const serializeNode = (node, i) => {
+  if (!node) return null;
 
-            let text = (
-                <span dangerouslySetInnerHTML={{ __html: escapeHTML(node.text) }} />
-             );
-
-            if (node.bold) {
-                text = <strong key={i}>{text}</strong>;
-            }
-
-            if (node.code) {
-                text = <code key={i}>{text}</code>;
-            }
-
-            if (node.italic) {
-                text = <em key={i}>{text}</em>;
-            }
-
-            // Handle other leaf types here...
-
-            return <Fragment key={i}>{text}</Fragment>;
-        }
-
-        if (!node) {
-            return null;
-        }
-
-        switch (node.type) {
-            case "h1":
-                return <h1 key={i}>{serialize(node.children)}</h1>;
-        // Iterate through all headings here...
-    case "h6":
-        return <h6 key={i}>{serialize(node.children)}</h6>;
-    case "blockquote":
-        return <blockquote key={i}>{serialize(node.children)}</blockquote>;
-    case "ul":
-        return <ul key={i}>{serialize(node.children)}</ul>;
-    case "ol":
-        return <ol key={i}>{serialize(node.children)}</ol>;
-    case "li":
-        return <li key={i}>{serialize(node.children)}</li>;
-    case "link":
-        return (
-            <a href={escapeHTML(node.url)} key={i}>
-            {serialize(node.children)}
-        </a>
-    );
-
-    default:
-        return <p key={i}>{serialize(node.children)}</p>;
+  if (node.type === 'text') {
+    let text = node.text;
+    
+    if (!text) {
+      return <br key={i} />;
     }
-    });
 
-export default serialize
+    let formattedText = <Fragment key={i}>{text}</Fragment>;
+    
+    if (node.format) {
+      if (node.format & 1) {
+        formattedText = <strong key={i}>{formattedText}</strong>;
+      }
+      if (node.format & 2) {
+        formattedText = <em key={i}>{formattedText}</em>;
+      }
+      if (node.format & 4) {
+        formattedText = <s key={i}>{formattedText}</s>;
+      }
+      if (node.format & 8) {
+        formattedText = <u key={i}>{formattedText}</u>;
+      }
+      if (node.format & 16) {
+        formattedText = <code key={i}>{formattedText}</code>;
+      }
+    }
+    
+    return formattedText;
+  }
+
+  switch (node.type) {
+    case 'paragraph':
+      return <div className="text-block" key={i}>{serialize(node.children)}</div>;
+    case 'heading':
+      return <div className={`heading heading-${node.tag}`} key={i}>{serialize(node.children)}</div>;
+    case 'list':
+      const ListTag = node.listType === 'number' ? 'ol' : 'ul';
+      return <ListTag key={i}>{serialize(node.children)}</ListTag>;
+    case 'listitem':
+      return <li key={i}>{serialize(node.children)}</li>;
+    case 'quote':
+      return <blockquote key={i}>{serialize(node.children)}</blockquote>;
+    case 'link':
+      return (
+        <a href={escapeHTML(node.url)} key={i}>
+          {serialize(node.children)}
+        </a>
+      );
+    default:
+      if (node.children) {
+        return serialize(node.children);
+      }
+      return null;
+  }
+};
+
+export default serialize;

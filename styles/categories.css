@@ -1,3 +1,12 @@
+.header {
+    padding: 5px;
+    margin: 20px 5px;
+    background-color: var(--color-main);
+    color: var(--color-secondary);
+    justify-content: center;
+    text-align: center;
+}
+
 .category-meta {
     h2 {
         margin-top: 10px;
@@ -20,6 +29,7 @@
     h2:hover {
         color: var(--color-main);
         background-color: black;
+        transition: all 0.5s ease;
     }
 }
 
@@ -36,6 +46,22 @@
     background: var(--color-secondary);
     height: 290px;
     border: var(--color-main) 3px solid;
+}
+
+.special:hover {
+    background: var(--color-main);
+    border: var(--color-secondary) solid 2px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+
+    h2 {
+        color: var(--color-secondary);
+    }
+}
+
+.special h2:hover {
+    background-color: initial !important;
+    color: inherit !important;
 }
 
 .category-list__box{
@@ -212,14 +238,15 @@
             justify-content: flex-start;
 
             .info-box{
-                background: var(--color-main);
                 height: 200px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                background: var(--color-main);
 
                 > p {
                     margin: 10px;
+                    background: var(--color-main);
                 }
 
             }
@@ -261,6 +288,19 @@
                     height: 200px;
                     background-color: var(--color-main);
                     border: 2px solid var(--color-main);
+
+                    p {
+                        color: var(--color-secondary);
+                        font-size: var(--font-s);
+                        padding: 10px;
+                        justify-content: center;
+                        text-align: center;
+                        left: 50%;
+                        top: 50%;
+                        width: 80%;
+                        position: absolute;
+                        transform: translateX(-50%) translateY(-50%);
+                    }
 
                     h2 {
                         color: var(--color-secondary);
@@ -312,6 +352,27 @@
         }
     }
 
+    .cat_description {
+        background: var(--color-secondary);
+        min-width: 250px;
+        width: 31.5%;
+        margin: 5px;
+        position: relative;
+        border: 2px solid var(--color-main);
+
+        h2 {
+            color: var(--color-main);
+            padding: 10px;
+            justify-content: center;
+            text-align: center;
+            left: 50%;
+            top: 50%;
+            width: 80%;
+            position: absolute;
+            transform: translateX(-50%) translateY(-60%);
+        }
+    }
+
     .venue-list__container-others {
         margin: 5px 5px;
         height: 50vh;
@@ -355,4 +416,15 @@
             }
         }
     }
+}
+
+.initial-hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in {
+    opacity: 1;
+    transform: translateY(0);
 }

@@ -55,7 +55,7 @@
         right: 20px;
 
         .pill {
-            border: 1px solid var(--color-secondary);
+            border: 2px solid var(--color-secondary);
             padding: 5px;
             margin: 0;
             background-color: var(--color-main);
@@ -172,15 +172,81 @@
     pointer-events: none;
 }
 
-.map--filter_left {
+.map--filters_container {
     position: absolute;
+    display: flex;
+    flex-direction: column;
+    z-index: 10000;
+    width: 350px;
+    top: 150px;
+    bottom: 5px;
+    left: 0;
+    background: white;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    transform: translateX(0);
+    opacity: 1;
+    padding-top: 10px;
+
+    .map--filter_info {
+        width: 100%;
+        p {
+            font-weight: bold;
+            padding: 0 10px;
+            justify-content: start;
+            text-align: left;
+            margin: 0
+        }
+    }
+}
+
+.map--filters_container.hidden {
+    transform: translateX(-120%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.map--filters_pills-container {
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 5px;
+    padding: 10px;
+
+
+    .map--filters_pill {
+        width: fit-content;
+        height: fit-content;
+        color: var(--color-secondary);
+        margin: 0;
+
+        p {
+            padding: 3px;
+            margin: 0;
+            flex: 1;
+            background-color: var(--color-main);
+            border: 2px solid var(--color-secondary);
+        }
+    }
+
+    .map--filters_pill.inactive {
+        p{
+            background-color: white;
+            border-style: dotted;
+        }
+
+    }
+}
+
+.map--filter_left {
+    position: relative;
     display: flex;
     flex-direction: row;
     gap: 20px;
     z-index: 10000;
     width: 350px;
     height: auto;
-    top: 70px;
+    top: 60px;
     left: 20px;
     /* Transition & transform for animation */
     transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
@@ -346,6 +412,8 @@
     }
 
     .cuisines {
+        padding-bottom: 10px;
+
         h2 {
             font-size: var(--font-s);
         }
@@ -493,17 +561,19 @@
         gap: 5px;
 
         .pill {
-            border: 1px solid var(--color-secondary);
+            border: 2px solid var(--color-secondary);
             padding: 5px;
             margin: 0;
             background-color: var(--color-main);
 
             a {
                 color: var(--color-secondary);
+                text-decoration: none;
             }
 
             a:hover {
                 color: var(--color-main);
+                text-decoration: none;
             }
         }
 

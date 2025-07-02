@@ -1,64 +1,63 @@
 import { DateTime } from 'luxon';
+import SunCalc from 'suncalc';
 
 export function venueStatus(venue) {
-    let status = null;
+    if (!venue?.information?.hours) return null;
+
     const days = {
-        "Mo": 1,
-        "Tu": 2,
-        "Wed": 3,
-        "Thu": 4,
-        "Fr": 5,
-        "Sat": 6,
-        "Sun": 0
+        "monday": 1,
+        "tuesday": 2,
+        "wednesday": 3,
+        "thursday": 4,
+        "friday": 5,
+        "saturday": 6,
+        "sunday": 0
     };
 
     const now = new Date();
     const currentDay = now.getDay();
     const currentTime = now.getHours() * 60 + now.getMinutes();
 
-    const venueHours = venue.hours;
+    // Find the current day's schedule
+    const todaySchedule = venue.information.hours.find(day => days[day.dayOfWeek] === currentDay);
 
-    for (let i = 0; i < venueHours.length; i++) {
-        const _dayOpen = venueHours[i].openDay;
-        const dayOpen = days[_dayOpen];
+    if (!todaySchedule) return "closed today";
+    if (todaySchedule.isClosed) return "closed today";
+    if (!todaySchedule.periods?.[0]) return "closed today";
 
-        if (dayOpen === currentDay) {
-            const openingTime = parseTime(venueHours[i].openFrom);
-            const closingTime = parseTime(venueHours[i].openTill);
+    const { openTime, closeTime } = todaySchedule.periods[0];
+    if (!openTime || !closeTime) return "closed today";
 
-            const isOvernight = closingTime < openingTime;
+    const openingTime = parseTime(openTime);
+    const closingTime = parseTime(closeTime);
 
-            if (isOvernight) {
-                // Open now if after opening OR before closing
-                if (currentTime >= openingTime || currentTime <= closingTime) {
-                    status = "open now";
-                } else if (currentTime < openingTime) {
-                    status = "opens soon";
-                } else {
-                    status = "closed today";
-                }
-            } else {
-                if (currentTime >= openingTime && currentTime <= closingTime) {
-                    status = "open now";
-                } else if (currentTime < openingTime) {
-                    status = "opens soon";
-                } else {
-                    status = "closed today";
-                }
-            }
+    const isOvernight = closingTime < openingTime;
 
-            break;
+    if (isOvernight) {
+        // Open now if after opening OR before closing
+        if (currentTime >= openingTime || currentTime <= closingTime) {
+            return "open now";
+        } else if (currentTime < openingTime) {
+            return "opens soon";
+        }
+    } else {
+        if (currentTime >= openingTime && currentTime <= closingTime) {
+            return "open now";
+        } else if (currentTime < openingTime) {
+            return "opens soon";
         }
     }
 
-    return status || "closed today";
+    return "closed today";
 }
 
 // Helper function to parse "HH:mm" format into minutes since midnight
 function parseTime(timeString) {
-    const [hours, minutes] = timeString.split(":").map((t) => parseInt(t, 10));
-    return hours * 60 + minutes;
+    if (!timeString) return 0;
+    const [hours, minutes] = timeString.split(":").map(t => parseInt(t, 10));
+    return hours * 60 + (minutes || 0);
 }
+
 // handle location changes
 export function handleLocationChange(newLocation, setLocation, setBgColor) {
     const clubColors = {
@@ -95,14 +94,36 @@ export function shuffleArray(array){
     return array;
 };
 
-export async function fetchAPI(endpoint, locale) {
-    const response = await fetch(`https://p01--cms--j4bvc8vdjtjb.code.run/api/${endpoint}/?locale=${locale}&limit=1000`, {
-        credentials: 'include',
-        method: 'GET'
-    });
-    if (!response.ok) {
-        throw new Error('Network response was not ok');
+export async function fetchAPI(endpoint, locale, query = {}) {
+    const endpointMap = {
+        lists: 'lists',
+        venue: 'venues',
+        venues: 'venues',
+        categories: 'categories',
+        cuisine: 'cuisines',
+    };
+
+    const apiEndpoint = endpointMap[endpoint] || endpoint;
+
+    const params = new URLSearchParams();
+    if (locale) params.append('locale', locale);
+
+    // Add additional query params
+    for (const key in query) {
+        params.append(key, query[key]);
     }
+
+    const response = await fetch(`/api/${apiEndpoint}?${params.toString()}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
+
+    if (!response.ok) {
+        throw new Error(`Failed to fetch ${endpoint}: ${response.statusText}`);
+    }
+
     return response.json();
 }
 
@@ -140,3 +161,33 @@ export function convertHour(input) {
     return formattedTime;
 }
 
+export function isTerraceInSun({lat, lon, orientation}) {
+    const now = new Date();
+    const sunPos = SunCalc.getPosition(now, lat, lon);
+
+    const azimuthDeg = (sunPos.azimuth * 180) / Math.PI + 180; // convert from radians to compass bearing
+    const altitudeDeg = (sunPos.altitude * 180) / Math.PI;     // in degrees
+
+    // Map compass points to degree ranges
+    const orientationMap = {
+        N: [337.5, 22.5],
+        NE: [22.5, 67.5],
+        E: [67.5, 112.5],
+        SE: [112.5, 157.5],
+        S: [157.5, 202.5],
+        SW: [202.5, 247.5],
+        W: [247.5, 292.5],
+        NW: [292.5, 337.5],
+    };
+
+    const [minAz, maxAz] = orientationMap[orientation.toUpperCase()] || [0, 360];
+
+    // Special case for North (wrap around)
+    const isAzimuthOk = minAz > maxAz
+        ? azimuthDeg >= minAz || azimuthDeg <= maxAz
+        : azimuthDeg >= minAz && azimuthDeg <= maxAz;
+
+    const isSunAboveHorizon = altitudeDeg > 0;
+
+    return isAzimuthOk && isSunAboveHorizon;
+}

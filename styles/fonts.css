@@ -64,6 +64,12 @@ h2 {
 .text-main {
     font-weight: 500;
     font-size: var(--font-s);
+
+    .text-block {
+        font-weight: 500;
+        font-size: var(--font-s);
+        padding-bottom: 5px;
+    }
 }
 
 .link {
