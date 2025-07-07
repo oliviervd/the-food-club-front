@@ -1,0 +1,147 @@
+/* DESKTOP */
+
+.about--desktop {
+    max-width: 1600px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+
+    .rules-container {
+        margin: 20px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        height: fit-content;
+    }
+
+    .text-container {
+
+    }
+
+    .food-club-rule {
+        margin: 20px;
+        margin-inside: 20px;
+        /*¨background-color: var(--color-main); */
+        border-right: 2px solid var(--color-main);
+        width: 90%;
+        background: var(--color-main);
+
+        .text-block {
+            padding: 0;
+            margin: 20px
+        };
+
+        h1 {
+            margin: 20px;
+        }
+    }
+
+    .food-club-rule h1 {
+        color: var(--color-secondary);
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+        text-align: left;
+    }
+
+    .food-club-rule p {
+        text-align: left;
+        line-height: 1.6;
+    }
+
+    /* Right text column */
+    .right-column {
+        max-width: 100%;
+        line-height: 1.7;
+        margin: 0 auto;
+    }
+
+    .right-column p {
+        margin-bottom: 1rem;
+    }
+
+    @media (max-width: 768px) {
+        .columns {
+            display: block;
+        }
+    }
+}
+
+
+/* MOBILE */
+
+.about--mobile {
+    max-width: 1200px;
+    margin: 0 auto;
+
+    .food-club-rule {
+        max-width: 60ch;
+        margin: 3rem auto;
+        padding: 0 1rem;
+    }
+}
+
+.hero-image {
+    text-align: center;
+    margin: 40px; /* space above and below */
+
+    .caption {
+        color: var(--color-secondary);
+        font-family: "DM-sans", Arial, Helvetica, sans-serif;
+        font-size: 0.9rem;
+        margin-top: 0.5rem;
+    }
+}
+
+.hero-image img {
+    display: block;
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    /* border-radius: 6px; /* optional nice touch */
+}
+
+
+.food-club-rule h1 {
+    color: var(--color-secondary);
+    font-size: 3rem; /* bigger for drop cap feel */
+    margin: 0;
+    line-height: 1;
+    text-align: center;
+}
+
+.food-club-rule p {
+    font-size: 1.2rem;
+    margin: 1rem 0 0 0;
+    line-height: 1.6;
+    text-align: justify; /* nice for rule paragraphs */
+}
+
+.text-block {
+    max-width: 70ch;
+    margin: 40px auto;
+    padding: 0 1rem;
+    font-size: 1.2rem;
+    line-height: 1.7;
+    text-align: left;
+}
+
+.text-block strong {
+    color: var(--color-secondary);
+}
+
+/* Responsive image size tweak if needed */
+@media (max-width: 768px) {
+
+    .hero-image img {
+        max-width: 100%;
+    }
+
+    .food-club-rule h1 {
+        font-size: 2.5rem;
+    }
+
+    .text-block {
+        font-size: 1.1rem;
+    }
+}
