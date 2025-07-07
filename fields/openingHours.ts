@@ -7,6 +7,18 @@ const openingHours: Field = {
         fr: "Horaires d'ouverture",
         nl: "Openingsuren"
     },
+    labels: {
+        singular: {
+            en: "Day",
+            fr: "Jour",
+            nl: "Dag"
+        },
+        plural: {
+            en: "Days",
+            fr: "Jours",
+            nl: "Dagen"
+        }
+    },
     name: "hours",
     fields: [
         {
