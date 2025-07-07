@@ -136,7 +136,7 @@ const DesktopView = ({ venue }) => (
             <div style={{marginTop: "30px"}}>
                 <DitherImage
                     style={{justifyContent: "center", maxWidth: "99%"}}
-                    url={venue.media.hero.url}
+                    url={venue.media.hero.sizes.tablet.url}
                 />
             </div>
 
@@ -152,7 +152,7 @@ const MobileView = ({ venue }) => (
                     {venue.media?.hero?.sizes?.tablet?.url && (
                         <DitherImage
                             style={{justifyContent: "center", maxWidth: "99%"}}
-                            url={venue.media.hero.url}
+                            url={venue.media.hero.sizes.mobileFriendly.url}
                         />
                     )}
                 </div>
