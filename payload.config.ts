@@ -7,6 +7,7 @@ import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
 import sharp from 'sharp'
 import {s3Storage} from "@payloadcms/storage-s3";
+import { seoPlugin } from '@payloadcms/plugin-seo';
 
 // import collections here.
 import { Users } from './collections/Users'
@@ -72,6 +73,15 @@ export default buildConfig({
   }),
   sharp,
   plugins: [
+    seoPlugin({
+      collections: [
+        "venues"
+      ],
+      generateTitle: ({ doc }) => `thefoodclub.be — ${doc.venueName}`,
+      generateURL: ({ doc }) => `thefoodclub.be/venue/${doc.url}`,
+      uploadsCollection: ['media'],
+      tabbedUI: true
+    }),
     payloadCloudPlugin(),
     // S3
     s3Storage({

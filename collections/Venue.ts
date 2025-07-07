@@ -396,34 +396,6 @@ export const Venue: CollectionConfig = {
                             }
                         }
                     ]
-                },
-                {
-                    name: "SEO",
-                    fields: [
-                        {
-                            name: 'title',
-                            type: 'text',
-                            label: 'SEO Title',
-                            required: false,
-                        },
-                        {
-                            name: 'description',
-                            type: 'textarea',
-                            label: 'Meta Description',
-                            required: false,
-                        },
-                        {
-                            name: 'keywords',
-                            type: 'text',
-                            label: 'Keywords (comma-separated)',
-                        },
-                        {
-                            name: 'image',
-                            type: 'upload',
-                            relationTo: 'media',
-                            label: 'Open Graph Image',
-                        },
-                    ]
                 }
             ]
         }

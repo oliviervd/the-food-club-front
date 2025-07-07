@@ -143,6 +143,13 @@ export interface User {
   hash?: string | null;
   loginAttempts?: number | null;
   lockUntil?: string | null;
+  sessions?:
+    | {
+        id: string;
+        createdAt?: string | null;
+        expiresAt: string;
+      }[]
+    | null;
   password?: string | null;
 }
 /**
@@ -366,11 +373,16 @@ export interface Venue {
       [k: string]: unknown;
     } | null;
   };
-  SEO?: {
+  meta?: {
     title?: string | null;
     description?: string | null;
-    keywords?: string | null;
-    image?: (string | null) | Media;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: {
+      relationTo: 'media';
+      value: string | Media;
+    } | null;
   };
   updatedAt: string;
   createdAt: string;
@@ -415,7 +427,7 @@ export interface Cuisine {
   createdAt: string;
 }
 /**
- * collection of events and calendar related to food, such as food festival, international food days etc.
+ * Collection of food-related events: festivals, international days, pop-ups, openings, etc.
  *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "events".
@@ -423,19 +435,94 @@ export interface Cuisine {
 export interface Event {
   id: string;
   name: string;
+  /**
+   * Unique URL slug for this event.
+   */
+  slug: string;
   cta?: (string | null) | Recommendation;
-  information: {
+  /**
+   * Dishes or Cuisines related to this event.
+   */
+  relatedDishCuisine?: (string | Cuisine)[] | null;
+  /**
+   * Venues connected to this event.
+   */
+  relatedToVenue?: (string | Venue)[] | null;
+  Information: {
+    description: {
+      root: {
+        type: string;
+        children: {
+          type: string;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
     /**
-     * start date of the event
+     * Optional link to an official page, tickets, etc.
      */
-    startDate: string;
+    externalLink?: string | null;
     /**
-     * end date of the event
+     * Free text location if not linked to a venue.
      */
-    endDate: string;
+    location?: string | null;
+    tags?: ('Festival' | 'International Day' | 'Pop-up' | 'Opening' | 'Special Menu' | 'Market' | 'Workshop')[] | null;
+    /**
+     * Check if this event repeats (e.g., every year).
+     */
+    repeats?: boolean | null;
+    /**
+     * Start date for one-off event.
+     */
+    startDate?: string | null;
+    /**
+     * End date (optional).
+     */
+    endDate?: string | null;
+    /**
+     * Choose how often it repeats.
+     */
+    frequency?: ('yearly' | 'monthly' | 'weekly') | null;
+    /**
+     * Month for yearly events.
+     */
+    month?:
+      | (
+          | 'January'
+          | 'February'
+          | 'March'
+          | 'April'
+          | 'May'
+          | 'June'
+          | 'July'
+          | 'August'
+          | 'September'
+          | 'October'
+          | 'November'
+          | 'December'
+        )
+      | null;
+    /**
+     * Day of month for yearly or monthly events.
+     */
+    day?: number | null;
+    /**
+     * Days of the week for weekly repeats.
+     */
+    every?: ('Monday' | 'Tuesday' | 'Wednesday' | 'Thursday' | 'Friday' | 'Saturday' | 'Sunday')[] | null;
+  };
+  Media: {
+    heroImage: string | Media;
   };
   updatedAt: string;
   createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -669,6 +756,13 @@ export interface UsersSelect<T extends boolean = true> {
   hash?: T;
   loginAttempts?: T;
   lockUntil?: T;
+  sessions?:
+    | T
+    | {
+        id?: T;
+        createdAt?: T;
+        expiresAt?: T;
+      };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -817,12 +911,11 @@ export interface VenuesSelect<T extends boolean = true> {
         review?: T;
         foodClubOrder?: T;
       };
-  SEO?:
+  meta?:
     | T
     | {
         title?: T;
         description?: T;
-        keywords?: T;
         image?: T;
       };
   updatedAt?: T;
@@ -847,15 +940,33 @@ export interface CuisinesSelect<T extends boolean = true> {
  */
 export interface EventsSelect<T extends boolean = true> {
   name?: T;
+  slug?: T;
   cta?: T;
-  information?:
+  relatedDishCuisine?: T;
+  relatedToVenue?: T;
+  Information?:
     | T
     | {
+        description?: T;
+        externalLink?: T;
+        location?: T;
+        tags?: T;
+        repeats?: T;
         startDate?: T;
         endDate?: T;
+        frequency?: T;
+        month?: T;
+        day?: T;
+        every?: T;
+      };
+  Media?:
+    | T
+    | {
+        heroImage?: T;
       };
   updatedAt?: T;
   createdAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
