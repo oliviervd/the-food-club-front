@@ -1,20 +1,19 @@
 'use client'
 
-import {MapContainer, TileLayer, useMap, Marker} from "react-leaflet";
+import {MapContainer, Marker, TileLayer, useMap} from "react-leaflet";
 import {divIcon} from "leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
-import {useContext, useState, useEffect, useCallback} from "react";
+import {useContext, useEffect, useState} from "react";
 import {useRouter} from "next/navigation";
-import {venueStatus, fetchAPI, getCSSVariableValue} from "/utils/utils.jsx";
+import {fetchAPI, getCSSVariableValue} from "/utils/utils.jsx";
 import {LocationColorContext} from "/contexts/LocationColorContext.jsx";
-import {Switch} from "@mui/material";
-import Autocomplete from '@mui/material/Autocomplete';
-import TextField from '@mui/material/TextField';
 import DitherImage from "/components/DitherImage.jsx";
 import Link from "next/link.js";
 import Image from "next/image.js";
-const logo = '/assets/img/logo-blue.png';
 import {useIsMobile} from "../../../hooks/isMobile.jsx";
+import {Autocomplete, Chip, TextField} from "@mui/material";
+
+const logo = '/assets/img/logo-blue.png';
 
 // todo add container that shows preview of the selected item
 // todo add icons to zoom in / zoom out / show my location.
@@ -53,8 +52,6 @@ const isCurrentlyInPeriod = (periods) => {
         return currentTime >= openTime && currentTime <= closeTime;
     });
 };
-
-
 
 
 const Map = ({}) => {
@@ -128,13 +125,15 @@ const Map = ({}) => {
     // add locations on map
     const [venues, setVenues] = useState([]);
     const getVenues = async () => {
-        const result = await fetchAPI("venues", "en");
+        const result = await fetchAPI("venues", "en", {limit: 1000});
         setVenues(result.docs)
     }
 
     useEffect(() => {
         getVenues();
     },[])
+
+    console.log(venues)
 
     const filteredVenues = venues.filter((venue) => {
         // No filters active - show all published venues
@@ -157,19 +156,19 @@ const Map = ({}) => {
 
 
         const matchesCuisine = selectedCuisine.length > 0
-            ? venue.information?.cuisine?.some((cuisine) =>
+            ? (venue.information?.cuisine ?? []).some((cuisine) =>
                 selectedCuisine.some((selected) => selected.name === cuisine.name)
             )
             : true;
 
         const matchesDish = selectedDish.length > 0
-            ? venue.information?.dishes?.some((dish) =>
+            ? (venue.information?.dishes ?? []).some((dish) =>
                 selectedDish.some((selected) => selected.name === dish.name)
             )
             : true;
 
         const openOnSelectedDays = selectedDays.length > 0
-            ? venue.information?.hours?.some((hour) =>
+            ? (venue.information?.hours ?? []).some((hour) =>
                 selectedDays.some(day => hour.dayOfWeek === day && !hour.isClosed)
             )
             : true;
@@ -178,17 +177,10 @@ const Map = ({}) => {
         // information.serves
 
         const matchedService = selectedService.length > 0
-            ? venue.information?.serves?.some((service) => {
-                console.log("👉 selectedService:", selectedService);
-                console.log("👉 venue.serves:", venue.information.serves);
-                console.log("👉 checking if selectedService includes:", service);
-                const result = selectedService.includes(service);
-                console.log("👉 includes result:", result);
-                return result;
+            ? (venue.information?.serves ?? []).some((service) => {
+                return selectedService.includes(service);
             })
             : true;
-
-        console.log("✅ matchedService:", matchedService);
 
         return venue._status === "published" &&
             isOpen &&
@@ -240,8 +232,6 @@ const Map = ({}) => {
         });
     };
 
-    //console.log(filteredVenues)
-
 
     // Add animation classes based on visibility state
     const classNames = visible ? "slide-up" : "slide-down";
@@ -277,7 +267,6 @@ const Map = ({}) => {
     };
 
     const handleCityChange = (city) => {
-        console.log(`change to: ${city}`);
         handleLocationChange(city)
     }
 
@@ -296,6 +285,7 @@ const Map = ({}) => {
         setOpenFilters(false);
         setShowLocation(!showLocation);
     }
+
 
     return(
         <div className={"map--ui_container"}
@@ -464,71 +454,72 @@ const Map = ({}) => {
                         </div>
                     }
 
-
-                    {/*
-                    {isMounted &&
-                        <div className={`map--filter_left ${!openFilters ? 'hidden' : ''} ${initialFiltersAnimated ? '' : 'hidden'}`}>
-                            <div className={"switch"}>
-                                <p>open today</p>
-                                <Switch
-                                    checked={showOpenOnly}
-                                    onChange={(e) => setShowOpenOnly(e.target.checked)}
-                                    label="open today"
-                                />
-                            </div>
-                            <div className={"switch"}>
-                                <p>take-away</p>
-                                <Switch
-                                    checked={hasTakeAway}
-                                    onChange={(e) => setHasTakeAway(e.target.checked)}
-                                    label="take-away"
-                                />
-                            </div>
-                            <div className={"switch"}>
-                                <p>terrace</p>
-                                <Switch
-                                    checked={hasTerrace}
-                                    onChange={(e) => setHasTerrace(e.target.checked)}
-                                    label="terrace"
-                                />
-                            </div>
-                        </div>
-                    }
-
-                    {isMounted &&
-                        <div className={`map--filter_container open-on-day ${!openFilters ? 'hidden' : ''} ${initialFiltersAnimated ? '' : 'hidden'}`}>
-                            {["Mo", "Tu", "Wed", "Thu", "Fr", "Sat", "Sun"].map((day) => (
-                                <p
-                                    key={day}
-                                    onClick={() => toggleDay(day)}
-                                    className={selectedDays.includes(dayMap[day.toLowerCase()]) ? "selected-day" : ""}
-                                >
-                                    {day.toLowerCase()}
-                                </p>
-                            ))}
-                        </div>
-                    }
-
-                    {isMounted &&
-                        <div className={`map--filter_container ${!openFilters ? 'hidden' : ''} ${initialFiltersAnimated ? '' : 'hidden'}`}>
+                    {isMounted && (
+                        <div style={{ padding: "0 10px" }}>
                             <p>looking for a specific dish? 🍕🍱🍔</p>
-                            {cuisines.length > 0 &&
+
+                            {cuisines.length > 0 && (
                                 <Autocomplete
                                     freeSolo
                                     disablePortal
                                     multiple
-                                    options={cuisines.filter((cuisine) => cuisine.type === "dish")} // Filtra solo i tipi "dish"
+                                    options={cuisines.filter((cuisine) => cuisine.type === "dish")}
                                     getOptionLabel={(option) => option.name}
                                     value={selectedDish}
-                                    defaultValue={cuisines[0]}
                                     onChange={(event, newValue) => {
-                                        setSelectedDish(newValue); // Update selected cuisine in state
-                                        console.log("Selected cuisine:", newValue);
+                                        setSelectedDish(newValue);
+                                        console.log("Selected dish:", newValue);
                                     }}
-                                    sx={{width: 300}}
-                                    renderInput={(params) => <TextField {...params}  />}
+                                    sx={{
+                                        width: 330,
+                                        backgroundColor: '#fff',
+                                        '& .MuiInputBase-root': {
+                                            backgroundColor: '#f9f9f9',
+                                        },
+                                        '& .MuiOutlinedInput-notchedOutline': {
+                                            borderColor: 'var(--color-main)',
+                                            borderStyle: 'dotted',
+                                        },
+                                        '&:hover .MuiOutlinedInput-notchedOutline': {
+                                            borderColor: 'var(--color-secondary)',
+                                            borderStyle: 'dotted',
+                                        },
+                                        '& .Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                            borderColor: 'var(--color-secondary)',
+                                            borderStyle: 'dotted',
+                                        },
+                                    }}
+                                    renderInput={(params) => (
+                                        <TextField
+                                            {...params}
+                                            placeholder="Pick your dish…"
+                                        />
+                                    )}
+                                    renderTags={(value, getTagProps) =>
+                                        value.map((option, index) => (
+                                            <Chip
+                                                label={option.name}
+                                                {...getTagProps({ index })}
+                                                sx={{
+                                                    backgroundColor: 'var(--color-secondary)',
+                                                    color: '#fff',
+                                                    borderRadius: '12px',
+                                                    fontSize: '0.8rem',
+                                                    padding: '0 8px',
+                                                    '& .MuiChip-deleteIcon': {
+                                                        color: '#fff',
+                                                    },
+                                                }}
+                                            />
+                                        ))
+                                    }
                                 />
-                            }
+                            )}
+                        </div>
+                    )}
+
+                    {isMounted &&
+                        <div style={{padding: "0 10px"}}>
                             <p>a cuisine in mind? 🇮🇹🇫🇷🇺🇸</p>
                             {cuisines.length > 0 &&
                                 <Autocomplete
@@ -543,17 +534,58 @@ const Map = ({}) => {
                                         setSelectedCuisine(newValue); // Update selected cuisine in state
                                         console.log("Selected cuisine:", newValue);
                                     }}
-                                    sx={{width: 300}}
-                                    renderInput={(params) => <TextField {...params}  />}
+                                    sx={{
+                                        width: 330,
+                                        backgroundColor: 'white',
+                                        '& .MuiInputBase-root': {
+                                            backgroundColor: '#f9f9f9',
+                                        },
+                                        '& .MuiOutlinedInput-notchedOutline': {
+                                            borderColor: 'var(--color-main)',
+                                        },
+                                        '&:hover .MuiOutlinedInput-notchedOutline': {
+                                            borderColor: 'var(--color-secondary)',
+                                        },
+                                        '& .Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                            borderColor: 'var(--color-secondary)',
+                                        },
+                                    }}
+                                    renderInput={(params) => (
+                                        <TextField
+                                            {...params}
+                                            placeholder="Pick your cuisine…"
+                                        />
+                                    )}
+                                    renderTags={(value, getTagProps) =>
+                                        value.map((option, index) => (
+                                            <Chip
+                                                label={option.name}
+                                                {...getTagProps({ index })}
+                                                sx={{
+                                                    backgroundColor: 'var(--color-secondary)',
+                                                    color: '#fff',
+                                                    borderRadius: '12px',
+                                                    fontSize: '0.8rem',
+                                                    padding: '0 8px',
+                                                    '& .MuiChip-deleteIcon': {
+                                                        color: '#fff',
+                                                    },
+                                                }}
+                                            />
+                                        ))
+                                    }
                                 />
+
                             }
-                              {isMobile && isMounted &&
-                                <div className={openFilters ? "map--filter_submit": "map--filter_submit hidden"} onClick={()=>handleFilters()}>
-                                    <p> set filters </p>
-                                </div>
-                               }
                         </div>
                     }
+                    {/*
+
+                    {isMobile && isMounted &&
+                        <div className={openFilters ? "map--filter_submit": "map--filter_submit hidden"} onClick={()=>handleFilters()}>
+                    <p> set filters </p>
+                </div>
+                }
 
                     */}
 
