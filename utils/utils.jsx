@@ -101,6 +101,7 @@ export async function fetchAPI(endpoint, locale, query = {}) {
         venues: 'venues',
         categories: 'categories',
         cuisine: 'cuisines',
+        pages: 'pages',
     };
 
     const apiEndpoint = endpointMap[endpoint] || endpoint;
@@ -108,10 +109,17 @@ export async function fetchAPI(endpoint, locale, query = {}) {
     const params = new URLSearchParams();
     if (locale) params.append('locale', locale);
 
-    // Add additional query params
     for (const key in query) {
-        params.append(key, query[key]);
+        if (key === 'filter') {
+            for (const filterKey in query.filter) {
+                params.append(`where[${filterKey}][equals]`, query.filter[filterKey]);
+            }
+        } else {
+            params.append(key, query[key]);
+        }
     }
+
+    console.log(`fetching --> /api/${apiEndpoint}?${params.toString()}`);
 
     const response = await fetch(`/api/${apiEndpoint}?${params.toString()}`, {
         method: 'GET',
