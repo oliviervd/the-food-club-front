@@ -11,8 +11,8 @@ export const metadata = {
         type: "website",
         images: [
             {
-                url: "https://www.thefoodclub.be/assets/img/logo-blue.png",
-                alt: "logo of Food Club",
+                url: "https://www.thefoodclub.be/assets/img/HERO-the-food-club-gang.jpg",
+                alt: "Image of the food club (this is not actually us)",
             },
         ],
     },
@@ -20,7 +20,7 @@ export const metadata = {
         card: 'summary_large_image',
         title: 'Food Club',
         description: '#1 Don’t talk about foodclub...',
-        images: ['https://www.thefoodclub.be/img/logo-blue.png'],
+        images: ['https://www.thefoodclub.be/assets/img/HERO-the-food-club-gang.jpg'],
     },
 };
 
