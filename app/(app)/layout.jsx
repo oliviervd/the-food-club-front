@@ -1,4 +1,7 @@
 // app/layout.js
+
+import { GoogleAnalytics } from '@next/third-parties/google'
+
 export const metadata = {
     title: "Food Club - Home",
     description: "#1 Don't talk about foodclub - but psssst…. please spread the word! — #2 The foodclub is a curated space focused on quality, featuring only restaurants we've personally visited.",
@@ -30,6 +33,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
     return (
         <html lang="en">
+        <GoogleAnalytics gaId="G-MT6KZBM1XN"/>
         <body>
         <div suppressHydrationWarning={true}>
             <ClientLayout>
