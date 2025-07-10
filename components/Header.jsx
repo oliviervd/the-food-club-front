@@ -74,9 +74,9 @@ const Header = ({ interact, landing, venueLocation, setTarget, greyOut=false, co
                                     width: "100%",
                                     gap: "0px"
                                 }}>
-                                    <h2><Link className={"link"} href={"/"}>CATEGORIES</Link></h2>
-                                    <h2><Link className={"link"} href={"/map"}>MAP</Link></h2>
-                                    <h2><Link className={"link"} href={"/about"}>ABOUT</Link></h2>
+                                    <h2 className={"link"}><Link className={"link"} href={"/"}>CATEGORIES</Link></h2>
+                                    <h2 className={"link"}><Link className={"link"} href={"/map"}>MAP</Link></h2>
+                                    <h2 className={"link"}><Link className={"link"} href={"/about"}>ABOUT</Link></h2>
                                     <h2 className={"link"} onClick={() => {
                                         handleLocationChange("gent");
                                         router.push("/");
