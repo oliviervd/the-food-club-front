@@ -30,6 +30,8 @@
     background-color: white;
     width: 100%;
     z-index: 10000000;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 
     .logo-container {
         position: relative;
@@ -42,6 +44,17 @@
         border: none;
         width: auto;
         height: 30px;
+    }
+
+    .back-button {
+        position: relative;
+        margin: 10px 10px;
+        text-align: center;
+        justify-content: center;
+        width: 50px;
+    }
+
+    .back-button-icon {
     }
 
     .pill-container {

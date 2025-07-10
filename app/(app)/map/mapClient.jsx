@@ -14,6 +14,7 @@ import {useIsMobile} from "../../../hooks/isMobile.jsx";
 import {Autocomplete, Chip, TextField} from "@mui/material";
 
 const logo = '/assets/img/logo-blue.png';
+const back = '/assets/img/back.png';
 
 // todo add container that shows preview of the selected item
 // todo add icons to zoom in / zoom out / show my location.
@@ -291,6 +292,14 @@ const Map = ({}) => {
         <div className={"map--ui_container"}
              style={{ overflow: "hidden", maxWidth: "100vw", maxHeight: "100vh", position: "relative" }}>
             <div className="map--ui_header">
+                <div className={"back-button"} onClick={()=>nav.back()}>
+                    <Image
+                        src={back}
+                        width={30}
+                        height={30}
+                        className={"back-button-icon"}
+                    />
+                </div>
                 <div className={"logo-container"}>
                     <Link href="/">
                         <Image
