@@ -24,7 +24,7 @@
         /*¨background-color: var(--color-main); */
         border-right: 2px solid var(--color-main);
         width: 90%;
-        background: var(--color-main);
+        background: var(--color-secondary);
 
         .text-block {
             padding: 0;
@@ -37,13 +37,14 @@
     }
 
     .food-club-rule h1 {
-        color: var(--color-secondary);
+        color: var(--color-main);
         font-size: 2rem;
         margin-bottom: 0.5rem;
         text-align: left;
     }
 
     .food-club-rule p {
+        color: white;
         text-align: left;
         line-height: 1.6;
     }
@@ -111,6 +112,7 @@
 }
 
 .food-club-rule p {
+    color: black;
     font-size: 1.2rem;
     margin: 1rem 0 0 0;
     line-height: 1.6;

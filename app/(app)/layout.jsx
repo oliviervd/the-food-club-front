@@ -3,6 +3,10 @@ export const metadata = {
     title: "Food Club - Home",
     description: "#1 Don't talk about foodclub - but psssst…. please spread the word! — #2 The foodclub is a curated space focused on quality, featuring only restaurants we've personally visited.",
     keywords: ['food club', 'gent', 'brussel', 'antwerpen'],
+    icons: {
+        icon: '/Favicon.ico',
+    },
+    faviconUrl: "https://www.thefoodclub.be/assets/img/Favicon.png",
     openGraph: {
         title: "Food Club",
         description: "#1 Don't talk about foodclub - but psssst…. please spread the word! — #2 The foodclub is a curated space focused on quality, featuring only restaurants we've personally visited.",
@@ -10,8 +14,8 @@ export const metadata = {
         type: "website",
         images: [
             {
-                url: "https://www.thefoodclub.be/assets/img/logo-blue.png",
-                alt: "logo of Food Club",
+                url: "https://www.thefoodclub.be/assets/img/OG-food-club-main.jpg",
+                alt: "main branding image for the foodclub",
             },
         ],
     },
@@ -19,7 +23,7 @@ export const metadata = {
         card: 'summary_large_image',
         title: 'Food Club',
         description: '#1 Don’t talk about foodclub...',
-        images: ['https://www.thefoodclub.be/img/logo-blue.png'],
+        images: ['https://www.thefoodclub.be/assets/img/OG-food-club-main.jpg'],
     },
 };
 

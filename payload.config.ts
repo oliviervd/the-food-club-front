@@ -79,6 +79,8 @@ export default buildConfig({
       ],
       generateTitle: ({ doc }) => `thefoodclub.be — ${doc.venueName}`,
       generateURL: ({ doc }) => `thefoodclub.be/venue/${doc.url}`,
+      //generateImage: ({ doc }) => `${doc.media.hero.sizes.tablet.url}`,
+
       uploadsCollection: ['media'],
       tabbedUI: true
     }),
