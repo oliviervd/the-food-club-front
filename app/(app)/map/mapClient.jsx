@@ -14,12 +14,10 @@ import {useIsMobile} from "../../../hooks/isMobile.jsx";
 import {Autocomplete, Chip, TextField} from "@mui/material";
 
 const logo = '/assets/img/logo-blue.png';
-const back = '/assets/img/back.png';
+const back = '/assets/img/Back.png';
 
-// todo add container that shows preview of the selected item
 // todo add icons to zoom in / zoom out / show my location.
 // todo: add header as absolute element over map container (so you can also hide it if you want)
-
 
 // Custom hook to update the map center
 const ChangeView = ({ center, zoom }) => {

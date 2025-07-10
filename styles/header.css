@@ -5,6 +5,18 @@ header > h1 {
     font-size: var(--font-xl);
 }
 
+.back-button {
+    position: relative;
+    margin: 10px 10px;
+    text-align: center;
+    justify-content: center;
+    width: 50px;
+}
+
+.back-button-icon {
+}
+
+
 .flex-buttons {
     display: flex;
     justify-content: space-evenly;
