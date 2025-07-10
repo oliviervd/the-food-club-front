@@ -1,25 +1,17 @@
+# fly.toml app configuration file generated for the-food-club-dev on 2025-07-08T08:52:50+02:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
 app = 'the-food-club'
 primary_region = 'ams'
-kill_signal = 'SIGINT'
-kill_timeout = '5s'
-
-[experimental]
-  auto_rollback = true
 
 [build]
-  [build.args]
-    NEXT_PUBLIC_FC_DEV_PASSWORD = "ETA2025"
-    NODE_ENV = "production"
-
-[env]
-  NODE_ENV = 'production'
-  NEXT_PUBLIC_FC_DEV_PASSWORD = "ETA2025"
-  # Don't put secrets here - use fly secrets set instead
 
 [http_service]
   internal_port = 3000
   force_https = true
-  auto_stop_machines = true
+  auto_stop_machines = 'stop'
   auto_start_machines = true
   min_machines_running = 0
   processes = ['app']
@@ -28,7 +20,3 @@ kill_timeout = '5s'
   memory = '1gb'
   cpu_kind = 'shared'
   cpus = 1
-
-[[statics]]
-  guest_path = '/app/public'
-  url_prefix = '/public'
