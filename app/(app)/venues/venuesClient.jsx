@@ -26,7 +26,7 @@ const VenuesClient = () => {
     let { location } = locationColor
     const searchParams = useSearchParams()
     const [search, setSearch] = useState("");
-    const [matches, setMatches] = useState([]);
+    const [matches, setMatches] = useState(null); // null means "not calculated yet"
     const [cuisine, setCuisine] = useState(null);
     const [club, setClub] = useState(null);
     const [highlightedVenue, setHighlightedVenue] = useState(null);
@@ -53,7 +53,11 @@ const VenuesClient = () => {
 
     useEffect(() => {
         const searchCuisine = searchParams.get("cuisine");
-        if (!venuesData?.docs || !cuisinesData?.docs || !searchCuisine) return;
+
+        // Only run if we have valid data and a search param
+        if (!searchCuisine) return;
+        if (!venuesData || !venuesData.docs) return;
+        if (!cuisinesData || !cuisinesData.docs) return;
 
         const matchedVenues = venuesData.docs.filter(venue => {
             const hasCuisine = venue.information?.cuisine?.some(c => c.name === searchCuisine);
@@ -68,7 +72,13 @@ const VenuesClient = () => {
         setCuisine(matchedCuisine || null);
         setMatches(matchedVenues);
         setSearch(searchCuisine);
-    }, [searchParams, location, venuesData, cuisinesData]);
+
+    }, [
+        searchParams.toString(), // careful: searchParams is an object
+        location,
+        venuesData?.docs,
+        cuisinesData?.docs
+    ]);
 
     if (venuesLoading || cuisinesLoading) {
         return (
@@ -93,21 +103,26 @@ const VenuesClient = () => {
                 <Banner content={search}/>
             </div>
             {/* NO MATCHES */}
-            {matches.length === 0 &&
-                <section className={"home__container"}>
-                    <section className={"desktop"} style={{position: "relative"}}>
-                        <section className={"venue-list__container-main"}>
+
+            {matches === null && (
+                <p>Loading or calculating matches...</p>
+            )}
+
+            {matches && matches.length === 0 && (
+                <section className="home__container">
+                    <section className="desktop" style={{ position: "relative" }}>
+                        <section className="venue-list__container-main">
                             <section>
-                                <div className={"venue info-box"}>
-                                    <p>{`At this point in time there are no ${search} spots matching in ${location} ☔︎︎. Please come back later, or subscribe to our newsletter to get updated.` }</p>
+                                <div className="venue info-box">
+                                    <p>{`At this point in time there are no ${search} spots matching in ${location} ☔︎︎. Please come back later, or subscribe to our newsletter to get updated.`}</p>
                                 </div>
                             </section>
                         </section>
                     </section>
                 </section>
-            }
+            )}
             {/* MATCHES */}
-            {matches[0] &&
+            {matches && matches.length > 0 &&
                 <section className={"home__container"}>
                     <section style={{position: "relative"}}>
                         {isMobile && matches &&
