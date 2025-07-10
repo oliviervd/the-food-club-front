@@ -355,7 +355,7 @@
     .cat_description {
         background: var(--color-secondary);
         min-width: 250px;
-        width: 31.5%;
+        width: 31%;
         margin: 5px;
         position: relative;
         border: 2px solid var(--color-main);
