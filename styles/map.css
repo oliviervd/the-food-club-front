@@ -55,6 +55,7 @@
     }
 
     .back-button-icon {
+        cursor: pointer;
     }
 
     .pill-container {
@@ -69,6 +70,7 @@
 
         .pill {
             border: 2px solid var(--color-secondary);
+            cursor: pointer;
             padding: 5px;
             margin: 0;
             background-color: var(--color-main);
@@ -232,6 +234,7 @@
         height: fit-content;
         color: var(--color-secondary);
         margin: 0;
+        cursor: pointer;
 
         p {
             padding: 3px;
