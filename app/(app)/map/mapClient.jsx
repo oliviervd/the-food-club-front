@@ -313,11 +313,13 @@ const Map = ({}) => {
                         />
                     </Link>
                 </div>
-                <div className={"pill-container"}>
+                {/*
+                 <div className={"pill-container"}>
                     <div className={"pill"} onClick={()=>{handleLocationChange("gent")}}>GENT</div>
                     <div className={"pill"} onClick={()=>{handleLocationChange("antwerp")}}>ANTWERP</div>
                     <div className={"pill"} onClick={()=>{handleLocationChange("brussels")}}>BRUSSELS</div>
                 </div>
+                */}
             </div>
             {/*<Header style={{position: "fixed"}} selectedTab={"map"} landing={true} interact={true} setLocation={setLocation} location={location} setTarget={setTarget} map={true}/>*/}
             <div style={{height: '100%', width: '100%', position: 'relative'}}>
@@ -362,6 +364,7 @@ const Map = ({}) => {
                         &#8633;
                     </p>
                 </div>
+                {/*
                 {isMobile &&
                     <div className={"open-location-button"} onClick={()=>handleOpenLocation()}>
                         <p>
@@ -369,6 +372,7 @@ const Map = ({}) => {
                         </p>
                     </div>
                 }
+
                 {!visible &&
                     <div className={showLocation ? "location-container": "location-container hidden"}>
                         <p
@@ -391,6 +395,8 @@ const Map = ({}) => {
                         </p>
                     </div>
                 }
+
+                */}
                 <div className={`map--filters_container ${!openFilters ? 'hidden' : ''} ${initialFiltersAnimated ? '' : 'hidden'}`}>
                     <div className={"map--filter_info"}>
                         <p>LOOKING FOR</p>
