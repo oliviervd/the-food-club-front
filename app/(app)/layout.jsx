@@ -9,7 +9,6 @@ export const metadata = {
     icons: {
         icon: '/Favicon.ico',
     },
-    faviconUrl: "https://www.thefoodclub.be/assets/img/Favicon.png",
     openGraph: {
         title: "Food Club",
         description: "#1 Don't talk about foodclub - but psssst…. please spread the word! — #2 The foodclub is a curated space focused on quality, featuring only restaurants we've personally visited.",
