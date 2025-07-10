@@ -4,6 +4,7 @@ import Image from "next/image.js";
 const Loading = () => {
     return (
         <div className={"loading--container"}>
+            {/*
             <Image
                 src={logo}
                 alt="Food Club Logo"
@@ -15,6 +16,7 @@ const Loading = () => {
                     height: 'auto',
                 }}
             />
+            */}
         </div>
     )
 }
