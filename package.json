@@ -12,6 +12,7 @@
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@mui/material": "^6.2.0",
+    "@next/third-parties": "^15.3.5",
     "@payloadcms/db-mongodb": "^3.43.0",
     "@payloadcms/live-preview": "^3.43.0",
     "@payloadcms/live-preview-react": "^3.43.0",
