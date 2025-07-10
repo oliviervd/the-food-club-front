@@ -143,6 +143,35 @@ export const Event: CollectionConfig = {
                             type: 'row',
                             fields: [
                                 {
+                                    name: 'startTime',
+                                    label: 'Start Time',
+                                    type: 'text',
+                                    admin: {
+                                        description: {
+                                            en: "hour when the event starts",
+                                            fr: "heure de début de l'événement",
+                                            nl: "tijd waarop het evenement begint"
+                                        }
+                                    }
+                                },
+                                {
+                                    name: 'endTime',
+                                    label: 'End Time',
+                                    type: 'text',
+                                    admin: {
+                                        description: {
+                                            en: "hour when the event ends",
+                                            fr: "heure de fin de l'événement",
+                                            nl: "tijd waarop het evenement eindigt"
+                                        }
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            type: 'row',
+                            fields: [
+                                {
                                     name: 'frequency',
                                     label: 'Frequency',
                                     type: 'select',
