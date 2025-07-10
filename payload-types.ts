@@ -486,6 +486,14 @@ export interface Event {
      */
     endDate?: string | null;
     /**
+     * hour when the event starts
+     */
+    startTime?: string | null;
+    /**
+     * hour when the event ends
+     */
+    endTime?: string | null;
+    /**
      * Choose how often it repeats.
      */
     frequency?: ('yearly' | 'monthly' | 'weekly') | null;
@@ -954,6 +962,8 @@ export interface EventsSelect<T extends boolean = true> {
         repeats?: T;
         startDate?: T;
         endDate?: T;
+        startTime?: T;
+        endTime?: T;
         frequency?: T;
         month?: T;
         day?: T;

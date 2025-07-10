@@ -247,6 +247,7 @@ export const Event: CollectionConfig = {
             ],
         },
     ],
+    /*
     hooks: {
         beforeValidate: [
             async ({ data }) => {
@@ -296,4 +297,6 @@ export const Event: CollectionConfig = {
             },
         ],
     },
+
+     */
 };
