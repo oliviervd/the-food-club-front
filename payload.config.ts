@@ -82,7 +82,14 @@ export default buildConfig({
       //generateImage: ({ doc }) => `${doc.media.hero.sizes.tablet.url}`,
 
       uploadsCollection: 'media',
-      tabbedUI: true
+      tabbedUI: true,
+      fields: ({ defaultFields }) => [
+        ...defaultFields,
+        {
+          name: 'keywords',
+          type: 'text',
+        },
+      ],
     }),
     payloadCloudPlugin(),
     // S3
