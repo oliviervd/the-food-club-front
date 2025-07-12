@@ -2,7 +2,6 @@ import CategoryClient from "./categoryClient.jsx";
 import {getPayload} from "payload";
 
 export async function generateMetadata({ params }){
-  // seo here
 
   let query = `https://thefoodclub.be/api/categories?where[url][equals]=${params.category}&depth=0`
   const res = await fetch(query, { cache: 'no-store' });
@@ -13,9 +12,6 @@ export async function generateMetadata({ params }){
   const category = data.docs.find(
       (cat) => cat.url === params.category
   );
-
-  console.log('Matched category:', category.meta);
-  console.log(data);
 
   return {
     title: category.meta.title,
