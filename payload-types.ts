@@ -189,6 +189,7 @@ export interface Cat {
      * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
      */
     image?: (string | null) | Media;
+    keywords?: string | null;
   };
   updatedAt: string;
   createdAt: string;
@@ -388,6 +389,7 @@ export interface Venue {
      * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
      */
     image?: (string | null) | Media;
+    keywords?: string | null;
   };
   updatedAt: string;
   createdAt: string;
@@ -668,6 +670,15 @@ export interface Page {
           }
       )[]
     | null;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (string | null) | Media;
+    keywords?: string | null;
+  };
   updatedAt: string;
   createdAt: string;
 }
@@ -802,6 +813,7 @@ export interface CatsSelect<T extends boolean = true> {
         title?: T;
         description?: T;
         image?: T;
+        keywords?: T;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -937,6 +949,7 @@ export interface VenuesSelect<T extends boolean = true> {
         title?: T;
         description?: T;
         image?: T;
+        keywords?: T;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -1063,6 +1076,14 @@ export interface PageSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+      };
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+        keywords?: T;
       };
   updatedAt?: T;
   createdAt?: T;

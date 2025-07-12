@@ -24,8 +24,6 @@ const Page = ({}) => {
         queryFn: () => fetchAPI('page', 'en', {'where[slug][equals]': 'about'})
     });
 
-    //
-    console.log(about);
 
     // define react components for blocks
     const HeroImage = ({block}) => {
