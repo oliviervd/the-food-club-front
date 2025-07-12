@@ -12,7 +12,7 @@ export const Cats: CollectionConfig = {
         description: "cats - as in categories. Here we cluster and curate venues"
     },
     access: {
-
+        read: () => true,
     },
     fields: [
         {
