@@ -45,11 +45,13 @@ const DesktopHome = ({categories, recommendations}) => {
 
             <div className={"home-grid"}>
                 <div className={"category-list__box special"}>
-                    <BroadCastForYou type={'time'} rec={recommendations}/>
+                    <Link href={"/events/"}>
+                        <h2 style={{fontSize: "20px"}}>We believe good food deserves proper celebration.</h2>
+                        <p>smash that button for tasty food events.</p>
+                    </Link>
                 </div>
                 {categories && categories.map((cat, index) => {
                     try {
-
                         if (index === 5) {
                             return (
                                 <React.Fragment key={index}>
@@ -64,7 +66,6 @@ const DesktopHome = ({categories, recommendations}) => {
                                         <BroadCastForYou type={'advice'}/>
                                     </div>
                                 </React.Fragment>
-
                             );
                         }
 
