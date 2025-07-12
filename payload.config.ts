@@ -75,7 +75,7 @@ export default buildConfig({
   plugins: [
     seoPlugin({
       collections: [
-        "venues", "cats"
+        "venues", "cats", "page"
       ],
       generateTitle: ({ doc }) => `thefoodclub.be — ${doc.venueName}`,
       generateURL: ({ doc }) => `thefoodclub.be/venue/${doc.url}`,
