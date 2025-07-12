@@ -45,7 +45,7 @@ const HomeClient = () => {
     });
     const {data: venuesData, isLoading: venuesLoading, error:venuesError} = useQuery({
         queryKey: ["venues"],
-        queryFn: () => fetchAPI('venue', 'en')
+        queryFn: () => fetchAPI('venue', 'en', {limit: 1000})
     });
 
     const {data: rec, isLoading: recLoading, error:recError} = useQuery({

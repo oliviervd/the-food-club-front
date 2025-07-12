@@ -33,12 +33,12 @@ const VenuesClient = () => {
 
     const {data: venuesData, isLoading: venuesLoading, error:venuesError} = useQuery({
         queryKey: ["venues"],
-        queryFn: () => fetchAPI('venue', 'en', {limit: 100000})
+        queryFn: () => fetchAPI('venue', 'en', {limit: 1000})
     });
 
     const {data: cuisinesData, isLoading: cuisinesLoading, error:cuisinesError} = useQuery({
         queryKey: ["cuisines"],
-        queryFn: () => fetchAPI("cuisine", "en", {limit: 100000})
+        queryFn: () => fetchAPI("cuisine", "en", {limit: 1000})
     });
 
     // media query
@@ -51,31 +51,59 @@ const VenuesClient = () => {
         return () => window.removeEventListener("resize", checkWidth);
     }, []);
 
-    useEffect(() => {
-        const searchCuisine = searchParams.get("cuisine");
+    if (!location) {
+        console.log("Location not ready yet — skip filter");
+        return;
+    }
 
-        // Only run if we have valid data and a search param
-        if (!searchCuisine) return;
-        if (!venuesData || !venuesData.docs) return;
-        if (!cuisinesData || !cuisinesData.docs) return;
+    useEffect(() => {
+        const searchCuisineRaw = searchParams.get("cuisine");
+        if (!searchCuisineRaw) {
+            console.log("No cuisine param found");
+            return;
+        }
+
+        const searchCuisine = searchCuisineRaw.toLowerCase();
+
+        if (!venuesData?.docs) {
+            console.log("No venuesData");
+            return;
+        }
+
+        if (!cuisinesData?.docs) {
+            console.log("No cuisinesData");
+            return;
+        }
+
+        console.log("=== FILTER RUN ===");
+        console.log("searchCuisine:", searchCuisine);
+        console.log("venuesData.docs.length:", venuesData.docs.length);
+        console.log("First venue example:", venuesData.docs[0]);
 
         const matchedVenues = venuesData.docs.filter(venue => {
-            const hasCuisine = venue.information?.cuisine?.some(c => c.name === searchCuisine);
-            const hasDish = venue.information?.dishes?.some(d => d.name === searchCuisine);
-            const hasType = venue.information?.type === searchCuisine;
-            const hasDrink = venue.information?.drinks?.some(drink => drink.name === searchCuisine);
-            return (hasCuisine || hasDish || hasType || hasDrink) && (!location || venue.club === location);
+            const hasCuisine = venue.information?.cuisine?.some(c => c.name?.toLowerCase() === searchCuisine);
+            const hasDish = venue.information?.dishes?.some(d => d.name?.toLowerCase() === searchCuisine);
+            const hasType = venue.information?.type?.toLowerCase() === searchCuisine;
+            const hasDrink = venue.information?.drinks?.some(drink => drink.name?.toLowerCase() === searchCuisine);
+
+            if (hasCuisine || hasDish || hasType || hasDrink) {
+                console.log("MATCHED:", venue.venueName);
+                return true;
+            }
+
+            return false;
         });
 
-        const matchedCuisine = cuisinesData.docs.find(c => c.name === searchCuisine);
+        console.log("MATCHED VENUES:", matchedVenues);
+
+        const matchedCuisine = cuisinesData.docs.find(c => c.name?.toLowerCase() === searchCuisine);
 
         setCuisine(matchedCuisine || null);
         setMatches(matchedVenues);
         setSearch(searchCuisine);
 
     }, [
-        searchParams.toString(), // careful: searchParams is an object
-        location,
+        searchParams.toString(),
         venuesData?.docs,
         cuisinesData?.docs
     ]);
@@ -94,6 +122,8 @@ const VenuesClient = () => {
     if (venuesError || cuisinesError) {
         return <p>Error loading data</p>;
     }
+
+    console.log("Location in context:", location);
 
     return (
         <>
