@@ -196,7 +196,7 @@ const CuisineList = ({ venue }) => (
         {[...(venue.information?.cuisine || []), ...(venue.information?.dishes || []), ...(venue.information?.drinks || [])].map((item, index) => (
             <div key={index}>
                 <h2 className="link">
-                    <Link href={`/venues/?cuisine=${item.name}`}>
+                    <Link href={`/venues/${item.name}`}>
                         {item.name}
                     </Link>
                 </h2>

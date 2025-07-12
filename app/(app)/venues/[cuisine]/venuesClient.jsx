@@ -1,47 +1,40 @@
 'use client'
 
-// Use this in Page.jsx or wherever you use MapSmall
 import dynamic from 'next/dynamic'
-import ScrollToTop from "../../../components/scrollToTop.jsx";
-import Header from "../../../components/Header.jsx";
+import ScrollToTop from "../../../../components/scrollToTop.jsx";
+import Header from "../../../../components/Header.jsx";
 import {useContext, useEffect, useState} from "react";
-import {useSearchParams, useRouter} from "next/navigation";
 import {useQuery} from "@tanstack/react-query";
-import {fetchAPI} from "../../../utils/utils.jsx";
-import DitherImage from "../../../components/DitherImage.jsx";
-import Banner from "../../../components/Banner.jsx";
-import {LocationColorContext} from "../../../contexts/LocationColorContext.jsx";
+import {fetchAPI} from "../../../../utils/utils.jsx";
+import DitherImage from "../../../../components/DitherImage.jsx";
+import Banner from "../../../../components/Banner.jsx";
+import {LocationColorContext} from "../../../../contexts/LocationColorContext.jsx";
 import Link from "next/link";
-import serialize from "../../../utils/serialize.jsx";
 
 
-const MapSmall = dynamic(() => import('../../../components/mapSmall.jsx'), {
+const MapSmall = dynamic(() => import('../../../../components/mapSmall.jsx'), {
     ssr: false
 });
 
-
-const VenuesClient = () => {
-
+const VenuesClient = ({ cuisine }) => {
     const { locationColor } = useContext(LocationColorContext);
-    let { location } = locationColor
-    const searchParams = useSearchParams()
+    let { location } = locationColor;
+
     const [search, setSearch] = useState("");
-    const [matches, setMatches] = useState(null); // null means "not calculated yet"
-    const [cuisine, setCuisine] = useState(null);
+    const [matches, setMatches] = useState(null);
     const [club, setClub] = useState(null);
     const [highlightedVenue, setHighlightedVenue] = useState(null);
 
-    const {data: venuesData, isLoading: venuesLoading, error:venuesError} = useQuery({
+    const { data: venuesData, isLoading: venuesLoading, error: venuesError } = useQuery({
         queryKey: ["venues"],
-        queryFn: () => fetchAPI('venue', 'en', {limit: 1000})
+        queryFn: () => fetchAPI('venue', 'en', { limit: 1000 }),
     });
 
-    const {data: cuisinesData, isLoading: cuisinesLoading, error:cuisinesError} = useQuery({
+    const { data: cuisinesData, isLoading: cuisinesLoading, error: cuisinesError } = useQuery({
         queryKey: ["cuisines"],
-        queryFn: () => fetchAPI("cuisine", "en", {limit: 1000})
+        queryFn: () => fetchAPI("cuisine", "en", { limit: 1000 }),
     });
 
-    // media query
     const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
@@ -57,13 +50,12 @@ const VenuesClient = () => {
     }
 
     useEffect(() => {
-        const searchCuisineRaw = searchParams.get("cuisine");
-        if (!searchCuisineRaw) {
+        if (!cuisine) {
             console.log("No cuisine param found");
             return;
         }
 
-        const searchCuisine = searchCuisineRaw.toLowerCase();
+        const searchCuisine = cuisine.toLowerCase();
 
         if (!venuesData?.docs) {
             console.log("No venuesData");
@@ -94,26 +86,16 @@ const VenuesClient = () => {
             return false;
         });
 
-        console.log("MATCHED VENUES:", matchedVenues);
-
-        const matchedCuisine = cuisinesData.docs.find(c => c.name?.toLowerCase() === searchCuisine);
-
-        setCuisine(matchedCuisine || null);
         setMatches(matchedVenues);
         setSearch(searchCuisine);
-
-    }, [
-        searchParams.toString(),
-        venuesData?.docs,
-        cuisinesData?.docs
-    ]);
+    }, [cuisine, venuesData?.docs, cuisinesData?.docs]);
 
     if (venuesLoading || cuisinesLoading) {
         return (
             <div>
-                <Header landing={true} location={club} setLocation={setClub} interact={true}/>
+                <Header landing={true} location={club} setLocation={setClub} interact={true} />
                 <div>
-                    <Banner content={search}/>
+                    <Banner content={search} />
                 </div>
             </div>
         );
@@ -123,20 +105,15 @@ const VenuesClient = () => {
         return <p>Error loading data</p>;
     }
 
-    console.log("Location in context:", location);
-
     return (
         <>
-            <Header landing={true} location={club} setLocation={setClub} interact={true}/>
-            <ScrollToTop/>
+            <Header landing={true} location={club} setLocation={setClub} interact={true} />
+            <ScrollToTop />
             <div>
-                <Banner content={search}/>
+                <Banner content={search} />
             </div>
-            {/* NO MATCHES */}
 
-            {matches === null && (
-                <p>Loading or calculating matches...</p>
-            )}
+            {matches === null && <p>Loading or calculating matches...</p>}
 
             {matches && matches.length === 0 && (
                 <section className="home__container">
@@ -151,80 +128,69 @@ const VenuesClient = () => {
                     </section>
                 </section>
             )}
-            {/* MATCHES */}
-            {matches && matches.length > 0 &&
-                <section className={"home__container"}>
-                    <section style={{position: "relative"}}>
-                        {isMobile && matches &&
-                            matches.map((match, index) => {
 
+            {matches && matches.length > 0 && (
+                <section className="home__container">
+                    <section style={{ position: "relative" }}>
+                        {isMobile &&
+                            matches.map((match, index) => {
                                 if (match._status == "published") {
                                     try {
                                         return (
-                                            <div key={index} className={"category-list__box"}>
+                                            <div key={index} className="category-list__box">
                                                 <Link href={`/venue/${match.url}`}>
-                                                    <DitherImage url={match.media.hero.sizes.tablet.url}/>
-                                                    <h2 style={{textAlign: "center"}}>{match.venueName}</h2>
+                                                    <DitherImage url={match.media.hero.sizes.tablet.url} />
+                                                    <h2 style={{ textAlign: "center" }}>{match.venueName}</h2>
                                                 </Link>
                                             </div>
-                                        )
-                                    } catch (e) {
-
-                                    }
+                                        );
+                                    } catch (e) {}
                                 }
-
-                            })
-                        }
-                        {!isMobile && matches &&
-                            <section className={"desktop"}>
-                                <section className={"venue-list__container-main"}>
+                            })}
+                        {!isMobile && (
+                            <section className="desktop">
+                                <section className="venue-list__container-main">
                                     <section>
-                                        {cuisine && cuisine.description &&
-                                            <div className={"venue info-box"}>
-                                                <p>{serialize(cuisine.description)}</p>
-                                            </div>
-                                        }
                                         {matches.map((match, index) => {
-
                                             const isHighlighted = highlightedVenue?.url === match.url;
 
                                             const borderStyle = {
-                                                border: ` ${isHighlighted ? ' 2px solid var(--color-secondary)' : ''}`,
-                                                backgroundColor: ` ${isHighlighted ? 'var(--color-main)' : ''}`,
-                                                color: ` ${isHighlighted ? 'var(--color-secondary)' : ''}`,
-                                                transition: 'all 0.5s ease'
+                                                border: `${isHighlighted ? '2px solid var(--color-secondary)' : ''}`,
+                                                backgroundColor: `${isHighlighted ? 'var(--color-main)' : ''}`,
+                                                color: `${isHighlighted ? 'var(--color-secondary)' : ''}`,
+                                                transition: 'all 0.5s ease',
                                             };
 
                                             if (match._status == "published") {
                                                 return (
                                                     <div
-                                                        className={`venue`}
+                                                        className="venue"
                                                         key={index}
                                                         onMouseEnter={() => setHighlightedVenue(match)}
                                                         onMouseLeave={() => setHighlightedVenue(null)}
                                                     >
-                                                        <div className={"venue__image"}>
+                                                        <div className="venue__image">
                                                             <Link href={`/venue/${match.url}`}>
-                                                                <DitherImage url={match.media.hero.sizes.tablet.url}/>
+                                                                <DitherImage url={match.media.hero.sizes.tablet.url} />
                                                                 <h2 style={borderStyle}>{match.venueName}</h2>
                                                             </Link>
                                                         </div>
                                                     </div>
-                                                )
+                                                );
                                             }
                                         })}
                                     </section>
                                 </section>
-                                <section className={"venue-list__container-others"}>
-                                    <MapSmall venues={matches} highlight={highlightedVenue} onHover={setHighlightedVenue}/>
+                                <section className="venue-list__container-others">
+                                    <MapSmall venues={matches} highlight={highlightedVenue} onHover={setHighlightedVenue} />
                                 </section>
                             </section>
-                        }
+                        )}
                     </section>
                 </section>
-            }
+            )}
         </>
-    )
-}
+    );
+};
 
 export default VenuesClient;

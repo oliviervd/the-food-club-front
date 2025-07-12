@@ -26,7 +26,7 @@ const DesktopHome = ({categories, recommendations}) => {
                     {cuisines && cuisines.map((cuisine, index)=>{
                         if (cuisine.active) {
                             return(
-                                <h3><Link href={`/venues/?cuisine=${cuisine.name}`}>{cuisine.name}</Link></h3>
+                                <h3><Link href={`/venues/${cuisine.name}`}>{cuisine.name}</Link></h3>
                             )
                         }
                     })}
@@ -36,7 +36,7 @@ const DesktopHome = ({categories, recommendations}) => {
                     {cuisines && cuisines.map((cuisine, index)=>{
                         if (cuisine.active) {
                             return(
-                                <h3><Link href={`/venues/?cuisine=${cuisine.name}`}>{cuisine.name}</Link></h3>
+                                <h3><Link href={`/venues/${cuisine.name}`}>{cuisine.name}</Link></h3>
                             )
                         }
                     })}

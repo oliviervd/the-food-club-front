@@ -635,7 +635,7 @@ const Map = ({}) => {
 
                         <div className={"pill-container"}>
                             {[...(target.information?.cuisine || []), ...(target.information?.dishes || [])].map((item, index) => (
-                                <p className={"pill"}><Link href={`/venues?cuisine=${item.name}`}>{item.name}</Link></p>
+                                <p className={"pill"}><Link href={`/venues/${item.name}`}>{item.name}</Link></p>
                             ))}
                         </div>
                     </div>
