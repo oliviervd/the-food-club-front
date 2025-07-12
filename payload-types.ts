@@ -430,6 +430,15 @@ export interface Cuisine {
    * tick if this category needs to be displayed. - if unticked, the category keeps existing but isn't displayed on the website (homepage).
    */
   active?: boolean | null;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (string | null) | Media;
+    keywords?: string | null;
+  };
   updatedAt: string;
   createdAt: string;
 }
@@ -534,6 +543,15 @@ export interface Event {
   };
   Media: {
     heroImage: string | Media;
+  };
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (string | null) | Media;
+    keywords?: string | null;
   };
   updatedAt: string;
   createdAt: string;
@@ -964,6 +982,14 @@ export interface CuisinesSelect<T extends boolean = true> {
   type?: T;
   description?: T;
   active?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+        keywords?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
@@ -998,6 +1024,14 @@ export interface EventsSelect<T extends boolean = true> {
     | T
     | {
         heroImage?: T;
+      };
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+        keywords?: T;
       };
   updatedAt?: T;
   createdAt?: T;
