@@ -14,6 +14,9 @@ export const Event: CollectionConfig = {
             nl: 'Collectie van food-gerelateerde evenementen: festivals, internationale dagen, pop-ups, openingen, enz.'
         },
     },
+    access: {
+        read: () => true,
+    },
     versions: {drafts: true},
     fields: [
         {
