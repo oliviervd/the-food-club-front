@@ -12,9 +12,6 @@ const BroadCastForYou = ({ type, recommendations }) => {
     if (loading) return <div>HOLD ON BABY, GETTING THAT WEATHER FOR YA!</div>;
     if (error) return <div>AH SHIT! {error.message}</div>;
 
-    console.log(recommendations)
-    console.log(weather)
-
     // TIME-BASED
     const d = new Date();
     let hours = d.getHours();
