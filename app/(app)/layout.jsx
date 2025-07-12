@@ -27,6 +27,15 @@ export const metadata = {
         description: '#1 Don’t talk about foodclub...',
         images: ['https://www.thefoodclub.be/assets/img/OG-food-club-main.jpg'],
     },
+    robots: {
+        index: true,
+        follow: true,
+        googleBot: {
+            index: true,
+            follow: true,
+            noImageIndex: false,
+        }
+    },
 };
 
 export default function RootLayout({ children }) {
