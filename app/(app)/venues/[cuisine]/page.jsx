@@ -5,6 +5,11 @@ export async function generateMetadata({ params }) {
     return {
         title: `The Food Club - ${params.cuisine}`,
         description: `Discover the best ${params.cuisine} spots.`,
+        openGraph: {
+            title: `The Food Club - ${params.cuisine}`,
+            description: `Discover the best ${params.cuisine} spots.`,
+        },
+        canonical: `https://www.thefoodclub.com/venues/${params.cuisine}`,
     };
 }
 
