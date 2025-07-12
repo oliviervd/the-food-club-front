@@ -11,6 +11,15 @@ const nextConfig = {
   experimental: {
     reactCompiler: false,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'd3nidktcupd88v.cloudfront.net',
+        pathname: '/**',
+      },
+    ],
+  },
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
     // Add the @payload-config alias
     config.resolve.alias = {
@@ -21,7 +30,7 @@ const nextConfig = {
     // Handle node: protocol imports
     config.resolve.fallback = {
       ...config.resolve.fallback,
-      assert: false
+      assert: false,
     }
 
     return config

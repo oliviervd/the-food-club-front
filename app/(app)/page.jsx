@@ -7,6 +7,7 @@ export const metadata = {
     icons: {
         icon: '/favicon.ico',
     },
+    canonical: 'https://www.thefoodclub.com/',
     openGraph: {
         title: "Food Club",
         faviconUrl: "https://www.thefoodclub.be/assets/img/Favicon.png",

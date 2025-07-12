@@ -72,6 +72,8 @@ const Map = ({}) => {
     const [selectedDish, setSelectedDish] = useState([]);
     const [initialFiltersAnimated, setInitialFiltersAnimated] = useState(false);
 
+    // initialize router
+    const nav = useRouter();
 
     // add time to mount. - ANIMATIONS
     const [isMounted, setIsMounted] = useState(false);
@@ -95,7 +97,11 @@ const Map = ({}) => {
         }
     }, [isMobile]);
 
+
+    // DATA
+
     useEffect(() => {
+        // function to fetch data: cuisines
         const getCuisines = async() => {
             const _cuisines = await fetchAPI("cuisine", "en", {limit: 1000})
             setCuisines(_cuisines.docs);
@@ -103,10 +109,21 @@ const Map = ({}) => {
         getCuisines()
     },[location])
 
+    // add locations on map
+    const [venues, setVenues] = useState([]);
+    const getVenues = async () => {
+        const result = await fetchAPI("venues", "en", {limit: 1000});
+        setVenues(result.docs)
+    }
+
+    useEffect(() => {
+        getVenues();
+    },[])
+
+    // MAP  CONFIG
 
     let [zoom, setZoom] = useState(12.5) // set zoom of map
     const [mapCenter, setMapCenter] = useState([51.0544, 3.7256]); // Initial coordinates
-    const nav = useRouter();
 
     const colorToCoordinatesMap = {
         'gent': [51.0544, 3.7256],
@@ -121,18 +138,7 @@ const Map = ({}) => {
         setZoom(12.5)
     }, [locationColor]);
 
-    // add locations on map
-    const [venues, setVenues] = useState([]);
-    const getVenues = async () => {
-        const result = await fetchAPI("venues", "en", {limit: 1000});
-        setVenues(result.docs)
-    }
-
-    useEffect(() => {
-        getVenues();
-    },[])
-
-    console.log(venues)
+    // FILTER SETUP
 
     const filteredVenues = venues.filter((venue) => {
         // No filters active - show all published venues
@@ -191,6 +197,7 @@ const Map = ({}) => {
             openOnSelectedDays;
     });
 
+    // todo: remove - redundant!
     const dayMap = {
         'monday': 'monday',
         'tuesday': 'tuesday',
