@@ -75,12 +75,10 @@ export default buildConfig({
   plugins: [
     seoPlugin({
       collections: [
-        "venues", "cats", "page"
+        "venues", "cats", "page", "events", "cuisines"
       ],
       generateTitle: ({ doc }) => `thefoodclub.be — ${doc.venueName}`,
       generateURL: ({ doc }) => `thefoodclub.be/venue/${doc.url}`,
-      //generateImage: ({ doc }) => `${doc.media.hero.sizes.tablet.url}`,
-
       uploadsCollection: 'media',
       tabbedUI: true,
       fields: ({ defaultFields }) => [
