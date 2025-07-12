@@ -61,9 +61,6 @@ const CategoryList = ({ data, home }) => {
 
     return (
         <section className="category-list__container">
-            <div className={"category-list__box special"}>
-                <BroadCastForYou type={'time'}/>
-            </div>
 
             {!home &&
                 categories.map((cat, index) => {
@@ -71,6 +68,26 @@ const CategoryList = ({ data, home }) => {
 
                     // Skip categories without valid media
                     if (!mediaUrl) return null;
+
+                    if (index === 1) {
+                        return (
+                            <React.Fragment key={index}>
+                                <div className={"category-list__box"}>
+                                    <Link href={`/categories/${cat.url}`}>
+                                        <DitherImage url={cat.media.hero.url} dim={true}/>
+                                        <h2>{cat.name}</h2>
+                                        <p>{cat.slug}</p>
+                                    </Link>
+                                </div>
+                                <div className={"category-list__box special"}>
+                                    <Link href={"/events/"}>
+                                        <h2 style={{fontSize: "20px"}}>We believe good food deserves proper celebration.</h2>
+                                        <p>smash that button for tasty food events.</p>
+                                    </Link>
+                                </div>
+                            </React.Fragment>
+                        );
+                    }
 
                     if (index === 3) {
                         return (
