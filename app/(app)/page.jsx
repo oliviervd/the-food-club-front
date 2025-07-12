@@ -5,7 +5,7 @@ export const metadata = {
     description: "#1 Don't talk about foodclub - but psssst…. please spread the word! — #2 The foodclub is a curated space focused on quality, featuring only restaurants we've personally visited.",
     keywords: ['food club', 'gent', 'brussel', 'antwerpen'],
     icons: {
-        icon: '/Favicon.ico',
+        icon: '/favicon.ico',
     },
     openGraph: {
         title: "Food Club",
@@ -25,6 +25,15 @@ export const metadata = {
         title: 'Food Club',
         description: '#1 Don’t talk about foodclub...',
         images: ['https://www.thefoodclub.be/assets/img/OG-food-club-main.jpg'],
+    },
+    robots: {
+        index: true,
+        follow: true,
+        googleBot: {
+            index: true,
+            follow: true,
+            noImageIndex: false,
+        }
     },
 };
 
