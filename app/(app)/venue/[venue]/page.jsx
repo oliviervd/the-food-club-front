@@ -31,9 +31,10 @@ export async function generateMetadata({params}) {
                 title: title,
                 description: description,
                 images: [{url: image, alt: `image of ${title}`}],
-                url: `https://thefoodclub.be/venues/${params.venue}`,
+                url: `https://thefoodclub.be/venue/${params.venue}`,
                 type: 'website',
                 site_name: 'The Food Club',
+                locale: 'en_GB',
             },
             twitter: {
                 card: 'summary_large_image',
@@ -50,6 +51,7 @@ export async function generateMetadata({params}) {
                     noImageIndex: false,
                 }
             },
+            canonical: `https://thefoodclub.be/venue/${params.venue}`,
         }
     } catch (e) {
         console.log(e);
