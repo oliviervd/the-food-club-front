@@ -26,7 +26,7 @@ export async function generateMetadata({params}) {
             title: title,
             description: description,
             image: image,
-            keywords: ["review", "food club", title], // todo: add keywords to CMS
+            keywords: ["review", "food club", title, data.docs[0].venueName, data.docs[0].information.address.street, , data.docs[0].information.address.postalCode, data.docs[0].information.address.city], // todo: add keywords to CMS
             openGraph: {
                 title: title,
                 description: description,
