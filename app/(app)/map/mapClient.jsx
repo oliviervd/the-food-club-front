@@ -3,7 +3,7 @@
 import {MapContainer, Marker, TileLayer, useMap} from "react-leaflet";
 import {divIcon} from "leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
-import {useContext, useEffect, useState} from "react";
+import {useContext, useEffect, useState, useMemo} from "react";
 import {useRouter} from "next/navigation";
 import {fetchAPI, getCSSVariableValue} from "/utils/utils.jsx";
 import {LocationColorContext} from "/contexts/LocationColorContext.jsx";
@@ -58,7 +58,7 @@ const Map = ({}) => {
     const [target, setTarget] = useState(null);
     const [location, setLocation] = useState(null);
     const [visible, setVisible] = useState(true);
-    const [openFilters, setOpenFilters] = useState(true);
+    const [openFilters, setOpenFilters] = useState(false);
     const [showOpenOnly, setShowOpenOnly] = useState(false); // Default: show all venues
     const [selectedDays, setSelectedDays] = useState([]); // set and store days for filter per day
     const [selectedService, setSelectedService] = useState([]); // set and store selected service
@@ -238,6 +238,29 @@ const Map = ({}) => {
         });
     };
 
+    // number of active flter counts
+
+    const activeFiltersCount = useMemo(() => {
+        return (
+            (showOpenOnly ? 1 : 0) +
+            (hasTerrace ? 1 : 0) +
+            (hasTakeAway ? 1 : 0) +
+            selectedDays.length +
+            selectedService.length +
+            selectedDish.length +
+            selectedCuisine.length
+        );
+    }, [
+        showOpenOnly,
+        hasTerrace,
+        hasTakeAway,
+        selectedDays,
+        selectedService,
+        selectedDish,
+        selectedCuisine,
+    ]);
+
+    console.log("active filters count:", activeFiltersCount);
 
     // Add animation classes based on visibility state
     const classNames = visible ? "slide-up" : "slide-down";
@@ -366,10 +389,11 @@ const Map = ({}) => {
                         })}
                     </MarkerClusterGroup>
                 </MapContainer>
-                <div className={"open-filter-button"} onClick={()=>handleFilters()}>
-                    <p>
-                        &#8633;
-                    </p>
+                <div className="open-filter-button" onClick={() => handleFilters()}>
+                    <p>&#8633;</p>
+                    {activeFiltersCount > 0 && (
+                        <span className="filter-count-badge">{activeFiltersCount}</span>
+                    )}
                 </div>
                 {/*
                 {isMobile &&
@@ -404,35 +428,45 @@ const Map = ({}) => {
                 }
 
                 */}
-                <div className={`map--filters_container ${!openFilters ? 'hidden' : ''} ${initialFiltersAnimated ? '' : 'hidden'}`}>
+                <div
+                    className={`map--filters_container ${!openFilters ? 'hidden' : ''} ${initialFiltersAnimated ? '' : 'hidden'}`}>
                     <div className={"map--filter_info"}>
                         <p>LOOKING FOR</p>
                     </div>
                     {isMounted &&
-                       <div className={"map--filters_pills-container"}>
+                        <div className={"map--filters_pills-container"}>
 
-                           <div
-                               id={"open"}
-                               className={`map--filters_pill ${!showOpenOnly ? 'inactive' : ''}`}
-                               onClick={()=>setShowOpenOnly(!showOpenOnly)}
-                           >
-                               <p>open now</p>
-                           </div>
-                           <div
-                               id={"terrace"}
-                               className={`map--filters_pill ${!hasTerrace ? 'inactive' : ''}`}
-                               onClick={()=>setHasTerrace(!hasTerrace)}
-                           >
-                               <p>terrace</p>
-                           </div>
+                            <div
+                                id={"open"}
+                                className={`map--filters_pill ${!showOpenOnly ? 'inactive' : ''}`}
+                                onClick={() => {
+                                    setShowOpenOnly(!showOpenOnly)
+                                    setOpenFilters(false);
+                                }}
+                            >
+                                <p>open now</p>
+                            </div>
+                            <div
+                                id={"terrace"}
+                                className={`map--filters_pill ${!hasTerrace ? 'inactive' : ''}`}
+                                onClick={() => {
+                                    setHasTerrace(!hasTerrace);
+                                    setOpenFilters(false);
+                                }}
+                            >
+                                <p>terrace</p>
+                            </div>
                             <div
                                 id={"take-away"}
                                 className={`map--filters_pill ${!hasTakeAway ? 'inactive' : ''}`}
-                                onClick={()=>setHasTakeAway(!hasTakeAway)}
+                                onClick={() => {
+                                    setHasTakeAway(!hasTakeAway);
+                                    setOpenFilters(false);
+                                }}
                             >
                                 <p>take-away</p>
                             </div>
-                       </div>
+                        </div>
                     }
                     <div className={"map--filter_info"}>
                         <p>OPEN ON</p>
@@ -440,10 +474,14 @@ const Map = ({}) => {
                     {isMounted &&
                         <div className={"map--filters_pills-container open-on-day"}>
                             {["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"].map((day) => (
-                                <div className={selectedDays.includes(dayMap[day.toLowerCase()]) ?  "map--filters_pill" : "inactive map--filters_pill"}>
+                                <div
+                                    className={selectedDays.includes(dayMap[day.toLowerCase()]) ? "map--filters_pill" : "inactive map--filters_pill"}>
                                     <p
                                         key={day}
-                                        onClick={() => toggleDay(day)}
+                                        onClick={() => {
+                                            toggleDay(day)
+                                            setOpenFilters(false);
+                                        }}
 
                                     >
                                         {day.toLowerCase()}
@@ -461,10 +499,14 @@ const Map = ({}) => {
                         <div className={"map--filters_pills-container"}>
                             {
                                 ["breakfast", "brunch", "lunch", "dinner", "snack", "drinks", "coffee"].map((service) => (
-                                    <div className={selectedService.includes(service) ? "map--filters_pill": "map--filters_pill inactive"}>
+                                    <div
+                                        className={selectedService.includes(service) ? "map--filters_pill" : "map--filters_pill inactive"}>
                                         <p
                                             key={service}
-                                            onClick={()=>toggleService(service)}
+                                            onClick={() => {
+                                                toggleService(service)
+                                                setOpenFilters(false);
+                                            }}
                                         >
                                             {service}
                                         </p>
@@ -475,7 +517,7 @@ const Map = ({}) => {
                     }
 
                     {isMounted && (
-                        <div style={{ padding: "0 10px" }}>
+                        <div style={{padding: "0 10px"}}>
                             <p>looking for a specific dish? 🍕🍱🍔</p>
 
                             {cuisines.length > 0 && (
@@ -488,7 +530,7 @@ const Map = ({}) => {
                                     value={selectedDish}
                                     onChange={(event, newValue) => {
                                         setSelectedDish(newValue);
-                                        console.log("Selected dish:", newValue);
+                                        setOpenFilters(false)
                                     }}
                                     sx={{
                                         width: 330,
@@ -519,7 +561,7 @@ const Map = ({}) => {
                                         value.map((option, index) => (
                                             <Chip
                                                 label={option.name}
-                                                {...getTagProps({ index })}
+                                                {...getTagProps({index})}
                                                 sx={{
                                                     backgroundColor: 'var(--color-secondary)',
                                                     color: '#fff',
@@ -552,7 +594,7 @@ const Map = ({}) => {
                                     defaultValue={cuisines[0]}
                                     onChange={(event, newValue) => {
                                         setSelectedCuisine(newValue); // Update selected cuisine in state
-                                        console.log("Selected cuisine:", newValue);
+                                        setOpenFilters(false)
                                     }}
                                     sx={{
                                         width: 330,
@@ -580,7 +622,7 @@ const Map = ({}) => {
                                         value.map((option, index) => (
                                             <Chip
                                                 label={option.name}
-                                                {...getTagProps({ index })}
+                                                {...getTagProps({index})}
                                                 sx={{
                                                     backgroundColor: 'var(--color-secondary)',
                                                     color: '#fff',
@@ -599,19 +641,7 @@ const Map = ({}) => {
                             }
                         </div>
                     }
-                    {/*
-
-                    {isMobile && isMounted &&
-                        <div className={openFilters ? "map--filter_submit": "map--filter_submit hidden"} onClick={()=>handleFilters()}>
-                    <p> set filters </p>
                 </div>
-                }
-
-                    */}
-
-
-                </div>
-
 
 
                 {visible && target &&
@@ -619,8 +649,6 @@ const Map = ({}) => {
                         onClick={() => setVisible(!visible)}
                         className={visible ? "map--popup" : "map--popup hidden-mobile"}
                     >
-                        {/*<Banner content={target.venueName}/>*/}
-
                         <div className={"category-list__box"}>
                             <div className={"category-list__box-close"}>
                                 <p>
