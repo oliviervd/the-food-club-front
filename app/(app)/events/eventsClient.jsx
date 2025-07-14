@@ -35,6 +35,10 @@ const eventsClient = () => {
     const endOfNextWeek = new Date(startOfNextWeek);
     endOfNextWeek.setDate(startOfNextWeek.getDate() + 6);
 
+// End of Month
+    const endOfMonth = new Date(today);
+    endOfMonth.setMonth(today.getMonth() + 1);
+
 // One year from today (keep for filtering upcoming)
     const oneYearFromToday = new Date(today);
     oneYearFromToday.setFullYear(today.getFullYear() + 1);
@@ -110,6 +114,8 @@ const eventsClient = () => {
 
     const eventsThisWeek = [];
     const eventsNextWeek = [];
+    const eventsThisMonth = [];
+
     const eventsLater = [];
 
     if (!eventsLoading) {
@@ -121,8 +127,8 @@ const eventsClient = () => {
 
             if (date >= startOfWeek && date <= endOfWeek) {
                 eventsThisWeek.push(event);
-            } else if (date >= startOfNextWeek && date <= endOfNextWeek) {
-                eventsNextWeek.push(event);
+            } else if (date > endOfWeek && date <= endOfMonth) {
+                eventsThisMonth.push(event);
             } else {
                 eventsLater.push(event);
             }
@@ -148,34 +154,52 @@ const eventsClient = () => {
         );
     }
 
+    function EventList({ event }) {
+        return (
+            <div className="event__list-item">
+                <p className={"event__name"}>{event.name}</p>
+                <div className="event__time">
+                    {extractTime(event)}
+                </div>
+            </div>
+        )
+    }
+
     return(
         <>
             <Header landing={true}/>
             <ScrollToTop/>
-            <section>
-                <h1>this week</h1>
-                <div className="events__container">
-                    {eventsThisWeek.length === 0 && <p className={"no-events"}>No events this week</p>}
-                    {eventsThisWeek.sort((a, b) => getEventDate(a) - getEventDate(b)).map((event, idx) => (
-                        <EventCard key={idx} event={event}/>
-                    ))}
-                </div>
+            <section className={"events__main"}>
+                <section className={"events__tiles"}>
+                    <h1>this week</h1>
+                    <div className="events__container">
+                        {eventsThisWeek.length === 0 && <p className={"no-events"}>No events this week</p>}
+                        {eventsThisWeek.sort((a, b) => getEventDate(a) - getEventDate(b)).map((event, idx) => (
+                            <EventCard key={idx} event={event}/>
+                        ))}
+                    </div>
+                </section>
 
-                <h1>next week</h1>
-                <div className="events__container">
-                    {eventsNextWeek.length === 0 && <p className={"no-events"} >No events next week</p>}
-                    {eventsNextWeek.sort((a, b) => getEventDate(a) - getEventDate(b)).map((event, idx) => (
-                        <EventCard key={idx} event={event}/>
-                    ))}
-                </div>
+                <section className={"events__tiles"}>
+                    <h1>the rest of the month</h1>
+                    <div className="events__container">
+                        {eventsThisMonth.length === 0 && <p className={"no-events"}>No events this month</p>}
+                        {eventsThisMonth.sort((a, b) => getEventDate(a) - getEventDate(b)).map((event, idx) => (
+                            <EventCard key={idx} event={event}/>
+                        ))}
+                    </div>
+                </section>
 
-                <h1>upcoming</h1>
-                <div className="events__container">
-                    {eventsLater.length === 0 && <p className={"no-events"}>No upcoming events</p>}
-                    {eventsLater.sort((a, b) => getEventDate(a) - getEventDate(b)).map((event, idx) => (
-                        <EventCard key={idx} event={event}/>
-                    ))}
-                </div>
+                <section className={"events__list"}>
+                    <h1>upcoming</h1>
+                    <div className="events__container">
+                        {eventsLater.length === 0 && <p className={"no-events"}>No upcoming events</p>}
+                        {eventsLater.sort((a, b) => getEventDate(a) - getEventDate(b)).map((event, idx) => (
+                            <EventList key={idx} event={event}/>
+                        ))}
+                    </div>
+                </section>
+
             </section>
         </>
     )

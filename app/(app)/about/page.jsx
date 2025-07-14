@@ -1,12 +1,13 @@
 // app/about/page.jsx
 import AboutClient from "./aboutClient.jsx";
+import CanonicalTag from "../../../components/CanonicalTag.jsx";
 
 export async function generateMetadata() {
 
     const res = await fetch('https://thefoodclub.be/api/page/6864d3114e2e13271cc5b072?depth=2&draft=false&locale=en', { cache: 'no-store' });
     const data = await res.json();
 
-    console.log(data.meta);
+    //console.log(data.meta);
 
     return {
         title: data.meta.title,
@@ -46,10 +47,11 @@ export async function generateMetadata() {
     }
 }
 
-export default function MapPage() {
+export default function AboutPage() {
     return (
-        <main>
+        <>
+            <CanonicalTag href="https://thefoodclub.be/about"/>
             <AboutClient />
-        </main>
+        </>
     )
 }

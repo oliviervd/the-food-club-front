@@ -100,7 +100,7 @@ const CategoryList = ({ data, home }) => {
                                     </Link>
                                 </div>
                                 <div className={"category-list__box special"}>
-                                    <BroadCastForYou type={'advice'}/>
+                                    <BroadCastForYou type={'time'}/>
                                 </div>
                             </React.Fragment>
                         );

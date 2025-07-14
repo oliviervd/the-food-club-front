@@ -3,6 +3,7 @@
 import useWeather from "../hooks/isSunny.tsx";
 import "../styles/weather.css"
 import {useRouter} from "next/navigation.js";
+import Link from "next/link";
 
 const BroadCastForYou = ({ type, recommendations }) => {
 
@@ -40,9 +41,13 @@ const BroadCastForYou = ({ type, recommendations }) => {
 
     // WEATHER-BASED
     let LetMetTellYou = "";
+    let Caption = "";
 
-    if (weather?.temperature > 25) {
-        LetMetTellYou = "HOLY SMOKES IT'S A SCORCHER! 🥵 GET YOURSELF TO A PATIO AND CRUSH SOME COLD ONES! CLICK HERE FOR A COLD ONE'S GUIDE!";
+    console.log(weather)
+
+    if (weather?.temperature > 23) {
+        LetMetTellYou = "we love the sunshine! ready to get sunkissed?";
+        Caption = "these babies are burning to serve you."
         slug="/si-schiatta"
     } else if (weather?.temperature > 10 && weather?.temperature < 25) {
         LetMetTellYou = "GRAB A JACKET! IT'S NOT COLD BUT IT'S GOT SOME BITE!";
@@ -59,14 +64,12 @@ const BroadCastForYou = ({ type, recommendations }) => {
         );
     } else if (type === "time") {
         return (
-            <div onClick={()=>{router.push(`/recommendations${slug}`)}} style={{ cursor: "pointer"}}>
-                <h2 style={{ fontSize: "20px" }}>
-                    <div>{LetMetTellYou.toLowerCase()}</div>
-                </h2>
-            </div>
+            <Link href={"/recommendations/sun-kissed/"}>
+                    <h2 style={{fontSize: "20px"}}>{LetMetTellYou.toLowerCase()}</h2>
+                    <p>{Caption}</p>
+            </Link>
         );
     }
-
     return null;
 };
 

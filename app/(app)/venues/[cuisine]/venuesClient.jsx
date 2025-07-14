@@ -10,7 +10,7 @@ import DitherImage from "../../../../components/DitherImage.jsx";
 import Banner from "../../../../components/Banner.jsx";
 import {LocationColorContext} from "../../../../contexts/LocationColorContext.jsx";
 import Link from "next/link";
-
+import serialize from "../../../../utils/serialize.jsx"
 
 const MapSmall = dynamic(() => import('../../../../components/mapSmall.jsx'), {
     ssr: false
@@ -22,6 +22,7 @@ const VenuesClient = ({ cuisine }) => {
 
     const [search, setSearch] = useState("");
     const [matches, setMatches] = useState(null);
+    const [matchedCuisine, setMatchedCuisine] = useState("")
     const [club, setClub] = useState(null);
     const [highlightedVenue, setHighlightedVenue] = useState(null);
 
@@ -45,32 +46,46 @@ const VenuesClient = ({ cuisine }) => {
     }, []);
 
     if (!location) {
-        console.log("Location not ready yet — skip filter");
         return;
     }
 
+    // look for cuisine
     useEffect(() => {
         if (!cuisine) {
-            console.log("No cuisine param found");
+            return;
+        }
+
+        if (!cuisinesData?.docs) {
+            return;
+        }
+
+        const searchCuisine = cuisine.toLowerCase();
+        const foundCuisine = cuisinesData.docs.find(c => c.name?.toLowerCase() === searchCuisine);
+
+        if (foundCuisine) {
+            setMatchedCuisine(foundCuisine); // Or make a new `useState` like `setCurrentCuisine`
+        } else {
+            //console.log("Cuisine not found in cuisinesData");
+        }
+    }, [cuisine, cuisinesData?.docs]);
+
+    console.log(matchedCuisine)
+
+    useEffect(() => {
+        if (!cuisine) {
             return;
         }
 
         const searchCuisine = cuisine.toLowerCase();
 
         if (!venuesData?.docs) {
-            console.log("No venuesData");
             return;
         }
 
         if (!cuisinesData?.docs) {
-            console.log("No cuisinesData");
             return;
         }
 
-        console.log("=== FILTER RUN ===");
-        console.log("searchCuisine:", searchCuisine);
-        console.log("venuesData.docs.length:", venuesData.docs.length);
-        console.log("First venue example:", venuesData.docs[0]);
 
         const matchedVenues = venuesData.docs.filter(venue => {
             const hasCuisine = venue.information?.cuisine?.some(c => c.name?.toLowerCase() === searchCuisine);
@@ -79,7 +94,6 @@ const VenuesClient = ({ cuisine }) => {
             const hasDrink = venue.information?.drinks?.some(drink => drink.name?.toLowerCase() === searchCuisine);
 
             if (hasCuisine || hasDish || hasType || hasDrink) {
-                console.log("MATCHED:", venue.venueName);
                 return true;
             }
 
@@ -112,7 +126,6 @@ const VenuesClient = ({ cuisine }) => {
             <div>
                 <Banner content={search} />
             </div>
-
             {matches === null && <p>Loading or calculating matches...</p>}
 
             {matches && matches.length === 0 && (
@@ -131,26 +144,52 @@ const VenuesClient = ({ cuisine }) => {
 
             {matches && matches.length > 0 && (
                 <section className="home__container">
-                    <section style={{ position: "relative" }}>
+                    <section style={{position: "relative"}}>
                         {isMobile &&
-                            matches.map((match, index) => {
-                                if (match._status == "published") {
-                                    try {
-                                        return (
-                                            <div key={index} className="category-list__box">
-                                                <Link href={`/venue/${match.url}`}>
-                                                    <DitherImage url={match.media.hero.sizes.tablet.url} />
-                                                    <h2 style={{ textAlign: "center" }}>{match.venueName}</h2>
-                                                </Link>
-                                            </div>
-                                        );
-                                    } catch (e) {}
-                                }
-                            })}
+                            <section>
+                                {matchedCuisine.description && (
+                                <div className="cat_description">
+
+                                        <div>
+                                            <h2>
+                                                {serialize(matchedCuisine.description)}
+                                            </h2>
+                                        </div>
+
+                                </div>
+                                )}
+                                {matches.map((match, index) => {
+                                    if (match._status == "published") {
+                                        try {
+                                            return (
+                                                <div key={index} className="category-list__box">
+                                                    <Link href={`/venue/${match.url}`}>
+                                                        <DitherImage url={match.media.hero.sizes.tablet.url}/>
+                                                        <h2 style={{textAlign: "center"}}>{match.venueName}</h2>
+                                                    </Link>
+                                                </div>
+                                            );
+                                        } catch (e) {
+                                        }
+                                    }
+                                })}
+                            </section>
+                        }
                         {!isMobile && (
                             <section className="desktop">
                                 <section className="venue-list__container-main">
                                     <section>
+                                        {matchedCuisine.description && (
+                                        <div className="cat_description">
+
+                                                <div>
+                                                    <h2>
+                                                        {serialize(matchedCuisine.description)}
+                                                    </h2>
+                                                </div>
+
+                                        </div>
+                                        )}
                                         {matches.map((match, index) => {
                                             const isHighlighted = highlightedVenue?.url === match.url;
 
@@ -171,7 +210,7 @@ const VenuesClient = ({ cuisine }) => {
                                                     >
                                                         <div className="venue__image">
                                                             <Link href={`/venue/${match.url}`}>
-                                                                <DitherImage url={match.media.hero.sizes.tablet.url} />
+                                                                <DitherImage url={match.media.hero.sizes.tablet.url}/>
                                                                 <h2 style={borderStyle}>{match.venueName}</h2>
                                                             </Link>
                                                         </div>
@@ -182,7 +221,8 @@ const VenuesClient = ({ cuisine }) => {
                                     </section>
                                 </section>
                                 <section className="venue-list__container-others">
-                                    <MapSmall venues={matches} highlight={highlightedVenue} onHover={setHighlightedVenue} />
+                                    <MapSmall venues={matches} highlight={highlightedVenue}
+                                              onHover={setHighlightedVenue}/>
                                 </section>
                             </section>
                         )}

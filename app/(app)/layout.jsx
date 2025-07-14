@@ -1,13 +1,12 @@
 // app/layout.js
 
-import { GoogleAnalytics } from '@next/third-parties/google'
-
 export const metadata = {
     title: "Food Club - Home",
     description: "#1 Don't talk about foodclub - but psssst…. please spread the word! — #2 The foodclub is a curated space focused on quality, featuring only restaurants we've personally visited.",
     keywords: ['food club', 'gent', 'brussel', 'antwerpen', 'the food club', 'foodclub', 'thefoodclub'],
     icons: {
         icon: '/favicon.ico',
+        appleTouchIcon: '/apple-touch-icon.png'
     },
     openGraph: {
         title: "Food Club",
@@ -42,7 +41,6 @@ export default function RootLayout({ children }) {
     return (
         <html lang="en">
         <head />
-        <GoogleAnalytics gaId="G-MT6KZBM1XN"/>
         <body>
         <div suppressHydrationWarning={true}>
             <ClientLayout>
@@ -54,4 +52,4 @@ export default function RootLayout({ children }) {
     );
 }
 
-import ClientLayout from './client-layout'; // 👈 No dynamic import
+import ClientLayout from './client-layout';

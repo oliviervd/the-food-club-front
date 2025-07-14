@@ -19,6 +19,8 @@ import '/styles/about.css';
 import 'leaflet/dist/leaflet.css';
 import '/styles/map.css';
 import '/styles/colors.css';
+import CanonicalTag from "../../components/CanonicalTag.jsx";
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 export default function ClientLayout({ children }) {
     const [queryClient] = useState(() => new QueryClient({
@@ -48,14 +50,17 @@ export default function ClientLayout({ children }) {
     */
 
     return (
+        <>
+            <CanonicalTag href={"https://www.thefoodclub.be/"}/>
+            <GoogleAnalytics gaId="G-MT6KZBM1XN"/>
             <QueryClientProvider client={queryClient}>
                 <LocationColorProvider>
 
-                        <CookieProvider>
-                            {children}
-                        </CookieProvider>
+                    <CookieProvider>
+                        {children}
+                    </CookieProvider>
                 </LocationColorProvider>
             </QueryClientProvider>
-
+        </>
     );
 }

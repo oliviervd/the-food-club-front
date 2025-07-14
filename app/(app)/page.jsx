@@ -1,4 +1,5 @@
 import HomeClient from './homeClient.jsx';
+import CanonicalTag from "../../components/CanonicalTag.jsx";
 
 export const metadata = {
     title: "Food Club - Home",
@@ -6,8 +7,9 @@ export const metadata = {
     keywords: ['food club', 'gent', 'brussel', 'antwerpen'],
     icons: {
         icon: '/favicon.ico',
+        appleTouchIcon: '/apple-touch-icon.png',
+
     },
-    canonical: 'https://www.thefoodclub.com/',
     openGraph: {
         title: "Food Club",
         faviconUrl: "https://www.thefoodclub.be/assets/img/Favicon.png",
@@ -40,6 +42,9 @@ export const metadata = {
 
 export default function VenuesPage() {
     return (
-        <HomeClient />
+        <div>
+            <CanonicalTag href={"https://www.thefoodclub.be/"}/>
+            <HomeClient/>
+        </div>
     );
 }

@@ -206,6 +206,17 @@
     }
 }
 
+.cat_description {
+    margin: 5px 0 ;
+    background: var(--color-main);
+    border: 2px solid var(--color-secondary);
+
+    h2 {
+        color: var(--color-secondary);
+        padding: 20px;
+    }
+}
+
 .desktop {
     width: 100%;
     max-height: 100%;
