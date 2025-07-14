@@ -43,7 +43,6 @@ export const metadata = {
 export default function VenuesPage() {
     return (
         <div>
-            <CanonicalTag href={"https://www.thefoodclub.be/"}/>
             <HomeClient/>
         </div>
     );
