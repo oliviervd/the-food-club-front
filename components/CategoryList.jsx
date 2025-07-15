@@ -103,7 +103,7 @@ const CategoryList = ({ data, home }) => {
                                 <div className={"category-list__box"}>
                                     <Link href={`/categories/${cat.url}`}>
                                         <Image
-                                            src={cat.media.hero.url}
+                                            src={cat.media.hero.sizes.tablet.url||cat.media.hero.sizes.mobileFriendly.url}
                                             alt={`hero image for ${cat.name}`}
                                             fill
                                             style={{ objectFit: 'cover' , zIndex: "-1111"}}
@@ -129,7 +129,7 @@ const CategoryList = ({ data, home }) => {
                             <Link href={`/categories/${cat.url}`}>
                                 {/* Use the onLoad handler to detect when the image has loaded */}
                                 <Image
-                                    src={cat.media.hero.url}
+                                    src={cat.media.hero.sizes.tablet.url||cat.media.hero.sizes.mobileFriendly.url}
                                     alt={`hero image for ${cat.name}`}
                                     fill
                                     style={{ objectFit: 'cover' }}
