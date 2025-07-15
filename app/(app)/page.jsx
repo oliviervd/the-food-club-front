@@ -40,10 +40,28 @@ export const metadata = {
     },
 };
 
-export default function VenuesPage() {
+export default function HomePage() {
+
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "The Food Club",
+        "url": "https://www.thefoodclub.be",
+        "logo": "https://www.thefoodclub.be/assets/img/Favicon.png",
+        "sameAs": [
+            "https://www.instagram.com/thefoodclub.be",
+            "https://www.tiktok.com/@thefoodclub.be"
+        ],
+        "description": "The Food Club is a curated space focused on quality, featuring only restaurants we've personally visited."
+    };
+
     return (
         <div>
             <HomeClient/>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
         </div>
     );
 }

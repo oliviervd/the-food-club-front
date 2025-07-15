@@ -11,7 +11,9 @@ export async function generateMetadata({ params }) {
             description: `Discover the best ${params.cuisine} spots.`,
             images:[{url:"https://d3nidktcupd88v.cloudfront.net/HERO-map-2387x1554.jpg", alt:"hero image for cuisine page"}],
         },
-        canonical: `https://www.thefoodclub.com/venues/${params.cuisine}`,
+        alternates: {
+            canonical: `https://www.thefoodclub.com/venues/${params.cuisine}`,
+        },
         robots: {
             index: true,
             follow: true,

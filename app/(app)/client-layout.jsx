@@ -51,11 +51,8 @@ export default function ClientLayout({ children }) {
 
     return (
         <>
-            <CanonicalTag href={"https://www.thefoodclub.be/"}/>
-            <GoogleAnalytics gaId="G-MT6KZBM1XN"/>
             <QueryClientProvider client={queryClient}>
                 <LocationColorProvider>
-
                     <CookieProvider>
                         {children}
                     </CookieProvider>

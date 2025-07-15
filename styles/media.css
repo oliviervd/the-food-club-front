@@ -1,12 +1,18 @@
 .image-container {
+    position: relative;
     width: 100%;
-    height: 300px; /* set desired fixed height */
+    height: 300px;
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: block; /* block is fine here, or flex if you want centering */
     box-sizing: border-box;
     border: var(--color-main) 3px solid;
+}
+
+@media (max-width: 900px) {
+    .image-container {
+        box-sizing: initial;
+        border: none;
+    }
 }
 
 .image-container img {

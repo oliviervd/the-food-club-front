@@ -4,6 +4,7 @@ import DitherImage from "./DitherImage.jsx";
 import Loading from "../app/(app)/Loading.jsx";
 import Link from "next/link";
 import BroadCastForYou from "./BroadCastForYou.js";
+import Image from "next/image.js";
 
 // TODO: Add hover effect on desktop (show text explaining the category)
 
@@ -74,7 +75,14 @@ const CategoryList = ({ data, home }) => {
                             <React.Fragment key={index}>
                                 <div className={"category-list__box"}>
                                     <Link href={`/categories/${cat.url}`}>
-                                        <DitherImage url={cat.media.hero.url} dim={true}/>
+                                        <Image
+                                            src={cat.media.hero.url}
+                                            alt={`hero image for ${cat.name}`}
+                                            fill
+                                            style={{ objectFit: 'cover' }}
+                                            sizes="100vw"
+                                            priority={false} // or true for critical images
+                                        />
                                         <h2>{cat.name}</h2>
                                         <p>{cat.slug}</p>
                                     </Link>
@@ -94,7 +102,14 @@ const CategoryList = ({ data, home }) => {
                             <React.Fragment key={index}>
                                 <div className={"category-list__box"}>
                                     <Link href={`/categories/${cat.url}`}>
-                                        <DitherImage url={cat.media.hero.url} dim={true}/>
+                                        <Image
+                                            src={cat.media.hero.url}
+                                            alt={`hero image for ${cat.name}`}
+                                            fill
+                                            style={{ objectFit: 'cover' , zIndex: "-1111"}}
+                                            sizes="100vw"
+                                            priority={false} // or true for critical images
+                                        />
                                         <h2>{cat.name}</h2>
                                         <p>{cat.slug}</p>
                                     </Link>
@@ -113,7 +128,14 @@ const CategoryList = ({ data, home }) => {
                         >
                             <Link href={`/categories/${cat.url}`}>
                                 {/* Use the onLoad handler to detect when the image has loaded */}
-                                <DitherImage url={mediaUrl} dim={true} onLoad={handleImageLoad} />
+                                <Image
+                                    src={cat.media.hero.url}
+                                    alt={`hero image for ${cat.name}`}
+                                    fill
+                                    style={{ objectFit: 'cover' }}
+                                    sizes="100vw"
+                                    priority={false} // or true for critical images
+                                />
                                 <h2>{cat.name}</h2>
                                 <p>{cat.slug}</p>
                             </Link>

@@ -39,7 +39,7 @@
 }
 
 .home-grid{
-    margin: 15px 2.5vw 0 2.5vw;
+    margin: 15px 2.5vw 15px 2.5vw;
     width: 95vw;
     display: flex;
     flex-direction: row;

@@ -1,4 +1,6 @@
 // app/layout.js
+import { GoogleAnalytics } from '@next/third-parties/google'
+import ClientLayout from './client-layout';
 
 export const metadata = {
     title: "Food Club - Home",
@@ -36,23 +38,19 @@ export const metadata = {
             index: true,
             follow: true,
             noImageIndex: false,
-        }
+        },
     },
 };
 
 export default function RootLayout({ children }) {
     return (
         <html lang="en">
-        <head />
         <body>
-        <div suppressHydrationWarning={true}>
-            <ClientLayout>
-                {children}
-            </ClientLayout>
-        </div>
+        <GoogleAnalytics gaId="G-MT6KZBM1XN" />
+        <ClientLayout>
+            {children}
+        </ClientLayout>
         </body>
         </html>
     );
 }
-
-import ClientLayout from './client-layout';

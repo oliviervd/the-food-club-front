@@ -20,8 +20,8 @@ export async function generateMetadata() {
             site: '@thefoodclubbe',
             creator: '@thefoodclubbe',
         },
-        alternate: {
-            canonical: 'https://thefoodclub.be/about',
+        alternates: {
+            canonical: 'https://www.thefoodclub.be/about',
         },
         openGraph: {
             title: data.meta.title,
@@ -51,7 +51,6 @@ export async function generateMetadata() {
 export default function AboutPage() {
     return (
         <>
-            <CanonicalTag href="https://thefoodclub.be/about"/>
             <AboutClient />
         </>
     )

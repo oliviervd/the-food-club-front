@@ -12,6 +12,9 @@ export async function generateMetadata() {
             title: "The Food Club - Map - Your Foodie Guide through the Galaxy",
             description: "seeing things on a map makes everything easier. One map - tons of food.",
         },
+        alternates: {
+            canonical: `https://www.thefoodclub.be/map`,
+        },
         robots: {
         index: true,
             follow: true,

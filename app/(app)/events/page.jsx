@@ -15,8 +15,11 @@ export async function generateMetadata() {
             type: 'website',
             locale: 'en_IE',
             site_name: 'The Food Club',
-        }
-        ,robots: {
+        },
+        alternates: {
+            canonical: 'https://www.thefoodclub.com/events',
+        },
+        robots: {
             index: true,
             follow: true,
             googleBot: {
@@ -30,7 +33,6 @@ export async function generateMetadata() {
             description: 'Let\'s go to (food) mass. We believe good food should be celebrated, that\'s why made a calender of food events near you.',
             cardType: 'summary_large_image',
         },
-        canonical: 'https://www.thefoodclub.com/events',
     }
 }
 

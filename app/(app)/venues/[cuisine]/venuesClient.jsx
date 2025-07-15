@@ -3,7 +3,7 @@
 import dynamic from 'next/dynamic'
 import ScrollToTop from "../../../../components/scrollToTop.jsx";
 import Header from "../../../../components/Header.jsx";
-import {useContext, useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {useQuery} from "@tanstack/react-query";
 import {fetchAPI} from "../../../../utils/utils.jsx";
 import DitherImage from "../../../../components/DitherImage.jsx";
@@ -11,6 +11,7 @@ import Banner from "../../../../components/Banner.jsx";
 import {LocationColorContext} from "../../../../contexts/LocationColorContext.jsx";
 import Link from "next/link";
 import serialize from "../../../../utils/serialize.jsx"
+import Image from "next/image.js";
 
 const MapSmall = dynamic(() => import('../../../../components/mapSmall.jsx'), {
     ssr: false
@@ -210,7 +211,16 @@ const VenuesClient = ({ cuisine }) => {
                                                     >
                                                         <div className="venue__image">
                                                             <Link href={`/venue/${match.url}`}>
-                                                                <DitherImage url={match.media.hero.sizes.tablet.url}/>
+                                                                <div style={{height: "200px"}}>
+                                                                    <Image
+                                                                        src={match.media.hero.url}
+                                                                        alt={`hero image for ${match.venueName}`}
+                                                                        fill
+                                                                        style={{ objectFit: 'cover' , border: "2px solid var(--color-main)", boxSizing: 'border-box'}}
+                                                                        sizes="100vw"
+                                                                        priority={false}
+                                                                    />
+                                                                </div>
                                                                 <h2 style={borderStyle}>{match.venueName}</h2>
                                                             </Link>
                                                         </div>

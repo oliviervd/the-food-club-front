@@ -18,6 +18,9 @@ export async function generateMetadata({ params }){
     description: category.meta.description,
     image: category.meta.image.url,
     keywords: ["review", "food club", category.meta.title], // todo: add these as a separate SEO field in the collection backend
+    alternate: {
+        canonical: `https://thefoodclub.be/categories/${category.url}`,
+    },
     openGraph: {
       title: category.meta.title,
       description: category.meta.description,

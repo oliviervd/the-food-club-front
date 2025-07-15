@@ -1,10 +1,10 @@
-import DitherImage from "../../../../components/DitherImage.jsx";
 import Marquee from "react-fast-marquee";
 import {fetchAPI} from "../../../../utils/utils.jsx";
 import {useEffect, useState} from "react";
 import Link from "next/link";
 import BroadCastForYou from "../../../../components/BroadCastForYou.js";
 import React from "react"
+import Image from "next/image";
 
 const DesktopHome = ({categories, recommendations}) => {
     console.log(recommendations)
@@ -17,7 +17,6 @@ const DesktopHome = ({categories, recommendations}) => {
         }
         getCuisines()
     }, [categories])
-
 
     return(
         <section>
@@ -57,7 +56,16 @@ const DesktopHome = ({categories, recommendations}) => {
                                 <React.Fragment key={index}>
                                     <div className={"category-list__box"}>
                                         <Link href={`/categories/${cat.url}`}>
-                                            <DitherImage url={cat.media.hero.sizes.tablet.url} dim={true}/>
+                                            <div className="image-container">
+                                                <Image
+                                                    src={cat.media.hero.url}
+                                                    alt={`hero image for ${cat.name}`}
+                                                    fill
+                                                    style={{ objectFit: 'cover' }}
+                                                    sizes="100vw"
+                                                    priority={false}
+                                                />
+                                            </div>
                                             <h2>{cat.name}</h2>
                                             <p>{cat.slug}</p>
                                         </Link>
@@ -72,7 +80,16 @@ const DesktopHome = ({categories, recommendations}) => {
                         return(
                             <div key={index} className={"category-list__box"}>
                                 <Link href={`/categories/${cat.url}`}>
-                                    <DitherImage url={cat.media.hero.sizes.tablet.url} dim={true}/>
+                                    <div className="image-container">
+                                        <Image
+                                            src={cat.media.hero.url}
+                                            alt={`hero image for ${cat.name}`}
+                                            fill
+                                            style={{ objectFit: 'cover' }}
+                                            sizes="100vw"
+                                            priority={false} // or true for critical images
+                                        />
+                                    </div>
                                     <h2>{cat.name}</h2>
                                     <p>{cat.slug}</p>
                                 </Link>

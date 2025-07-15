@@ -57,8 +57,6 @@ const HomeClient = () => {
         scrollTo(target);
     }, [target]);
 
-
-
     //if (isLoading || venuesLoading) return <Loading />;
     if (error) return <div>Error: {error.message}</div>;
 

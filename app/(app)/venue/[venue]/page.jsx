@@ -1,67 +1,87 @@
-import VenueClient from "./venueClient.jsx"
-import {Suspense} from "react";
-import Loading from "../../Loading.jsx";
+import VenueClient from "./venueClient.jsx";
+import Head from 'next/head';
 
-export async function generateMetadata({params}) {
-
-    const res = await fetch(`https://thefoodclub.be/api/venues?where[url][equals]=${params.venue}`)
+export async function generateMetadata({ params }) {
+    const res = await fetch(
+        `https://thefoodclub.be/api/venues?where[url][equals]=${params.venue}&depth=2`,
+        { next: { revalidate: 60 } }
+    );
     const data = await res.json();
-    console.log(data);
+    const venue = data.docs[0];
 
-    let title, description, image;
+    if (!venue) return {};
 
-    if (data.docs[0].meta) {
-        try {
-            let seo = data.docs[0].meta;
-            title = seo.title;
-            description = seo.description;
-            image = seo.image.url;
-        } catch (e) {
-            console.log(e);
-        }
-    }
+    const seo = venue.meta || {};
+    const title = seo.title || venue.venueName || 'Venue';
+    const description = seo.description || '';
+    const image = seo.image?.url || '';
 
-    try {
-        return {
-            title: title,
-            description: description,
-            image: image,
-            keywords: ["review", "food club", title, data.docs[0].venueName, data.docs[0].information.address.street, , data.docs[0].information.address.postalCode, data.docs[0].information.address.city], // todo: add keywords to CMS
-            openGraph: {
-                title: title,
-                description: description,
-                images: [{url: image, alt: `image of ${title}`}],
-                url: `https://thefoodclub.be/venue/${params.venue}`,
-                type: 'website',
-                site_name: 'The Food Club',
-                locale: 'en_GB',
-            },
-            twitter: {
-                card: 'summary_large_image',
-                title: title,
-                description: description,
-                images: [{url: image, alt: `image of ${title}`}],
-            },
-            robots: {
+    return {
+        title,
+        description,
+        openGraph: {
+            title,
+            description,
+            images: [{ url: image }],
+            url: `https://thefoodclub.be/venue/${params.venue}`,
+            type: 'website',
+            site_name: 'The Food Club',
+            locale: 'en_GB',
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title,
+            description,
+            images: [{ url: image }],
+        },
+        robots: {
+            index: true,
+            follow: true,
+            googleBot: {
                 index: true,
                 follow: true,
-                googleBot: {
-                    index: true,
-                    follow: true,
-                    noImageIndex: false,
-                }
+                noImageIndex: false,
             },
-            canonical: `https://thefoodclub.be/venue/${params.venue}`,
-        }
-    } catch (e) {
-        console.log(e);
-    }
+        },
+        alternates: {
+            canonical: `https://www.thefoodclub.be/venue/${params.venue}`,
+        },
+    };
 }
 
-export default function VenuePage() {
+export default async function VenuePage({ params }) {
+    const res = await fetch(
+        `https://thefoodclub.be/api/venues?where[url][equals]=${params.venue}&depth=2`,
+        { next: { revalidate: 60 } }
+    );
+    const data = await res.json();
+    const venue = data.docs[0] || null;
+
+    if (!venue) {
+        return <div>Venue not found.</div>;
+    }
+
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "Restaurant",
+        "name": venue.venueName,
+        "url": `https://www.thefoodclub.be/venue/${params.venue}`,
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": venue.information.address?.street || '',
+            "addressLocality": venue.information.address?.city || '',
+            "postalCode": venue.information.address?.postalCode || '',
+            "addressCountry": "BE"
+        },
+    };
+
     return (
-        <Suspense fallback={<Loading />}>
-            <VenueClient />
-        </Suspense>
-    )
+        <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
+            <VenueClient initialVenue={venue} />
+        </>
+    );
 }
