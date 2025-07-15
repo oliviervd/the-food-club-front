@@ -3,7 +3,7 @@
 import {MapContainer, Marker, TileLayer, useMap} from "react-leaflet";
 import {divIcon} from "leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
-import {useContext, useEffect, useState, useMemo} from "react";
+import React, {useContext, useEffect, useState, useMemo} from "react";
 import {useRouter} from "next/navigation";
 import {fetchAPI, getCSSVariableValue} from "/utils/utils.jsx";
 import {LocationColorContext} from "/contexts/LocationColorContext.jsx";
@@ -656,7 +656,14 @@ const Map = ({}) => {
                                 </p>
                             </div>
                             <Link href={`/venue/${target.url}`}>
-                                <DitherImage url={target.media.hero.sizes.tablet.url}/>
+                                <Image
+                                    src={target.media.hero.url}
+                                    alt={`hero image for ${target.venueName}`}
+                                    fill
+                                    style={{ objectFit: 'cover' , border: "2px solid var(--color-main)", boxSizing: 'border-box'}}
+                                    sizes="100vw"
+                                    priority={false}
+                                />
                                 <h2 style={{textAlign: "center"}}>{target.venueName}</h2>
                             </Link>
                         </div>
