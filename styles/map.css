@@ -113,7 +113,7 @@
         background: var(--color-secondary);
         color: white;
         border-radius: 50%;
-        padding: 2px 8px;
+        padding: 2px 7px;
         font-size: 0.75rem;
         margin-left: 5px;
     }
@@ -698,7 +698,6 @@
             width: 100%;
         }
 
-
         h2 {
             display: flex;
             justify-content: center;
@@ -712,15 +711,11 @@
             margin: 0;
         }
 
-
         .popup-pill {
             border: none;
             background: transparent;
         }
     }
-
-
-
 }
 
 @media (max-width: 800px) {

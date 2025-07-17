@@ -7,7 +7,6 @@ import React, {useContext, useEffect, useState, useMemo} from "react";
 import {useRouter} from "next/navigation";
 import {fetchAPI, getCSSVariableValue} from "/utils/utils.jsx";
 import {LocationColorContext} from "/contexts/LocationColorContext.jsx";
-import DitherImage from "/components/DitherImage.jsx";
 import Link from "next/link.js";
 import Image from "next/image.js";
 import {useIsMobile} from "../../../hooks/isMobile.jsx";
@@ -17,7 +16,6 @@ const logo = '/assets/img/logo-blue.png';
 const back = '/assets/img/Back.png';
 
 // todo add icons to zoom in / zoom out / show my location.
-// todo: add header as absolute element over map container (so you can also hide it if you want)
 
 // Custom hook to update the map center
 const ChangeView = ({ center, zoom }) => {
@@ -97,6 +95,11 @@ const Map = ({}) => {
         }
     }, [isMobile]);
 
+    useEffect(() => {
+        if (!isMounted) {
+            setOpenFilters(true)
+        }
+    }, [!isMobile])
 
     // DATA
 
@@ -106,7 +109,7 @@ const Map = ({}) => {
             const _cuisines = await fetchAPI("cuisine", "en", {limit: 1000})
             setCuisines(_cuisines.docs);
         }
-        getCuisines()
+        getCuisines();
     },[location])
 
     // add locations on map
@@ -442,7 +445,9 @@ const Map = ({}) => {
                                 className={`map--filters_pill ${!showOpenOnly ? 'inactive' : ''}`}
                                 onClick={() => {
                                     setShowOpenOnly(!showOpenOnly)
-                                    setOpenFilters(false);
+                                    if (isMobile) {
+                                        setOpenFilters(false);
+                                    }
                                 }}
                             >
                                 <p>open now</p>
@@ -452,7 +457,9 @@ const Map = ({}) => {
                                 className={`map--filters_pill ${!hasTerrace ? 'inactive' : ''}`}
                                 onClick={() => {
                                     setHasTerrace(!hasTerrace);
-                                    setOpenFilters(false);
+                                    if (isMobile) {
+                                        setOpenFilters(false);
+                                    }
                                 }}
                             >
                                 <p>terrace</p>
@@ -462,7 +469,9 @@ const Map = ({}) => {
                                 className={`map--filters_pill ${!hasTakeAway ? 'inactive' : ''}`}
                                 onClick={() => {
                                     setHasTakeAway(!hasTakeAway);
-                                    setOpenFilters(false);
+                                   setOpenFilters(false); if (isMobile) {
+                                        setOpenFilters(false);
+                                    }
                                 }}
                             >
                                 <p>take-away</p>
@@ -481,7 +490,9 @@ const Map = ({}) => {
                                         key={day}
                                         onClick={() => {
                                             toggleDay(day)
-                                            setOpenFilters(false);
+                                            if (isMobile) {
+                                                setOpenFilters(false);
+                                            }
                                         }}
                                     >
                                         {day.toLowerCase()}
@@ -505,7 +516,9 @@ const Map = ({}) => {
                                             key={service}
                                             onClick={() => {
                                                 toggleService(service)
-                                                setOpenFilters(false);
+                                                if (isMobile) {
+                                                    setOpenFilters(false);
+                                                }
                                             }}
                                         >
                                             {service}
@@ -530,7 +543,9 @@ const Map = ({}) => {
                                     value={selectedDish}
                                     onChange={(event, newValue) => {
                                         setSelectedDish(newValue);
-                                        setOpenFilters(false)
+                                        if (isMobile) {
+                                            setOpenFilters(false);
+                                        }
                                     }}
                                     sx={{
                                         width: 330,
@@ -594,7 +609,9 @@ const Map = ({}) => {
                                     defaultValue={cuisines[0]}
                                     onChange={(event, newValue) => {
                                         setSelectedCuisine(newValue); // Update selected cuisine in state
-                                        setOpenFilters(false)
+                                        if (isMobile) {
+                                            setOpenFilters(false);
+                                        }
                                     }}
                                     sx={{
                                         width: 330,
