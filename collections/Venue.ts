@@ -62,7 +62,8 @@ export const Venue: CollectionConfig = {
                     fr: "entrez le nom du lieu",
                     nl: "voer locatienaam in"
                 }
-            }
+            },
+            required:true,
         },
         {
             name: "url",
@@ -71,7 +72,8 @@ export const Venue: CollectionConfig = {
             admin: {
                 position: "sidebar",
                 description: "NO SPACES! USE '-' INSTEAD. - example: 'da-luigi' or 'no-spaces-here'."
-            }
+            },
+            required:true,
         },
         {
             name: "club",
@@ -98,7 +100,39 @@ export const Venue: CollectionConfig = {
                     label: "antwerp",
                     value: "antwerp"
                 }
-            ]
+            ],
+            required:true
+        },
+        {
+            name: "damage",
+            label: "damage",
+            type: "select",
+            options: [
+                {
+                    label: "👊🏼",
+                    value: "*"
+                },
+                {
+                    label: "👊👊",
+                    value: "**"
+                },
+                {
+                    label: "👊👊👊",
+                    value: "***"
+                },
+                {
+                    label: "👊👊👊👊",
+                    value: "****"
+                },
+                {
+                    label: "👊👊👊👊👊",
+                    value: "*****"
+                },
+
+            ],
+            admin: {
+                position: "sidebar"
+            }
         },
         {
             name: "new",
@@ -142,7 +176,8 @@ export const Venue: CollectionConfig = {
                                     nl: "hero image voor de locatie",
                                     fr: "image principale pour le lieu"
                                 }
-                            }
+                            },
+                            required: true,
                         }
                     ]
                 },
@@ -270,6 +305,7 @@ export const Venue: CollectionConfig = {
                                                 nl: "straat"
                                             },
                                             type: "text",
+                                            required: true,
                                         },
                                         {
                                             name: "houseNumber",
@@ -279,6 +315,7 @@ export const Venue: CollectionConfig = {
                                                 nl: "huisnummer"
                                             },
                                             type: "text",
+                                            required: true,
                                         },
                                         {
                                             name: "city",
@@ -288,6 +325,7 @@ export const Venue: CollectionConfig = {
                                                 nl: "gemeente"
                                             },
                                             type: "text",
+                                            required: true,
                                         },
                                         {
                                             name: "postalCode",
@@ -297,6 +335,7 @@ export const Venue: CollectionConfig = {
                                                 nl: "postcode"
                                             },
                                             type: "text",
+                                            required: true,
                                         }
                                     ]
                                 },
@@ -310,7 +349,8 @@ export const Venue: CollectionConfig = {
                                                 fr: "longitude",
                                                 nl: "lengtegraad"
                                             },
-                                            type: "number"
+                                            type: "number",
+                                            required: true,
                                         },
                                         {
                                             name: "latitude",
@@ -319,7 +359,8 @@ export const Venue: CollectionConfig = {
                                                 fr: "latitude",
                                                 nl: "breedtegraad"
                                             },
-                                            type: "number"
+                                            type: "number",
+                                            required: true,
                                         }
                                     ]
                                 }
@@ -350,7 +391,7 @@ export const Venue: CollectionConfig = {
                                     fr: "remarques pour les heures d'ouverture",
                                     nl: "opmerkingen voor de openingstijden"
                                 }
-                            }
+                            },
                         },
                         {
                             name: "reservations",
@@ -363,7 +404,7 @@ export const Venue: CollectionConfig = {
                                     fr: "url vers le service de réservation (Resengo ou autre)",
                                     nl: "url naar booking service (Resengo, ...)"
                                 }
-                            }
+                            },
                         },
                     ]
                 },
@@ -381,6 +422,7 @@ export const Venue: CollectionConfig = {
                                 }
                             },
                             name: "review",
+                            required: true,
                         },
                         {
                             name: "foodClubOrder",
@@ -392,6 +434,20 @@ export const Venue: CollectionConfig = {
                                     en: "if the food club has an order for it prefers when visiting the venue, enter it here.",
                                     nl: "favoriete bestelling van TFC op deze plek",
                                     fr: "si le food club a une commande preferite pour cette lieu, entrez-la ici."
+                                }
+                            },
+                            required: true,
+                        },
+                        {
+                            name: "backstory",
+                            type: "richText",
+                            localized: true,
+                            label: "back story",
+                            admin: {
+                                description: {
+                                    en: "back story - more in depth info on the venue.",
+                                    nl: "back story - verdiepende info over de locatie, chef, kaart..",
+                                    fr: "back story - "
                                 }
                             }
                         }

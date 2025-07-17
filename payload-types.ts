@@ -261,15 +261,16 @@ export interface Venue {
   /**
    * name of the venue
    */
-  venueName?: string | null;
+  venueName: string;
   /**
    * NO SPACES! USE '-' INSTEAD. - example: 'da-luigi' or 'no-spaces-here'.
    */
-  url?: string | null;
+  url: string;
   /**
    * the club the venue belongs to (the city it is located in)
    */
-  club?: ('brussels' | 'gent' | 'antwerp') | null;
+  club: 'brussels' | 'gent' | 'antwerp';
+  damage?: ('*' | '**' | '***' | '****' | '*****') | null;
   /**
    * mark this venue as new
    */
@@ -277,13 +278,13 @@ export interface Venue {
   /**
    * media for the venue
    */
-  media?: {
+  media: {
     /**
      * hero image for the venue
      */
-    hero?: (string | null) | Media;
+    hero: string | Media;
   };
-  information?: {
+  information: {
     /**
      * select the type of venue
      */
@@ -307,13 +308,13 @@ export interface Venue {
      * the venue has take away
      */
     takeAway?: boolean | null;
-    address?: {
-      street?: string | null;
-      houseNumber?: string | null;
-      city?: string | null;
-      postalCode?: string | null;
-      longitude?: number | null;
-      latitude?: number | null;
+    address: {
+      street: string;
+      houseNumber: string;
+      city: string;
+      postalCode: string;
+      longitude: number;
+      latitude: number;
     };
     /**
      * this venue is blessed, it only opens when the sun shines ☀️
@@ -344,11 +345,11 @@ export interface Venue {
      */
     reservations?: string | null;
   };
-  review?: {
+  review: {
     /**
      * review for the venue
      */
-    review?: {
+    review: {
       root: {
         type: string;
         children: {
@@ -362,11 +363,29 @@ export interface Venue {
         version: number;
       };
       [k: string]: unknown;
-    } | null;
+    };
     /**
      * if the food club has an order for it prefers when visiting the venue, enter it here.
      */
-    foodClubOrder?: {
+    foodClubOrder: {
+      root: {
+        type: string;
+        children: {
+          type: string;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
+    /**
+     * back story - more in depth info on the venue.
+     */
+    backstory?: {
       root: {
         type: string;
         children: {
@@ -908,6 +927,7 @@ export interface VenuesSelect<T extends boolean = true> {
   venueName?: T;
   url?: T;
   club?: T;
+  damage?: T;
   new?: T;
   media?:
     | T
@@ -960,6 +980,7 @@ export interface VenuesSelect<T extends boolean = true> {
     | {
         review?: T;
         foodClubOrder?: T;
+        backstory?: T;
       };
   meta?:
     | T
