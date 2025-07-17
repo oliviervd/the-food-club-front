@@ -22,7 +22,8 @@ export async function generateMetadata({ params }) {
                 follow: true,
                 noImageIndex: false,
             }
-        }
+        },
+        url: `https://www.thefoodclub.com/venues/${params.cuisine}`,
     };
 }
 

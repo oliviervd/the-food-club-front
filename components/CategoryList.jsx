@@ -12,6 +12,15 @@ const CategoryList = ({ data, home }) => {
     const [imagesLoaded, setImagesLoaded] = useState(false);
     const [loadedImagesCount, setLoadedImagesCount] = useState(0);
 
+    const shuffleArray = (array) => {
+        const arr = [...array]; // avoid mutating original
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+    };
+
     useEffect(() => {
         const fallbackTimeout = setTimeout(() => {
             setImagesLoaded(true);
@@ -22,10 +31,10 @@ const CategoryList = ({ data, home }) => {
 
     // Memoize categories derived from data
     const categories = useMemo(() => {
-        if (data?.docs && data.docs.length > 0) {
-            return data.docs || [];
+        if (data?.docs?.length > 0) {
+            return shuffleArray(data.docs); // shuffle once per render
         }
-        return []
+        return [];
     }, [data]);
 
     // Early return for empty categories

@@ -8,6 +8,25 @@ import Image from "next/image";
 
 const DesktopHome = ({categories, recommendations}) => {
     console.log(recommendations)
+
+    const shuffleArray = (array) => {
+        const arr = [...array];
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+    };
+
+    const [shuffledCategories, setShuffledCategories] = useState([]);
+
+    useEffect(() => {
+        // shuffle once on mount
+        if (categories?.length) {
+            setShuffledCategories(shuffleArray(categories));
+        }
+    }, [categories]);
+
     const [cuisines, setCuisines] = useState([]);
 
     useEffect(() => {
@@ -49,7 +68,7 @@ const DesktopHome = ({categories, recommendations}) => {
                         <p>smash that button for tasty food events.</p>
                     </Link>
                 </div>
-                {categories && categories.map((cat, index) => {
+                {shuffledCategories && shuffledCategories.map((cat, index) => {
                     try {
                         if (index === 5) {
                             return (
