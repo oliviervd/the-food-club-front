@@ -469,7 +469,8 @@ const Map = ({}) => {
                                 className={`map--filters_pill ${!hasTakeAway ? 'inactive' : ''}`}
                                 onClick={() => {
                                     setHasTakeAway(!hasTakeAway);
-                                   setOpenFilters(false); if (isMobile) {
+                                    setOpenFilters(false);
+                                    if (isMobile) {
                                         setOpenFilters(false);
                                     }
                                 }}
@@ -656,6 +657,27 @@ const Map = ({}) => {
                                 />
 
                             }
+                        </div>
+                    }
+                    {activeFiltersCount > 0 &&
+                        <div style={{padding: "10px"}}>
+                            <button
+                                onClick={() => {
+                                    setShowOpenOnly(false);
+                                    setHasTakeAway(false);
+                                    setHasTerrace(false);
+                                    setSelectedDays([]);
+                                    setSelectedService([]);
+                                    setSelectedDish([]);
+                                    setSelectedCuisine([]);
+                                    if (isMobile) {
+                                        setOpenFilters(false);
+                                    }
+                                }}
+                                className={"map--filters_reset"}
+                            >
+                                reset filters
+                            </button>
                         </div>
                     }
                 </div>
