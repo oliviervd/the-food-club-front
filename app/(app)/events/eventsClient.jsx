@@ -6,6 +6,7 @@ import {fetchAPI} from "../../../utils/utils.jsx";
 import ScrollToTop from "../../../components/scrollToTop.jsx";
 import '../../../styles/events.css';
 import Image from 'next/image'
+import Link from 'next/link'
 
 
 const eventsClient = () => {
@@ -46,7 +47,6 @@ const eventsClient = () => {
     // UTILITY FUNCTIONS
     function extractTime(event) {
         // utility function to extract time from event.
-        console.log(event)
         // if timed event
         if (event.Information.startDate && event.Information.endDate){
 
@@ -67,7 +67,6 @@ const eventsClient = () => {
         }
 
         if (event.Information.frequency === 'yearly') {
-            console.log(event.Information.month)
 
             let month = event.Information.month;
             let day = event.Information.day;
@@ -136,25 +135,34 @@ const eventsClient = () => {
     }
 
     function EventCard({ event }) {
+        let ref = "";
+
+        if (event.relatedToVenue && event.relatedToVenue[0]?.url) {
+            ref = `/venue/${event.relatedToVenue[0].url}`;
+            //console.log(ref);
+        }
+
         return (
             <div className="event__container">
-                <div style={{ position: "relative", width: "100%", height: "300px" }}>
-                    <Image
-                        src={event.Media.heroImage.url}
-                        alt={event.name}
-                        fill
-                        style={{ objectFit: "cover", zIndex: -1 }}
-                    />
-                </div>
-                <h2>{event.name}</h2>
-                <div className="event__time">
-                    {extractTime(event)}
-                </div>
+                <Link href={ref}>
+                    <div style={{ position: "relative", width: "100%", height: "300px" }}>
+                        <Image
+                            src={event.Media.heroImage.url}
+                            alt={event.name}
+                            fill
+                            style={{ objectFit: "cover", zIndex: -1 }}
+                        />
+                    </div>
+                    <h2>{event.name}</h2>
+                    <div className="event__time">
+                        {extractTime(event)}
+                    </div>
+                </Link>
             </div>
         );
     }
 
-    function EventList({ event }) {
+    function EventList({event}) {
         return (
             <div className="event__list-item">
                 <p className={"event__name"}>{event.name}</p>
@@ -165,12 +173,12 @@ const eventsClient = () => {
         )
     }
 
-    return(
+    return (
         <>
             <Header landing={true}/>
             <ScrollToTop/>
             <section className={"events__main"}>
-                <section className={"events__tiles"}>
+            <section className={"events__tiles"}>
                     <h1>this week</h1>
                     <div className="events__container">
                         {eventsThisWeek.length === 0 && <p className={"no-events"}>No events this week</p>}
