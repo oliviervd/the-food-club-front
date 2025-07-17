@@ -88,20 +88,15 @@ const Map = ({}) => {
         return () => clearTimeout(timeout);
     }, [isMobile]);
 
-    useEffect(()=>{
-        // set filters closed by default on mobile device.
-        if (isMobile) {
-            setOpenFilters(false);
-        }
-    }, [isMobile]);
-
     useEffect(() => {
-        if (!isMounted) {
-            setOpenFilters(true)
-        }
-    }, [!isMobile])
-
-    // DATA
+        if (isMobile === null || isMobile === undefined) return; // wait until isMobile is known
+        const timeout = setTimeout(() => {
+            if (!isMobile) {
+                setOpenFilters(true);
+            }
+        }, 50); // short delay to avoid hydration mismatch
+        return () => clearTimeout(timeout);
+    }, [isMobile]);
 
     useEffect(() => {
         // function to fetch data: cuisines
@@ -596,7 +591,7 @@ const Map = ({}) => {
                         </div>
                     )}
 
-                    {isMounted &&
+                    {setOpenFilters &&
                         <div style={{padding: "0 10px"}}>
                             <p>a cuisine in mind? 🇮🇹🇫🇷🇺🇸</p>
                             {cuisines.length > 0 &&
