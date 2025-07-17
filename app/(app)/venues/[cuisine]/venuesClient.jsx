@@ -160,12 +160,25 @@ const VenuesClient = ({ cuisine }) => {
                                 </div>
                                 )}
                                 {matches.map((match, index) => {
-                                    if (match._status == "published") {
+                                    if (match._status === "published") {
                                         try {
                                             return (
                                                 <div key={index} className="category-list__box">
                                                     <Link href={`/venue/${match.url}`}>
-                                                        <DitherImage url={match.media.hero.sizes.tablet.url}/>
+                                                        <div style={{height: "200px"}}>
+                                                            <Image
+                                                                src={match.media.hero.url}
+                                                                alt={`hero image for ${match.venueName}`}
+                                                                fill
+                                                                style={{
+                                                                    objectFit: 'cover',
+                                                                    border: "2px solid var(--color-main)",
+                                                                    boxSizing: 'border-box'
+                                                                }}
+                                                                sizes="100vw"
+                                                                priority={false}
+                                                            />
+                                                        </div>
                                                         <h2 style={{textAlign: "center"}}>{match.venueName}</h2>
                                                     </Link>
                                                 </div>
@@ -181,7 +194,7 @@ const VenuesClient = ({ cuisine }) => {
                                 <section className="venue-list__container-main">
                                     <section>
                                         {matchedCuisine.description && (
-                                        <div className="cat_description">
+                                            <div className="cat_description">
 
                                                 <div>
                                                     <h2>
@@ -201,7 +214,7 @@ const VenuesClient = ({ cuisine }) => {
                                                 transition: 'all 0.5s ease',
                                             };
 
-                                            if (match._status == "published") {
+                                            if (match._status === "published") {
                                                 return (
                                                     <div
                                                         className="venue"

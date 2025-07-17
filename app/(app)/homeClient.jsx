@@ -66,8 +66,8 @@ const HomeClient = () => {
             <ScrollToTop/>
             <Header selectedTab={"lists"} landing={true} interact={true} setLocation={setLocation} location={location} setTarget={setTarget} venue={false}></Header>
             {isMobile &&
-                <section className={"home__container"}>
-                    <div>
+                <section className={"home__container"} style={{paddingBottom:"50px"}}>
+                    <div style={{paddingBottom:"30px"}}>
                         <section style={{padding: "10px 0"}}>
                             <h2 className={"subtitle"}>
                                 FOOD CLUB loves lists. We've crafted these bad boys just for you! From healthy snacks to absurdly comforting food, the order is yours.

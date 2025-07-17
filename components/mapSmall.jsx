@@ -149,13 +149,17 @@ const MapSmall = ({ venues, highlight, onHover }) => {
                     }
                 >
                     {Array.isArray(venues) &&
-                        venues.map((venue) =>
-                            venue.venue?.club
+                        venues.map((venue) => {
+                            // Check status is 'published'
+                            const ref = venue.venue?.club ? venue : venue.club ? venue : null;
+                            if (!ref || ref._status !== 'published') return null;
+
+                            return ref.venue?.club
                                 ? renderMarker(venue)
-                                : venue.club
+                                : ref.club
                                     ? renderMarker(venue, true)
-                                    : null
-                        )}
+                                    : null;
+                        })}
                 </MarkerClusterGroup>
             </MapContainer>
         </section>

@@ -1,6 +1,5 @@
 import React, { useMemo, useState, useEffect, useCallback } from "react";
 import {useRouter} from "next/navigation";
-import DitherImage from "./DitherImage.jsx";
 import Loading from "../app/(app)/Loading.jsx";
 import Link from "next/link";
 import BroadCastForYou from "./BroadCastForYou.js";

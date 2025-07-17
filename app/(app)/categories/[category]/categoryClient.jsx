@@ -2,19 +2,19 @@
 
 import dynamic from 'next/dynamic';
 import { useParams, useRouter } from 'next/navigation';
-import { useContext, useEffect, useMemo, useState } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { debounce } from 'lodash';
 
 import Header from "../../../../components/Header.jsx";
 import DitherImage from "../../../../components/DitherImage.jsx";
 import Banner from "../../../../components/Banner.jsx";
-import serialize from "../../../../utils/serialize.jsx";
 import Loading from "../../Loading.jsx";
 
 import { fetchAPI, shuffleArray, venueStatus } from "../../../../utils/utils.jsx";
 import { LocationColorContext } from "../../../../contexts/LocationColorContext.jsx";
-import ScrollToTop from "../../../../components/scrollToTop.jsx";
+import ScrollToTop from "../../../../components/scrollToTop.jsx"
+import Image from "next/image";
 
 const MapSmall = dynamic(() =>
         import("../../../../components/mapSmall.jsx"), // no .then needed
@@ -92,7 +92,18 @@ const CategoryClient = () => {
                                                     {v.new &&
                                                         <div className="image__club-tag">NEW</div>
                                                     }
-                                                    <DitherImage url={v.media.hero.sizes.tablet.url} link={`/venue/${v.url}`} />
+                                                    <Image
+                                                        src={v.media.hero.url}
+                                                        alt={`hero image for ${v.venueName}`}
+                                                        fill
+                                                        style={{
+                                                            objectFit: 'cover',
+                                                            border: "2px solid var(--color-main)",
+                                                            boxSizing: 'border-box'
+                                                        }}
+                                                        sizes="100vw"
+                                                        priority={false}
+                                                    />
                                                     {venueStatus(v) && <div className="venue-open">{venueStatus(v)}</div>}
                                                 </div>
                                                 <h2 style={{ textAlign: "center" }}>{v.venueName}</h2>
@@ -122,7 +133,7 @@ const CategoryClient = () => {
                                         {shuffledVenues.map((venue, index) => {
                                             //console.log(venue)
                                             const v = venue;
-                                            if (v.club === location) {
+                                            if (v.club === location && v._status === "published") {
                                                 return (
                                                     <div key={index} className="venue">
                                                         {v.new &&
@@ -135,9 +146,20 @@ const CategoryClient = () => {
                                                             onMouseEnter={() => setHighlightedVenue(v)}
                                                             onMouseLeave={() => setHighlightedVenue(null)}
                                                             onClick={() => navigateTo(v.url)}
+                                                            style={{height: "200px"}}
                                                         >
-                                                            <DitherImage url={v.media.hero.sizes.tablet.url} link={`/venue/${v.url}`} />
-                                                            <h2>{v.venueName}</h2>
+                                                            <Image
+                                                                src={v.media.hero.url}
+                                                                alt={`hero image for ${v.venueName}`}
+                                                                fill
+                                                                style={{
+                                                                    objectFit: 'cover',
+                                                                    border: "2px solid var(--color-main)",
+                                                                    boxSizing: 'border-box'
+                                                                }}
+                                                                sizes="100vw"
+                                                                priority={false}
+                                                            />                                                            <h2>{v.venueName}</h2>
                                                         </div>
                                                     </div>
                                                 );
