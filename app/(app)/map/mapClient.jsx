@@ -211,11 +211,12 @@ const Map = ({}) => {
     const toggleDay = (day) => {
 
         const fullDay = dayMap[day.toLowerCase()];
-
+        console.log(`day: ${day}`)
+        console.log(`fullday: ${fullDay}`)
         if (fullDay) {
             setSelectedDays(prevDays => {
                 const isAlreadySelected = prevDays.includes(fullDay);
-
+                console.log(prevDays)
                 if (isAlreadySelected) {
                     // Remove the day if it's already selected
                     return prevDays.filter(d => d !== fullDay);
@@ -482,7 +483,6 @@ const Map = ({}) => {
                                             toggleDay(day)
                                             setOpenFilters(false);
                                         }}
-
                                     >
                                         {day.toLowerCase()}
                                     </p>
@@ -644,7 +644,7 @@ const Map = ({}) => {
                 </div>
 
 
-                {visible && target &&
+                {visible && target && target._status === "published" && target.media && target.media.hero && target.media.hero.url &&
                     <div
                         onClick={() => setVisible(!visible)}
                         className={visible ? "map--popup" : "map--popup hidden-mobile"}
