@@ -17,8 +17,9 @@ export async function generateMetadata({ params }) {
     const image = seo.image?.url || '';
 
     return {
-        title,
-        description,
+        title: title,
+        description: description,
+        keywords: [venue.venueName, venue.information.address?.city, venue.information.address?.street, venue.information.address?.postalCode, 'food', 'restaurant', 'thefoodclub', 'thefoodclub.be', 'foodclub', 'foodclub.be', 'the food club'],
         openGraph: {
             title,
             description,
