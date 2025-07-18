@@ -11,6 +11,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
 
+
     .event__container {
         margin: 10px;
         height: 290px;
@@ -64,9 +65,26 @@
 
             p {
                 margin : 2px 5px;
+                padding: 5px;
             }
         }
     }
+}
+
+.events__tiles h1 {
+    font-size: 2rem;
+    font-family: "DM-serif-display-italic", sans-serif;
+
+    font-weight: 300;
+
+    /* Make it same size and layout as event tiles */
+    height: 290px;
+    margin: 10px;
+    border: 3px solid var(--color-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 @media(max-width: 900px) {
@@ -149,14 +167,21 @@ h1 {
     }
 }
 
-.no-events {
-    background: var(--color-main);
-    margin: 10px 10px 10px 10px;
-    padding: 20px 20px;
-    justify-content: center;
-    text-align: center;font-size: 2rem;
-    font-family: "DM-sans-italic", sans-serif;
 
+.no-events-tile {
+    height: 300px;
+    margin: 10px;
+    border: 3px solid var(--color-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: "DM-serif-display-italic", sans-serif;
+    font-size: 1.5rem;
+    background-color: var(--color-main);
+    color: var(--color-secondary);
+    padding: 20px; /* ← add this line */
+    box-sizing: border-box; /* ensures padding doesn’t overflow */
 }
 
 

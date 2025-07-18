@@ -200,7 +200,7 @@ const eventsClient = () => {
                             <EventCard key={idx} event={event}/>
                         ))}
                         <h1>the rest of the month</h1>
-                        {eventsThisMonth.length === 0 && <p className={"no-events"}>stay tuned you hungry monsters.</p>}
+                        {eventsThisMonth.length === 0 && <div className="no-events-tile">stay tuned you hungry people.</div>}
                         {eventsThisMonth.sort((a, b) => getEventDate(a) - getEventDate(b)).map((event, idx) => (
                             <EventCard key={idx} event={event}/>
                         ))}
@@ -208,9 +208,9 @@ const eventsClient = () => {
                 </section>
 
                 <section className={"events__list"}>
-                    <h1>upcoming</h1>
+                    <h1 style={{fontFamily: "DM-serif-display-italic", fontSize: "2rem"}}>upcoming</h1>
                     <div className="events__container">
-                        {eventsLater.length === 0 && <p className={"no-events"}>No upcoming events</p>}
+                        {eventsLater.length === 0 && <p className={"no-events"}>stay tuned you hungry people.</p>}
                         {eventsLater.sort((a, b) => getEventDate(a) - getEventDate(b)).map((event, idx) => (
                             <EventList key={idx} event={event}/>
                         ))}
