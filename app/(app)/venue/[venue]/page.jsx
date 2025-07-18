@@ -24,7 +24,7 @@ export async function generateMetadata({ params }) {
             title,
             description,
             images: [{ url: image }],
-            url: `https://thefoodclub.be/venue/${params.venue}`,
+            url: `https://www.thefoodclub.be/venue/${params.venue}`,
             type: 'website',
             site_name: 'The Food Club',
             locale: 'en_GB',
