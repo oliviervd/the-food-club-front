@@ -137,9 +137,15 @@ const eventsClient = () => {
     function EventCard({ event }) {
         let ref = "";
 
+        console.log(event)
+
         if (event.relatedToVenue && event.relatedToVenue[0]?.url) {
             ref = `/venue/${event.relatedToVenue[0].url}`;
             //console.log(ref);
+        }
+
+        if (event.Information && event.Information.externalLink) {
+            ref = event.Information.externalLink;
         }
 
         return (
@@ -178,9 +184,10 @@ const eventsClient = () => {
             <Header landing={true}/>
             <ScrollToTop/>
             <section className={"events__main"}>
-            <section className={"events__tiles"}>
-                    <h1>this week</h1>
-                    <div className="events__container">
+            <section >
+
+                    <div className={"events__tiles"}>
+                        <h1>this week</h1>
                         {eventsThisWeek.length === 0 && <p className={"no-events"}>No events this week</p>}
                         {eventsThisWeek.sort((a, b) => getEventDate(a) - getEventDate(b)).map((event, idx) => (
                             <EventCard key={idx} event={event}/>
@@ -188,9 +195,9 @@ const eventsClient = () => {
                     </div>
                 </section>
 
-                <section className={"events__tiles"}>
-                    <h1>the rest of the month</h1>
-                    <div className="events__container">
+                <section>
+                    <div className={"events__tiles"}>
+                        <h1>the rest of the month</h1>
                         {eventsThisMonth.length === 0 && <p className={"no-events"}>No events this month</p>}
                         {eventsThisMonth.sort((a, b) => getEventDate(a) - getEventDate(b)).map((event, idx) => (
                             <EventCard key={idx} event={event}/>
