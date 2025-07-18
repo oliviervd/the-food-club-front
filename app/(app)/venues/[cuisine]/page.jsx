@@ -12,7 +12,7 @@ export async function generateMetadata({ params }) {
             images:[{url:"https://d3nidktcupd88v.cloudfront.net/HERO-map-2387x1554.jpg", alt:"hero image for cuisine page"}],
         },
         alternates: {
-            canonical: `https://www.thefoodclub.com/venues/${params.cuisine}`,
+            canonical: `https://www.thefoodclub.be/venues/${params.cuisine}`,
         },
         robots: {
             index: true,
@@ -23,7 +23,7 @@ export async function generateMetadata({ params }) {
                 noImageIndex: false,
             }
         },
-        url: `https://www.thefoodclub.com/venues/${params.cuisine}`,
+        url: `https://www.thefoodclub.be/venues/${params.cuisine}`,
     };
 }
 

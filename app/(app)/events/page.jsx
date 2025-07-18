@@ -5,9 +5,9 @@ export async function generateMetadata() {
         title: "The Food Club - Tasty Food Events",
         description: "Let's go to (food) mass. We believe good food should be celebrated, that's why made a calender of food events near you.",
         image: 'https://d3nidktcupd88v.cloudfront.net/HERO-Food-Market-1635x1021.jpg',
-        keywords: ["food", 'events', 'club', 'calender'],
+        keywords: ["food", 'events', 'club', 'calender', "the food club", "food club", "food events", "food mass", "food mass events", "food mass calender", "food mass events calender", "food mass events"],
         type: 'website',
-        url: 'https://www.thefoodclub.com/events',
+        url: 'https://www.thefoodclub.be/events',
         openGraph: {
             title: 'The Food Club - Tasty Food Events',
             description: 'Let\'s go to (food) mass. We believe good food should be celebrated, that\'s why made a calender of food events near you.',
@@ -17,7 +17,7 @@ export async function generateMetadata() {
             site_name: 'The Food Club',
         },
         alternates: {
-            canonical: 'https://www.thefoodclub.com/events',
+            canonical: 'https://www.thefoodclub.be/events',
         },
         robots: {
             index: true,
