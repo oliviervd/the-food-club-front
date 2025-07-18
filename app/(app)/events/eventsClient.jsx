@@ -163,6 +163,13 @@ const eventsClient = () => {
                     <div className="event__time">
                         {extractTime(event)}
                     </div>
+                    {event.Information.tags && event.Information.tags.length > 0 &&
+                        <div className={"event__type"}>
+                            <p>
+                                {event.Information.tags[0]}
+                            </p>
+                        </div>
+                    }
                 </Link>
             </div>
         );
@@ -192,13 +199,8 @@ const eventsClient = () => {
                         {eventsThisWeek.sort((a, b) => getEventDate(a) - getEventDate(b)).map((event, idx) => (
                             <EventCard key={idx} event={event}/>
                         ))}
-                    </div>
-                </section>
-
-                <section>
-                    <div className={"events__tiles"}>
                         <h1>the rest of the month</h1>
-                        {eventsThisMonth.length === 0 && <p className={"no-events"}>No events this month</p>}
+                        {eventsThisMonth.length === 0 && <p className={"no-events"}>stay tuned you hungry monsters.</p>}
                         {eventsThisMonth.sort((a, b) => getEventDate(a) - getEventDate(b)).map((event, idx) => (
                             <EventCard key={idx} event={event}/>
                         ))}

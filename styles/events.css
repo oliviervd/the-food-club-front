@@ -51,6 +51,21 @@
                 margin : 2px 5px;
             }
         }
+
+        .event__type {
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            background-color: var(--color-main);
+            color: var(--color-secondary);
+            border: 2px var(--color-secondary) solid;
+            font-family: DM-sans;
+            margin: 0;
+
+            p {
+                margin : 2px 5px;
+            }
+        }
     }
 }
 
@@ -72,6 +87,7 @@
     border-bottom: 3px solid var(--color-secondary);
     display: grid;
     grid-template-columns: 2fr 1fr;
+    position: relative;
 
     .event__name {
         font-weight: 500;
@@ -86,6 +102,16 @@
             padding-right: 10px;
         }
 
+    }
+
+    .event__type {
+
+        p {
+            position: absolute;
+            left: 0;
+            text-align: right;
+            padding-left: 10px;
+        }
     }
 
     h3 {
@@ -125,11 +151,14 @@ h1 {
 
 .no-events {
     background: var(--color-main);
-    margin: 10px 10px 0px 10px;
+    margin: 10px 10px 10px 10px;
     padding: 20px 20px;
     justify-content: center;
-    text-align: center;
+    text-align: center;font-size: 2rem;
+    font-family: "DM-sans-italic", sans-serif;
+
 }
+
 
 
 .event__container:hover {
