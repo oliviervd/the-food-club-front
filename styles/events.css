@@ -60,12 +60,11 @@
             background-color: var(--color-main);
             color: var(--color-secondary);
             border: 2px var(--color-secondary) solid;
-            font-family: DM-sans;
+            font-family: "DM-serif-display-italic", sans-serif;
             margin: 0;
 
             p {
                 margin : 2px 5px;
-                padding: 5px;
             }
         }
     }
