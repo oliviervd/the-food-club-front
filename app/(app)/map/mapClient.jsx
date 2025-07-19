@@ -691,7 +691,9 @@ const Map = ({}) => {
                             </div>
                             <Link href={`/venue/${target.url}`}>
                                 <Image
-                                    src={target.media.hero.sizes.tablet.url|| target.media.hero.url}
+                                    src={target.media.hero.url}
+                                    placeholder="blur"
+                                    blurDataURL={target.media.hero.thumbnailURL}
                                     alt={`hero image for ${target.venueName}`}
                                     fill
                                     style={{ objectFit: 'cover' , border: "2px solid var(--color-main)", boxSizing: 'border-box'}}

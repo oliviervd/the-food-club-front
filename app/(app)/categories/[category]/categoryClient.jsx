@@ -92,9 +92,11 @@ const CategoryClient = () => {
                                                         <div className="image__club-tag">NEW</div>
                                                     }
                                                     <Image
-                                                        src={v.media.hero.sizes.tablet.url||v.media.hero.url}
+                                                        src={v.media.hero.url}
                                                         alt={`hero image for ${v.venueName}`}
                                                         fill
+                                                        placeholder= 'blur'
+                                                        blurDataURL={v.media.hero?.thumbnailURL || v.media.hero.url}
                                                         style={{
                                                             objectFit: 'cover',
                                                             border: "2px solid var(--color-main)",
@@ -148,9 +150,11 @@ const CategoryClient = () => {
                                                             style={{height: "200px"}}
                                                         >
                                                             <Image
-                                                                src={v.media.hero.sizes.tablet.url||v.media.hero.url}
+                                                                src={v.media.hero.url}
                                                                 alt={`hero image for ${v.venueName}`}
                                                                 fill
+                                                                placeholder= 'blur'
+                                                                blurDataURL={v.media.hero?.thumbnailURL || v.media.hero.url}
                                                                 style={{
                                                                     objectFit: 'cover',
                                                                     border: "2px solid var(--color-main)",

@@ -166,7 +166,7 @@ const VenuesClient = ({ cuisine }) => {
                                                     <Link href={`/venue/${match.url}`}>
                                                         <div style={{height: "200px"}}>
                                                             <Image
-                                                                src={match.media.hero.sizes.tablet.url||match.media.hero.url}
+                                                                src={match.media.hero.url}
                                                                 alt={`hero image for ${match.venueName}`}
                                                                 fill
                                                                 style={{
@@ -225,7 +225,7 @@ const VenuesClient = ({ cuisine }) => {
                                                             <Link href={`/venue/${match.url}`}>
                                                                 <div style={{height: "200px"}}>
                                                                     <Image
-                                                                        src={match.media.hero.sizes.tablet.url || match.media.hero.url}
+                                                                        src={match.media.hero.url}
                                                                         alt={`hero image for ${match.venueName}`}
                                                                         fill
                                                                         style={{ objectFit: 'cover' , border: "2px solid var(--color-main)", boxSizing: 'border-box'}}

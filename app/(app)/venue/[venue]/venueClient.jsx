@@ -117,6 +117,8 @@ function DesktopView({ venue }) {
             <div className="image-container" style={{ marginTop: "30px", minHeight: "500px"}}>
                 <Image
                     src={venue.media.hero.url}
+                    placeholder={"blur"}
+                    blurDataURL={venue.media.hero.thumbnailURL}
                     alt={`hero image for ${venue.venueName}`}
                     fill
                     style={{ objectFit: 'cover'}}
@@ -146,7 +148,8 @@ function MobileView({ venue }) {
                     <div className="image-container">
                         <Image
                             src={venue.media.hero.url}
-                            alt={`hero image for ${venue.venueName}`}
+                            placeholder={"blur"}
+                            blurDataURL={venue.media.hero.thumbnailURL}                            alt={`hero image for ${venue.venueName}`}
                             fill
                             style={{ objectFit: 'cover' }}
                             sizes="100vw"

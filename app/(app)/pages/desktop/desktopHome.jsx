@@ -77,7 +77,9 @@ const DesktopHome = ({categories, recommendations}) => {
                                         <Link href={`/categories/${cat.url}`}>
                                             <div className="image-container">
                                                 <Image
-                                                    src={cat.media.hero.sizes.tablet.url ||cat.media.hero.url}
+                                                    src={cat.media.hero.url}
+                                                    placeholder="blur"
+                                                    blurDataURL={cat.media.hero.thumbnailURL ||cat.media.hero.url}
                                                     alt={`hero image for ${cat.name}`}
                                                     fill
                                                     style={{ objectFit: 'cover' }}
@@ -101,7 +103,9 @@ const DesktopHome = ({categories, recommendations}) => {
                                 <Link href={`/categories/${cat.url}`}>
                                     <div className="image-container">
                                         <Image
-                                            src={cat.media.hero.sizes.tablet.url ||cat.media.hero.url}
+                                            src={cat.media.hero.url}
+                                            placeholder="blur"
+                                            blurDataURL={cat.media.hero.thumbnailURL ||cat.media.hero.url}
                                             alt={`hero image for ${cat.name}`}
                                             fill
                                             style={{ objectFit: 'cover' }}
