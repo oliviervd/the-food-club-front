@@ -188,7 +188,7 @@ export const Venue: CollectionConfig = {
                             name: "type",
                             label: "type",
                             type: "select",
-                            options: ["market", "food-truck", "shop", "restaurant", "bar"],
+                            options: ["market", "food-truck", "shop", "restaurant", "bar", "bakery", "butcher"],
                             admin: {
                                 description: {
                                     en: "select the type of venue",
