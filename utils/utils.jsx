@@ -26,7 +26,16 @@ export function venueStatus(venue) {
     if (!todaySchedule.periods?.[0]) return "closed today";
 
     const { openTime, closeTime } = todaySchedule.periods[0];
-    if (!openTime || !closeTime) return "closed today";
+
+    // If there's an open time but no close time, consider it open only if past opening time
+    if (openTime && !closeTime) {
+        const currentTime = now.getHours() * 60 + now.getMinutes();
+        const openingTime = parseTime(openTime);
+        return currentTime >= openingTime ? "open now" : "opens soon";
+    }
+
+    // If no open time, return closed
+    if (!openTime) return "closed today";
 
     const openingTime = parseTime(openTime);
     const closingTime = parseTime(closeTime);
@@ -50,6 +59,7 @@ export function venueStatus(venue) {
 
     return "closed today";
 }
+
 
 // Helper function to parse "HH:mm" format into minutes since midnight
 function parseTime(timeString) {
