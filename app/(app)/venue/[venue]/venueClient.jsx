@@ -135,16 +135,6 @@ function MobileView({ venue }) {
         <section className="venue__container">
             <div className="grid">
                 <div>
-                    {/*
-                     <div className="image-hero">
-                        {venue.media?.hero?.sizes?.tablet?.url && (
-                            <DitherImage
-                                style={{ justifyContent: "center", maxWidth: "99%" }}
-                                url={venue.media.hero.sizes.mobileFriendly.url}
-                            />
-                        )}
-                    </div>
-                    */}
                     <div className="image-container">
                         <Image
                             src={venue.media.hero.url}
