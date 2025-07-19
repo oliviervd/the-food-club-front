@@ -92,7 +92,7 @@ const CategoryClient = () => {
                                                         <div className="image__club-tag">NEW</div>
                                                     }
                                                     <Image
-                                                        src={v.media.hero.url}
+                                                        src={v.media.hero.sizes.tablet.url||v.media.hero.url}
                                                         alt={`hero image for ${v.venueName}`}
                                                         fill
                                                         style={{
@@ -148,7 +148,7 @@ const CategoryClient = () => {
                                                             style={{height: "200px"}}
                                                         >
                                                             <Image
-                                                                src={v.media.hero.url}
+                                                                src={v.media.hero.sizes.tablet.url||v.media.hero.url}
                                                                 alt={`hero image for ${v.venueName}`}
                                                                 fill
                                                                 style={{
