@@ -59,6 +59,10 @@
     h2 {
         color: var(--color-secondary);
     }
+
+    p {
+        color: var(--color-secondary);
+    }
 }
 
 .special h2:hover {

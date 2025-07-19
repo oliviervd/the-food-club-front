@@ -97,8 +97,8 @@ const CategoryList = ({ data, home }) => {
                                 </div>
                                 <div className={"category-list__box special"}>
                                     <Link href={"/events/"}>
-                                        <h2 style={{fontSize: "20px"}}>We believe good food deserves proper celebration.</h2>
-                                        <p>smash that button for tasty food events.</p>
+                                        <h2 style={{fontSize: "20px"}}>Smash this button for tasty food events.</h2>
+                                        <p>we believe good food deserves proper celebration. </p>
                                     </Link>
                                 </div>
                             </React.Fragment>
