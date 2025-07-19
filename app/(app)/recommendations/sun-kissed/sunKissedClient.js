@@ -5,7 +5,7 @@ import ScrollToTop from "../../../../components/scrollToTop.jsx";
 import Banner from "../../../../components/Banner.jsx";
 import {useQuery} from "@tanstack/react-query";
 import {fetchAPI} from "../../../../utils/utils.jsx";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -48,14 +48,23 @@ const SunKissedClient = () => {
                             return (
                                 <div className={"category-list__box"} key={index}>
                                     <Link href={`/venue/${venue.url}`}>
+                                        <div style={{height: "200px"}}>
+                                            <Image
+                                                src={venue.media.hero.url}
+                                                alt={`hero image for ${venue.venueName}`}
+                                                fill
+                                                placeholder={"blur"}
+                                                blurDataURL={venue.media.hero.thumbnailURL}
+                                                style={{
+                                                    objectFit: 'cover',
+                                                    border: "2px solid var(--color-main)",
+                                                    boxSizing: 'border-box'
+                                                }}
+                                                sizes="100vw"
+                                                priority={false}
+                                            />
+                                        </div>
                                         <h2>{venue.venueName}</h2>
-                                        <Image src={venue.media.hero.url} width={200} height={200} alt={venue.venueName}
-                                               style={{
-                                                   boxSizing: 'border-box',
-                                                   border: "2px solid var(--color-main)",
-                                                   width: "100%",
-                                                   height: "auto"
-                                               }}/>
                                     </Link>
                                 </div>
                             )
