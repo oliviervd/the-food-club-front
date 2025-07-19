@@ -8,6 +8,11 @@ import {fetchAPI} from "../../../../utils/utils.jsx";
 import React, {useEffect, useState} from "react";
 import Link from "next/link";
 import Image from "next/image";
+import dynamic from "next/dynamic.js";
+
+const MapSmall = dynamic(() => import('../../../../components/mapSmall.jsx'), {
+    ssr: false
+});
 
 const SunKissedClient = () => {
 
@@ -91,19 +96,22 @@ const SunKissedClient = () => {
                                     <div className={"venue"} key={index}>
                                         <div className={"venue__image"} style={{width: "100%"}}>
                                             <Link href={`/venue/${venue.url}`}>
-                                                <Image
-                                                    src={venue.media.hero.url}
-                                                    width={200}
-                                                    height={200}
-                                                    alt={venue.venueName}
-                                                    style={{
-                                                        boxSizing: 'border-box',
-                                                        border: "2px solid var(--color-main)",
-                                                        width: "100%",
-                                                        height: "auto", // Use auto for aspect ratio
-                                                        display: "block"
-                                                    }}
-                                                />
+                                                <div style={{height: "200px"}}>
+                                                    <Image
+                                                        src={venue.media.hero.url}
+                                                        alt={`hero image for ${venue.venueName}`}
+                                                        fill
+                                                        placeholder={"blur"}
+                                                        blurDataURL={venue.media.hero.thumbnailURL}
+                                                        style={{
+                                                            objectFit: 'cover',
+                                                            border: "2px solid var(--color-main)",
+                                                            boxSizing: 'border-box'
+                                                        }}
+                                                        sizes="100vw"
+                                                        priority={false}
+                                                    />
+                                                </div>
                                                 <h2>{venue.venueName}</h2>
                                             </Link>
                                         </div>
@@ -112,7 +120,9 @@ const SunKissedClient = () => {
                             })}
                         </section>
                     </section>
-
+                    <section className="venue-list__container-others">
+                        <MapSmall venues={sunKissedVenues} highlight={null} onHover={null}/>
+                    </section>
                 </section>
 
             )}
