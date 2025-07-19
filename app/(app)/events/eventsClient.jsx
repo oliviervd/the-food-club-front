@@ -14,8 +14,10 @@ const eventsClient = () => {
     // fetch events
     const {data: eventsData, isLoading: eventsLoading, error:eventsError} = useQuery({
         queryKey: ["events"],
-        queryFn: () => fetchAPI('events', 'en', {limit: 1000})
+        queryFn: () => fetchAPI('events', 'en', {limit: 10000})
     });
+
+    console.log(eventsData)
 
     // setup calender boundaries
     const today = new Date();
@@ -88,27 +90,27 @@ const eventsClient = () => {
     };
 
     function getEventDate(event) {
+        let date;
         if (event.Information.startDate) {
-            return new Date(event.Information.startDate);
-        }
-
-        if (event.Information.frequency === 'yearly') {
+            date = new Date(event.Information.startDate);
+        } else if (event.Information.frequency === 'yearly') {
             const today = new Date();
             const year = today.getFullYear();
             const monthNumber = monthNameToNumber(event.Information.month);
             const day = event.Information.day;
 
-            let eventDate = new Date(year, monthNumber, day);
+            date = new Date(year, monthNumber, day);
 
-            // If the event already happened this year, roll to next year:
-            if (eventDate < today) {
-                eventDate = new Date(year + 1, monthNumber, day);
+            if (date < today) {
+                date = new Date(year + 1, monthNumber, day);
             }
-
-            return eventDate;
+        } else {
+            date = new Date(3000, 0, 1);
         }
 
-        return new Date(3000, 0, 1); // fallback far future
+        // Normalize time to midnight to avoid timezone drift
+        date.setHours(0, 0, 0, 0);
+        return date;
     }
 
     const eventsThisWeek = [];
@@ -117,22 +119,41 @@ const eventsClient = () => {
 
     const eventsLater = [];
 
-    if (!eventsLoading) {
+    today.setHours(0, 0, 0, 0);
+    startOfWeek.setHours(0, 0, 0, 0);
+    endOfWeek.setHours(0, 0, 0, 0);
+    startOfNextWeek.setHours(0, 0, 0, 0);
+    endOfNextWeek.setHours(0, 0, 0, 0);
+    endOfMonth.setHours(0, 0, 0, 0);
+    oneYearFromToday.setHours(0, 0, 0, 0);
+
+    if (!eventsLoading && eventsData && eventsData.docs && eventsData.docs.length > 2) {
+
+        console.log(eventsData)
         eventsData.docs.forEach(event => {
+            console.log(event, event._status)
             if (event._status !== 'published') return;
 
             const date = getEventDate(event);
+            console.log(date)
             if (date < today || date > oneYearFromToday) return;
 
             if (date >= startOfWeek && date <= endOfWeek) {
                 eventsThisWeek.push(event);
-            } else if (date > endOfWeek && date <= endOfMonth) {
+            } else if (date > endOfWeek && date <= endOfNextWeek) {
+                eventsNextWeek.push(event);
+            } else if (date > endOfNextWeek && date <= endOfMonth) {
                 eventsThisMonth.push(event);
             } else {
                 eventsLater.push(event);
             }
         });
     }
+
+    console.log("This Week", eventsThisWeek.length);
+    console.log("Next Week", eventsNextWeek.length);
+    console.log("Rest of Month", eventsThisMonth.length);
+    console.log("Later", eventsLater.length);
 
     function EventCard({ event }) {
         let ref = "";

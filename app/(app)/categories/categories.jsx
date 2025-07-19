@@ -1,14 +1,13 @@
 import Header from "../../../components/Header.jsx";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {fetchAPI} from "/../utils/utils.jsx";
-import DitherImage from "../../../components/DitherImage.jsx";
 import Serialize from "/../utils/serialize.jsx";
 import ScrollToTop from "../../../components/scrollToTop.jsx";
+import Image from "next/image";
+
 
 const Categories = ({}) => {
-
     const [categoryList, setCategoryList] = useState([]);
-
 
     useEffect(() => {
         const getCategories = async() => {
@@ -18,9 +17,6 @@ const Categories = ({}) => {
         }
         getCategories();
     }, []);
-
-    console.log(categoryList)
-
 
     return (
         <div>
@@ -34,7 +30,18 @@ const Categories = ({}) => {
                         return(
                             <div>
                                 <div className={"category-list__box"}>
-                                    <DitherImage url={category.item.value.media.hero.sizes.mobileFriendly.url}/>
+                                    <Image
+                                        src={category.item.value.media.hero.url}
+                                        alt={`hero image for ${category.item.value.name}`}
+                                        fill
+                                        style={{
+                                            objectFit: 'cover',
+                                            border: "2px solid var(--color-main)",
+                                            boxSizing: 'border-box'
+                                        }}
+                                        sizes="100vw"
+                                        priority={false}
+                                    />
                                     <div className={"counter"}>
                                         <p>
                                             {category.item.value.venues.venues.length}

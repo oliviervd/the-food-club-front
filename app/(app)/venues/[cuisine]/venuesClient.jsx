@@ -6,7 +6,6 @@ import Header from "../../../../components/Header.jsx";
 import React, {useContext, useEffect, useState} from "react";
 import {useQuery} from "@tanstack/react-query";
 import {fetchAPI} from "../../../../utils/utils.jsx";
-import DitherImage from "../../../../components/DitherImage.jsx";
 import Banner from "../../../../components/Banner.jsx";
 import {LocationColorContext} from "../../../../contexts/LocationColorContext.jsx";
 import Link from "next/link";

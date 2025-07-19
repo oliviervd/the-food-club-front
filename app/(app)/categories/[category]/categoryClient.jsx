@@ -7,7 +7,6 @@ import { useQuery } from '@tanstack/react-query';
 import { debounce } from 'lodash';
 
 import Header from "../../../../components/Header.jsx";
-import DitherImage from "../../../../components/DitherImage.jsx";
 import Banner from "../../../../components/Banner.jsx";
 import Loading from "../../Loading.jsx";
 

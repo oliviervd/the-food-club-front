@@ -31,7 +31,7 @@ const DesktopHome = ({categories, recommendations}) => {
 
     useEffect(() => {
         const getCuisines = async() => {
-            const _cuisines = await fetchAPI("cuisine", "en", { limit: 100000 })
+            const _cuisines = await fetchAPI("cuisine", "en", { limit: 1000 })
             setCuisines(_cuisines.docs);
         }
         getCuisines()
@@ -64,8 +64,8 @@ const DesktopHome = ({categories, recommendations}) => {
             <div className={"home-grid"}>
                 <div className={"category-list__box special"}>
                     <Link href={"/events/"}>
-                        <h2 style={{fontSize: "20px"}}>We believe good food deserves proper celebration.</h2>
-                        <p>smash that button for tasty food events.</p>
+                        <h2 style={{fontSize: "20px"}}>Smash that button for tasty food events.</h2>
+                        <p>we believe good food deserves proper celebration.</p>
                     </Link>
                 </div>
                 {shuffledCategories && shuffledCategories.map((cat, index) => {
