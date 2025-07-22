@@ -35,15 +35,24 @@ export async function generateMetadata({ params }){
       description: category.meta.description,
       images: [{url: category.meta.image.url, alt: `image of ${category.meta.title}`}],
     },
-    robots: {
-      index: true,
-      follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-        noImageIndex: false,
-      }
-    },
+      robots: process.env.NEXT_PUBLIC_ROBOTS_META
+          ? {
+              index: false,
+              follow: false,
+              googleBot: {
+                  index: false,
+                  follow: false
+              }
+          }
+          : {
+              index: true,
+              follow: true,
+              googleBot: {
+                  index: true,
+                  follow: true,
+                  noImageIndex: false,
+              },
+          },
   }
 }
 

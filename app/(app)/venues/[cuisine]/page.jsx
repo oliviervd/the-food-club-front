@@ -14,15 +14,24 @@ export async function generateMetadata({ params }) {
         alternates: {
             canonical: `https://www.thefoodclub.be/venues/${params.cuisine}`,
         },
-        robots: {
-            index: true,
-            follow: true,
-            googleBot: {
+        robots: process.env.NEXT_PUBLIC_ROBOTS_META
+            ? {
+                index: false,
+                follow: false,
+                googleBot: {
+                    index: false,
+                    follow: false
+                }
+            }
+            : {
                 index: true,
                 follow: true,
-                noImageIndex: false,
-            }
-        },
+                googleBot: {
+                    index: true,
+                    follow: true,
+                    noImageIndex: false,
+                },
+            },
         url: `https://www.thefoodclub.be/venues/${params.cuisine}`,
     };
 }

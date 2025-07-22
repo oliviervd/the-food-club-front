@@ -19,15 +19,25 @@ export async function generateMetadata() {
         alternates: {
             canonical: 'https://www.thefoodclub.be/events',
         },
-        robots: {
-            index: true,
-            follow: true,
-            googleBot: {
+        robots: process.env.NEXT_PUBLIC_ROBOTS_META
+            ? {
+                index: false,
+                follow: false,
+                googleBot: {
+                    index: false,
+                    follow: false
+                }
+            }
+            : {
                 index: true,
                 follow: true,
-                noImageIndex: false,
-            }
-        },
+                googleBot: {
+                    index: true,
+                    follow: true,
+                    noImageIndex: false,
+                },
+            },
+
         twitter: {
             title: 'The Food Club - Tasty Food Events',
             description: 'Let\'s go to (food) mass. We believe good food should be celebrated, that\'s why made a calender of food events near you.',

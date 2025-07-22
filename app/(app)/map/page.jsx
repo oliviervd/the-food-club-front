@@ -15,15 +15,25 @@ export async function generateMetadata() {
         alternates: {
             canonical: `https://www.thefoodclub.be/map`,
         },
-        robots: {
-        index: true,
-            follow: true,
-            googleBot: {
-            index: true,
+        robots: process.env.NEXT_PUBLIC_ROBOTS_META
+            ? {
+                index: false,
+                follow: false,
+                googleBot: {
+                    index: false,
+                    follow: false
+                }
+            }
+            : {
+                index: true,
                 follow: true,
-                noImageIndex: false,
-        }
-    },
+                googleBot: {
+                    index: true,
+                    follow: true,
+                    noImageIndex: false,
+                },
+            },
+
     }
 }
 

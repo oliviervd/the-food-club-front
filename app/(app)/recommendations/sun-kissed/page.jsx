@@ -13,6 +13,24 @@ export async function generateMetadata() {
             title: "The Food Club - Sun Kissed",
             description: "Sun Kissed",
         },
+        robots: process.env.NEXT_PUBLIC_ROBOTS_META
+            ? {
+                index: false,
+                follow: false,
+                googleBot: {
+                    index: false,
+                    follow: false
+                }
+            }
+            : {
+                index: true,
+                follow: true,
+                googleBot: {
+                    index: true,
+                    follow: true,
+                    noImageIndex: false,
+                },
+            },
         alternates: {
             canonical: `https://www.thefoodclub.be/recommendations/sun-kissed`,
         }
