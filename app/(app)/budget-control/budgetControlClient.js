@@ -92,9 +92,42 @@ const BudgetControlClient = ({budget, briefs}) => {
                         </section>
                     </section>
                 )}
+                {isMobile && (
+                    <section>
+                        <div className={"cat_description"}>
+                            <div>
+                                <h2>
+                                    <p>{briefs[budget]}</p>
+                                </h2>
+                            </div>
+                        </div>
+                        {matches && matches.length > 0 && matches.map((venue, index)=>{
+                            if (venue._status === "published") return (
+                                <div key={index} className="category-list__box">
+                                    <Link href={`/venue/${venue.url}`}>
+                                        <div style={{height: "200px"}}>
+                                            <Image
+                                                src={venue.media.hero.url}
+                                                alt={`hero image for ${venue.venueName}`}
+                                                fill
+                                                style={{
+                                                    objectFit: 'cover',
+                                                    border: "2px solid var(--color-main)",
+                                                    boxSizing: 'border-box'
+                                                }}
+                                                sizes="100vw"
+                                                priority={false}
+                                            />
+                                        </div>
+                                        <h2 style={{textAlign: "center"}}>{venue.venueName}</h2>
+                                    </Link>
+                                </div>
+                            )
+                        })}
+                    </section>
+
+                )}
             </section>
-            <div>
-            </div>
         </>
     )
 }
