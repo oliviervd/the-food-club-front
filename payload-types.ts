@@ -288,7 +288,7 @@ export interface Venue {
     /**
      * select the type of venue
      */
-    type?: ('market' | 'food-truck' | 'shop' | 'restaurant' | 'bar') | null;
+    type?: ('market' | 'food-truck' | 'shop' | 'restaurant' | 'bar' | 'bakery' | 'butcher') | null;
     /**
      * select the kitchen/cuisine the venue belongs to, fe. Italian, French, Dutch, ...
      */
