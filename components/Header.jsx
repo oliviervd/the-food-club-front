@@ -3,9 +3,11 @@ import { useRouter } from 'next/navigation';
 import {useContext, useEffect, useState} from "react";
 import {LocationColorContext} from "../contexts/LocationColorContext.jsx";
 import Image from 'next/image';
-import logo from '/public/assets/img/logo-blue.png';
+const logo = '/assets/img/logo-blue.png';
 import Link from 'next/link';
 import "../styles/header.css"
+
+const back = '/assets/img/Back.png';
 
 const Header = ({ interact, landing, venueLocation, setTarget, greyOut=false, color, map , selectedTab, venue}) => {
 
@@ -39,25 +41,27 @@ const Header = ({ interact, landing, venueLocation, setTarget, greyOut=false, co
                     <div>
                         <div style={{display: 'grid', gridTemplateColumns: "30% 40% 30%"}}>
                             <div style={{display: 'flex', flexFlow: "row", height: '100%', justifyContent: 'center'}}>
+                                {/*
+                                <div className={"back-button"} onClick={() => useRouter().back()}>
+                                    <Image className={"back-button-icon"} src={back} alt="food club logo" width={30} height={30}/>
+                                </div>
                                 <h2 style={{margin: "auto"}}>welcome to the club</h2>
+                                */}
                             </div>
                             <div className={"logo-container"}>
                                 <Link href="/">
-                                    <Image src={logo} alt="Food Club Logo" className="logo" />
+                                    <Image
+                                        src={logo}
+                                        alt="Food Club Logo"
+                                        className="logo"
+                                        width={200}
+                                        height={100}
+                                        style={{
+                                            width: '50%',
+                                            height: 'auto',
+                                        }}
+                                    />
                                 </Link>
-                            </div>
-
-                            <div style={{display: 'flex', flexFlow: "row", height: '100%', justifyContent: 'center'}}>
-                                <h2 style={{margin: "auto"}}>looking for something?</h2>
-                                <div className={"button-src"}>
-                                    <svg width="31" height="100%" viewBox="0 0 31 26" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <circle cx="10.8333" cy="10.8333" r="9.83333" stroke="black"
-                                                strokeWidth="2"></circle>
-                                        <line x1="19.3504" y1="17.1214" x2="29.5022" y2="24.6017" stroke="black"
-                                              strokeWidth="2" strokeLinecap="round"></line>
-                                    </svg>
-                                </div>
                             </div>
 
                         </div>
@@ -70,12 +74,17 @@ const Header = ({ interact, landing, venueLocation, setTarget, greyOut=false, co
                                     width: "100%",
                                     gap: "0px"
                                 }}>
-                                    <h2><Link className={"link"} href={"/"}>CATEGORIES</Link></h2>
-                                    <h2><Link className={"link"} href={"/map"}>MAP</Link></h2>
-                                    <h2><Link className={"link"} href={"/about"}>ABOUT</Link></h2>
-                                    <h2 className={"link"} onClick={()=>{handleLocationChange("gent")}}>GENT</h2>
-                                    <h2 className={"link"} onClick={()=>{handleLocationChange("brussels")}}>BRUSSELS</h2>
-                                    <h2 className={"link"} onClick={()=>{handleLocationChange("antwerp")}}>ANTWERP</h2>
+                                    <h2 className={"link"}><Link className={"link"} href={"/"}>CATEGORIES</Link></h2>
+                                    <h2 className={"link"}><Link className={"link"} href={"/map"}>MAP</Link></h2>
+                                    <h2 className={"link"}><Link className={"link"} href={"/about"}>ABOUT</Link></h2>
+                                    <h2 className={"link"} onClick={() => {
+                                        handleLocationChange("gent");
+                                        router.push("/");
+                                    }}>
+                                        GENT
+                                    </h2>
+                                    <h2 className={"link"} onClick={() => { handleLocationChange("brussels"); router.push('/coming-soon'); }}>BRUSSELS</h2>
+                                    <h2 className={"link"} onClick={() => { handleLocationChange("antwerp"); router.push('/coming-soon'); }}>ANTWERP</h2>
                                 </nav>
                             </div>
                         </div>
@@ -85,7 +94,17 @@ const Header = ({ interact, landing, venueLocation, setTarget, greyOut=false, co
                 {isMobile &&
                     <div className={"logo-container"}>
                         <Link href="/">
-                            <Image src={logo} alt="Food Club Logo" className="logo" />
+                            <Image
+                                src={logo}
+                                alt="Food Club Logo"
+                                className="logo"
+                                width={200}
+                                height={100}
+                                style={{
+                                    width: '50%',
+                                    height: 'auto',
+                                }}
+                            />
                         </Link>
                     </div>
                 }
@@ -94,18 +113,33 @@ const Header = ({ interact, landing, venueLocation, setTarget, greyOut=false, co
                     <div>
                         {!venue &&
                             <nav className={"flex-buttons"}>
-                                <h2 className={`link ${location === "gent" ? "selected" : ""}${greyOut && location !== "gent" ? "greyed-out" : ""}`}
-                                    onClick={interact ? () => {
+                                <h2
+                                    className={`link ${location === "gent" ? "selected" : ""}${greyOut && location !== "gent" ? "greyed-out" : ""}`}
+                                    onClick={() => {
                                         handleLocationChange("gent");
-                                    } : null}>gent</h2>
-                                <h2 className={`link ${location === "antwerp" ? "selected" : ""}${greyOut && location !== "antwerp" ? "greyed-out" : ""}`}
-                                    onClick={interact ? () => {
+                                        router.push("/");
+                                    }}
+                                >
+                                    GENT
+                                </h2>
+                                <h2
+                                    className={`link ${location === "antwerp" ? "selected" : ""}${greyOut && location !== "antwerp" ? "greyed-out" : ""}`}
+                                    onClick={() => {
                                         handleLocationChange("antwerp");
-                                    } : null}>antwerp</h2>
-                                <h2 className={`link ${location === "brussels" ? "selected" : ""}${greyOut && location !== "brussels" ? "greyed-out" : ""}`}
-                                    onClick={interact ? () => {
+                                        router.push('/coming-soon');
+                                    }}
+                                >
+                                    ANTWERP
+                                </h2>
+                                <h2
+                                    className={`link ${location === "brussels" ? "selected" : ""}${greyOut && location !== "brussels" ? "greyed-out" : ""}`}
+                                    onClick={() => {
                                         handleLocationChange("brussels");
-                                    } : null}>brussels</h2>
+                                        router.push('/coming-soon');
+                                    }}
+                                >
+                                    BRUSSELS
+                                </h2>
                             </nav>
                         }
                         {venue &&
@@ -116,10 +150,10 @@ const Header = ({ interact, landing, venueLocation, setTarget, greyOut=false, co
                         <nav className={"flex-buttons"}>
 
                             <h2 className={`link ${selectedTab === "lists" ? "selected" : "none"}`} style={{borderTop: "none"}} onClick={() => {router.push('/')}}>
-                                    lists
+                                lists
                             </h2>
                             <h2 className={`link ${selectedTab === "map" ? "selected" : "none"}`} style={{borderTop: "none"}} onClick={() => {router.push('/map')}}>
-                                    map
+                                map
                             </h2>
                         </nav>
                     </div>
@@ -169,13 +203,27 @@ const Header = ({ interact, landing, venueLocation, setTarget, greyOut=false, co
                 <nav className={"flex-buttons"}>
                     <h2 className={`link ${location === "gent" ? "selected" : ""}${greyOut && location !== "gent" ? "greyed-out" : ""}`} onClick={interact ? () => {
                         handleLocationChange("gent");
+                        router.push("/");
                     } : null}>GENT</h2>
-                    <h2 className={`link ${location === "antwerp" ? "selected" : ""}${greyOut && location !== "antwerp" ? "greyed-out" : ""}`} onClick={interact ? () => {
-                        handleLocationChange("antwerp");
-                    } : null}>ANTWERP</h2>
-                    <h2 className={`link ${location === "brussels" ? "selected" : ""}${greyOut && location !== "brussels" ? "greyed-out" : ""}`} onClick={interact ? () => {
-                        handleLocationChange("brussels");
-                    } : null}>BRUSSELS</h2>
+                    <h2
+                        className={`link ${location === "antwerp" ? "selected" : ""}${greyOut && location !== "antwerp" ? "greyed-out" : ""}`}
+                        onClick={() => {
+                            handleLocationChange("antwerp");
+                            router.push('/coming-soon');
+                        }}
+                    >
+                        antwerp
+                    </h2>
+
+                    <h2
+                        className={`link ${location === "brussels" ? "selected" : ""}${greyOut && location !== "brussels" ? "greyed-out" : ""}`}
+                        onClick={() => {
+                            handleLocationChange("brussels");
+                            router.push('/coming-soon');
+                        }}
+                    >
+                        brussels
+                    </h2>
                 </nav>
             </header>
         )

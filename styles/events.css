@@ -1,0 +1,191 @@
+.events__main {
+    padding-top: 5px;
+}
+
+.events__container {
+    max-width: 100%;
+    gap:20px;
+}
+
+.events__tiles {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+
+
+    .event__container {
+        margin: 10px;
+        height: 290px;
+        position: relative;
+        border: var(--color-main) 3px solid;
+        overflow: hidden;
+
+        h2 {
+            color: var(--color-main);
+            font-size: 3rem;
+            padding: 10px;
+            justify-content: center;
+            text-align: center;
+            left: 50%;
+            top: 50%;
+            width: 80%;
+            position: absolute;
+            transform: translateX(-50%) translateY(-50%);
+            font-weight: 500;
+        }
+
+        h2:hover {
+            background-color: var(--color-secondary);
+            color: var(--color-main);
+        }
+
+        .event__time{
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--color-main);
+            color: var(--color-secondary);
+            border: 2px var(--color-secondary) solid;
+            font-family: DM-sans;
+            margin: 0;
+
+            p {
+                margin : 2px 5px;
+            }
+        }
+
+        .event__type {
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            background-color: var(--color-main);
+            color: var(--color-secondary);
+            border: 2px var(--color-secondary) solid;
+            font-family: "DM-serif-display-italic", sans-serif;
+            margin: 0;
+
+            p {
+                margin : 2px 5px;
+            }
+        }
+    }
+}
+
+.events__tiles h1 {
+    font-size: 2rem;
+    font-family: "DM-serif-display-italic", sans-serif;
+
+    font-weight: 300;
+
+    /* Make it same size and layout as event tiles */
+    height: 290px;
+    margin: 10px;
+    border: 3px solid var(--color-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+@media(max-width: 900px) {
+    .events__tiles {
+        display: block;
+    }
+}
+
+.event__list{
+
+    .event__container {
+        margin: 20px;
+    }
+}
+
+.event__list-item {
+    margin: 0 15px;
+    border-bottom: 3px solid var(--color-secondary);
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    position: relative;
+
+    .event__name {
+        font-weight: 500;
+        text-align: left;
+        padding-left: 10px;
+    }
+
+    .event__time {
+
+        p {
+            text-align: right;
+            padding-right: 10px;
+        }
+
+    }
+
+    .event__type {
+
+        p {
+            position: absolute;
+            left: 0;
+            text-align: right;
+            padding-left: 10px;
+        }
+    }
+
+    h3 {
+        font-size: 1rem;
+        text-align: center;
+        justify-content: center;
+    }
+}
+
+.event__list-item:hover {
+    background-color: var(--color-main);
+
+    .event__name, event__time {
+        color: var(--color-secondary);
+    }
+}
+
+h1 {
+    margin: 10px;
+    padding: 3px;
+    background: var(--color-secondary);
+    color: var(--color-main);
+
+    text-align: center;
+    justify-content: center;
+    font-family: "DM-sans", sans-serif;
+    font-weight: 300;
+    font-size: 1rem;
+}
+
+@media(min-width: 900px) {
+    h1 {
+        font-size: 3rem;
+        font-weight: 500;
+    }
+}
+
+
+.no-events-tile {
+    height: 300px;
+    margin: 10px;
+    border: 3px solid var(--color-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: "DM-serif-display-italic", sans-serif;
+    font-size: 1.5rem;
+    background-color: var(--color-main);
+    color: var(--color-secondary);
+    padding: 20px; /* ← add this line */
+    box-sizing: border-box; /* ensures padding doesn’t overflow */
+}
+
+
+
+.event__container:hover {
+    background: var(--color-secondary);
+}
+

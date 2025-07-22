@@ -1,0 +1,13 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"           # Location of your package.json
+    schedule:
+      interval: "weekly"     # daily | weekly | monthly
+    open-pull-requests-limit: 5
+
+  # OPTIONAL: GitHub Actions updates too
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"

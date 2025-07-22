@@ -1,3 +1,20 @@
+.desktop-view {
+    display: none;
+}
+
+.mobile-view {
+    display: block;
+}
+
+@media screen and (min-width: 1200px) {
+    .desktop-view {
+        display: block;
+    }
+    .mobile-view {
+        display: none;
+    }
+}
+
 .text-main {
     font-size: var(--font-m);
 }
@@ -51,7 +68,7 @@
 
 .venue__container {
     margin: 20px 0px;
-    padding: 10px 10px;
+    padding: 0px 15px;
     height: 100vh;
 }
 
@@ -171,7 +188,7 @@
 .address{
     font-size: 1.2rem;
     color: var(--color-secondary);
-    margin: 10px 0px;
+    margin: 0px 0px 10px 0px;
 }
 
 .venue-open {
@@ -182,15 +199,22 @@
     div {
         display: flex;
         flex-flow: row;
-        gap: 10px;
+        column-gap: 10px;
         justify-content: space-between;
 
         p {
-            margin: 2px 0px;
+            margin: 0px 5px;
         }
 
         .day {
+
             font-weight: bold;
+        }
+
+        .hours {
+            display: flex;
+            flex-flow: column;
+            flex-wrap: wrap;
         }
     }
 }
