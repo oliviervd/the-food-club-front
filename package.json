@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "deploy:dev" : "fly deploy --app the-food-club-dev",
+    "deploy:prod" : "fly deploy --app the-food-club"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",

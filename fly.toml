@@ -5,7 +5,6 @@
 
 app = 'the-food-club'
 primary_region = 'ams'
-
 [build]
 
 [http_service]
