@@ -14,6 +14,23 @@ const MapSmall = dynamic(() => import('../../../components/mapSmall.jsx'), {
     ssr: false
 });
 
+let descriptions = {
+    "*": "Cheap, fast, glorious. Think killer snacks, sandwiches, soup, or fries that hit way above their weight.",
+    "**": "A proper meal, full plate, maybe a drink. You leave satisfied and your wallet stays chill.",
+    "***": "Starter, main, dessert—or a damn good dish with a glass of wine. You're out for a *nice* time.",
+    "****": "A full-blown dinner, multi-course, a bottle on the table. This is where the vibe goes gourmet.",
+    "*****": "Tasting menus, wine pairings, maybe a sommelier named Hugo. It’s a night out with a capital N.",
+};
+
+let damage = {
+    "*": "€0 to €10 a head",
+    "**": "€10 to €25 a head",
+    "***": "€25 to €50 a head",
+    "****": "€25 to €75 a head",
+    "*****": "€75+ a head",
+};
+
+
 const BudgetControlClient = ({budget, briefs}) => {
 
     // set states
@@ -60,8 +77,9 @@ const BudgetControlClient = ({budget, briefs}) => {
                     <section className="desktop" style={{ position: "relative" }}>
                         <section className="venue-list__container-main">
                             <section>
-                                <div className="venue info-box">
-                                    <p>{briefs[budget]}</p>
+                                <div className="venue info-box" style={{flexFlow: "column"}}>
+                                    <p>{descriptions[budget]}</p>
+                                    <p style={{fontFamily:"DM-serif-display-italic", fontWeight: "200", fontSize: "1rem"}}>damage: {damage[budget]}</p>
                                 </div>
                                 {matches.map((venue, index)=>{
 
@@ -97,7 +115,8 @@ const BudgetControlClient = ({budget, briefs}) => {
                         <div className={"cat_description"}>
                             <div>
                                 <h2>
-                                    <p>{briefs[budget]}</p>
+                                    <p>{descriptions[budget]}</p>
+                                    <p style={{fontFamily:"DM-serif-display-italic", fontWeight: "200", fontSize: "1rem"}}>damage: {damage[budget]}</p>
                                 </h2>
                             </div>
                         </div>
