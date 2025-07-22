@@ -173,9 +173,12 @@ function MobileView({ venue }) {
 
                     {venue.damage &&
                         <div className={"cuisines"} style={{marginTop: "5px"}}>
-                            <div className={"link"}>
-                                <h2>{venue.damage.replaceAll("*","💸")}</h2>
-                            </div>
+                            <Link href={`/budget-control/${venue.damage}`}>
+                                <div className={"link"}>
+                                    <h2>{venue.damage.replaceAll("*","💸")}</h2>
+                                </div>
+                            </Link>
+
                         </div>
                     }
                 </div>
