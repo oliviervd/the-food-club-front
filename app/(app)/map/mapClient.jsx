@@ -60,6 +60,7 @@ const Map = ({}) => {
     const [showOpenOnly, setShowOpenOnly] = useState(false); // Default: show all venues
     const [selectedDays, setSelectedDays] = useState([]); // set and store days for filter per day
     const [selectedService, setSelectedService] = useState([]); // set and store selected service
+    const [selectedBudget, setSelectedBudget] = useState([]) // set and store selected budget
     const [showLocation, setShowLocation] = useState(false); // show the menu to switch location on mobile
     const [hasTakeAway, setHasTakeAway] = useState(false); // default
     const [hasTerrace, setHasTerrace] = useState(false); // default
@@ -237,6 +238,17 @@ const Map = ({}) => {
         });
     };
 
+    const toggleBudget = (budget) => {
+        setSelectedBudget((prevBudget) => {
+            const isAlreadySelected = prevBudget.includes(budget);
+            if (isAlreadySelected) {
+                return prevBudget.filter((b) => b !== budget);
+            } else {
+                return [...prevBudget, budget];
+            }
+        });
+    }
+
     // number of active flter counts
 
     const activeFiltersCount = useMemo(() => {
@@ -247,7 +259,8 @@ const Map = ({}) => {
             selectedDays.length +
             selectedService.length +
             selectedDish.length +
-            selectedCuisine.length
+            selectedCuisine.length +
+            selectedBudget.length
         );
     }, [
         showOpenOnly,
@@ -257,6 +270,7 @@ const Map = ({}) => {
         selectedService,
         selectedDish,
         selectedCuisine,
+        selectedBudget,
     ]);
 
     console.log("active filters count:", activeFiltersCount);
@@ -313,7 +327,6 @@ const Map = ({}) => {
         setOpenFilters(false);
         setShowLocation(!showLocation);
     }
-
 
     return(
         <div className={"map--ui_container"}
@@ -518,6 +531,30 @@ const Map = ({}) => {
                                             }}
                                         >
                                             {service}
+                                        </p>
+                                    </div>
+                                ))
+                            }
+                        </div>
+                    }
+
+                    <div className={"map--filter_info"}>
+                        <p>BUDGET</p>
+                    </div>
+
+                    {isMounted &&
+                        <div className={"map--filters_pills-container"}>
+                            {
+                                ["💸", "💸💸", "💸💸💸", "💸💸💸💸", "💸💸💸💸💸"].map((fist, index) => (
+                                    <div className={selectedBudget.includes(fist) ? "map--filters_pill" :  "map--filters_pill inactive"} key={fist + index}>
+                                        <p onClick={() => {
+                                            toggleBudget(fist)
+                                            if (isMobile) {
+                                                setOpenFilters(false);
+                                            }
+                                        }}
+                                        >
+                                            {fist}
                                         </p>
                                     </div>
                                 ))

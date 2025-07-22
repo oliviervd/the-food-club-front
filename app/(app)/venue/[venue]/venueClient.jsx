@@ -85,6 +85,16 @@ function DesktopView({ venue }) {
 
                 <CuisineList venue={venue} />
 
+                {venue.damage &&
+                    <div className={"cuisines"} style={{marginTop: "5px"}}>
+                        <Link href={`/budget-control/${venue.damage}`}>
+                            <div className={"link"}>
+                                <h2>{venue.damage.replaceAll("*","💸")}</h2>
+                            </div>
+                        </Link>
+                    </div>
+                }
+
                 <div className="text-main" style={{ paddingTop: "20px" }}>
                     {serialize(venue.review?.review)}
                 </div>
@@ -103,7 +113,6 @@ function DesktopView({ venue }) {
                             <p className="text-main">{serialize(venue.review.foodClubOrder)}</p>
                         </div>
                     )}
-
                     <OpeningHours venue={venue} />
                 </section>
 
@@ -131,6 +140,7 @@ function DesktopView({ venue }) {
 }
 
 function MobileView({ venue }) {
+    console.log("venue", venue)
     return (
         <section className="venue__container">
             <div className="grid">
@@ -160,6 +170,14 @@ function MobileView({ venue }) {
                     )}
 
                     <CuisineList venue={venue} />
+
+                    {venue.damage &&
+                        <div className={"cuisines"} style={{marginTop: "5px"}}>
+                            <div className={"link"}>
+                                <h2>{venue.damage.replaceAll("*","💸")}</h2>
+                            </div>
+                        </div>
+                    }
                 </div>
 
                 <div className="container-big">
