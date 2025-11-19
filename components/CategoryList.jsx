@@ -123,12 +123,15 @@ const CategoryList = ({ data, home }) => {
                                         <p>{cat.slug}</p>
                                     </Link>
                                 </div>
-                                <div className={"category-list__box special"}>
+                                {/*
+                                 <div className={"category-list__box special"}>
                                     <Link href={"/events/"}>
                                         <h2 style={{fontSize: "20px"}}>Smash this button for tasty food events.</h2>
                                         <p>we believe good food deserves proper celebration. </p>
                                     </Link>
                                 </div>
+                                */}
+
                             </React.Fragment>
                         );
                     }
@@ -153,9 +156,11 @@ const CategoryList = ({ data, home }) => {
                                         <p>{cat.slug}</p>
                                     </Link>
                                 </div>
-                                <div className={"category-list__box special"}>
+                                {/*
+                                 <div className={"category-list__box special"}>
                                     <BroadCastForYou type={'time'}/>
                                 </div>
+                                */}
                             </React.Fragment>
                         );
                     }

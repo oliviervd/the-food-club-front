@@ -100,13 +100,18 @@ function DesktopView({ venue, isSunny }) {
                                 <h2>{venue.damage.replaceAll("*","💸")}</h2>
                             </div>
                         </Link>
-                        {isSunny &&
+
+                        {/*
+
+                         {isSunny &&
                             <Link href={`/recommendations/sun-kissed`}>
                                 <div className={"link"} style={{backgroundColor: "yellow"}}>
                                     <h2>🌞 sun-kissed 🌞</h2>
                                 </div>
                             </Link>
                         }
+                        */}
+
                     </div>
                 }
 
@@ -193,13 +198,20 @@ function MobileView({ venue, isSunny }) {
                                     <h2>{venue.damage.replaceAll("*","💸")}</h2>
                                 </div>
                             </Link>
-                            {isSunny &&
+
+                            {/*
+
+                                {isSunny &&
                                     <Link href={`/recommendations/sun-kissed`}>
                                         <div className={"link"} style={{backgroundColor: "yellow"}}>
                                             <h2>🌞 sun-kissed 🌞</h2>
                                         </div>
                                     </Link>
                             }
+
+                            */}
+
+
 
                         </div>
                     }
