@@ -24,19 +24,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     // Map venue URLs
     const venueRoutes = venueData.docs.map((venue: any) => ({
-        url: `/venue/${venue.url}`,
+        url: `/venue/${encodeURIComponent(venue.url)}`,
         lastModified: venue.updatedAt || new Date().toISOString(),
     }));
 
     // Map category URLs
     const categoryRoutes = categoryData.docs.map((category: any) => ({
-        url: `/categories/${category.url}`,
+        url: `/categories/${encodeURIComponent(category.url)}`,
         lastModified: category.updatedAt || new Date().toISOString(),
     }));
 
     // Map cuisine URLs
     const cuisineRoutes = cuisineData.docs.map((cuisine: any) => ({
-        url: `/venues/${cuisine.name.toLowerCase()}`,
+        url: `/venues/${encodeURIComponent(cuisine.name.toLowerCase())}`,
         lastModified: cuisine.updatedAt || new Date().toISOString(),
     }));
 

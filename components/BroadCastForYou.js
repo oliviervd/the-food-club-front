@@ -1,6 +1,6 @@
 'use client'
 
-import useWeather from "../hooks/isSunny.tsx";
+import useWeather from "../hooks/weather/fetchWeatherData.jsx";
 import "../styles/weather.css"
 import {useRouter} from "next/navigation.js";
 import Link from "next/link";
@@ -46,12 +46,12 @@ const BroadCastForYou = ({ type, recommendations }) => {
     console.log(weather)
 
     if (weather?.temperature > 23) {
-        LetMetTellYou = "we love the sunshine! ready to get sunkissed?";
+        LetMetTellYou = "we love the sunshine! ready to get sun-kissed?";
         Caption = "these babies are burning to serve you."
         slug="/si-schiatta"
     } else if (weather?.temperature > 10 && weather?.temperature < 25) {
-        LetMetTellYou = "GRAB A JACKET! IT'S NOT COLD BUT IT'S GOT SOME BITE!";
-
+        LetMetTellYou = "we love the sunshine! ready to get sun-kissed?";
+        Caption = "these babies are burning to serve you."
     }
 
     if (type === "advice") {
@@ -65,7 +65,9 @@ const BroadCastForYou = ({ type, recommendations }) => {
     } else if (type === "time") {
         return (
             <Link href={"/recommendations/sun-kissed/"}>
-                    <h2 style={{fontSize: "20px"}}>{LetMetTellYou.toLowerCase()}</h2>
+                    <h2 style={{ fontSize: "20px" }}>
+                        ☼ <br/> {LetMetTellYou.toLowerCase()}
+                    </h2>
                     <p>{Caption}</p>
             </Link>
         );

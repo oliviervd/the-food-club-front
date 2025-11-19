@@ -47,6 +47,7 @@
             border: 2px var(--color-secondary) solid;
             font-family: DM-sans;
             margin: 0;
+            padding: 3px 10px;
 
             p {
                 margin : 2px 5px;

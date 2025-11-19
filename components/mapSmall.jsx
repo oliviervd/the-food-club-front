@@ -111,6 +111,8 @@ const MapSmall = ({ venues, highlight, onHover }) => {
         );
     };
 
+    const openMapAPI = "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+
     return (
         <section
             className={"map--ui_container-small"}
@@ -134,7 +136,7 @@ const MapSmall = ({ venues, highlight, onHover }) => {
                 <ChangeView center={mapCenter} zoom={zoom} />
 
                 <TileLayer
-                    url="https://api.mapbox.com/styles/v1/oliviervd-tfc/clllwhqvq009s01pea2rw8mpt/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoib2xpdmllcnZkLXRmYyIsImEiOiJjbGxqZWFjd3MweTBzM2psaWFiemlnZnZnIn0.fMu0iJpz82mNYQ5Rrrwi-w"
+                    url={openMapAPI}
                 />
 
                 <MarkerClusterGroup

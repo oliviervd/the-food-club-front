@@ -7,26 +7,31 @@ const CookieContext = createContext();
 
 // create a provider component
 export const CookieProvider = ({children}) => {
-   const [cookieAccepted, setCookieAccepted] = useState(true);
+   // default to null until we know the user's preference (avoids loading GA before choice)
+   const [cookieAccepted, setCookieAccepted] = useState(null);
+   const [initialized, setInitialized] = useState(false);
 
    useEffect(() => {
-       const savedPrefernce = localStorage.getItem('cookieAccepted');
+       const savedPrefernce = typeof window !== 'undefined' ? localStorage.getItem('cookieAccepted') : null;
        if (savedPrefernce !== null) {
            setCookieAccepted(savedPrefernce === 'true');
+       } else {
+           setCookieAccepted(null);
        }
+       setInitialized(true);
    }, []);
 
    const acceptCookies = () => {
        setCookieAccepted(true);
-       localStorage.setItem('cookieAccepted', 'true');
+       if (typeof window !== 'undefined') localStorage.setItem('cookieAccepted', 'true');
    }
     const declineCookies = () => {
        setCookieAccepted(false);
-       localStorage.setItem('cookieAccepted', 'false');
+       if (typeof window !== 'undefined') localStorage.setItem('cookieAccepted', 'false');
     }
 
     return (
-        <CookieContext.Provider value={{cookieAccepted, acceptCookies, declineCookies}}>
+        <CookieContext.Provider value={{cookieAccepted, initialized, acceptCookies, declineCookies}}>
             {children}
         </CookieContext.Provider>
     )

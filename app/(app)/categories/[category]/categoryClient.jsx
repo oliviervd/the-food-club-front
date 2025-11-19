@@ -14,6 +14,7 @@ import { fetchAPI, shuffleArray, venueStatus } from "../../../../utils/utils.jsx
 import { LocationColorContext } from "../../../../contexts/LocationColorContext.jsx";
 import ScrollToTop from "../../../../components/scrollToTop.jsx"
 import Image from "next/image";
+import { getBlur } from "../../../../utils/blur";
 
 const MapSmall = dynamic(() =>
         import("../../../../components/mapSmall.jsx"), // no .then needed
@@ -96,7 +97,7 @@ const CategoryClient = () => {
                                                         alt={`hero image for ${v.venueName}`}
                                                         fill
                                                         placeholder= 'blur'
-                                                        blurDataURL={v.media.hero?.thumbnailURL || v.media.hero.url}
+                                                        blurDataURL={getBlur(v.media.hero?.thumbnailURL)}
                                                         style={{
                                                             objectFit: 'cover',
                                                             border: "2px solid var(--color-main)",
@@ -135,6 +136,17 @@ const CategoryClient = () => {
                                             //console.log(venue)
                                             const v = venue;
                                             if (v.club === location && v._status === "published") {
+
+                                                const isHighlighted = highlightedVenue?.url === v.url;
+
+                                                const borderStyle = {
+                                                    border: `${isHighlighted ? '2px solid var(--color-secondary)' : ''}`,
+                                                    backgroundColor: `${isHighlighted ? 'var(--color-main)' : ''}`,
+                                                    color: `${isHighlighted ? 'var(--color-secondary)' : ''}`,
+                                                    transition: 'all 0.5s ease',
+                                                };
+
+
                                                 return (
                                                     <div key={index} className="venue">
                                                         {v.new &&
@@ -154,7 +166,7 @@ const CategoryClient = () => {
                                                                 alt={`hero image for ${v.venueName}`}
                                                                 fill
                                                                 placeholder= 'blur'
-                                                                blurDataURL={v.media.hero?.thumbnailURL || v.media.hero.url}
+                                                                blurDataURL={getBlur(v.media.hero?.thumbnailURL)}
                                                                 style={{
                                                                     objectFit: 'cover',
                                                                     border: "2px solid var(--color-main)",
@@ -162,13 +174,15 @@ const CategoryClient = () => {
                                                                 }}
                                                                 sizes="100vw"
                                                                 priority={false}
-                                                            />                                                            <h2>{v.venueName}</h2>
+                                                            />
+                                                            <h2 style={borderStyle}>{v.venueName}</h2>
                                                         </div>
                                                     </div>
                                                 );
                                             }
                                             return null;
                                         })}
+
                                     </section>
                                 </section>
 

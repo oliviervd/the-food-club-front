@@ -78,8 +78,8 @@ const BudgetControlClient = ({budget, briefs}) => {
                         <section className="venue-list__container-main">
                             <section>
                                 <div className="venue info-box" style={{flexFlow: "column"}}>
-                                    <p>{descriptions[budget]}</p>
-                                    <p style={{fontFamily:"DM-serif-display-italic", fontWeight: "200", fontSize: "1rem"}}>damage: {damage[budget]}</p>
+                                    <p>{damage[budget]}</p>
+                                    <h2>{descriptions[budget]}</h2>
                                 </div>
                                 {matches.map((venue, index)=>{
 
@@ -116,7 +116,7 @@ const BudgetControlClient = ({budget, briefs}) => {
                             <div>
                                 <h2>
                                     <p>{descriptions[budget]}</p>
-                                    <p style={{fontFamily:"DM-serif-display-italic", fontWeight: "200", fontSize: "1rem"}}>damage: {damage[budget]}</p>
+                                    <p style={{fontFamily:"DM-serif-display-italic", fontWeight: "200", fontSize: "1rem"}}>{damage[budget]}</p>
                                 </h2>
                             </div>
                         </div>

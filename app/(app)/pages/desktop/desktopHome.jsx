@@ -5,6 +5,7 @@ import Link from "next/link";
 import BroadCastForYou from "../../../../components/BroadCastForYou.js";
 import React from "react"
 import Image from "next/image";
+import { getBlur } from "../../../../utils/blur";
 
 const DesktopHome = ({categories, recommendations}) => {
     console.log(recommendations)
@@ -40,7 +41,7 @@ const DesktopHome = ({categories, recommendations}) => {
     return(
         <section>
             <div style={{marginTop: "15px"}}>
-                <Marquee className={"pill-banner"} direction={"right"}>
+                <Marquee className={"pill-banner"} direction={"right"} pauseOnHover={true}>
                     {cuisines && cuisines.map((cuisine, index)=>{
                         if (cuisine.active) {
                             return(
@@ -50,7 +51,7 @@ const DesktopHome = ({categories, recommendations}) => {
                     })}
                 </Marquee>
 
-                <Marquee className={"pill-banner"} direction={"left"}>
+                <Marquee className={"pill-banner"} direction={"left"} pauseOnHover={true}>
                     {cuisines && cuisines.map((cuisine, index)=>{
                         if (cuisine.active) {
                             return(
@@ -62,12 +63,18 @@ const DesktopHome = ({categories, recommendations}) => {
             </div>
 
             <div className={"home-grid"}>
+
+                {/*
                 <div className={"category-list__box special"}>
+
+
                     <Link href={"/events/"}>
                         <h2 style={{fontSize: "20px"}}>Smash that button for tasty food events.</h2>
                         <p>we believe good food deserves proper celebration.</p>
                     </Link>
                 </div>
+                */}
+
                 {shuffledCategories && shuffledCategories.map((cat, index) => {
                     try {
                         if (index === 5) {
@@ -79,7 +86,7 @@ const DesktopHome = ({categories, recommendations}) => {
                                                 <Image
                                                     src={cat.media.hero.url}
                                                     placeholder="blur"
-                                                    blurDataURL={cat.media.hero.thumbnailURL ||cat.media.hero.url}
+                                                    blurDataURL={getBlur(cat.media.hero.thumbnailURL)}
                                                     alt={`hero image for ${cat.name}`}
                                                     fill
                                                     style={{ objectFit: 'cover' }}
@@ -91,9 +98,11 @@ const DesktopHome = ({categories, recommendations}) => {
                                             <p>{cat.slug}</p>
                                         </Link>
                                     </div>
+                                    {/*
                                     <div className={"category-list__box special"}>
                                         <BroadCastForYou type={'time'}/>
                                     </div>
+                                    */}
                                 </React.Fragment>
                             );
                         }
@@ -105,12 +114,12 @@ const DesktopHome = ({categories, recommendations}) => {
                                         <Image
                                             src={cat.media.hero.url}
                                             placeholder="blur"
-                                            blurDataURL={cat.media.hero.thumbnailURL ||cat.media.hero.url}
+                                            blurDataURL={getBlur(cat.media.hero.thumbnailURL)}
                                             alt={`hero image for ${cat.name}`}
                                             fill
                                             style={{ objectFit: 'cover' }}
                                             sizes="100vw"
-                                            priority={false} // or true for critical images
+                                            priority={false}
                                         />
                                     </div>
                                     <h2>{cat.name}</h2>

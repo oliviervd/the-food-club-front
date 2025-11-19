@@ -10,6 +10,7 @@ const nextConfig = {
   output: 'standalone',
   experimental: {
     reactCompiler: false,
+    optimizePackageImports: ['@mui/material', '@mui/icons-material']
   },
   images: {
     remotePatterns: [
@@ -19,7 +20,12 @@ const nextConfig = {
         pathname: '/**',
       },
     ],
+    formats: ['image/avif', 'image/webp'],
   },
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production' ? { exclude: ['error'] } : false,
+  },
+  productionBrowserSourceMaps: false,
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
     // Add the @payload-config alias
     config.resolve.alias = {
@@ -35,6 +41,7 @@ const nextConfig = {
 
     return config
   },
+
 }
 
 export default withPayload(nextConfig)

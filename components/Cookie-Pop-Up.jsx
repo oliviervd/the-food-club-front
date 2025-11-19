@@ -2,8 +2,12 @@ import {useEffect, useState} from "react";
 import {useCookie} from "../contexts/CookieContext.jsx";
 
 const CookiePopUp = () => {
-    const { cookieAccepted, acceptCookies, declineCookies } = useCookie();
+    const { cookieAccepted, initialized, acceptCookies, declineCookies } = useCookie();
 
+    // Avoid flicker: wait until cookie preference is initialized
+    if (!initialized) return null;
+
+    // Show only when no decision has been made yet
     if (cookieAccepted !== null) return null;
 
     return(

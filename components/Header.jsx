@@ -6,6 +6,8 @@ import Image from 'next/image';
 const logo = '/assets/img/logo-blue.png';
 import Link from 'next/link';
 import "../styles/header.css"
+import dynamic from 'next/dynamic';
+const SearchBarHeader = dynamic(() => import('./Search/SearchBarHeader.jsx'), { ssr: false, loading: () => null });
 
 const back = '/assets/img/Back.png';
 
@@ -45,8 +47,9 @@ const Header = ({ interact, landing, venueLocation, setTarget, greyOut=false, co
                                 <div className={"back-button"} onClick={() => useRouter().back()}>
                                     <Image className={"back-button-icon"} src={back} alt="food club logo" width={30} height={30}/>
                                 </div>
-                                <h2 style={{margin: "auto"}}>welcome to the club</h2>
                                 */}
+                                <h2 style={{margin: "auto", color: 'var(--color-secondary)'}}>welcome to the club</h2>
+
                             </div>
                             <div className={"logo-container"}>
                                 <Link href="/">
@@ -56,6 +59,8 @@ const Header = ({ interact, landing, venueLocation, setTarget, greyOut=false, co
                                         className="logo"
                                         width={200}
                                         height={100}
+                                        sizes="(max-width: 600px) 50vw, 25vw"
+                                        decoding="async"
                                         style={{
                                             width: '50%',
                                             height: 'auto',
@@ -63,7 +68,7 @@ const Header = ({ interact, landing, venueLocation, setTarget, greyOut=false, co
                                     />
                                 </Link>
                             </div>
-
+                            <SearchBarHeader/>
                         </div>
                         <div>
                             <div style={{display: "flex", flexFlow: "row", flexDirection: "revert"}}>
@@ -100,6 +105,8 @@ const Header = ({ interact, landing, venueLocation, setTarget, greyOut=false, co
                                 className="logo"
                                 width={200}
                                 height={100}
+                                sizes="(max-width: 600px) 50vw, 25vw"
+                                decoding="async"
                                 style={{
                                     width: '50%',
                                     height: 'auto',

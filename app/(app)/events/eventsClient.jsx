@@ -13,7 +13,7 @@ import '../../../styles/events.css';
 const EventsClient = () => {
     const { data: eventsData, isLoading: eventsLoading, error: eventsError } = useQuery({
         queryKey: ["events"],
-        queryFn: () => fetchAPI('events', 'en', {limit: 10000})
+        queryFn: () => fetchAPI('events', 'en', { limit: 500 })
     });
 
 const categorizeEvent = (event, today, endOfWeek, endOfMonth, oneYearFromNow) => {
@@ -193,8 +193,10 @@ const processedEvents = useMemo(() => {
                                     </div>
                                 )}
                                 {!event.repeats && event.Information.startDate && (
-                                    <div className="event__time">
-                                        {formatEventDate(event)}
+                                    <div>
+                                        <p style={{textAlign: "right"}}>
+                                            {formatEventDate(event)}
+                                        </p>
                                     </div>
                                 )}
 

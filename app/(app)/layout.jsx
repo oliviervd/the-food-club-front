@@ -55,8 +55,14 @@ export const metadata = {
 export default function RootLayout({ children }) {
     return (
         <html lang="en">
+        <head>
+            {/* Preconnects to speed up critical third-party connections */}
+            <link rel="preconnect" href="https://d3nidktcupd88v.cloudfront.net" crossOrigin="" />
+            <link rel="dns-prefetch" href="//d3nidktcupd88v.cloudfront.net" />
+            <link rel="preconnect" href="https://basemaps.cartocdn.com" crossOrigin="" />
+            <link rel="dns-prefetch" href="//basemaps.cartocdn.com" />
+        </head>
         <body>
-        <GoogleAnalytics gaId="G-MT6KZBM1XN" />
         <ClientLayout>
             {children}
         </ClientLayout>

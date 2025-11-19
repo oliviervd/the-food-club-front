@@ -3,17 +3,22 @@
 import {MapContainer, Marker, TileLayer, useMap} from "react-leaflet";
 import {divIcon} from "leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
-import React, {useContext, useEffect, useState, useMemo} from "react";
+import React, {useContext, useEffect, useState, useMemo, useCallback, useRef} from "react";
 import {useRouter} from "next/navigation";
 import {fetchAPI, getCSSVariableValue} from "/utils/utils.jsx";
 import {LocationColorContext} from "/contexts/LocationColorContext.jsx";
 import Link from "next/link.js";
 import Image from "next/image.js";
+import { getBlur } from "/utils/blur.js";
 import {useIsMobile} from "../../../hooks/isMobile.jsx";
 import {Autocomplete, Chip, TextField} from "@mui/material";
+import { useSunnyVenues } from '../../../hooks/weather/useSunnyVenues';
 
 const logo = '/assets/img/logo-blue.png';
 const back = '/assets/img/Back.png';
+
+import TuneIcon from '@mui/icons-material/Tune';
+import MyLocationIcon from '@mui/icons-material/MyLocation';
 
 // todo add icons to zoom in / zoom out / show my location.
 
@@ -63,19 +68,30 @@ const Map = ({}) => {
     const [selectedBudget, setSelectedBudget] = useState([]) // set and store selected budget
     const [showLocation, setShowLocation] = useState(false); // show the menu to switch location on mobile
     const [hasTakeAway, setHasTakeAway] = useState(false); // default
+
+    // SUN SHIT
+
     const [hasTerrace, setHasTerrace] = useState(false); // default
+    const [hasSunnyTerrace, setHasSunnyTerrace] = useState(false);
+
+    // LOCATIONS
+
     const { locationColor, handleLocationChange } = useContext(LocationColorContext);
     const isMobile = useIsMobile();
     const [cuisines, setCuisines] = useState([]);
     const [selectedCuisine, setSelectedCuisine] = useState([]);
     const [selectedDish, setSelectedDish] = useState([]);
     const [initialFiltersAnimated, setInitialFiltersAnimated] = useState(false);
+    const [userPosition, setUserPosition] = useState(null);
 
     // initialize router
     const nav = useRouter();
 
     // add time to mount. - ANIMATIONS
     const [isMounted, setIsMounted] = useState(false);
+
+    // ref
+    const mapRef = useRef();
 
     useEffect(() => {
         const timeout = setTimeout(() => setIsMounted(true), 50); // short delay to let styles apply
@@ -102,22 +118,29 @@ const Map = ({}) => {
     useEffect(() => {
         // function to fetch data: cuisines
         const getCuisines = async() => {
-            const _cuisines = await fetchAPI("cuisine", "en", {limit: 1000})
+            const _cuisines = await fetchAPI("cuisine", "en", { limit: 600 })
             setCuisines(_cuisines.docs);
         }
         getCuisines();
     },[location])
 
+
     // add locations on map
     const [venues, setVenues] = useState([]);
     const getVenues = async () => {
-        const result = await fetchAPI("venues", "en", {limit: 1000});
+        const result = await fetchAPI("venues", "en", { limit: 800 });
         setVenues(result.docs)
     }
 
     useEffect(() => {
         getVenues();
     },[])
+
+    // sun cache
+    const {
+        data: sunnyVenueIds = new Set(),
+        isLoading: isCalculatingSun
+    } = useSunnyVenues(venues);
 
     // MAP  CONFIG
 
@@ -139,62 +162,91 @@ const Map = ({}) => {
 
     // FILTER SETUP
 
-    const filteredVenues = venues.filter((venue) => {
-        // No filters active - show all published venues
-        if (!showOpenOnly && !hasTakeAway && !hasTerrace && selectedCuisine.length === 0 &&
-            selectedDish.length === 0 && selectedDays.length === 0 && selectedService.length === 0) {
-            return venue._status === "published";
-        }
+    const filteredVenues = useMemo(() => {
+        return venues.filter((venue) => {
+            // Helper function to check if an array contains a matching item
+            const matchesArrayCondition = (venueArray, selectedArray, compareKey = 'name') =>
+                selectedArray.length === 0 ||
+                (venueArray ?? []).some((item) =>
+                    selectedArray.some((selected) => selected[compareKey] === item[compareKey])
+                );
 
-        // Apply filters if any are active
-        const isOpen = showOpenOnly
-            ? venue.information?.hours?.some(hour =>
-                hour.dayOfWeek === getCurrentDay() &&
-                !hour.isClosed &&
-                isCurrentlyInPeriod(hour.periods)
-            )
-            : true;
+            // Budget emoji to star rating mapping
+            const budgetMap = {
+                "💸": "*",
+                "💸💸": "**",
+                "💸💸💸": "***",
+                "💸💸💸💸": "****",
+                "💸💸💸💸💸": "*****"
+            };
 
-        const takeAway = hasTakeAway ? venue.information?.takeAway : true;
-        const terrace = hasTerrace ? venue.information?.hasTerrace : true;
+            // Base conditions for filtering
+            return (
+                // Basic publication status
+                venue._status === "published" &&
 
+                // Take away filter
+                (hasTakeAway ? venue.information?.takeAway : true) &&
 
-        const matchesCuisine = selectedCuisine.length > 0
-            ? (venue.information?.cuisine ?? []).some((cuisine) =>
-                selectedCuisine.some((selected) => selected.name === cuisine.name)
-            )
-            : true;
+                // Terrace filter
+                (hasTerrace ? venue.information?.hasTerrace : true) &&
 
-        const matchesDish = selectedDish.length > 0
-            ? (venue.information?.dishes ?? []).some((dish) =>
-                selectedDish.some((selected) => selected.name === dish.name)
-            )
-            : true;
+                // Open now filter
+                (showOpenOnly
+                        ? venue.information?.hours?.some(hour =>
+                            hour.dayOfWeek === getCurrentDay() &&
+                            !hour.isClosed &&
+                            isCurrentlyInPeriod(hour.periods)
+                        )
+                        : true
+                ) &&
 
-        const openOnSelectedDays = selectedDays.length > 0
-            ? (venue.information?.hours ?? []).some((hour) =>
-                selectedDays.some(day => hour.dayOfWeek === day && !hour.isClosed)
-            )
-            : true;
+                // Sunny terrace filter
+                (hasSunnyTerrace ? sunnyVenueIds.has(venue.id) : true) &&
 
-        // todo: add selection based on Lunch, Dinner, Brunch, Breakfast. - substract this from the time.
-        // information.serves
+                // Cuisine filter
+                matchesArrayCondition(venue.information?.cuisine, selectedCuisine) &&
 
-        const matchedService = selectedService.length > 0
-            ? (venue.information?.serves ?? []).some((service) => {
-                return selectedService.includes(service);
-            })
-            : true;
+                // Dish filter
+                matchesArrayCondition(venue.information?.dishes, selectedDish) &&
 
-        return venue._status === "published" &&
-            isOpen &&
-            matchesCuisine &&
-            matchesDish &&
-            takeAway &&
-            terrace &&
-            matchedService &&
-            openOnSelectedDays;
-    });
+                // Days open filter
+                (selectedDays.length > 0
+                        ? (venue.information?.hours ?? []).some((hour) =>
+                            selectedDays.some(day => hour.dayOfWeek === day && !hour.isClosed)
+                        )
+                        : true
+                ) &&
+
+                // Service filter
+                (selectedService.length > 0
+                        ? (venue.information?.serves ?? []).some((service) =>
+                            selectedService.includes(service)
+                        )
+                        : true
+                ) &&
+
+                // Budget filter
+                (selectedBudget.length > 0
+                        ? selectedBudget.map(emoji => budgetMap[emoji]).includes(venue.damage)
+                        : true
+                )
+            );
+        });
+    }, [
+        venues,
+        hasTakeAway,
+        hasTerrace,
+        showOpenOnly,
+        hasSunnyTerrace,
+        sunnyVenueIds,
+        selectedCuisine,
+        selectedDish,
+        selectedDays,
+        selectedService,
+        selectedBudget
+    ]);
+
 
     // todo: remove - redundant!
     const dayMap = {
@@ -271,6 +323,8 @@ const Map = ({}) => {
         selectedDish,
         selectedCuisine,
         selectedBudget,
+        hasSunnyTerrace,
+        sunnyVenueIds
     ]);
 
     console.log("active filters count:", activeFiltersCount);
@@ -278,8 +332,24 @@ const Map = ({}) => {
     // Add animation classes based on visibility state
     const classNames = visible ? "slide-up" : "slide-down";
 
-    // Function to create a custom SVG icon with a given color
-    const createCustomIcon = (color) => {
+    // Function to create a custom SVG icon with a given color or sun emoji
+    const createCustomIcon = (venue, color) => {
+        // Check if the venue is in sunnyVenueIds
+
+        {/*
+        const isSunnyTerrace = sunnyVenueIds.has(venue.id);
+
+        if (isSunnyTerrace) {
+            return L.divIcon({
+                className: "sunny-marker-icon",
+                html: `<div style="font-size: 24px;">🌞</div>`,
+                iconSize: [30, 30],
+                iconAnchor: [15, 15]
+            });
+        }
+        */}
+
+
         return L.divIcon({
             className: "custom-marker-icon",
             html: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="${color}" stroke="black" stroke-width="1.5"><circle cx="12" cy="12" r="10"/></svg>`,
@@ -287,6 +357,8 @@ const Map = ({}) => {
             iconAnchor: [12, 12]
         });
     };
+
+
 
     const createCustomClusterIcon = (cluster) => {
         return new divIcon({
@@ -328,6 +400,8 @@ const Map = ({}) => {
         setShowLocation(!showLocation);
     }
 
+    //const mapBoxAPI = `https://api.mapbox.com/styles/v1/oliviervd-tfc/clllwhqvq009s01pea2rw8mpt/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.NEXT_PUBLIC_MAPBOX_TOKEN}`
+    const openMapAPI = "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
     return(
         <div className={"map--ui_container"}
              style={{ overflow: "hidden", maxWidth: "100vw", maxHeight: "100vh", position: "relative" }}>
@@ -337,6 +411,7 @@ const Map = ({}) => {
                         src={back}
                         width={30}
                         height={30}
+                        alt = "back-button"
                         className={"back-button-icon"}
                     />
                 </div>
@@ -366,6 +441,7 @@ const Map = ({}) => {
             {/*<Header style={{position: "fixed"}} selectedTab={"map"} landing={true} interact={true} setLocation={setLocation} location={location} setTarget={setTarget} map={true}/>*/}
             <div style={{height: '100%', width: '100%', position: 'relative'}}>
                 <MapContainer
+                    ref={mapRef}
                     className={"map--ui"}
                     center={mapCenter}
                     zoom={zoom}
@@ -373,7 +449,7 @@ const Map = ({}) => {
                 >
                     <ChangeView center={mapCenter} zoom={zoom}/>
                     <TileLayer
-                        url="https://api.mapbox.com/styles/v1/oliviervd-tfc/clllwhqvq009s01pea2rw8mpt/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoib2xpdmllcnZkLXRmYyIsImEiOiJjbGxqZWFjd3MweTBzM2psaWFiemlnZnZnIn0.fMu0iJpz82mNYQ5Rrrwi-w"
+                        url={openMapAPI}
                     />
                     <MarkerClusterGroup
                         chunkedLoading={true}
@@ -387,7 +463,7 @@ const Map = ({}) => {
                                     <Marker
                                         key={venue.id}
                                         position={[venue.information.address.longitude, venue.information.address.latitude]}
-                                        icon={createCustomIcon(color)}
+                                        icon={createCustomIcon(venue, color)}
                                         eventHandlers={{
                                             click: () => {
                                                 setVisible(true);
@@ -395,17 +471,74 @@ const Map = ({}) => {
                                             },
                                         }}
                                     />
-
                                 )
                             }
                         })}
                     </MarkerClusterGroup>
+                    {userPosition && (
+                        <Marker
+                            position={userPosition}
+                            icon={L.divIcon({
+                                className: "user-location-icon",
+                                html: `<div style="font-size: 24px;">📍</div>`,
+                                iconSize: [30, 30],
+                                iconAnchor: [15, 15],
+                            })}
+                        />
+                    )}
                 </MapContainer>
                 <div className="open-filter-button" onClick={() => handleFilters()}>
-                    <p>&#8633;</p>
+                    <TuneIcon
+                        sx={{
+                            color: 'var(--color-secondary)',
+                            cursor: 'pointer',
+                            transition: 'all 0.3s ease',
+                            '&:hover': {
+                                color: 'var(--color-main)',
+                                backgroundColor: 'var(--color-secondary)',
+                                borderRadius: '4px', // Optional: adds a rounded background on hover
+                            }
+                        }}
+
+                    />
                     {activeFiltersCount > 0 && (
                         <span className="filter-count-badge">{activeFiltersCount}</span>
                     )}
+                </div>
+                <div
+                    className="my-location-button"
+                    onClick={() => {
+                        if (!navigator.geolocation) {
+                            alert("Geolocation is not supported by your browser");
+                            return;
+                        }
+
+                        navigator.geolocation.getCurrentPosition(
+                            (position) => {
+                                const { latitude, longitude } = position.coords;
+                                setUserPosition([latitude, longitude]); // Save for marker
+                                if (mapRef.current) {
+                                    mapRef.current.setView([latitude, longitude], 17); // adjust zoom as needed
+                                }
+                            },
+                            (error) => {
+                                console.error("Error getting location:", error);
+                                alert("Unable to retrieve your location");
+                            }
+                        );
+                    }}
+                >
+                    <MyLocationIcon
+                        sx={{
+                            color: 'var(--color-secondary)',
+                            cursor: 'pointer',
+                            transition: 'all 0.3s ease',
+                            '&:hover': {
+                                color: 'var(--color-main)',
+                                backgroundColor: 'var(--color-secondary)',
+                                borderRadius: '4px', // Optional: adds a rounded background on hover
+                            }
+                        }}/>
                 </div>
                 {/*
                 {isMobile &&
@@ -472,6 +605,26 @@ const Map = ({}) => {
                             >
                                 <p>terrace</p>
                             </div>
+
+                            {/*
+                            <div
+                                id={"sun-kissed"}
+                                className={`map--filters_pill ${!hasSunnyTerrace ? 'inactive' : ''}`}
+                                onClick={() => {
+                                    setHasSunnyTerrace(!hasSunnyTerrace);
+                                    if (isMobile) {
+                                        setOpenFilters(false);
+                                    }
+                                }}
+                            >
+                                <p style={{display: 'flex', alignItems: 'center'}}>
+                                    🌞 sun-kissed 🌞
+                                    {isCalculatingSun && <div className="sun-calculation-loader"></div>}
+                                </p>
+                            </div>
+                            */}
+
+
                             <div
                                 id={"take-away"}
                                 className={`map--filters_pill ${!hasTakeAway ? 'inactive' : ''}`}
@@ -730,7 +883,7 @@ const Map = ({}) => {
                                 <Image
                                     src={target.media.hero.url}
                                     placeholder="blur"
-                                    blurDataURL={target.media.hero.thumbnailURL}
+                                    blurDataURL={getBlur(target.media.hero.thumbnailURL)}
                                     alt={`hero image for ${target.venueName}`}
                                     fill
                                     style={{ objectFit: 'cover' , border: "2px solid var(--color-main)", boxSizing: 'border-box'}}

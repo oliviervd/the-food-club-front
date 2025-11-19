@@ -5,10 +5,13 @@ import ScrollToTop from "../../../../components/scrollToTop.jsx";
 import Banner from "../../../../components/Banner.jsx";
 import {useQuery} from "@tanstack/react-query";
 import {fetchAPI} from "../../../../utils/utils.jsx";
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useMemo} from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { getBlur } from "../../../../utils/blur";
 import dynamic from "next/dynamic.js";
+import {useSunnyVenues} from "../../../../hooks/weather/useSunnyVenues.js";
+import {venueStatus} from "../../../../utils/utils.jsx";
 
 const MapSmall = dynamic(() => import('../../../../components/mapSmall.jsx'), {
     ssr: false
@@ -21,6 +24,20 @@ const SunKissedClient = () => {
         queryFn: () => fetchAPI('venue', 'en', { limit: 1000 }),
     });
 
+    // Use the useSunnyVenues hook
+    const { data: sunnyVenueIds = new Set() } = useSunnyVenues(venuesData?.docs || []);
+
+    const sunBathingVenues = useMemo(() => {
+        if (!venuesData?.docs || !sunnyVenueIds) return [];
+
+        return venuesData.docs.filter(venue =>
+            !venue.information?.sunKissed && // Not already sun-kissed
+            venue.information?.hasTerrace && // Has a terrace
+            sunnyVenueIds.has(venue.id) && // Is sunny
+            venueStatus(venue) === "open now" // is open now
+        );
+    }, [venuesData, sunnyVenueIds]);
+
     const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
@@ -31,8 +48,6 @@ const SunKissedClient = () => {
     }, []);
 
     const sunKissedVenues = venuesData?.docs?.filter(venue => venue.information?.sunKissed);
-
-    console.log("🌞 Sun-kissed venues:", sunKissedVenues);
 
     return(
         <>
@@ -75,6 +90,37 @@ const SunKissedClient = () => {
                             )
                         })
                     )}
+                    <div className="cat_description">
+                        <p style={{fontSize: "1rem", fontWeight: "500", fontFamily: "DM-sans"}}>We hunted down the best of ‘em, so you don’t have to. Grab shades, grab drinks, grab that solar serotonin.</p>
+                    </div>
+                    {isMobile && sunBathingVenues && sunBathingVenues.length > 0 && (
+                        sunBathingVenues.map((venue, index) => {
+                            return (
+                                <div className={"category-list__box"} key={index}>
+                                    <Link href={`/venue/${venue.url}`}>
+                                        <div style={{height: "200px"}}>
+                                            <Image
+                                                src={venue.media.hero.url}
+                                                alt={`hero image for ${venue.venueName}`}
+                                                fill
+                                                placeholder={"blur"}
+                                                blurDataURL={venue.media.hero.thumbnailURL}
+                                                style={{
+                                                    objectFit: 'cover',
+                                                    border: "2px solid var(--color-main)",
+                                                    boxSizing: 'border-box'
+                                                }}
+                                                sizes="100vw"
+                                                priority={false}
+                                            />
+                                        </div>
+                                        <h2>{venue.venueName}</h2>
+                                    </Link>
+                                </div>
+                            )
+                        })
+                    )}
+
                 </div>
             }
             {!isMobile && sunKissedVenues && sunKissedVenues.length > 0 && (
@@ -82,14 +128,10 @@ const SunKissedClient = () => {
                     <section className={"venue-list__container-main"}>
                         <section>
                             <div className="cat_description">
-                                <h2>
-                                    Sun-kissed — or
-                                    better:
-                                    these spots only pop when the sun decides to show up. Hard to find, harder to keep
-                                    track of
-                                    — yet here we are, chasing that bright buzz so you don’t have to. Eat, drink, and
-                                    soak it
-                                    in.</h2>
+                                <h2 style={{fontSize: "1rem", fontWeight: "500", fontFamily: "DM-sans"}}>
+                                    Sun-kissed - or better: these spots only pop when the sun decides to show up. Hard to find, harder to keep
+                                    track of - yet here we are, chasing that bright buzz so you don’t have to. Eat, drink, and soak it in.
+                                </h2>
                             </div>
                             {sunKissedVenues.map((venue, index) => {
                                 return (
@@ -118,16 +160,46 @@ const SunKissedClient = () => {
                                     </div>
                                 )
                             })}
+                            <div className="cat_description">
+                                <h2 style={{fontSize: "1rem", fontWeight: "500", fontFamily: "DM-sans"}}>We hunted down the best of ‘em, so you don’t have to. Grab shades, grab drinks, grab that solar serotonin.</h2>
+                            </div>
+
+                            {sunBathingVenues && sunBathingVenues.length > 0 && sunBathingVenues.map((venue, index) => {
+                                return(
+                                    <div className={"venue"} key={index}>
+                                        <div className={"venue__image"} style={{width: "100%"}}>
+                                            <Link href={`/venue/${venue.url}`}>
+                                                <div style={{height: "200px"}}>
+                                                    <Image
+                                                        src={venue.media.hero.url}
+                                                        alt={`hero image for ${venue.venueName}`}
+                                                        fill
+                                                        placeholder={"blur"}
+                                                        blurDataURL={venue.media.hero.thumbnailURL}
+                                                        style={{
+                                                            objectFit: 'cover',
+                                                            border: "2px solid var(--color-main)",
+                                                            boxSizing: 'border-box'
+                                                        }}
+                                                        sizes="100vw"
+                                                        priority={false}
+                                                    />
+                                                </div>
+                                                <h2>{venue.venueName}</h2>
+                                            </Link>
+                                        </div>
+                                    </div>
+                                )
+                            })}
+
                         </section>
                     </section>
                     <section className="venue-list__container-others">
-                        <MapSmall venues={sunKissedVenues} highlight={null} onHover={null}/>
+                        <MapSmall venues={[...sunKissedVenues, ...sunBathingVenues]}
+                                  highlight={null} onHover={null}/>
                     </section>
                 </section>
-
             )}
-
-
         </>
     )
 

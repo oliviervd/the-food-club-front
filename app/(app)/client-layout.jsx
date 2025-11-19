@@ -20,7 +20,7 @@ import 'leaflet/dist/leaflet.css';
 import '/styles/map.css';
 import '/styles/colors.css';
 import CanonicalTag from "../../components/CanonicalTag.jsx";
-import { GoogleAnalytics } from '@next/third-parties/google'
+import AnalyticsGate from "../../components/AnalyticsGate.jsx";
 
 export default function ClientLayout({ children }) {
     const [queryClient] = useState(() => new QueryClient({
@@ -54,6 +54,7 @@ export default function ClientLayout({ children }) {
             <QueryClientProvider client={queryClient}>
                 <LocationColorProvider>
                     <CookieProvider>
+                        <AnalyticsGate />
                         {children}
                     </CookieProvider>
                 </LocationColorProvider>

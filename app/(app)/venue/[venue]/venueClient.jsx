@@ -10,9 +10,12 @@ import AutoResizeText from "../../../../components/AutoResizeText.jsx";
 import serialize from "../../../../utils/serialize.jsx";
 import Link from "next/link";
 import Image from "next/image.js";
+import { getBlur } from "../../../../utils/blur";
+import {terraceIsSunny} from "../../../../hooks/weather/isSunny.tsx";
 
 export default function VenueClient({ initialVenue }) {
     const [isDesktop, setIsDesktop] = useState(false);
+    const [isSunny, setIsSunny] = useState(false);
     const { venue: venueParam } = useParams();
     const baseUrl = getClientSideURL();
     const queryClient = useQueryClient();
@@ -45,7 +48,12 @@ export default function VenueClient({ initialVenue }) {
         }
     }, [venueParam, queryClient, baseUrl]);
 
+    useEffect(() => {
+        setIsSunny(terraceIsSunny(venue))
+    },[venue])
+
     if (!venue) return <div>Venue not found.</div>;
+
 
     return (
         <>
@@ -58,16 +66,16 @@ export default function VenueClient({ initialVenue }) {
                 venue={true}
             />
             <div className="desktop-view">
-                <DesktopView venue={venue} />
+                <DesktopView venue={venue} isSunny={isSunny} />
             </div>
             <div className="mobile-view">
-                <MobileView venue={venue} />
+                <MobileView venue={venue} isSunny={isSunny} />
             </div>
         </>
     );
 }
 
-function DesktopView({ venue }) {
+function DesktopView({ venue, isSunny }) {
     return (
         <section className="venue__container container-big_desktop">
             <div>
@@ -92,6 +100,13 @@ function DesktopView({ venue }) {
                                 <h2>{venue.damage.replaceAll("*","💸")}</h2>
                             </div>
                         </Link>
+                        {isSunny &&
+                            <Link href={`/recommendations/sun-kissed`}>
+                                <div className={"link"} style={{backgroundColor: "yellow"}}>
+                                    <h2>🌞 sun-kissed 🌞</h2>
+                                </div>
+                            </Link>
+                        }
                     </div>
                 }
 
@@ -127,7 +142,7 @@ function DesktopView({ venue }) {
                 <Image
                     src={venue.media.hero.url}
                     placeholder={"blur"}
-                    blurDataURL={venue.media.hero.thumbnailURL}
+                    blurDataURL={getBlur(venue.media.hero.thumbnailURL)}
                     alt={`hero image for ${venue.venueName}`}
                     fill
                     style={{ objectFit: 'cover'}}
@@ -139,7 +154,7 @@ function DesktopView({ venue }) {
     );
 }
 
-function MobileView({ venue }) {
+function MobileView({ venue, isSunny }) {
     console.log("venue", venue)
     return (
         <section className="venue__container">
@@ -178,9 +193,17 @@ function MobileView({ venue }) {
                                     <h2>{venue.damage.replaceAll("*","💸")}</h2>
                                 </div>
                             </Link>
+                            {isSunny &&
+                                    <Link href={`/recommendations/sun-kissed`}>
+                                        <div className={"link"} style={{backgroundColor: "yellow"}}>
+                                            <h2>🌞 sun-kissed 🌞</h2>
+                                        </div>
+                                    </Link>
+                            }
 
                         </div>
                     }
+
                 </div>
 
                 <div className="container-big">

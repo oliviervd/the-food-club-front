@@ -251,6 +251,8 @@
     }
 
     .venue-list__container-main {
+
+
         min-width: 100%;
 
         section {
@@ -261,6 +263,7 @@
             gap: 1%;
             justify-content: flex-start;
 
+
             .info-box{
                 height: 200px;
                 display: flex;
@@ -268,9 +271,29 @@
                 justify-content: center;
                 background: var(--color-main);
 
+                h2 {
+                    color: var(--color-secondary);
+                    font-size: 1rem;
+                    padding: 10px;
+                    justify-content: center;
+                    text-align: center;
+                    left: 50%;
+                    top: 50%;
+                    width: 80%;
+                    position: absolute;
+                    transform: translateX(-50%) translateY(-50%);
+                }
+
                 > p {
-                    margin: 10px;
-                    background: var(--color-main);
+                    position: absolute;
+                    bottom: 5px;
+                    left: 5px;
+                    right:5px;
+                    color: var(--color-secondary);
+                    text-align: center;
+                    margin: 20px 15px;
+                    font-family: DM-serif-display-italic;
+                    font-weight: 200;
                 }
 
             }

@@ -2,22 +2,10 @@
 // hook that fetches weather data from ..
 import {useState, useEffect} from 'react'
 
-interface WeatherData {
-    temperature: number;
-    description: string;
-    humidity: number;
-    windSpeed: number;
-    clouds: number;
-}
-
-interface WeatherError {
-    message: string;
-}
-
-const useWeather = (city: string) => {
-    const [weather, setWeather] = useState<WeatherData | WeatherError | null>(null);
+const useWeather = (city) => {
+    const [weather, setWeather] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<WeatherError | null>(null);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchWeather = async () => {
@@ -38,6 +26,7 @@ const useWeather = (city: string) => {
                     windSpeed: data.wind.speed,
                     clouds: data.clouds.all
                 });
+
                 setError(null);
             } catch (error) {
                 setError({ message: error instanceof Error ? error.message : 'Failed to fetch weather data' });

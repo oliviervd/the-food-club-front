@@ -4,17 +4,19 @@ import Header from "/components/Header.jsx";
 import "../../styles/header.css"
 import "../../styles/fonts.css"
 
-import CategoryList from "/components/CategoryList.jsx";
-import DesktopHome from "./pages/desktop/desktopHome.jsx";
+import dynamic from 'next/dynamic';
+const CategoryList = dynamic(() => import('/components/CategoryList.jsx'));
+const DesktopHome = dynamic(() => import('./pages/desktop/desktopHome.jsx'), { ssr: false });
 import {fetchAPI, scrollTo} from "/utils/utils.jsx";
 import {useQuery} from "@tanstack/react-query";
 import {useEffect, useState} from "react";
-import LuckyButton from "/components/luckyButton.jsx";
+const LuckyButton = dynamic(() => import('/components/luckyButton.jsx'), { ssr: false });
 import {useScrollPosition} from "/hooks/useScrollPosition.jsx";
 import { useRouter } from 'next/navigation';
 import {useIsMobile} from "/hooks/isMobile.jsx";
 import ScrollToTop from "/components/scrollToTop.jsx";
 import CookiePopUp from "/components/Cookie-Pop-Up.jsx";
+const SearchBarMobile = dynamic(() => import('../../components/Search/SearchBarMobile.jsx'), { ssr: false, loading: () => null });
 
 // todo: add locales
 
@@ -44,8 +46,12 @@ const HomeClient = () => {
         queryFn: () => fetchAPI("categories", "en")
     });
     const {data: venuesData, isLoading: venuesLoading, error:venuesError} = useQuery({
-        queryKey: ["venues"],
-        queryFn: () => fetchAPI('venue', 'en', {limit: 1000})
+        queryKey: ["venues", isMobile ? 'mobile' : 'desktop'],
+        queryFn: () => fetchAPI('venue', 'en', { limit: isMobile ? 300 : 600 }),
+        staleTime: 5 * 60 * 1000,
+        refetchOnWindowFocus: false,
+        // Defer heavy venues fetch until the LuckyButton becomes visible (after user scrolls)
+        enabled: visible,
     });
 
     const {data: rec, isLoading: recLoading, error:recError} = useQuery({
@@ -68,7 +74,10 @@ const HomeClient = () => {
             {isMobile &&
                 <section className={"home__container"} style={{paddingBottom:"50px"}}>
                     <div style={{paddingBottom:"30px"}}>
-                        <section style={{padding: "10px 0"}}>
+                        <section>
+                            <SearchBarMobile/>
+                        </section>
+                        <section style={{padding: "0px 10px 0"}}>
                             <h2 className={"subtitle"}>
                                 FOOD CLUB loves lists. We've crafted these bad boys just for you! From healthy snacks to absurdly comforting food, the order is yours.
                             </h2>

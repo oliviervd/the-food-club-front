@@ -1,11 +1,39 @@
 import React, { useMemo, useState, useEffect, useCallback } from "react";
 import {useRouter} from "next/navigation";
-import Loading from "../app/(app)/Loading.jsx";
+// import Loading from "../app/(app)/Loading.jsx";
 import Link from "next/link";
-import BroadCastForYou from "./BroadCastForYou.js";
+import dynamic from 'next/dynamic';
+const BroadCastForYou = dynamic(() => import('./BroadCastForYou.js'), { ssr: false, loading: () => null });
 import Image from "next/image.js";
 
 // TODO: Add hover effect on desktop (show text explaining the category)
+
+// next/image blur placeholders require a base64 data URL. When the CMS provides a normal URL
+// (e.g. thumbnailURL), fallback to a small base64 shimmer so the blur effect actually shows.
+const toBase64 = (str) =>
+    typeof window === 'undefined'
+        ? Buffer.from(str).toString('base64')
+        : window.btoa(str)
+
+const shimmer = (w = 16, h = 9) =>
+    `data:image/svg+xml;base64,${toBase64(
+        `<svg width="${w}" height="${h}" xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'>
+          <defs>
+            <linearGradient id='g'>
+              <stop stop-color='#f6f7f8' offset='20%' />
+              <stop stop-color='#edeef1' offset='50%' />
+              <stop stop-color='#f6f7f8' offset='70%' />
+            </linearGradient>
+          </defs>
+          <rect width='100%' height='100%' fill='#f6f7f8' />
+          <rect id='r' width='100%' height='100%' fill='url(#g)' />
+          <animate xlink:href='#r' attributeName='x' from='-100%' to='100%' dur='1s' repeatCount='indefinite'  />
+        </svg>`)}>`
+
+const isDataURL = (str) => typeof str === 'string' && str.startsWith('data:')
+
+const getBlur = (thumb, fallbackWidth = 16, fallbackHeight = 9) =>
+    isDataURL(thumb) ? thumb : shimmer(fallbackWidth, fallbackHeight)
 
 const CategoryList = ({ data, home }) => {
     const router = useRouter();
@@ -63,14 +91,11 @@ const CategoryList = ({ data, home }) => {
         }
     }, [totalImages]);
 
-    if (!imagesLoaded) {
-        return <Loading/>
-    }
-
+    // Render progressively to avoid blocking LCP
+    // Removed global loading gate so above-the-fold content can paint ASAP
 
     return (
         <section className="category-list__container">
-
             {!home &&
                 categories.map((cat, index) => {
                     const mediaUrl = cat?.media?.hero?.url;
@@ -86,11 +111,13 @@ const CategoryList = ({ data, home }) => {
                                         <Image
                                             src={cat.media.hero.url}
                                             placeholder="blur"
-                                            blurDataURL={cat.media.hero.thumbnailURL ||cat.media.hero.url}                                            alt={`hero image for ${cat.name}`}
+                                            blurDataURL={getBlur(cat.media.hero.thumbnailURL)}
+                                            alt={`hero image for ${cat.name}`}
                                             fill
                                             style={{ objectFit: 'cover' }}
-                                            sizes="100vw"
-                                            priority={false} // or true for critical images
+                                            sizes="(max-width: 600px) 100vw, 50vw"
+                                            decoding="async"
+                                            priority={false}
                                         />
                                         <h2>{cat.name}</h2>
                                         <p>{cat.slug}</p>
@@ -114,11 +141,13 @@ const CategoryList = ({ data, home }) => {
                                         <Image
                                             src={cat.media.hero.url}
                                             placeholder="blur"
-                                            blurDataURL={cat.media.hero.thumbnailURL ||cat.media.hero.url}                                            alt={`hero image for ${cat.name}`}
+                                            blurDataURL={getBlur(cat.media.hero.thumbnailURL)}
+                                            alt={`hero image for ${cat.name}`}
                                             fill
                                             style={{ objectFit: 'cover' , zIndex: "-1111"}}
-                                            sizes="100vw"
-                                            priority={false} // or true for critical images
+                                            sizes="(max-width: 600px) 100vw, 50vw"
+                                            decoding="async"
+                                            priority={false}
                                         />
                                         <h2>{cat.name}</h2>
                                         <p>{cat.slug}</p>
@@ -141,11 +170,14 @@ const CategoryList = ({ data, home }) => {
                                 <Image
                                     src={cat.media.hero.url}
                                     placeholder="blur"
-                                    blurDataURL={cat.media.hero.thumbnailURL ||cat.media.hero.url}                                    alt={`hero image for ${cat.name}`}
+                                    blurDataURL={getBlur(cat.media.hero.thumbnailURL)}
+                                    alt={`hero image for ${cat.name}`}
                                     fill
                                     style={{ objectFit: 'cover' }}
-                                    sizes="100vw"
-                                    priority={false} // or true for critical images
+                                    sizes="(max-width: 600px) 100vw, 50vw"
+                                    decoding="async"
+                                    priority={index === 0}
+                                    fetchPriority={index === 0 ? 'high' : 'auto'}
                                 />
                                 <h2>{cat.name}</h2>
                                 <p>{cat.slug}</p>

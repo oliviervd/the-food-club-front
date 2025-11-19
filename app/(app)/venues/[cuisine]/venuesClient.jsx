@@ -5,12 +5,13 @@ import ScrollToTop from "../../../../components/scrollToTop.jsx";
 import Header from "../../../../components/Header.jsx";
 import React, {useContext, useEffect, useState} from "react";
 import {useQuery} from "@tanstack/react-query";
-import {fetchAPI} from "../../../../utils/utils.jsx";
+import {fetchAPI, venueStatus} from "../../../../utils/utils.jsx";
 import Banner from "../../../../components/Banner.jsx";
 import {LocationColorContext} from "../../../../contexts/LocationColorContext.jsx";
 import Link from "next/link";
 import serialize from "../../../../utils/serialize.jsx"
 import Image from "next/image.js";
+import { getBlur } from "../../../../utils/blur.js";
 
 const MapSmall = dynamic(() => import('../../../../components/mapSmall.jsx'), {
     ssr: false
@@ -28,12 +29,16 @@ const VenuesClient = ({ cuisine }) => {
 
     const { data: venuesData, isLoading: venuesLoading, error: venuesError } = useQuery({
         queryKey: ["venues"],
-        queryFn: () => fetchAPI('venue', 'en', { limit: 1000 }),
+        queryFn: () => fetchAPI('venue', 'en', { limit: 600 }),
+        staleTime: 5 * 60 * 1000,
+        refetchOnWindowFocus: false,
     });
 
     const { data: cuisinesData, isLoading: cuisinesLoading, error: cuisinesError } = useQuery({
         queryKey: ["cuisines"],
-        queryFn: () => fetchAPI("cuisine", "en", { limit: 1000 }),
+        queryFn: () => fetchAPI("cuisine", "en", { limit: 600 }),
+        staleTime: 5 * 60 * 1000,
+        refetchOnWindowFocus: false,
     });
 
     const [isMobile, setIsMobile] = useState(false);
@@ -169,6 +174,8 @@ const VenuesClient = ({ cuisine }) => {
                                                                 src={match.media.hero.url}
                                                                 alt={`hero image for ${match.venueName}`}
                                                                 fill
+                                                                placeholder="blur"
+                                                                blurDataURL={getBlur(match.media.hero.thumbnailURL)}
                                                                 style={{
                                                                     objectFit: 'cover',
                                                                     border: "2px solid var(--color-main)",
@@ -177,6 +184,8 @@ const VenuesClient = ({ cuisine }) => {
                                                                 sizes="100vw"
                                                                 priority={false}
                                                             />
+                                                            {venueStatus(match) && <div className="venue-open">{venueStatus(match)}</div>}
+
                                                         </div>
                                                         <h2 style={{textAlign: "center"}}>{match.venueName}</h2>
                                                     </Link>
@@ -228,6 +237,8 @@ const VenuesClient = ({ cuisine }) => {
                                                                         src={match.media.hero.url}
                                                                         alt={`hero image for ${match.venueName}`}
                                                                         fill
+                                                                        placeholder="blur"
+                                                                        blurDataURL={getBlur(match.media.hero.thumbnailURL)}
                                                                         style={{ objectFit: 'cover' , border: "2px solid var(--color-main)", boxSizing: 'border-box'}}
                                                                         sizes="100vw"
                                                                         priority={false}
