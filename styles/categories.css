@@ -371,6 +371,10 @@
 
                 .venue__image {
 
+                    :hover {
+                         cursor: pointer;
+                     }
+
                     .image-container {
                        height: auto;
                     }
@@ -393,6 +397,7 @@
                     h2:hover {
                         color: var(--color-secondary);
                         background-color: var(--color-main);
+                        cursor: pointer;
                     }
                 }
             }
