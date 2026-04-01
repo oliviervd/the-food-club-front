@@ -3,6 +3,7 @@
 import Header from "../../../components/Header.jsx";
 import {useEffect, useState} from "react";
 import {useQuery} from "@tanstack/react-query";
+import Loading from "../loading.jsx";
 import {fetchAPI} from "../../../utils/utils.jsx";
 import serialize from "../../../utils/serialize.jsx";
 
@@ -24,6 +25,9 @@ const Page = ({}) => {
         queryKey: ['coming-soon'],
         queryFn: () => fetchAPI('page', 'en', {'where[slug][equals]': 'coming-soon'})
     });
+
+    if (isLoading) return <Loading />;
+    if (error) return <div>Error: {error.message}</div>;
 
     const HeroImage = ({block}) => {
         return (

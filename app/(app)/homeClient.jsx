@@ -11,6 +11,7 @@ import {fetchAPI, scrollTo} from "/utils/utils.jsx";
 import {useQuery} from "@tanstack/react-query";
 import {useEffect, useState} from "react";
 const LuckyButton = dynamic(() => import('/components/luckyButton.jsx'), { ssr: false });
+import Loading from "./loading.jsx";
 import {useScrollPosition} from "/hooks/useScrollPosition.jsx";
 import { useRouter } from 'next/navigation';
 import {useIsMobile} from "/hooks/isMobile.jsx";
@@ -63,7 +64,7 @@ const HomeClient = () => {
         scrollTo(target);
     }, [target]);
 
-    //if (isLoading || venuesLoading) return <Loading />;
+    if (isLoading) return <Loading />;
     if (error) return <div>Error: {error.message}</div>;
 
     // render component

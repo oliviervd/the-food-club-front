@@ -1,6 +1,7 @@
 'use client'
 
 import Header from "../../../components/Header.jsx";
+import Loading from "../loading.jsx";
 import {useQuery} from "@tanstack/react-query";
 import {fetchAPI} from "../../../utils/utils.jsx";
 import "styles/pages.css"
@@ -23,6 +24,9 @@ const Page = ({}) => {
         queryKey: ['about'],
         queryFn: () => fetchAPI('page', 'en', {'where[slug][equals]': 'about'})
     });
+
+    if (isLoading) return <Loading />;
+    if (error) return <div>Error: {error.message}</div>;
 
 
     // define react components for blocks

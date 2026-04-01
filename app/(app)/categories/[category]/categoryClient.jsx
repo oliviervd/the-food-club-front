@@ -8,7 +8,8 @@ import { debounce } from 'lodash';
 
 import Header from "../../../../components/Header.jsx";
 import Banner from "../../../../components/Banner.jsx";
-import Loading from "../../Loading.jsx";
+import Loading from "../../loading.jsx";
+
 
 import { fetchAPI, shuffleArray, venueStatus } from "../../../../utils/utils.jsx";
 import { LocationColorContext } from "../../../../contexts/LocationColorContext.jsx";
@@ -39,19 +40,15 @@ const CategoryClient = () => {
         return () => window.removeEventListener("resize", checkWidth);
     }, []);
 
-    const { data: categories, isLoading, error } = useQuery({
+    const { data: categoryData, isLoading, error } = useQuery({
         queryKey: ['categories', categoryParam],
-        queryFn: () => fetchAPI('categories', 'en')
+        queryFn: () => fetchAPI('categories', 'en', { filter: { url: categoryParam } })
     });
 
     const _category = useMemo(() => {
-        return categories?.docs.find((category) => category.url === categoryParam) || null;
-    }, [categories, categoryParam]);
+        return categoryData?.docs?.[0] || null;
+    }, [categoryData]);
 
-    const { data: categoryList } = useQuery({
-        queryKey: ["lists"],
-        queryFn: () => fetchAPI("lists", "en")
-    });
 
     if (_category) {
        // console.log(_category.categoryDescription)
@@ -84,6 +81,7 @@ const CategoryClient = () => {
                             <section>
                                 {shuffledVenues.map((venue, index) => {
                                     const v = venue;
+                                    const status = venueStatus(v);
                                     //console.log(v)
                                     if (v._status === "published" && v.club === location) {
                                         return (
@@ -103,10 +101,10 @@ const CategoryClient = () => {
                                                             border: "2px solid var(--color-main)",
                                                             boxSizing: 'border-box'
                                                         }}
-                                                        sizes="100vw"
+                                                        sizes="(max-width: 800px) 100vw, 25vw"
                                                         priority={false}
                                                     />
-                                                    {venueStatus(v) && <div className="venue-open">{venueStatus(v)}</div>}
+                                                    {status && <div className="venue-open">{status}</div>}
                                                 </div>
                                                 <h2 style={{ textAlign: "center" }}>{v.venueName}</h2>
                                             </div>
@@ -172,7 +170,7 @@ const CategoryClient = () => {
                                                                     border: "2px solid var(--color-main)",
                                                                     boxSizing: 'border-box'
                                                                 }}
-                                                                sizes="100vw"
+                                                                sizes="(max-width: 800px) 100vw, 25vw"
                                                                 priority={false}
                                                             />
                                                             <h2 style={borderStyle}>{v.venueName}</h2>

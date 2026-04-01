@@ -6,6 +6,7 @@ import Header from "../../../../components/Header.jsx";
 import React, {useContext, useEffect, useState} from "react";
 import {useQuery} from "@tanstack/react-query";
 import {fetchAPI, venueStatus} from "../../../../utils/utils.jsx";
+import Loading from "../../loading.jsx";
 import Banner from "../../../../components/Banner.jsx";
 import {LocationColorContext} from "../../../../contexts/LocationColorContext.jsx";
 import Link from "next/link";
@@ -109,16 +110,7 @@ const VenuesClient = ({ cuisine }) => {
         setSearch(searchCuisine);
     }, [cuisine, venuesData?.docs, cuisinesData?.docs]);
 
-    if (venuesLoading || cuisinesLoading) {
-        return (
-            <div>
-                <Header landing={true} location={club} setLocation={setClub} interact={true} />
-                <div>
-                    <Banner content={search} />
-                </div>
-            </div>
-        );
-    }
+    if (venuesLoading || cuisinesLoading) return <Loading />;
 
     if (venuesError || cuisinesError) {
         return <p>Error loading data</p>;
@@ -131,7 +123,7 @@ const VenuesClient = ({ cuisine }) => {
             <div>
                 <Banner content={search} />
             </div>
-            {matches === null && <p>Loading or calculating matches...</p>}
+            {matches === null && <Loading />}
 
             {matches && matches.length === 0 && (
                 <section className="home__container">
@@ -165,6 +157,7 @@ const VenuesClient = ({ cuisine }) => {
                                 )}
                                 {matches.map((match, index) => {
                                     if (match._status === "published") {
+                                        const status = venueStatus(match);
                                         try {
                                             return (
                                                 <div key={index} className="category-list__box">
@@ -181,10 +174,10 @@ const VenuesClient = ({ cuisine }) => {
                                                                     border: "2px solid var(--color-main)",
                                                                     boxSizing: 'border-box'
                                                                 }}
-                                                                sizes="100vw"
+                                                                sizes="(max-width: 800px) 100vw, 25vw"
                                                                 priority={false}
                                                             />
-                                                            {venueStatus(match) && <div className="venue-open">{venueStatus(match)}</div>}
+                                                            {status && <div className="venue-open">{status}</div>}
 
                                                         </div>
                                                         <h2 style={{textAlign: "center"}}>{match.venueName}</h2>
@@ -240,7 +233,7 @@ const VenuesClient = ({ cuisine }) => {
                                                                         placeholder="blur"
                                                                         blurDataURL={getBlur(match.media.hero.thumbnailURL)}
                                                                         style={{ objectFit: 'cover' , border: "2px solid var(--color-main)", boxSizing: 'border-box'}}
-                                                                        sizes="100vw"
+                                                                        sizes="(max-width: 800px) 100vw, 25vw"
                                                                         priority={false}
                                                                     />
                                                                 </div>

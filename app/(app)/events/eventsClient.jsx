@@ -3,6 +3,7 @@
 import Header from "../../../components/Header.jsx";
 import ScrollToTop from "../../../components/scrollToTop.jsx";
 import Banner from "../../../components/Banner.jsx";
+import Loading from "../loading.jsx";
 import {useQuery} from "@tanstack/react-query";
 import {fetchAPI} from "../../../utils/utils.jsx";
 import React, {useMemo} from "react";
@@ -154,8 +155,8 @@ const processedEvents = useMemo(() => {
         return 'Date TBA';
     };
 
-    //if (eventsLoading) return <div>Loading events...</div>;
-    //if (eventsError) return <div>Error loading events</div>;
+    if (eventsLoading) return <Loading />;
+    if (eventsError) return <div>Error loading events</div>;
 
     return (
         <>
