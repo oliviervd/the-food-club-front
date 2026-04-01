@@ -152,7 +152,9 @@ function DesktopView({ venue, isSunny }) {
                     fill
                     style={{ objectFit: 'cover'}}
                     sizes="100vw"
-                    priority={false}
+                    decoding="async"
+                    priority
+                    fetchPriority="high"
                 />
             </div>
         </section>
@@ -169,11 +171,14 @@ function MobileView({ venue, isSunny }) {
                         <Image
                             src={venue.media.hero.url}
                             placeholder={"blur"}
-                            blurDataURL={venue.media.hero.thumbnailURL}                            alt={`hero image for ${venue.venueName}`}
+                            blurDataURL={getBlur(venue.media.hero.thumbnailURL)}
+                            alt={`hero image for ${venue.venueName}`}
                             fill
                             style={{ objectFit: 'cover' }}
                             sizes="100vw"
-                            priority={false}
+                            decoding="async"
+                            priority
+                            fetchPriority="high"
                         />
                     </div>
 

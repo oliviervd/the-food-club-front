@@ -4,7 +4,7 @@ import {getPayload} from "payload";
 export async function generateMetadata({ params }){
 
   let query = `https://thefoodclub.be/api/categories?where[url][equals]=${params.category}&depth=0`
-  const res = await fetch(query, { cache: 'no-store' });
+  const res = await fetch(query);
 
   const data = await res.json();
 

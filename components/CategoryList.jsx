@@ -98,7 +98,7 @@ const CategoryList = ({ data, home }) => {
         <section className="category-list__container">
             {!home &&
                 categories.map((cat, index) => {
-                    const mediaUrl = cat?.media?.hero?.url;
+                    const mediaUrl = cat?.media?.hero?.sizes?.tablet?.url;
 
                     // Skip categories without valid media
                     if (!mediaUrl) return null;
@@ -109,9 +109,9 @@ const CategoryList = ({ data, home }) => {
                                 <div className={"category-list__box"}>
                                     <Link href={`/categories/${cat.url}`}>
                                         <Image
-                                            src={cat.media.hero.url}
+                                            src={cat.media.hero.sizes.tablet.url}
                                             placeholder="blur"
-                                            blurDataURL={getBlur(cat.media.hero.thumbnailURL)}
+                                            blurDataURL={getBlur(cat.media.hero.sizes.tablet.url)}
                                             alt={`hero image for ${cat.name}`}
                                             fill
                                             style={{ objectFit: 'cover' }}
@@ -142,7 +142,7 @@ const CategoryList = ({ data, home }) => {
                                 <div className={"category-list__box"}>
                                     <Link href={`/categories/${cat.url}`}>
                                         <Image
-                                            src={cat.media.hero.url}
+                                            src={cat.media.hero.sizes.tablet.url}
                                             placeholder="blur"
                                             blurDataURL={getBlur(cat.media.hero.thumbnailURL)}
                                             alt={`hero image for ${cat.name}`}
@@ -173,9 +173,9 @@ const CategoryList = ({ data, home }) => {
                             <Link href={`/categories/${cat.url}`}>
                                 {/* Use the onLoad handler to detect when the image has loaded */}
                                 <Image
-                                    src={cat.media.hero.url}
+                                    src={cat.media.hero.sizes.tablet.url}
                                     placeholder="blur"
-                                    blurDataURL={getBlur(cat.media.hero.thumbnailURL)}
+                                    blurDataURL={getBlur(cat.media.hero.sizes.thumbnailURL)}
                                     alt={`hero image for ${cat.name}`}
                                     fill
                                     style={{ objectFit: 'cover' }}

@@ -4,21 +4,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Fetch venues (published)
     const venueRes = await fetch(
         "https://thefoodclub.be/api/venues?limit=1000&where[_status][equals]=published",
-        { cache: "no-store" }
+        //{ cache: "no-store" }
     );
     const venueData = await venueRes.json();
 
     // Fetch categories (published)
     const categoryRes = await fetch(
         "https://thefoodclub.be/api/categories?limit=1000&where[_status][equals]=published",
-        { cache: "no-store" }
+        //{ cache: "no-store" }
     );
     const categoryData = await categoryRes.json();
 
     // Fetch cuisines (published)
     const cuisineRes = await fetch(
         "https://thefoodclub.be/api/cuisines?limit=1000",
-        { cache: "no-store" }
+        //{ cache: "no-store" }
     );
     const cuisineData = await cuisineRes.json();
 

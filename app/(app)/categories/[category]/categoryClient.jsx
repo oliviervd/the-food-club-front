@@ -93,11 +93,11 @@ const CategoryClient = () => {
                                                         <div className="image__club-tag">NEW</div>
                                                     }
                                                     <Image
-                                                        src={v.media.hero.url}
+                                                        src={v.media.hero.sizes.mobileFriendly.url}
                                                         alt={`hero image for ${v.venueName}`}
                                                         fill
-                                                        placeholder= 'blur'
-                                                        blurDataURL={getBlur(v.media.hero?.thumbnailURL)}
+                                                        //placeholder= 'blur'
+                                                        //blurDataURL={getBlur(v.media.tablet?.thumbnailURL)}
                                                         style={{
                                                             objectFit: 'cover',
                                                             border: "2px solid var(--color-main)",
@@ -162,11 +162,11 @@ const CategoryClient = () => {
                                                             style={{height: "200px"}}
                                                         >
                                                             <Image
-                                                                src={v.media.hero.url}
+                                                                src={v.media.hero.sizes.tablet.url}
                                                                 alt={`hero image for ${v.venueName}`}
                                                                 fill
-                                                                placeholder= 'blur'
-                                                                blurDataURL={getBlur(v.media.hero?.thumbnailURL)}
+                                                                //placeholder= 'blur'
+                                                                //blurDataURL={getBlur(v.media.hero?.thumbnailURL)}
                                                                 style={{
                                                                     objectFit: 'cover',
                                                                     border: "2px solid var(--color-main)",
