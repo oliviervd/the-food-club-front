@@ -78,6 +78,30 @@ const HomeClient = () => {
                         <section>
                             <SearchBarMobile/>
                         </section>
+                        <section style={{ padding: "10px 0" }}>
+                            <button
+                                onClick={() => router.push('/near-me')}
+                                style={{
+                                    width: "100%",
+                                    padding: "12px",
+                                    borderRadius: "0",
+                                    border: "2px solid var(--color-main)",
+                                    backgroundColor: "var(--color-main)",
+                                    color: "var(--color-secondary)",
+                                    fontSize: "1.1rem",
+                                    fontWeight: "bold",
+                                    cursor: "pointer",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    gap: "10px"
+                                }}
+                            >
+                                <h2
+                                    //style={{fontWeight: "bold"}}
+                                >Near Me & Open</h2>
+                            </button>
+                        </section>
                         <section style={{padding: "0px 10px 0"}}>
                             <h2 className={"subtitle"}>
                                 FOOD CLUB loves lists. We've crafted these bad boys just for you! From healthy snacks to absurdly comforting food, the order is yours.

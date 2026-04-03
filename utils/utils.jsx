@@ -60,6 +60,40 @@ export function venueStatus(venue) {
     return "closed today";
 }
 
+export function getClosingTime(venue) {
+    if (!venue?.information?.hours) return null;
+
+    const days = {
+        "monday": 1,
+        "tuesday": 2,
+        "wednesday": 3,
+        "thursday": 4,
+        "friday": 5,
+        "saturday": 6,
+        "sunday": 0
+    };
+
+    const now = new Date();
+    const currentDay = now.getDay();
+    const todaySchedule = venue.information.hours.find(day => days[day.dayOfWeek] === currentDay);
+
+    if (!todaySchedule || todaySchedule.isClosed || !todaySchedule.periods?.[0]) return null;
+
+    const { closeTime } = todaySchedule.periods[0];
+    if (!closeTime) return null;
+
+    // Format HH:mm into 10:00 PM if needed, or keep it 24h
+    const [hours, minutes] = closeTime.split(":").map(Number);
+    const date = new Date();
+    date.setHours(hours, minutes, 0, 0);
+
+    const options = {
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true,
+    };
+    return date.toLocaleString('en-US', options);
+}
 
 // Helper function to parse "HH:mm" format into minutes since midnight
 function parseTime(timeString) {
@@ -208,4 +242,22 @@ export function isTerraceInSun({lat, lon, orientation}) {
     const isSunAboveHorizon = altitudeDeg > 0;
 
     return isAzimuthOk && isSunAboveHorizon;
+}
+
+export function calculateDistance(lat1, lon1, lat2, lon2) {
+    const R = 6371; // Radius of the earth in km
+    const dLat = deg2rad(lat2 - lat1);
+    const dLon = deg2rad(lon2 - lon1);
+    const a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+        Math.sin(dLon / 2) * Math.sin(dLon / 2)
+    ;
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const d = R * c; // Distance in km
+    return d;
+}
+
+function deg2rad(deg) {
+    return deg * (Math.PI / 180)
 }
