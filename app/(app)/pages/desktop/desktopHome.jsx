@@ -77,6 +77,12 @@ const DesktopHome = ({categories, recommendations}) => {
 
                 {shuffledCategories && shuffledCategories.map((cat, index) => {
                     try {
+                        const hero = cat?.media?.hero;
+                        if (!hero) return null;
+                        
+                        const imageUrl = hero.sizes?.tablet?.url || hero.url;
+                        const isPriority = index < 4;
+                        
                         if (index === 5) {
                             return (
                                 <React.Fragment key={index}>
@@ -84,14 +90,14 @@ const DesktopHome = ({categories, recommendations}) => {
                                         <Link href={`/categories/${cat.url}`}>
                                             <div className="image-container">
                                                 <Image
-                                                    src={cat.media.hero.url}
+                                                    src={imageUrl}
                                                     placeholder="blur"
-                                                    blurDataURL={getBlur(cat.media.hero.thumbnailURL)}
+                                                    blurDataURL={getBlur(hero.sizes?.mobileThumbnail?.url || hero.thumbnailURL)}
                                                     alt={`hero image for ${cat.name}`}
                                                     fill
                                                     style={{ objectFit: 'cover' }}
-                                                    sizes="100vw"
-                                                    priority={false}
+                                                    sizes="(max-width: 1300px) 45vw, 22vw"
+                                                    priority={isPriority}
                                                 />
                                             </div>
                                             <h2>{cat.name}</h2>
@@ -112,14 +118,14 @@ const DesktopHome = ({categories, recommendations}) => {
                                 <Link href={`/categories/${cat.url}`}>
                                     <div className="image-container">
                                         <Image
-                                            src={cat.media.hero.url}
+                                            src={imageUrl}
                                             placeholder="blur"
-                                            blurDataURL={getBlur(cat.media.hero.thumbnailURL)}
+                                            blurDataURL={getBlur(hero.sizes?.mobileThumbnail?.url || hero.thumbnailURL)}
                                             alt={`hero image for ${cat.name}`}
                                             fill
                                             style={{ objectFit: 'cover' }}
-                                            sizes="100vw"
-                                            priority={false}
+                                            sizes="(max-width: 1300px) 45vw, 22vw"
+                                            priority={isPriority}
                                         />
                                     </div>
                                     <h2>{cat.name}</h2>
