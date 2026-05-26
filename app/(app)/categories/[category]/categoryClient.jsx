@@ -46,8 +46,8 @@ const CategoryClient = () => {
     });
 
     const _category = useMemo(() => {
-        return categoryData?.docs?.[0] || null;
-    }, [categoryData]);
+        return categoryData?.docs?.find(c => c.url === categoryParam) || null;
+    }, [categoryData, categoryParam]);
 
 
     if (_category) {
