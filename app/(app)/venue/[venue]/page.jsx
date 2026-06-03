@@ -1,13 +1,8 @@
 import VenueClient from "./venueClient.jsx";
-import Head from 'next/head';
+import { getVenue } from "./getVenue";
 
 export async function generateMetadata({ params }) {
-    const res = await fetch(
-        `https://thefoodclub.be/api/venues?where[url][equals]=${params.venue}&depth=2`,
-        { next: { revalidate: 60 } }
-    );
-    const data = await res.json();
-    const venue = data.docs[0];
+    const venue = await getVenue(params.venue);
 
     if (!venue) return {};
 
@@ -16,14 +11,23 @@ export async function generateMetadata({ params }) {
     const description = seo.description || '';
     const image = seo.image?.url || '';
 
+    const noIndex = Boolean(process.env.NEXT_PUBLIC_ROBOTS_META);
+
     return {
-        title: title,
-        description: description,
-        keywords: [venue.venueName, venue.information.address?.city, venue.information.address?.street, venue.information.address?.postalCode, 'food', 'restaurant', 'thefoodclub', 'thefoodclub.be', 'foodclub', 'foodclub.be', 'the food club'],
+        title,
+        description,
+        keywords: [
+            venue.venueName,
+            venue.information?.address?.city,
+            venue.information?.address?.street,
+            venue.information?.address?.postalCode,
+            'food', 'restaurant', 'thefoodclub', 'thefoodclub.be',
+            'foodclub', 'foodclub.be', 'the food club',
+        ].filter(Boolean),
         openGraph: {
             title,
             description,
-            images: [{ url: image }],
+            images: image ? [{ url: image }] : [],
             url: `https://www.thefoodclub.be/venue/${params.venue}`,
             type: 'website',
             site_name: 'The Food Club',
@@ -33,26 +37,17 @@ export async function generateMetadata({ params }) {
             card: 'summary_large_image',
             title,
             description,
-            images: [{ url: image }],
+            images: image ? [{ url: image }] : [],
         },
-        robots: process.env.NEXT_PUBLIC_ROBOTS_META
-            ? {
-                index: false,
-                follow: false,
-                googleBot: {
-                    index: false,
-                    follow: false
-                }
-            }
-            : {
-                index: true,
-                follow: true,
-                googleBot: {
-                    index: true,
-                    follow: true,
-                    noImageIndex: false,
-                },
+        robots: {
+            index: !noIndex,
+            follow: !noIndex,
+            googleBot: {
+                index: !noIndex,
+                follow: !noIndex,
+                noImageIndex: false,
             },
+        },
         alternates: {
             canonical: `https://www.thefoodclub.be/venue/${params.venue}`,
         },
@@ -60,17 +55,13 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function VenuePage({ params }) {
-    const res = await fetch(
-        `https://thefoodclub.be/api/venues?where[url][equals]=${params.venue}&depth=2`,
-        { next: { revalidate: 60 } }
-    );
-    const data = await res.json();
-    const venue = data.docs[0] || null;
+    const venue = await getVenue(params.venue);
 
     if (!venue) {
         return <div>Venue not found.</div>;
     }
 
+    const address = venue.information?.address || {};
     const jsonLd = {
         "@context": "https://schema.org",
         "@type": "Restaurant",
@@ -78,10 +69,10 @@ export default async function VenuePage({ params }) {
         "url": `https://www.thefoodclub.be/venue/${params.venue}`,
         "address": {
             "@type": "PostalAddress",
-            "streetAddress": venue.information.address?.street || '',
-            "addressLocality": venue.information.address?.city || '',
-            "postalCode": venue.information.address?.postalCode || '',
-            "addressCountry": "BE"
+            "streetAddress": address.street || '',
+            "addressLocality": address.city || '',
+            "postalCode": address.postalCode || '',
+            "addressCountry": "BE",
         },
     };
 

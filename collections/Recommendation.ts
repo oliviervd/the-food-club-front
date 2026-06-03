@@ -75,6 +75,7 @@ export const Recommendation:CollectionConfig = {
                                     name: "weatherCondition",
                                     type: "select",
                                     options: ["sunny", "rainy", "cloudy"],
+                                    dbName: "weather_cond",
                                 },
                                 {
                                     type: "row",

@@ -3,19 +3,45 @@
 import { useParams } from 'next/navigation';
 import { useQueryClient } from '@tanstack/react-query';
 import { useLivePreview } from '@payloadcms/live-preview-react';
-import { getClientSideURL } from '../../../../utils/getURL';
 import React, { useEffect, useState } from 'react';
+import Link from "next/link";
+
+import { getClientSideURL } from '../../../../utils/getURL';
+import { terraceIsSunny } from "../../../../hooks/weather/isSunny.tsx";
+
 import Header from "../../../../components/Header.jsx";
 import AutoResizeText from "../../../../components/AutoResizeText.jsx";
 import serialize from "../../../../utils/serialize.jsx";
-import Link from "next/link";
-import Image from "next/image.js";
-import { getBlur } from "../../../../utils/blur";
-import {terraceIsSunny} from "../../../../hooks/weather/isSunny.tsx";
+
+const getHeroUrl = (media, preferred = 'tablet') => {
+    const sizes = media?.hero?.sizes || {};
+
+    const isValidUrl = (url) => {
+        if (!url || typeof url !== 'string') return false;
+        try {
+            const parsed = new URL(url);
+            return parsed.pathname.length > 1;
+        } catch {
+            return false;
+        }
+    };
+
+    const candidates = [
+        sizes[preferred]?.url,
+        sizes.tablet?.url,
+        sizes.mobileFriendly?.url,
+        sizes.mobileThumbnail?.url,
+        media?.hero?.url,
+    ];
+
+    return candidates.find(isValidUrl) || null;
+};
 
 export default function VenueClient({ initialVenue }) {
-    const [isDesktop, setIsDesktop] = useState(false);
+    const [isDesktop, setIsDesktop] = useState(true);
+    const [hydrated, setHydrated] = useState(false);
     const [isSunny, setIsSunny] = useState(false);
+
     const { venue: venueParam } = useParams();
     const baseUrl = getClientSideURL();
     const queryClient = useQueryClient();
@@ -23,6 +49,7 @@ export default function VenueClient({ initialVenue }) {
     useEffect(() => {
         const checkWidth = () => setIsDesktop(window.innerWidth > 1200);
         checkWidth();
+        setHydrated(true);
         window.addEventListener("resize", checkWidth);
         return () => window.removeEventListener("resize", checkWidth);
     }, []);
@@ -34,26 +61,16 @@ export default function VenueClient({ initialVenue }) {
     });
 
     useEffect(() => {
-        if (venueParam) {
-            queryClient.prefetchQuery({
-                queryKey: ["venue", venueParam],
-                queryFn: async () => {
-                    const response = await fetch(
-                        `${baseUrl}/api/venues?where[url][equals]=${venueParam}&depth=2`
-                    );
-                    const data = await response.json();
-                    return data.docs[0] || null;
-                },
-            });
+        if (venueParam && initialVenue) {
+            queryClient.setQueryData(["venue", venueParam], initialVenue);
         }
-    }, [venueParam, queryClient, baseUrl]);
+    }, [venueParam, initialVenue, queryClient]);
 
     useEffect(() => {
-        setIsSunny(terraceIsSunny(venue))
-    },[venue])
+        setIsSunny(terraceIsSunny(venue));
+    }, [venue]);
 
     if (!venue) return <div>Venue not found.</div>;
-
 
     return (
         <>
@@ -65,55 +82,52 @@ export default function VenueClient({ initialVenue }) {
                 greyOut={true}
                 venue={true}
             />
-            <div className="desktop-view">
+            {isDesktop ? (
                 <DesktopView venue={venue} isSunny={isSunny} />
-            </div>
-            <div className="mobile-view">
+            ) : (
                 <MobileView venue={venue} isSunny={isSunny} />
-            </div>
+            )}
+        </>
+    );
+}
+
+function VenueMeta({ venue }) {
+    return (
+        <>
+            {venue.venueName && (
+                <div style={{ width: "100%", position: "relative" }}>
+                    <AutoResizeText text={venue.venueName} padding="0" />
+                </div>
+            )}
+
+            {venue.information?.address && (
+                <h2 className="address">
+                    {`${venue.information.address.street} ${venue.information.address.houseNumber}, ${venue.information.address.postalCode} ${venue.information.address.city}`}
+                </h2>
+            )}
+
+            <CuisineList venue={venue} />
+
+            {venue.damage && (
+                <div className="cuisines" style={{ marginTop: "5px" }}>
+                    <Link href={`/budget-control/${venue.damage}`}>
+                        <div className="link">
+                            <h2>{venue.damage.replaceAll("*", "💸")}</h2>
+                        </div>
+                    </Link>
+                </div>
+            )}
         </>
     );
 }
 
 function DesktopView({ venue, isSunny }) {
+    const heroUrl = getHeroUrl(venue.media, 'tablet');
+
     return (
         <section className="venue__container container-big_desktop">
             <div>
-                {venue.venueName && (
-                    <div style={{ width: "100%", position: "relative" }}>
-                        <AutoResizeText text={venue.venueName} padding="0" />
-                    </div>
-                )}
-
-                {venue.information?.address && (
-                    <h2 className="address">
-                        {`${venue.information.address.street} ${venue.information.address.houseNumber}, ${venue.information.address.postalCode} ${venue.information.address.city}`}
-                    </h2>
-                )}
-
-                <CuisineList venue={venue} />
-
-                {venue.damage &&
-                    <div className={"cuisines"} style={{marginTop: "5px"}}>
-                        <Link href={`/budget-control/${venue.damage}`}>
-                            <div className={"link"}>
-                                <h2>{venue.damage.replaceAll("*","💸")}</h2>
-                            </div>
-                        </Link>
-
-                        {/*
-
-                         {isSunny &&
-                            <Link href={`/recommendations/sun-kissed`}>
-                                <div className={"link"} style={{backgroundColor: "yellow"}}>
-                                    <h2>🌞 sun-kissed 🌞</h2>
-                                </div>
-                            </Link>
-                        }
-                        */}
-
-                    </div>
-                }
+                <VenueMeta venue={venue} />
 
                 <div className="text-main" style={{ paddingTop: "20px" }}>
                     {serialize(venue.review?.review)}
@@ -136,91 +150,60 @@ function DesktopView({ venue, isSunny }) {
                     <OpeningHours venue={venue} />
                 </section>
 
-                {venue.information.reservations && (
+                {venue.information?.reservations && (
                     <div className="link reservations">
                         <a href={venue.information.reservations}>book a table</a>
                     </div>
                 )}
             </div>
 
-            <div className="image-container" style={{ marginTop: "30px", minHeight: "500px"}}>
-                <Image
-                    src={venue.media.hero.url}
-                    placeholder={"blur"}
-                    blurDataURL={getBlur(venue.media.hero.thumbnailURL)}
-                    alt={`hero image for ${venue.venueName}`}
-                    fill
-                    style={{ objectFit: 'cover'}}
-                    sizes="100vw"
-                    decoding="async"
-                    priority
-                    fetchPriority="high"
-                />
-            </div>
+            {heroUrl && (
+                <div className="image-container" style={{ marginTop: "30px", minHeight: "500px", position: 'relative', overflow: 'hidden' }}>
+                    <img
+                        src={heroUrl}
+                        alt={`hero image for ${venue.venueName}`}
+                        loading="eager"
+                        fetchpriority="high"
+                        decoding="async"
+                        style={{
+                            objectFit: 'cover',
+                            width: '100%',
+                            height: '100%',
+                            display: 'block',
+                        }}
+                    />
+                </div>
+            )}
         </section>
     );
 }
 
 function MobileView({ venue, isSunny }) {
-    console.log("venue", venue)
+    const heroUrl = getHeroUrl(venue.media, 'mobileFriendly');
+
     return (
         <section className="venue__container">
             <div className="grid">
                 <div>
-                    <div className="image-container">
-                        <Image
-                            src={venue.media.hero.url}
-                            placeholder={"blur"}
-                            blurDataURL={getBlur(venue.media.hero.thumbnailURL)}
-                            alt={`hero image for ${venue.venueName}`}
-                            fill
-                            style={{ objectFit: 'cover' }}
-                            sizes="100vw"
-                            decoding="async"
-                            priority
-                            fetchPriority="high"
-                        />
-                    </div>
-
-                    {venue.venueName && (
-                        <div style={{ width: "100%", position: "relative" }}>
-                            <AutoResizeText text={venue.venueName} padding="10px 0" />
+                    {heroUrl && (
+                        <div className="image-container" style={{ position: 'relative', overflow: 'hidden' }}>
+                            <img
+                                src={heroUrl}
+                                alt={`hero image for ${venue.venueName}`}
+                                loading="eager"
+                                fetchpriority="high"
+                                decoding="async"
+                                style={{
+                                    objectFit: 'cover',
+                                    width: '100%',
+                                    height: '100%',
+                                    display: 'block',
+                                }}
+                            />
                         </div>
                     )}
 
-                    {venue.information?.address && (
-                        <h2 className="address">
-                            {`${venue.information.address.street} ${venue.information.address.houseNumber}, ${venue.information.address.postalCode} ${venue.information.address.city}`}
-                        </h2>
-                    )}
-
-                    <CuisineList venue={venue} />
-
-                    {venue.damage &&
-                        <div className={"cuisines"} style={{marginTop: "5px"}}>
-                            <Link href={`/budget-control/${venue.damage}`}>
-                                <div className={"link"}>
-                                    <h2>{venue.damage.replaceAll("*","💸")}</h2>
-                                </div>
-                            </Link>
-
-                            {/*
-
-                                {isSunny &&
-                                    <Link href={`/recommendations/sun-kissed`}>
-                                        <div className={"link"} style={{backgroundColor: "yellow"}}>
-                                            <h2>🌞 sun-kissed 🌞</h2>
-                                        </div>
-                                    </Link>
-                            }
-
-                            */}
-
-
-
-                        </div>
-                    }
-
+                    <VenueMeta venue={venue} />
                 </div>
 
                 <div className="container-big">
@@ -235,7 +218,7 @@ function MobileView({ venue, isSunny }) {
                         </div>
                     )}
 
-                    {venue.information.reservations && (
+                    {venue.information?.reservations && (
                         <div className="link reservations">
                             <a href={venue.information.reservations}>book a table</a>
                         </div>
@@ -249,10 +232,18 @@ function MobileView({ venue, isSunny }) {
 }
 
 function CuisineList({ venue }) {
+    const items = [
+        ...(venue.information?.cuisine || []),
+        ...(venue.information?.dishes || []),
+        ...(venue.information?.drinks || []),
+    ];
+
+    if (items.length === 0) return null;
+
     return (
         <div className="cuisines">
-            {[...(venue.information?.cuisine || []), ...(venue.information?.dishes || []), ...(venue.information?.drinks || [])].map((item, index) => (
-                <div key={index}>
+            {items.map((item) => (
+                <div key={item.id || item.name}>
                     <h2 className="link">
                         <Link href={`/venues/${item.name}`}>{item.name}</Link>
                     </h2>
@@ -267,15 +258,18 @@ function OpeningHours({ venue }) {
 
     return (
         <section className="venue-open">
-            {venue.information.hours.map((day, index) => (
-                <div key={index} style={{ paddingBottom: "5px", borderBottom: "1px solid #ccc" }}>
+            {venue.information.hours.map((day) => (
+                <div
+                    key={day.id || day.dayOfWeek}
+                    style={{ paddingBottom: "5px", borderBottom: "1px solid #ccc" }}
+                >
                     <p className="day">{day.dayOfWeek}</p>
                     {day.isClosed ? (
                         <div><p>closed</p></div>
                     ) : (
                         <div className="hours">
                             {day.periods.map((period, i) => (
-                                <div className="slot" key={i}>
+                                <div className="slot" key={period.id || i}>
                                     <p>{period.openTime}</p>
                                     <p>-</p>
                                     <p>{period.closeTime || period.closeTimeSpecial || ''}</p>

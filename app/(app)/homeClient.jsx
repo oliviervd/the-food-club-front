@@ -29,8 +29,9 @@ const HomeClient = () => {
     const scrollPosition = useScrollPosition();
     const router = useRouter();
 
-    const isMobile = useIsMobile();
-    const [visible, setVisible] = useState(false);
+    const [isMobile, setIsMobile] = useState(
+        typeof window !== 'undefined' ? window.innerWidth < 600 : false
+    );    const [visible, setVisible] = useState(false);
 
     useEffect(() => {
         if (scrollPosition > 150) {

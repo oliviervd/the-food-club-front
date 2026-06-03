@@ -40,7 +40,8 @@ const Categories = ({}) => {
                                             boxSizing: 'border-box'
                                         }}
                                         sizes="100vw"
-                                        priority={false}
+                                        priority={index < 4}
+                                        fetchPriority={index < 4 ? 'high' : 'auto'}
                                     />
                                     <div className={"counter"}>
                                         <p>

@@ -64,16 +64,6 @@ const DesktopHome = ({categories, recommendations}) => {
 
             <div className={"home-grid"}>
 
-                {/*
-                <div className={"category-list__box special"}>
-
-
-                    <Link href={"/events/"}>
-                        <h2 style={{fontSize: "20px"}}>Smash that button for tasty food events.</h2>
-                        <p>we believe good food deserves proper celebration.</p>
-                    </Link>
-                </div>
-                */}
 
                 {shuffledCategories && shuffledCategories.map((cat, index) => {
                     try {
@@ -89,26 +79,23 @@ const DesktopHome = ({categories, recommendations}) => {
                                     <div className={"category-list__box"}>
                                         <Link href={`/categories/${cat.url}`}>
                                             <div className="image-container">
-                                                <Image
+                                                <img
                                                     src={imageUrl}
-                                                    placeholder="blur"
-                                                    blurDataURL={getBlur(hero.sizes?.mobileThumbnail?.url || hero.thumbnailURL)}
                                                     alt={`hero image for ${cat.name}`}
-                                                    fill
-                                                    style={{ objectFit: 'cover' }}
-                                                    sizes="(max-width: 1300px) 45vw, 22vw"
-                                                    priority={isPriority}
+                                                    loading={isPriority ? "eager" : "lazy"}
+                                                    fetchPriority={isPriority ? "high" : "auto"}
+                                                    style={{objectFit: 'cover', width: '100%', height: '100%'}}
                                                 />
                                             </div>
                                             <h2>{cat.name}</h2>
                                             <p>{cat.slug}</p>
                                         </Link>
                                     </div>
-                                    {/*
+
                                     <div className={"category-list__box special"}>
-                                        <BroadCastForYou type={'time'}/>
+
                                     </div>
-                                    */}
+
                                 </React.Fragment>
                             );
                         }
@@ -117,15 +104,12 @@ const DesktopHome = ({categories, recommendations}) => {
                             <div key={index} className={"category-list__box"}>
                                 <Link href={`/categories/${cat.url}`}>
                                     <div className="image-container">
-                                        <Image
+                                        <img
                                             src={imageUrl}
-                                            placeholder="blur"
-                                            blurDataURL={getBlur(hero.sizes?.mobileThumbnail?.url || hero.thumbnailURL)}
                                             alt={`hero image for ${cat.name}`}
-                                            fill
-                                            style={{ objectFit: 'cover' }}
-                                            sizes="(max-width: 1300px) 45vw, 22vw"
-                                            priority={isPriority}
+                                            loading={isPriority ? "eager" : "lazy"}
+                                            fetchPriority={isPriority ? "high" : "auto"}
+                                            style={{objectFit: 'cover', width: '100%', height: '100%'}}
                                         />
                                     </div>
                                     <h2>{cat.name}</h2>
@@ -137,6 +121,17 @@ const DesktopHome = ({categories, recommendations}) => {
                         console.log(e)
                     }
                 })}
+
+                <div className={"category-list__box special"}>
+
+                    {/*
+                    <Link href={"/events/"}>
+                        <h2 style={{fontSize: "20px"}}>Smash that button for tasty food events.</h2>
+                        <p>we believe good food deserves proper celebration.</p>
+                    </Link>
+                    */}
+
+                </div>
             </div>
         </section>
     )

@@ -1,38 +1,58 @@
 'use client'
 
 import dynamic from 'next/dynamic';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { debounce } from 'lodash';
+import Link from 'next/link';
 
 import Header from "../../../../components/Header.jsx";
 import Banner from "../../../../components/Banner.jsx";
 import Loading from "../../loading.jsx";
-
+import ScrollToTop from "../../../../components/scrollToTop.jsx";
 
 import { fetchAPI, shuffleArray, venueStatus } from "../../../../utils/utils.jsx";
 import { LocationColorContext } from "../../../../contexts/LocationColorContext.jsx";
-import ScrollToTop from "../../../../components/scrollToTop.jsx"
-import Image from "next/image";
-import { getBlur } from "../../../../utils/blur";
 
-const MapSmall = dynamic(() =>
-        import("../../../../components/mapSmall.jsx"), // no .then needed
+const MapSmall = dynamic(
+    () => import("../../../../components/mapSmall.jsx"),
     { ssr: false }
 );
+
+const getHeroUrl = (media, preferred = 'tablet') => {
+    const sizes = media?.hero?.sizes || {};
+
+    const isValidUrl = (url) => {
+        if (!url || typeof url !== 'string') return false;
+        try {
+            const parsed = new URL(url);
+            return parsed.pathname.length > 1;
+        } catch {
+            return false;
+        }
+    };
+
+    const candidates = [
+        sizes[preferred]?.url,
+        sizes.tablet?.url,
+        sizes.mobileFriendly?.url,
+        sizes.mobileThumbnail?.url,
+        media?.hero?.url,
+    ];
+
+    return candidates.find(isValidUrl) || null;
+};
 
 const CategoryClient = () => {
     const { locationColor } = useContext(LocationColorContext);
     const { location } = locationColor;
-
-    const router = useRouter();
     const { category: categoryParam } = useParams();
 
     const [highlightedVenue, setHighlightedVenue] = useState(null);
-    const [isMobile, setIsMobile] = useState(false);
+    const [isMobile, setIsMobile] = useState(
+        typeof window !== 'undefined' ? window.innerWidth < 600 : false
+    );
 
-    // Media query (always run on client)
     useEffect(() => {
         const checkWidth = () => setIsMobile(window.innerWidth < 600);
         checkWidth();
@@ -41,156 +61,158 @@ const CategoryClient = () => {
     }, []);
 
     const { data: categoryData, isLoading, error } = useQuery({
-        queryKey: ['categories', categoryParam],
-        queryFn: () => fetchAPI('categories', 'en', { filter: { url: categoryParam } })
+        queryKey: ['categories'],
+        queryFn: () => fetchAPI('categories', 'en'),
     });
 
     const _category = useMemo(() => {
         return categoryData?.docs?.find(c => c.url === categoryParam) || null;
     }, [categoryData, categoryParam]);
 
-
-    if (_category) {
-       // console.log(_category.categoryDescription)
-    }
-
     const shuffledVenues = useMemo(() => {
-        return _category?.venues ? shuffleArray([..._category.venues.venues]) : [];
+        return _category?.venues?.venues
+            ? shuffleArray([..._category.venues.venues])
+            : [];
     }, [_category]);
 
-    //console.log(shuffledVenues)
-
-    const navigateTo = debounce((route) => {
-        router.push(`/venue/${route}`);
-    }, 200);
+    const visibleVenues = useMemo(() => {
+        return shuffledVenues.filter(
+            v => v._status === "published" && v.club === location
+        );
+    }, [shuffledVenues, location]);
 
     if (isLoading) return <Loading />;
     if (error) return <div>Error: {error.message}</div>;
+    if (!_category) return <div>Category not found</div>;
 
     return (
         <>
             <Header landing interact location={location} setLocation={() => {}} />
-            <ScrollToTop/>
-            {isMobile && _category && <Banner content={_category.name} />}
+            <ScrollToTop />
+            {isMobile && <Banner content={_category.name} />}
 
             <section className="home__container">
-                {_category && (
-                    <div>
-                        {/* Mobile view */}
-                        {isMobile && (
-                            <section>
-                                {shuffledVenues.map((venue, index) => {
-                                    const v = venue;
-                                    const status = venueStatus(v);
-                                    //console.log(v)
-                                    if (v._status === "published" && v.club === location) {
+                <div>
+                    {/* Mobile view */}
+                    {isMobile && (
+                        <section>
+                            {visibleVenues.map((v, index) => {
+                                const heroUrl = getHeroUrl(v.media, 'mobileFriendly');
+                                if (!heroUrl) return null;
+
+                                const status = venueStatus(v);
+
+                                return (
+                                    <Link
+                                        href={`/venue/${v.url}`}
+                                        key={v.id || v.url}
+                                        className="category-list__box"
+                                        style={{ display: 'block', textDecoration: 'none', color: 'inherit' }}
+                                    >
+                                        <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+                                            {v.new && <div className="image__club-tag">NEW</div>}
+                                            <img
+                                                src={heroUrl}
+                                                alt={`hero image for ${v.venueName}`}
+                                                loading={index < 4 ? 'eager' : 'lazy'}
+                                                fetchpriority={index < 4 ? 'high' : 'auto'}
+                                                style={{
+                                                    objectFit: 'cover',
+                                                    width: '100%',
+                                                    height: '100%',
+                                                    border: "2px solid var(--color-main)",
+                                                    boxSizing: 'border-box',
+                                                    display: 'block',
+                                                }}
+                                            />
+                                            {status && <div className="venue-open">{status}</div>}
+                                        </div>
+                                        <h2 style={{ textAlign: "center" }}>{v.venueName}</h2>
+                                    </Link>
+                                );
+                            })}
+                        </section>
+                    )}
+
+                    {/* Desktop view */}
+                    {!isMobile && (
+                        <section className="desktop">
+                            <section className="venue-list__container-main">
+                                <h2 className="header">{location}</h2>
+                                <section>
+                                    <div className="cat_description">
+                                        {_category.description && (
+                                            <div>
+                                                <h2>{_category.description}</h2>
+                                            </div>
+                                        )}
+                                    </div>
+
+                                    {visibleVenues.map((v, index) => {
+                                        const heroUrl = getHeroUrl(v.media, 'tablet');
+                                        if (!heroUrl) return null;
+
+                                        const isHighlighted = highlightedVenue?.url === v.url;
+                                        const borderStyle = {
+                                            border: isHighlighted ? '2px solid var(--color-secondary)' : '',
+                                            backgroundColor: isHighlighted ? 'var(--color-main)' : '',
+                                            color: isHighlighted ? 'var(--color-secondary)' : '',
+                                            transition: 'all 0.5s ease',
+                                        };
+
                                         return (
-                                            <div key={index} className="category-list__box" onClick={() => navigateTo(v.url)}>
-                                                <div>
-                                                    {v.new &&
-                                                        <div className="image__club-tag">NEW</div>
-                                                    }
-                                                    <Image
-                                                        src={v.media.hero.sizes.mobileFriendly.url}
-                                                        alt={`hero image for ${v.venueName}`}
-                                                        fill
-                                                        //placeholder= 'blur'
-                                                        //blurDataURL={getBlur(v.media.tablet?.thumbnailURL)}
-                                                        style={{
-                                                            objectFit: 'cover',
-                                                            border: "2px solid var(--color-main)",
-                                                            boxSizing: 'border-box'
-                                                        }}
-                                                        sizes="(max-width: 800px) 100vw, 25vw"
-                                                        priority={false}
-                                                    />
-                                                    {status && <div className="venue-open">{status}</div>}
-                                                </div>
-                                                <h2 style={{ textAlign: "center" }}>{v.venueName}</h2>
+                                            <div key={v.id || v.url} className="venue">
+                                                {v.new && (
+                                                    <div className="new">
+                                                        <p>NEW</p>
+                                                    </div>
+                                                )}
+                                                <Link
+                                                    href={`/venue/${v.url}`}
+                                                    style={{ textDecoration: 'none', color: 'inherit' }}
+                                                >
+                                                    <div
+                                                        className="venue__image"
+                                                        onMouseEnter={() => setHighlightedVenue(v)}
+                                                        onMouseLeave={() => setHighlightedVenue(null)}
+                                                        style={{ height: "200px", position: 'relative', overflow: 'hidden' }}
+                                                    >
+                                                        <img
+                                                            src={heroUrl}
+                                                            alt={`hero image for ${v.venueName}`}
+                                                            loading={index < 4 ? 'eager' : 'lazy'}
+                                                            fetchpriority={index < 4 ? 'high' : 'auto'}
+                                                            style={{
+                                                                objectFit: 'cover',
+                                                                width: '100%',
+                                                                height: '100%',
+                                                                border: "2px solid var(--color-main)",
+                                                                boxSizing: 'border-box',
+                                                                display: 'block',
+                                                            }}
+                                                        />
+                                                        <h2 style={borderStyle}>{v.venueName}</h2>
+                                                    </div>
+                                                </Link>
                                             </div>
                                         );
-                                    }
-                                })}
-                            </section>
-                        )}
-
-                        {/* Desktop view */}
-                        {!isMobile && (
-                            <section className="desktop">
-                                <section className="venue-list__container-main">
-                                    <h2 className="header">{location}</h2>
-                                    <section>
-                                        <div className="cat_description">
-                                            {_category.description && (
-                                                <div>
-                                                    <h2>
-                                                        {_category.description}
-                                                    </h2>
-                                                </div>
-                                            )}
-                                        </div>
-
-                                        {shuffledVenues.map((venue, index) => {
-                                            //console.log(venue)
-                                            const v = venue;
-                                            if (v.club === location && v._status === "published") {
-
-                                                const isHighlighted = highlightedVenue?.url === v.url;
-
-                                                const borderStyle = {
-                                                    border: `${isHighlighted ? '2px solid var(--color-secondary)' : ''}`,
-                                                    backgroundColor: `${isHighlighted ? 'var(--color-main)' : ''}`,
-                                                    color: `${isHighlighted ? 'var(--color-secondary)' : ''}`,
-                                                    transition: 'all 0.5s ease',
-                                                };
-
-
-                                                return (
-                                                    <div key={index} className="venue">
-                                                        {v.new &&
-                                                            <div className={"new"}>
-                                                                <p>NEW</p>
-                                                            </div>
-                                                        }
-                                                        <div
-                                                            className="venue__image"
-                                                            onMouseEnter={() => setHighlightedVenue(v)}
-                                                            onMouseLeave={() => setHighlightedVenue(null)}
-                                                            onClick={() => navigateTo(v.url)}
-                                                            style={{height: "200px"}}
-                                                        >
-                                                            <Image
-                                                                src={v.media.hero.sizes.tablet.url}
-                                                                alt={`hero image for ${v.venueName}`}
-                                                                fill
-                                                                //placeholder= 'blur'
-                                                                //blurDataURL={getBlur(v.media.hero?.thumbnailURL)}
-                                                                style={{
-                                                                    objectFit: 'cover',
-                                                                    border: "2px solid var(--color-main)",
-                                                                    boxSizing: 'border-box'
-                                                                }}
-                                                                sizes="(max-width: 800px) 100vw, 25vw"
-                                                                priority={false}
-                                                            />
-                                                            <h2 style={borderStyle}>{v.venueName}</h2>
-                                                        </div>
-                                                    </div>
-                                                );
-                                            }
-                                            return null;
-                                        })}
-
-                                    </section>
-                                </section>
-
-                                <section className="venue-list__container-others" style={{marginTop: "20px"}}>
-                                    <MapSmall venues={shuffledVenues} highlight={highlightedVenue} onHover={setHighlightedVenue}/>
+                                    })}
                                 </section>
                             </section>
-                        )}
-                    </div>
-                )}
+
+                            <section
+                                className="venue-list__container-others"
+                                style={{ marginTop: "20px" }}
+                            >
+                                <MapSmall
+                                    venues={visibleVenues}
+                                    highlight={highlightedVenue}
+                                    onHover={setHighlightedVenue}
+                                />
+                            </section>
+                        </section>
+                    )}
+                </div>
             </section>
         </>
     );

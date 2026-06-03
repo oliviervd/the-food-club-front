@@ -47,7 +47,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     gap: 20px;
-    justify-content: flex-start;
+    justify-content: center;
 }
 
 .home-grid .category-list__box  {

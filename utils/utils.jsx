@@ -1,6 +1,27 @@
 import { DateTime } from 'luxon';
 import SunCalc from 'suncalc';
 
+export const getHeroUrl = (media, preferred = 'tablet') => {
+    const sizes = media?.hero?.sizes || {};
+    const isValidUrl = (url) => {
+        if (!url || typeof url !== 'string') return false;
+        try {
+            const parsed = new URL(url);
+            return parsed.pathname.length > 1;
+        } catch {
+            return false;
+        }
+    };
+    const candidates = [
+        sizes[preferred]?.url,
+        sizes.tablet?.url,
+        sizes.mobileFriendly?.url,
+        sizes.mobileThumbnail?.url,
+        media?.hero?.url,
+    ];
+    return candidates.find(isValidUrl) || null;
+};
+
 export function venueStatus(venue) {
     if (!venue?.information?.hours) return null;
 
@@ -131,11 +152,12 @@ export function surprise(venueData) {
 }
 
 export function shuffleArray(array){
-    for (let i = array.length - 1; i > 0; i--) {
+    const arr = [...array];
+    for (let i = arr.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
+        [arr[i], arr[j]] = [arr[j], arr[i]];
     }
-    return array;
+    return arr;
 };
 
 export async function fetchAPI(endpoint, locale, query = {}) {
