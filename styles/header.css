@@ -102,3 +102,14 @@ header .flex-buttons > h2 {
         font-weight: 100;
     }
 }
+
+.profile-icon-link {
+    color: var(--color-secondary);
+    display: flex;
+    align-items: center;
+    transition: color 0.15s ease;
+}
+
+.profile-icon-link:hover {
+    color: var(--color-main);
+}

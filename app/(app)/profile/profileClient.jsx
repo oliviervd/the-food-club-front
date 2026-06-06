@@ -32,8 +32,33 @@ const getHeroUrl = (media, preferred = 'tablet') => {
     return candidates.find(isValidUrl) || null;
 };
 
+const SavedTag = ({ status }) => {
+    if (!status) return null;
+    return (
+        <div className="venue-open" style={{
+            position: 'absolute',
+            border: '2px solid var(--color-secondary)',
+            top: 0,
+            right: 0,
+            margin: '6px',
+            background: 'var(--color-main)',
+            padding: '2px 8px',
+        }}>
+            {status === 'favourite' ? 'love it' : 'need to go'}
+        </div>
+    );
+};
+
+const getWantToGoText = (count) => {
+    if (count === 0) return "clean slate. we respect it.";
+    if (count === 1) return "one more spot on the list. make it count.";
+    if (count <= 5) return `${count} places. get after it.`;
+    if (count <= 10) return `${count} spots deep. you're hungry, i respect that.`;
+    return `${count} places. absolute animal. let's eat.`;
+};
+
 export default function ProfileClient() {
-    const { user, loading, logout } = useUser();
+    const { user, loading, logout, getSavedStatus } = useUser();
     const [showModal, setShowModal] = useState(false);
     const [highlightedVenue, setHighlightedVenue] = useState(null);
     const [isMobile, setIsMobile] = useState(
@@ -54,7 +79,6 @@ export default function ProfileClient() {
         </>
     );
 
-    // Not logged in
     if (!user) return (
         <>
             <Header landing={true} interact={true} />
@@ -75,8 +99,7 @@ export default function ProfileClient() {
     );
 
     const savedVenues = user.savedVenues || [];
-
-    // Extract venue objects for the map
+    const wantToGoCount = savedVenues.filter(s => s.status === 'wantToGo').length;
     const venuesForMap = savedVenues
         .map(s => typeof s.venue === 'object' ? s.venue : null)
         .filter(Boolean);
@@ -94,31 +117,9 @@ export default function ProfileClient() {
                     {/* Mobile view */}
                     {isMobile && (
                         <section>
-                            <div className="profile__mobile-header">
-                                <nav className="flex-buttons">
-                                    <h2
-                                        className={`link ${tab === 'favourite' ? 'selected' : ''}`}
-                                        onClick={() => setTab('favourite')}
-                                    >
-                                        ⭐ fav ({savedVenues.filter(s => s.status === 'favourite').length})
-                                    </h2>
-                                    <h2
-                                        className={`link ${tab === 'wantToGo' ? 'selected' : ''}`}
-                                        onClick={() => setTab('wantToGo')}
-                                    >
-                                        📍 want ({savedVenues.filter(s => s.status === 'wantToGo').length})
-                                    </h2>
-                                    <h2 className="link" onClick={logout}>log out</h2>
-                                </nav>
-                            </div>
-
                             {savedVenues.length === 0 ? (
                                 <div className="profile__empty">
-                                    <p>
-                                        {tab === 'favourite'
-                                            ? "no favourites yet."
-                                            : "nothing on your list yet."}
-                                    </p>
+                                    <p>nothing saved yet.</p>
                                     <Link href="/">browse venues →</Link>
                                 </div>
                             ) : (
@@ -127,7 +128,6 @@ export default function ProfileClient() {
                                     if (!venue) return null;
                                     const heroUrl = getHeroUrl(venue.media, 'mobileFriendly');
                                     if (!heroUrl) return null;
-
                                     return (
                                         <Link
                                             href={`/venue/${venue.url}`}
@@ -150,6 +150,7 @@ export default function ProfileClient() {
                                                         display: 'block',
                                                     }}
                                                 />
+                                                <SavedTag status={entry.status} />
                                                 <SaveVenueButton venueId={venue.id} venueName={venue.venueName} />
                                             </div>
                                             <h2 style={{ textAlign: "center" }}>{venue.venueName}</h2>
@@ -169,18 +170,12 @@ export default function ProfileClient() {
                                 </h2>
                                 <section>
                                     <div className="cat_description" style={{ height: "200px", display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                                        <h2 className="link" style={{ borderTop: '1px solid var(--color-secondary)' }} onClick={logout}>
-                                            log out
-                                        </h2>
+                                        <h2>{getWantToGoText(wantToGoCount)}</h2>
                                     </div>
 
                                     {savedVenues.length === 0 ? (
                                         <div className="profile__empty">
-                                            <p>
-                                                {tab === 'favourite'
-                                                    ? "no favourites yet — start saving your best meals."
-                                                    : "nothing on your list yet — add some places you want to try."}
-                                            </p>
+                                            <p>nothing saved yet — start exploring.</p>
                                             <Link href="/" className="link">browse venues →</Link>
                                         </div>
                                     ) : (
@@ -224,6 +219,7 @@ export default function ProfileClient() {
                                                                     display: 'block',
                                                                 }}
                                                             />
+                                                            <SavedTag status={entry.status} />
                                                             <SaveVenueButton venueId={venue.id} venueName={venue.venueName} />
                                                             <h2 style={borderStyle}>{venue.venueName}</h2>
                                                         </div>

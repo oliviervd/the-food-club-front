@@ -1,0 +1,38 @@
+{
+  "pages": {
+    "/(app)/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/(app)/layout.css",
+      "static/chunks/app/(app)/layout.js"
+    ],
+    "/(app)/loading": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(app)/loading.js"
+    ],
+    "/(app)/map/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(app)/map/page.js"
+    ],
+    "/(payload)/api/[...slug]/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/(payload)/api/[...slug]/route.css",
+      "static/chunks/app/(payload)/api/[...slug]/route.js"
+    ],
+    "/(app)/venue/[venue]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/(app)/venue/[venue]/page.css",
+      "static/chunks/app/(app)/venue/[venue]/page.js"
+    ],
+    "/(app)/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/(app)/page.css",
+      "static/chunks/app/(app)/page.js"
+    ]
+  }
+}

@@ -1,0 +1,310 @@
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/.pnpm/next@15.5.19_@babel+core@7.29.7_react-dom@19.2.7_react@19.2.7__react@19.2.7_sass@1.77.4/node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[10].use[2]!./node_modules/.pnpm/next@15.5.19_@babel+core@7.29.7_react-dom@19.2.7_react@19.2.7__react@19.2.7_sass@1.77.4/node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[10].use[3]!./styles/header.css ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+header {
+}
+
+header > h1 {
+    font-size: var(--font-xl);
+}
+
+.back-button {
+    position: relative;
+    margin: 10px 10px;
+    text-align: center;
+    justify-content: center;
+    width: 50px;
+}
+
+.back-button-icon {
+}
+
+
+.flex-buttons {
+    display: flex;
+    justify-content: space-evenly;
+    flex-flow: row;
+    background-color: var(--color-main);
+
+     h2 {
+         display: flex;
+         align-items: center;
+        padding: 0;
+        margin: 0;
+        color: var(--color-secondary);
+        border: 2px solid var(--color-secondary);
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+         height: 30px;
+    }
+
+    > h2:last-child {
+        border-right:none;
+    };
+
+    > h2:hover {
+        color: var(--color-main);
+        background-color: var(--color-secondary);
+
+        a {
+            color: var(--color-main);
+        }
+    }
+}
+
+header h2 {
+    font-size: var(--font-s);
+
+    a {
+        color: var(--color-secondary);
+    }
+
+}
+
+header .flex-buttons > h2 {
+    border-left: none;
+    border-color: var(--color-secondary);
+    font-size: var(--font-s);
+    padding: 5px 0;
+}
+
+.flex-buttons .top {
+    gap: 0px
+}
+
+.button-src {
+    justify-content: center;
+    text-align: end;
+    margin-right: 20px;
+    height: 100%;
+}
+
+.footer--container {
+    bottom: 0;
+    height: 40px;
+    left:0;
+    right: 0;
+}
+
+.static {
+    position: static;
+    background-color: black;
+    height: 50px
+}
+
+.fixed {
+    position: fixed;
+    background-color: var(--color--main);
+}
+
+@media (max-width: 600px) {
+    header > h1 {
+        font-size: var(--font-xxl);
+        font-family: "Onest";
+        font-weight: 100;
+    }
+}
+
+.profile-icon-link {
+    color: var(--color-secondary);
+    display: flex;
+    align-items: center;
+    transition: color 0.15s ease;
+}
+
+.profile-icon-link:hover {
+    color: var(--color-main);
+}
+
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/.pnpm/next@15.5.19_@babel+core@7.29.7_react-dom@19.2.7_react@19.2.7__react@19.2.7_sass@1.77.4/node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[10].use[2]!./node_modules/.pnpm/next@15.5.19_@babel+core@7.29.7_react-dom@19.2.7_react@19.2.7__react@19.2.7_sass@1.77.4/node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[10].use[3]!./styles/fonts.css ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+@font-face {
+    font-family: "DM-sans";
+    src: url(/_next/static/media/DMSans-VariableFont_opsz,wght.c25915a0.ttf) format("opentype");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "DM-sans-italic";
+    src: url(/_next/static/media/DMSans-Italic-VariableFont_opsz,wght.ee0ce24a.ttf) format("opentype");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "DM-serif-display-italic";
+    src: url(/_next/static/media/DMSerifDisplay-Italic.62d376b0.ttf) format("opentype");
+    font-display: swap;
+}
+
+:root {
+    --background-color: #f4f0ec;
+    --text-color: black;
+    --font-xxl: 6rem;
+    --font-xl: 3rem;
+    --font-l: 2rem;
+    --font-m: 1.3rem;
+    --font-s: 1rem;
+}
+
+body{
+    font-family: "DM-sans", Arial, Helvetica, sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+h1 {
+    margin-top: 0;
+    font-weight: 900;
+}
+
+h2 {
+    padding: 0;
+    margin: 0;
+    font-weight: 500;
+}
+
+.divider {
+    border-bottom: 3px solid black;
+    margin: 10px 0;
+}
+
+.subtitle{
+    font-weight: 500;
+    line-height: 1.8rem;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: large;
+    p {
+        margin: 0;
+        font-size: 1.8rem;
+    }
+
+}
+
+.text-logo{
+    font-family: "DM-sans";
+    color: var(--color-secondary);
+    font-weight: 800;
+    line-height: 1.2;
+    padding: 15px 0;
+}
+
+.text-main {
+    font-weight: 500;
+    font-size: var(--font-s);
+
+    .text-block {
+        font-weight: 500;
+        font-size: var(--font-s);
+        padding-bottom: 5px;
+    }
+}
+
+.link {
+    position: relative;
+    overflow: hidden;
+
+    a {
+        text-decoration: none;
+    }
+}
+
+
+.link:hover {
+    cursor: pointer;
+    color: var(--color-secondary);
+}
+
+.link.selected {
+    background-color: var(--color-secondary);
+    color: var(--color-main);
+
+    a {
+        color: var(--color-main);
+        text-decoration: none;
+    }
+}
+
+.link.greyed-out {
+    background-color: var(--color-main);
+    color:  var(--color-secondary);
+}
+
+.link.greyed-out:hover {
+    color: black;
+    background-color: #F0CA4F;
+}
+
+ul {
+    color: black;
+}
+
+.banner-container {
+    width: 100%;
+    overflow: hidden; /* Ensures that any overflow is hidden */
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
+.banner {
+    background-color: var(--color-secondary);
+    margin: 0 0;
+    margin-bottom: 10px;
+    padding: 0 20px;
+    overflow: hidden; /* Ensures that Marquee content doesn't overflow */
+    display: inline-block;
+
+    h2{
+        font-size: 3rem;
+        color: var(--color-main);
+    }
+
+    h3 {
+        margin: 0;
+        font-size: 2.5rem;
+        color: var(--color-main);
+    }
+
+}
+
+.pill-banner {
+    margin: 0 0;
+    padding: 0 20px;
+    overflow: hidden; /* Ensures that Marquee content doesn't overflow */
+    display: inline-block;
+
+    h3 {
+        font-size: var(--font-m);
+        font-weight: 300;
+        font-family: DM-sans;
+        background-color: var(--color-secondary);
+        color: var(--color-main);
+        border: 2px solid var(--color-secondary);
+        margin: 5px 10px;
+        padding: 0 10px ;
+        text-transform: lowercase;
+
+        a {
+            text-decoration: none;
+        }
+
+    }
+
+    h3:hover {
+        background-color: var(--color-main);
+        color: var(--color-secondary);
+    }
+}
+
+@media (max-width: 600px) {
+    h2 {
+        font-size: var(--font-s);
+    }
+
+    .subtitle {
+        line-height: 1.2rem;
+    }
+}
+
+

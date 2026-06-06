@@ -5,6 +5,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useLivePreview } from '@payloadcms/live-preview-react';
 import React, { useEffect, useState } from 'react';
 import Link from "next/link";
+import { useRouter } from 'next/navigation';
 
 import { getClientSideURL } from '../../../../utils/getURL';
 import { terraceIsSunny } from "../../../../hooks/weather/isSunny.tsx";
@@ -16,17 +17,13 @@ import SaveVenueButton from "../../../../components/saveButton.jsx";
 
 const getHeroUrl = (media, preferred = 'tablet') => {
     const sizes = media?.hero?.sizes || {};
-
     const isValidUrl = (url) => {
         if (!url || typeof url !== 'string') return false;
         try {
             const parsed = new URL(url);
             return parsed.pathname.length > 1;
-        } catch {
-            return false;
-        }
+        } catch { return false; }
     };
-
     const candidates = [
         sizes[preferred]?.url,
         sizes.tablet?.url,
@@ -34,8 +31,14 @@ const getHeroUrl = (media, preferred = 'tablet') => {
         sizes.mobileThumbnail?.url,
         media?.hero?.url,
     ];
-
     return candidates.find(isValidUrl) || null;
+};
+
+const getDirectionsUrl = (venue) => {
+    const lat = venue.information?.address?.longitude;
+    const lng = venue.information?.address?.latitude;
+    if (!lat || !lng) return null;
+    return `/map?venue=${venue.url}&lat=${lat}&lng=${lng}&directions=true`;
 };
 
 export default function VenueClient({ initialVenue }) {
@@ -107,18 +110,38 @@ function VenueMeta({ venue }) {
                 </h2>
             )}
 
-            <CuisineList venue={venue} />
-
-            {venue.damage && (
-                <div className="cuisines" style={{ marginTop: "5px" }}>
-                    <Link href={`/budget-control/${venue.damage}`}>
-                        <div className="link">
-                            <h2>{venue.damage.replaceAll("*", "💸")}</h2>
+            <div style={{ display: "flex", gap: "10px", alignItems: "center", justifyContent: "space-between" }}>
+                <div>
+                    <CuisineList venue={venue} />
+                    {venue.damage && (
+                        <div className="cuisines" style={{ marginTop: "5px" }}>
+                            <Link href={`/budget-control/${venue.damage}`}>
+                                <div className="link">
+                                    <h2>{venue.damage.replaceAll("*", "€")}</h2>
+                                </div>
+                            </Link>
                         </div>
-                    </Link>
+                    )}
                 </div>
-            )}
+                <SaveVenueButton venueId={venue.id} venueName={venue.venueName} />
+            </div>
         </>
+    );
+}
+
+function DirectionsButton({ venue }) {
+    const router = useRouter();
+    const directionsUrl = getDirectionsUrl(venue);
+    if (!directionsUrl) return null;
+
+    return (
+        <div
+            className="link reservations"
+            style={{ cursor: 'pointer' }}
+            onClick={() => router.push(directionsUrl)}
+        >
+            get directions →
+        </div>
     );
 }
 
@@ -145,11 +168,13 @@ function DesktopView({ venue, isSunny }) {
                     {venue.review?.foodClubOrder && (
                         <div className="venue-tip__container">
                             <div className="text-main">☞</div>
-                            <p className="text-main">{serialize(venue.review.foodClubOrder)}</p>
+                            <div className="text-main">{serialize(venue.review.foodClubOrder)}</div>
                         </div>
                     )}
                     <OpeningHours venue={venue} />
                 </section>
+
+                <DirectionsButton venue={venue} />
 
                 {venue.information?.reservations && (
                     <div className="link reservations">
@@ -160,7 +185,7 @@ function DesktopView({ venue, isSunny }) {
 
             {heroUrl && (
                 <div className="image-container"
-                     style={{marginTop: "30px", minHeight: "500px", position: 'relative', overflow: 'hidden'}}>
+                     style={{ marginTop: "30px", minHeight: "500px", position: 'relative', overflow: 'hidden' }}>
                     <img
                         src={heroUrl}
                         alt={`hero image for ${venue.venueName}`}
@@ -174,14 +199,13 @@ function DesktopView({ venue, isSunny }) {
                             display: 'block',
                         }}
                     />
-                    <SaveVenueButton venueId={venue.id} venueName={venue.venueName}/>
                 </div>
             )}
         </section>
     );
 }
 
-function MobileView({venue, isSunny}) {
+function MobileView({ venue, isSunny }) {
     const heroUrl = getHeroUrl(venue.media, 'mobileFriendly');
 
     return (
@@ -205,7 +229,6 @@ function MobileView({venue, isSunny}) {
                             />
                         </div>
                     )}
-
                     <VenueMeta venue={venue} />
                 </div>
 
@@ -217,9 +240,11 @@ function MobileView({venue, isSunny}) {
                     {venue.review?.foodClubOrder && (
                         <div className="venue-tip__container">
                             <div className="text-main">☞</div>
-                            <p className="text-main">{serialize(venue.review.foodClubOrder)}</p>
+                            <div className="text-main">{serialize(venue.review.foodClubOrder)}</div>
                         </div>
                     )}
+
+                    <DirectionsButton venue={venue} />
 
                     {venue.information?.reservations && (
                         <div className="link reservations">
@@ -245,13 +270,15 @@ function CuisineList({ venue }) {
 
     return (
         <div className="cuisines">
-            {items.map((item) => (
-                <div key={item.id || item.name}>
-                    <h2 className="link">
-                        <Link href={`/venues/${item.name}`}>{item.name}</Link>
-                    </h2>
-                </div>
-            ))}
+            <div style={{ display: "flex", gap: "5px", flexWrap: "wrap" }}>
+                {items.map((item) => (
+                    <div key={item.id || item.name}>
+                        <h2 className="link">
+                            <Link href={`/venues/${item.name}`}>{item.name}</Link>
+                        </h2>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 }

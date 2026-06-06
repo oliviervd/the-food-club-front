@@ -18,6 +18,8 @@ import 'leaflet/dist/leaflet.css';
 import '/styles/map.css';
 import '/styles/colors.css';
 import '/styles/auth.css';
+import '/styles/icons-buttons.css';
+
 import CanonicalTag from "../../components/CanonicalTag.jsx";
 import AnalyticsGate from "../../components/AnalyticsGate.jsx";
 

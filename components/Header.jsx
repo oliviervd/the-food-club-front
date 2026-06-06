@@ -5,6 +5,7 @@ import { LocationColorContext } from "../contexts/LocationColorContext.jsx";
 import Link from 'next/link';
 import "../styles/header.css"
 import dynamic from 'next/dynamic';
+import Face5Icon from '@mui/icons-material/Face5';
 
 const SearchBarHeader = dynamic(() => import('./Search/SearchBarHeader.jsx'), { ssr: false, loading: () => null });
 
@@ -37,7 +38,7 @@ const Header = ({ interact, landing, venueLocation, setTarget, greyOut = false, 
             <header>
                 {!isMobile &&
                     <div>
-                        <div style={{ display: 'grid', gridTemplateColumns: "30% 40% 30%" }}>
+                        <div style={{ display: 'grid', gridTemplateColumns: "30% 40% 25% 5%" }}>
                             <div style={{ display: 'flex', flexFlow: "row", height: '100%', justifyContent: 'center' }}>
                                 <h2 style={{ margin: "auto", color: 'var(--color-secondary)' }}>welcome to the club</h2>
                             </div>
@@ -55,6 +56,11 @@ const Header = ({ interact, landing, venueLocation, setTarget, greyOut = false, 
                                 </Link>
                             </div>
                             <SearchBarHeader />
+                            <div style={{ margin: "auto" }}>
+                                <Link href="/profile" className="profile-icon-link">
+                                    <Face5Icon sx={{ fontSize: 28 }} />
+                                </Link>
+                            </div>
                         </div>
                         <div>
                             <div style={{ display: "flex", flexFlow: "row", flexDirection: "revert" }}>
@@ -93,6 +99,9 @@ const Header = ({ interact, landing, venueLocation, setTarget, greyOut = false, 
                                 style={{ width: '50%', height: 'auto' }}
                             />
                         </Link>
+                        <h2 className={`link ${selectedTab === "profile" ? "selected" : "none"}`} style={{ borderTop: "none" , position:"absolute", right:18, top:18}} onClick={() => { router.push('/profile') }}>
+                            <Face5Icon sx={{ fontSize: 40, color: 'var(--color-secondary)' }} />
+                        </h2>
                     </div>
                 }
 

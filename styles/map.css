@@ -796,3 +796,194 @@
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+/* ── Desktop venue sidebar (replaces popup on desktop) ─────── */
+
+.map--layout {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.map--canvas {
+    flex: 1;
+    position: relative;
+    transition: flex 0.3s ease;
+}
+
+.map--sidebar {
+    width: 0;
+    overflow: hidden;
+    position: relative;
+    background: var(--color-main);
+    border-left: 2px solid var(--color-secondary);
+    transition: width 0.3s ease;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+}
+
+.map--sidebar.open {
+    width: 380px;
+    overflow-y: auto;
+}
+
+.map--sidebar__close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-secondary);
+    color: var(--color-main);
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    z-index: 10;
+    font-family: inherit;
+}
+
+.map--sidebar__close:hover {
+    opacity: 0.8;
+}
+
+.map--sidebar__image {
+    position: relative;
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.map--sidebar__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-bottom: 2px solid var(--color-secondary);
+}
+
+.map--sidebar__content {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.map--sidebar__name {
+    font-size: 1.8rem;
+    margin: 0;
+    color: var(--color-secondary);
+    line-height: 1.1;
+}
+
+.map--sidebar__address {
+    font-size: 0.85rem;
+    margin: 0;
+    opacity: 0.6;
+    color: var(--color-secondary);
+}
+
+.map--sidebar__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.map--sidebar__tag {
+    border: 2px solid var(--color-secondary);
+    padding: 2px 8px;
+    font-size: 0.8rem;
+    color: var(--color-secondary);
+    text-decoration: none;
+    background: var(--color-main);
+}
+
+.map--sidebar__tag:hover {
+    background: var(--color-secondary);
+    color: var(--color-main);
+}
+
+.map--sidebar__divider {
+    border: none;
+    border-top: 1px solid var(--color-secondary);
+    opacity: 0.3;
+    margin: 0;
+}
+
+.map--sidebar__hours {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 0.8rem;
+}
+
+.map--sidebar__hour-row {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 4px;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    color: var(--color-secondary);
+}
+
+.map--sidebar__hour-row.today {
+    font-weight: 600;
+}
+
+.map--sidebar__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.map--sidebar__btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    text-align: center;
+    font-family: inherit;
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-decoration: none;
+    border: 2px solid var(--color-secondary);
+    background: var(--color-main);
+    color: var(--color-secondary);
+    transition: background 0.15s ease, color 0.15s ease;
+    box-sizing: border-box;
+}
+
+.map--sidebar__btn:hover {
+    background: var(--color-secondary);
+    color: var(--color-main);
+}
+
+.map--sidebar__btn--primary {
+    background: var(--color-secondary);
+    color: var(--color-main);
+}
+
+.map--sidebar__btn--primary:hover {
+    opacity: 0.85;
+}
+
+.map--sidebar__sunny {
+    background: #FFB700;
+    color: #000;
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    font-family: inherit;
+    text-align: center;
+}
+
+/* On mobile, keep the old popup behavior */
+@media (max-width: 1024px) {
+    .map--sidebar {
+        display: none;
+    }
+}
