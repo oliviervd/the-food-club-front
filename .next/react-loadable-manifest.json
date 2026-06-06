@@ -25,29 +25,10 @@
       "static/chunks/_app-pages-browser_components_luckyButton_jsx.js"
     ]
   },
-  "app/(app)/map/mapClient.jsx -> ../../../components/routingLine.jsx": {
-    "id": "app/(app)/map/mapClient.jsx -> ../../../components/routingLine.jsx",
-    "files": [
-      "static/chunks/_app-pages-browser_components_routingLine_jsx.js"
-    ]
-  },
-  "app/(app)/map/mapWrapper.jsx -> ./mapClient.jsx": {
-    "id": "app/(app)/map/mapWrapper.jsx -> ./mapClient.jsx",
-    "files": [
-      "static/css/_app-pages-browser_app_app_map_mapClient_jsx.css",
-      "static/chunks/_app-pages-browser_app_app_map_mapClient_jsx.js"
-    ]
-  },
   "components/Header.jsx -> ./Search/SearchBarHeader.jsx": {
     "id": "components/Header.jsx -> ./Search/SearchBarHeader.jsx",
     "files": [
       "static/chunks/_app-pages-browser_components_Search_SearchBarHeader_jsx.js"
-    ]
-  },
-  "components/routingLine.jsx -> leaflet-routing-machine": {
-    "id": "components/routingLine.jsx -> leaflet-routing-machine",
-    "files": [
-      "static/chunks/_app-pages-browser_node_modules_pnpm_leaflet-routing-machine_3_2_12_node_modules_leaflet-rout-43ced5.js"
     ]
   }
 }
