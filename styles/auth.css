@@ -1,0 +1,291 @@
+/* ── Auth Modal ───────────────────────────────────────────── */
+
+.auth-modal__overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.auth-modal__container {
+    background: var(--color-main);
+    color: var(--color-secondary);
+    border: 2px solid var(--color-secondary);
+    padding: 40px;
+    width: 100%;
+    max-width: 420px;
+    position: relative;
+}
+
+.auth-modal__close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    color: var(--color-secondary);
+    line-height: 1;
+}
+
+.auth-modal__title {
+    font-size: 2rem;
+    margin: 0 0 8px;
+    font-family: inherit;
+}
+
+.auth-modal__subtitle {
+    font-size: 0.9rem;
+    margin: 0 0 24px;
+    opacity: 0.7;
+}
+
+.auth-modal__form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.auth-modal__input {
+    background: transparent;
+    border: 1px solid var(--color-secondary);
+    color: var(--color-secondary);
+    padding: 12px;
+    font-size: 1rem;
+    font-family: inherit;
+    outline: none;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.auth-modal__input::placeholder {
+    color: var(--color-secondary);
+    opacity: 0.5;
+}
+
+.auth-modal__input:focus {
+    border-color: var(--color-secondary);
+    outline: 2px solid var(--color-secondary);
+    outline-offset: -2px;
+}
+
+.auth-modal__error {
+    font-size: 0.85rem;
+    color: red;
+    margin: 0;
+}
+
+.auth-modal__submit {
+    background: var(--color-secondary);
+    color: var(--color-main);
+    border: none;
+    padding: 14px;
+    font-size: 1rem;
+    font-family: inherit;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: opacity 0.2s ease;
+}
+
+.auth-modal__submit:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.auth-modal__submit:hover:not(:disabled) {
+    opacity: 0.85;
+}
+
+.auth-modal__switch {
+    font-size: 0.85rem;
+    margin: 20px 0 0;
+    opacity: 0.7;
+}
+
+.auth-modal__switch span {
+    cursor: pointer;
+    text-decoration: underline;
+    opacity: 1;
+}
+
+/* ── Save Venue Button ────────────────────────────────────── */
+
+.save-venue__wrapper {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 10;
+}
+
+.save-venue__btn {
+    background: var(--color-main);
+    border: 1px solid var(--color-secondary);
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: transform 0.15s ease;
+    padding: 0;
+}
+
+.save-venue__btn:hover {
+    transform: scale(1.1);
+}
+
+.save-venue__btn--saved {
+    background: var(--color-secondary);
+}
+
+.save-venue__menu {
+    position: absolute;
+    top: 44px;
+    right: 0;
+    background: var(--color-main);
+    border: 1px solid var(--color-secondary);
+    min-width: 150px;
+    display: flex;
+    flex-direction: column;
+    z-index: 20;
+}
+
+.save-venue__menu-item {
+    background: none;
+    border: none;
+    border-bottom: 1px solid var(--color-secondary);
+    padding: 10px 14px;
+    text-align: left;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.85rem;
+    color: var(--color-secondary);
+    transition: background 0.15s ease;
+}
+
+.save-venue__menu-item:last-child {
+    border-bottom: none;
+}
+
+.save-venue__menu-item:hover,
+.save-venue__menu-item.active {
+    background: var(--color-secondary);
+    color: var(--color-main);
+}
+
+.save-venue__menu-item--remove {
+    opacity: 0.6;
+}
+
+.save-venue__menu-item--remove:hover {
+    opacity: 1;
+    background: var(--color-secondary);
+    color: var(--color-main);
+}
+
+/* ── Profile Page ─────────────────────────────────────────── */
+
+.profile__not-logged-in {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 50vh;
+    text-align: center;
+    gap: 16px;
+}
+
+.profile__login-btn {
+    background: var(--color-secondary);
+    color: var(--color-main);
+    border: none;
+    padding: 14px 28px;
+    font-size: 1rem;
+    font-family: inherit;
+    cursor: pointer;
+    margin-top: 8px;
+}
+
+.profile__login-btn:hover {
+    opacity: 0.85;
+}
+
+.profile__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--color-secondary);
+}
+
+.profile__greeting {
+    font-size: 2rem;
+    margin: 0 0 4px;
+}
+
+.profile__subtitle {
+    margin: 0;
+    opacity: 0.6;
+    font-size: 0.9rem;
+}
+
+.profile__logout {
+    background: none;
+    border: 1px solid var(--color-secondary);
+    color: var(--color-secondary);
+    padding: 8px 16px;
+    font-family: inherit;
+    font-size: 0.85rem;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.profile__logout:hover {
+    opacity: 1;
+}
+
+.profile__tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 24px;
+}
+
+.profile__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.profile__venue-card {
+    position: relative;
+    cursor: pointer;
+}
+
+.profile__venue-status {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    font-size: 1rem;
+    line-height: 1;
+}
+
+.profile__empty {
+    padding: 40px 0;
+    opacity: 0.6;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+@media (max-width: 600px) {
+    .profile__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

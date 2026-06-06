@@ -8,6 +8,7 @@ import { fileURLToPath } from 'url'
 import sharp from 'sharp'
 import {s3Storage} from "@payloadcms/storage-s3";
 import { seoPlugin } from '@payloadcms/plugin-seo';
+import {expireNewInTownTask} from "@/tasks/expireNewInTown";
 
 // import collections here.
 import { Users } from './collections/Users'
@@ -24,6 +25,15 @@ const dirname = path.dirname(filename)
 
 export default buildConfig({
   // admin
+  jobs: {
+    tasks: [expireNewInTownTask],
+    autoRun: [
+      {
+        cron: '0 2 * * *', // Check nightly queue at 2am
+        queue: 'nightly',
+      }
+    ],
+  },
   admin: {
     user: Users.slug,
     importMap: {
@@ -112,6 +122,7 @@ export default buildConfig({
         },
         // other S3 configs
       }
-    })
+    }),
+
   ],
 })

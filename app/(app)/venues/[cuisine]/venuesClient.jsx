@@ -119,14 +119,13 @@ const VenuesClient = ({ cuisine }) => {
                                     return (
                                         <div key={match.id || match.url} className="category-list__box">
                                             <Link href={`/venue/${match.url}`}>
-                                                <div style={{ height: "200px", position: 'relative', overflow: 'hidden' }}>
+                                                <div style={{ position: 'relative', height: '100%', overflow: 'hidden' }}>
                                                     <img
                                                         src={heroUrl}
                                                         alt={`hero image for ${match.venueName}`}
                                                         loading="lazy"
                                                         style={{
                                                             objectFit: 'cover',
-                                                            width: '100%',
                                                             height: '100%',
                                                             border: "2px solid var(--color-main)",
                                                             boxSizing: 'border-box',

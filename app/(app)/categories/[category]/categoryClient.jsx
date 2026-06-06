@@ -140,7 +140,7 @@ const CategoryClient = () => {
                             <section className="venue-list__container-main">
                                 <h2 className="header">{location}</h2>
                                 <section>
-                                    <div className="cat_description">
+                                    <div className="cat_description" style={{height: "200px"}}>
                                         {_category.description && (
                                             <div>
                                                 <h2>{_category.description}</h2>

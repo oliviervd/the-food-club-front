@@ -2,39 +2,20 @@ import type { CollectionConfig } from 'payload'
 import openingHours from "@/fields/openingHours";
 
 export const Venue: CollectionConfig = {
-    slug: "venues", // Make sure this is "venues" (plural)
+    slug: "venues",
     labels: {
-        singular: {
-            en: "venue",
-            fr: "lieu",
-            nl: "locatie"
-        },
-        plural: {
-            en: "venues",
-            fr: "lieux",
-            nl: "locaties"
-        }
+        singular: { en: "venue", fr: "lieu", nl: "locatie" },
+        plural: { en: "venues", fr: "lieux", nl: "locaties" }
     },
     admin: {
         useAsTitle: "venueName",
         livePreview: {
             url: ({ data }) => `/venue/${data?.url || ''}`,
             breakpoints: [
-                {
-                    label: 'Mobile',
-                    name: 'mobile',
-                    width: 600,
-                    height: 844,
-                },
-                {
-                    label: 'Desktop',
-                    name: 'desktop',
-                    width: 1440,
-                    height: 900,
-                },
+                { label: 'Mobile', name: 'mobile', width: 600, height: 844 },
+                { label: 'Desktop', name: 'desktop', width: 1440, height: 900 },
             ],
         },
-
     },
     access: {
         read: () => true,
@@ -46,15 +27,26 @@ export const Venue: CollectionConfig = {
         maxPerDoc: 20,
         drafts: true,
     },
+    hooks: {
+        beforeChange: [
+            ({ data, originalDoc }) => {
+                // Auto-set newInTownSince when 'new' is first checked
+                if (data.new === true && !originalDoc?.new) {
+                    data.newInTownSince = new Date().toISOString();
+                }
+                // Clear the date when 'new' is unchecked
+                if (data.new === false) {
+                    data.newInTownSince = null;
+                }
+                return data;
+            }
+        ]
+    },
     fields: [
         {
             name: "venueName",
             type: "text",
-            label: {
-                en: "venue name",
-                nl: "naam locatie",
-                fr: "nom de lieu"
-            },
+            label: { en: "venue name", nl: "naam locatie", fr: "nom de lieu" },
             admin: {
                 description: "name of the venue",
                 placeholder: {
@@ -63,7 +55,7 @@ export const Venue: CollectionConfig = {
                     nl: "voer locatienaam in"
                 }
             },
-            required:true,
+            required: true,
         },
         {
             name: "url",
@@ -73,7 +65,7 @@ export const Venue: CollectionConfig = {
                 position: "sidebar",
                 description: "NO SPACES! USE '-' INSTEAD. - example: 'da-luigi' or 'no-spaces-here'."
             },
-            required:true,
+            required: true,
         },
         {
             name: "club",
@@ -88,51 +80,24 @@ export const Venue: CollectionConfig = {
                 }
             },
             options: [
-                {
-                    label:"brussels",
-                    value: "brussels"
-                },
-                {
-                    label: "gent",
-                    value: "gent"
-                },
-                {
-                    label: "antwerp",
-                    value: "antwerp"
-                }
+                { label: "brussels", value: "brussels" },
+                { label: "gent", value: "gent" },
+                { label: "antwerp", value: "antwerp" }
             ],
-            required:true
+            required: true
         },
         {
             name: "damage",
             label: "damage",
             type: "select",
             options: [
-                {
-                    label: "👊🏼",
-                    value: "*"
-                },
-                {
-                    label: "👊👊",
-                    value: "**"
-                },
-                {
-                    label: "👊👊👊",
-                    value: "***"
-                },
-                {
-                    label: "👊👊👊👊",
-                    value: "****"
-                },
-                {
-                    label: "👊👊👊👊👊",
-                    value: "*****"
-                },
-
+                { label: "👊🏼", value: "*" },
+                { label: "👊👊", value: "**" },
+                { label: "👊👊👊", value: "***" },
+                { label: "👊👊👊👊", value: "****" },
+                { label: "👊👊👊👊👊", value: "*****" },
             ],
-            admin: {
-                position: "sidebar"
-            }
+            admin: { position: "sidebar" }
         },
         {
             name: "new",
@@ -142,10 +107,23 @@ export const Venue: CollectionConfig = {
             admin: {
                 position: "sidebar",
                 description: {
-                    en: "mark this venue as new",
-                    nl: "markeer deze locatie als nieuw",
-                    fr: "marquez cette lieu comme nouveau"
+                    en: "mark this venue as new — automatically removed after 30 days",
+                    nl: "markeer deze locatie als nieuw — wordt automatisch verwijderd na 30 dagen",
+                    fr: "marquez cette lieu comme nouveau — retiré automatiquement après 30 jours"
                 }
+            }
+        },
+        {
+            // Tracks when 'new' was first set — used by the expiry task
+            name: "newInTownSince",
+            label: "new in town since",
+            type: "date",
+            admin: {
+                position: "sidebar",
+                description: {
+                    en: "set automatically when marked as new. venue will lose 'new' status 30 days after this date.",
+                },
+                readOnly: true, // editors shouldn't touch this manually
             }
         },
         {
@@ -163,11 +141,7 @@ export const Venue: CollectionConfig = {
                     fields: [
                         {
                             name: "hero",
-                            label: {
-                                en: "hero image",
-                                fr: "image principale",
-                                nl: "hero image"
-                            },
+                            label: { en: "hero image", fr: "image principale", nl: "hero image" },
                             type: "upload",
                             relationTo: "media",
                             admin: {
@@ -199,11 +173,7 @@ export const Venue: CollectionConfig = {
                         },
                         {
                             name: "cuisine",
-                            label: {
-                                en: "cuisine",
-                                fr: "cuisine",
-                                nl: "kitchen"
-                            },
+                            label: { en: "cuisine", fr: "cuisine", nl: "kitchen" },
                             admin: {
                                 description: {
                                     en: "select the kitchen/cuisine the venue belongs to, fe. Italian, French, Dutch, ...",
@@ -217,27 +187,15 @@ export const Venue: CollectionConfig = {
                         },
                         {
                             name: "dishes",
-                            label: {
-                                en: "dishes",
-                                fr: "plats",
-                                nl: "gerechten"
-                            },
-                            admin: {
-                                description: {
-                                    en: "select the dishes the venue serves, fe. Italian, French, Dutch, ...",
-                                }
-                            },
+                            label: { en: "dishes", fr: "plats", nl: "gerechten" },
+                            admin: { description: { en: "select the dishes the venue serves, fe. Italian, French, Dutch, ..." } },
                             type: "relationship",
                             relationTo: "cuisines",
                             hasMany: true,
                         },
                         {
                             name: "drinks",
-                            label: {
-                                en: "drinks",
-                                fr: "boissons",
-                                nl: "dranken"
-                            },
+                            label: { en: "drinks", fr: "boissons", nl: "dranken" },
                             type: "relationship",
                             relationTo: "cuisines",
                             hasMany: true
@@ -299,41 +257,25 @@ export const Venue: CollectionConfig = {
                                     fields: [
                                         {
                                             name: "street",
-                                            label: {
-                                                en: "street",
-                                                fr: "rue",
-                                                nl: "straat"
-                                            },
+                                            label: { en: "street", fr: "rue", nl: "straat" },
                                             type: "text",
                                             required: true,
                                         },
                                         {
                                             name: "houseNumber",
-                                            label: {
-                                                en: "house number",
-                                                fr: "numéro de maison",
-                                                nl: "huisnummer"
-                                            },
+                                            label: { en: "house number", fr: "numéro de maison", nl: "huisnummer" },
                                             type: "text",
                                             required: true,
                                         },
                                         {
                                             name: "city",
-                                            label: {
-                                                en: "city",
-                                                fr: "ville",
-                                                nl: "gemeente"
-                                            },
+                                            label: { en: "city", fr: "ville", nl: "gemeente" },
                                             type: "text",
                                             required: true,
                                         },
                                         {
                                             name: "postalCode",
-                                            label: {
-                                                en: "postal code",
-                                                fr: "code postal",
-                                                nl: "postcode"
-                                            },
+                                            label: { en: "postal code", fr: "code postal", nl: "postcode" },
                                             type: "text",
                                             required: true,
                                         }
@@ -344,27 +286,18 @@ export const Venue: CollectionConfig = {
                                     fields: [
                                         {
                                             name: "longitude",
-                                            label: {
-                                                en: "longitude",
-                                                fr: "longitude",
-                                                nl: "lengtegraad"
-                                            },
+                                            label: { en: "longitude", fr: "longitude", nl: "lengtegraad" },
                                             type: "number",
                                             required: true,
                                         },
                                         {
                                             name: "latitude",
-                                            label: {
-                                                en: "latitude",
-                                                fr: "latitude",
-                                                nl: "breedtegraad"
-                                            },
+                                            label: { en: "latitude", fr: "latitude", nl: "breedtegraad" },
                                             type: "number",
                                             required: true,
                                         }
                                     ]
                                 }
-
                             ]
                         },
                         {
@@ -378,7 +311,6 @@ export const Venue: CollectionConfig = {
                                     nl: "dit restaurant is geboren, het openen is alleen wanneer de zon hemelighoudt ☀️"
                                 }
                             }
-
                         },
                         openingHours,
                         {

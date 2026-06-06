@@ -3,11 +3,9 @@
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { LocationColorProvider } from '/contexts/LocationColorContext.jsx';
-import {CookieProvider} from "/contexts/CookieContext.jsx";
-import { AuthProvider } from '/contexts/AuthContext';
-import AuthGuard from '/components/AuthGuard';
+import { CookieProvider } from "/contexts/CookieContext.jsx";
+import { UserProvider } from '/contexts/UserContext.jsx';
 import { useState } from 'react';
-import {PayloadLivePreview} from '/components/LivePreviewListener';
 
 import '/styles/fonts.css';
 import '/styles/media.css';
@@ -19,6 +17,7 @@ import '/styles/about.css';
 import 'leaflet/dist/leaflet.css';
 import '/styles/map.css';
 import '/styles/colors.css';
+import '/styles/auth.css';
 import CanonicalTag from "../../components/CanonicalTag.jsx";
 import AnalyticsGate from "../../components/AnalyticsGate.jsx";
 
@@ -27,38 +26,22 @@ export default function ClientLayout({ children }) {
         defaultOptions: {
             queries: {
                 staleTime: Infinity,
-                gcTime: 86400000, // renamed from cacheTime
+                gcTime: 86400000,
                 refetchOnWindowFocus: false,
             }
         }
     }));
 
-    /*
     return (
         <QueryClientProvider client={queryClient}>
             <LocationColorProvider>
-                <AuthProvider>
-                    <AuthGuard>
-                        <CookieProvider>
-                            {children}
-                        </CookieProvider>
-                    </AuthGuard>
-                </AuthProvider>
-            </LocationColorProvider>
-        </QueryClientProvider>
-    );
-    */
-
-    return (
-        <>
-            <QueryClientProvider client={queryClient}>
-                <LocationColorProvider>
-                    <CookieProvider>
+                <CookieProvider>
+                    <UserProvider>
                         <AnalyticsGate />
                         {children}
-                    </CookieProvider>
-                </LocationColorProvider>
-            </QueryClientProvider>
-        </>
+                    </UserProvider>
+                </CookieProvider>
+            </LocationColorProvider>
+        </QueryClientProvider>
     );
 }

@@ -12,6 +12,7 @@ import { terraceIsSunny } from "../../../../hooks/weather/isSunny.tsx";
 import Header from "../../../../components/Header.jsx";
 import AutoResizeText from "../../../../components/AutoResizeText.jsx";
 import serialize from "../../../../utils/serialize.jsx";
+import SaveVenueButton from "../../../../components/saveButton.jsx";
 
 const getHeroUrl = (media, preferred = 'tablet') => {
     const sizes = media?.hero?.sizes || {};
@@ -158,7 +159,8 @@ function DesktopView({ venue, isSunny }) {
             </div>
 
             {heroUrl && (
-                <div className="image-container" style={{ marginTop: "30px", minHeight: "500px", position: 'relative', overflow: 'hidden' }}>
+                <div className="image-container"
+                     style={{marginTop: "30px", minHeight: "500px", position: 'relative', overflow: 'hidden'}}>
                     <img
                         src={heroUrl}
                         alt={`hero image for ${venue.venueName}`}
@@ -172,13 +174,14 @@ function DesktopView({ venue, isSunny }) {
                             display: 'block',
                         }}
                     />
+                    <SaveVenueButton venueId={venue.id} venueName={venue.venueName}/>
                 </div>
             )}
         </section>
     );
 }
 
-function MobileView({ venue, isSunny }) {
+function MobileView({venue, isSunny}) {
     const heroUrl = getHeroUrl(venue.media, 'mobileFriendly');
 
     return (

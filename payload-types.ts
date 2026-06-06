@@ -75,6 +75,7 @@ export interface Config {
     events: Event;
     recommendations: Recommendation;
     page: Page;
+    'payload-jobs': PayloadJob;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -89,6 +90,7 @@ export interface Config {
     events: EventsSelect<false> | EventsSelect<true>;
     recommendations: RecommendationsSelect<false> | RecommendationsSelect<true>;
     page: PageSelect<false> | PageSelect<true>;
+    'payload-jobs': PayloadJobsSelect<false> | PayloadJobsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -103,7 +105,13 @@ export interface Config {
     collection: 'users';
   };
   jobs: {
-    tasks: unknown;
+    tasks: {
+      expireNewInTown: TaskExpireNewInTown;
+      inline: {
+        input: unknown;
+        output: unknown;
+      };
+    };
     workflows: unknown;
   };
 }
@@ -134,6 +142,17 @@ export interface User {
   name?: string | null;
   firstName?: string | null;
   role?: ('superAdmin' | 'admin' | 'editor' | 'user')[] | null;
+  /**
+   * venues saved by this user
+   */
+  savedVenues?:
+    | {
+        venue: string | Venue;
+        status: 'favourite' | 'wantToGo';
+        savedAt?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -151,106 +170,6 @@ export interface User {
       }[]
     | null;
   password?: string | null;
-}
-/**
- * cats - as in categories. Here we cluster and curate venues
- *
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "cats".
- */
-export interface Cat {
-  id: string;
-  name: string;
-  /**
-   * slug of the cat
-   */
-  slug?: string | null;
-  /**
-   * short description of the cat
-   */
-  description: string;
-  media?: {
-    /**
-     * main image for the cat
-     */
-    hero?: (string | null) | Media;
-  };
-  /**
-   * venues in this category
-   */
-  venues?: {
-    venues?: (string | Venue)[] | null;
-  };
-  url?: string | null;
-  meta?: {
-    title?: string | null;
-    description?: string | null;
-    /**
-     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
-     */
-    image?: (string | null) | Media;
-    keywords?: string | null;
-  };
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media".
- */
-export interface Media {
-  id: string;
-  title: string;
-  alt?: string | null;
-  /**
-   * if a picture of a dish on the menu, describe the dish in one or two sentences. Keep it short!
-   */
-  dish?: string | null;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
-  sizes?: {
-    mobileThumbnail?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-    mobileFriendly?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-    tablet?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-    original?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-  };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -272,9 +191,13 @@ export interface Venue {
   club: 'brussels' | 'gent' | 'antwerp';
   damage?: ('*' | '**' | '***' | '****' | '*****') | null;
   /**
-   * mark this venue as new
+   * mark this venue as new — automatically removed after 30 days
    */
   new?: boolean | null;
+  /**
+   * set automatically when marked as new. venue will lose 'new' status 30 days after this date.
+   */
+  newInTownSince?: string | null;
   /**
    * media for the venue
    */
@@ -415,6 +338,64 @@ export interface Venue {
   _status?: ('draft' | 'published') | null;
 }
 /**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media".
+ */
+export interface Media {
+  id: string;
+  title: string;
+  alt?: string | null;
+  /**
+   * if a picture of a dish on the menu, describe the dish in one or two sentences. Keep it short!
+   */
+  dish?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+  sizes?: {
+    mobileThumbnail?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    mobileFriendly?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    tablet?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    original?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+  };
+}
+/**
  * collection of kitchens/cuisines/dishes used to type venues (tags)
  *
  * This interface was referenced by `Config`'s JSON-Schema
@@ -449,6 +430,48 @@ export interface Cuisine {
    * tick if this category needs to be displayed. - if unticked, the category keeps existing but isn't displayed on the website (homepage).
    */
   active?: boolean | null;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (string | null) | Media;
+    keywords?: string | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * cats - as in categories. Here we cluster and curate venues
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "cats".
+ */
+export interface Cat {
+  id: string;
+  name: string;
+  /**
+   * slug of the cat
+   */
+  slug?: string | null;
+  /**
+   * short description of the cat
+   */
+  description: string;
+  media?: {
+    /**
+     * main image for the cat
+     */
+    hero?: (string | null) | Media;
+  };
+  /**
+   * venues in this category
+   */
+  venues?: {
+    venues?: (string | Venue)[] | null;
+  };
+  url?: string | null;
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -721,6 +744,98 @@ export interface Page {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-jobs".
+ */
+export interface PayloadJob {
+  id: string;
+  /**
+   * Input data provided to the job
+   */
+  input?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  taskStatus?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  completedAt?: string | null;
+  totalTried?: number | null;
+  /**
+   * If hasError is true this job will not be retried
+   */
+  hasError?: boolean | null;
+  /**
+   * If hasError is true, this is the error that caused it
+   */
+  error?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  /**
+   * Task execution log
+   */
+  log?:
+    | {
+        executedAt: string;
+        completedAt: string;
+        taskSlug: 'inline' | 'expireNewInTown';
+        taskID: string;
+        input?:
+          | {
+              [k: string]: unknown;
+            }
+          | unknown[]
+          | string
+          | number
+          | boolean
+          | null;
+        output?:
+          | {
+              [k: string]: unknown;
+            }
+          | unknown[]
+          | string
+          | number
+          | boolean
+          | null;
+        state: 'failed' | 'succeeded';
+        error?:
+          | {
+              [k: string]: unknown;
+            }
+          | unknown[]
+          | string
+          | number
+          | boolean
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  taskSlug?: ('inline' | 'expireNewInTown') | null;
+  queue?: string | null;
+  waitUntil?: string | null;
+  processing?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -757,6 +872,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'page';
         value: string | Page;
+      } | null)
+    | ({
+        relationTo: 'payload-jobs';
+        value: string | PayloadJob;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -808,6 +927,14 @@ export interface UsersSelect<T extends boolean = true> {
   name?: T;
   firstName?: T;
   role?: T;
+  savedVenues?:
+    | T
+    | {
+        venue?: T;
+        status?: T;
+        savedAt?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -929,6 +1056,7 @@ export interface VenuesSelect<T extends boolean = true> {
   club?: T;
   damage?: T;
   new?: T;
+  newInTownSince?: T;
   media?:
     | T
     | {
@@ -1145,6 +1273,37 @@ export interface PageSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-jobs_select".
+ */
+export interface PayloadJobsSelect<T extends boolean = true> {
+  input?: T;
+  taskStatus?: T;
+  completedAt?: T;
+  totalTried?: T;
+  hasError?: T;
+  error?: T;
+  log?:
+    | T
+    | {
+        executedAt?: T;
+        completedAt?: T;
+        taskSlug?: T;
+        taskID?: T;
+        input?: T;
+        output?: T;
+        state?: T;
+        error?: T;
+        id?: T;
+      };
+  taskSlug?: T;
+  queue?: T;
+  waitUntil?: T;
+  processing?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents_select".
  */
 export interface PayloadLockedDocumentsSelect<T extends boolean = true> {
@@ -1174,6 +1333,14 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TaskExpireNewInTown".
+ */
+export interface TaskExpireNewInTown {
+  input?: unknown;
+  output?: unknown;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

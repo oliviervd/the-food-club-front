@@ -141,18 +141,17 @@ const BudgetControlClient = ({ budget, briefs }) => {
                             return (
                                 <div key={venue.id || venue.url} className="category-list__box">
                                     <Link href={`/venue/${venue.url}`}>
-                                        <div style={{ height: "200px", position: 'relative', overflow: 'hidden' }}>
+                                        <div style={{position: 'relative', height: '100%', overflow: 'hidden'}}>
                                             <img
                                                 src={heroUrl}
                                                 alt={`hero image for ${venue.venueName}`}
                                                 loading="lazy"
                                                 style={{
                                                     objectFit: 'cover',
-                                                    width: '100%',
                                                     height: '100%',
+                                                    display: 'block',
                                                     border: "2px solid var(--color-main)",
                                                     boxSizing: 'border-box',
-                                                    display: 'block',
                                                 }}
                                             />
                                         </div>

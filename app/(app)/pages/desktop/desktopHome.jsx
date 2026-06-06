@@ -91,10 +91,13 @@ const DesktopHome = ({categories, recommendations}) => {
                                             <p>{cat.slug}</p>
                                         </Link>
                                     </div>
-
                                     <div className={"category-list__box special"}>
-
+                                        <Link href={"/profile/"}>
+                                            <h2 style={{fontSize: "20px"}}>Simply the Best</h2>
+                                            <p>better then all the rest</p>
+                                        </Link>
                                     </div>
+
 
                                 </React.Fragment>
                             );
@@ -124,12 +127,13 @@ const DesktopHome = ({categories, recommendations}) => {
 
                 <div className={"category-list__box special"}>
 
-                    {/*
-                    <Link href={"/events/"}>
-                        <h2 style={{fontSize: "20px"}}>Smash that button for tasty food events.</h2>
-                        <p>we believe good food deserves proper celebration.</p>
+
+                    <Link href={"/profile/"}>
+                        <h2 style={{fontSize: "20px"}}>I want to travel far far away.</h2>
+                        <p>places I want.</p>
                     </Link>
-                    */}
+
+
 
                 </div>
             </div>
